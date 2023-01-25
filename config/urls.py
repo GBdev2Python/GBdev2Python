@@ -19,15 +19,12 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import RedirectView
 
-
-
-
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("", RedirectView.as_view(url='hhapp/')),
-    path('social_auth/', include('social_django.urls', namespace='social')),
-    path('hhapp/', include('hhapp.urls', namespace='hhapp')),
-    path('authapp/', include('authapp.urls', namespace='authapp')),
+    path("admin/", admin.site.urls),
+    path("", RedirectView.as_view(url="hhapp/")),
+    path("social_auth/", include("social_django.urls", namespace="social")),
+    path("hhapp/", include("hhapp.urls", namespace="hhapp")),
+    path("authapp/", include("authapp.urls", namespace="authapp")),
 ]
 
 if settings.DEBUG:
