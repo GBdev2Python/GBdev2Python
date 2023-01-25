@@ -10,6 +10,11 @@
     {% if user.is_authenticated %}
         Вы вошли под пользователем: {{ user.username }}
         <a href="{% url 'authapp:logout' %}">Выход</a>
+        {% if user.is_superuser %}
+            <br>
+            Вы зашли под CуперАдмином: Вход в админку: 
+            <a href="/admin/">Админка</a> 
+        {% endif %}
     {% else%}
         <a href="{% url 'authapp:login' %}">Логин</a>
         <a href="{% url 'authapp:register' %}">Регистрация</a>
