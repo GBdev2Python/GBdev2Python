@@ -6,9 +6,9 @@ from django.urls import reverse_lazy
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView, UpdateView
-
+from .models import CustomUser
 from authapp import forms
-
+from django.shortcuts import render
 
 class CustomLoginView(LoginView):
     def form_valid(self, form):
@@ -46,9 +46,16 @@ class RegisterView(CreateView):
 class ProfileEditView(UserPassesTestMixin, UpdateView):
     model = get_user_model()
     form_class = forms.CustomUserChangeForm
+    template_name = 'profile/profile_edit.html'
 
     def test_func(self):
         return True if self.request.user.pk == self.kwargs.get("pk") else False
 
     def get_success_url(self):
         return reverse_lazy("authapp:profile_edit", args=[self.request.user.pk])
+
+
+def profile_info(request):
+    form = CustomUser
+    return render(request, 'profile/profile_info.html', {"form": form})
+
