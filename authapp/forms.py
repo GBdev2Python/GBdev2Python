@@ -3,8 +3,6 @@ import os
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UsernameField
-from django.core.exceptions import ValidationError
-from django.utils.translation import gettext_lazy as _
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -15,7 +13,7 @@ class CustomUserCreationForm(UserCreationForm):
         "email",
         "first_name",
         "last_name",
-        "age",
+        "is_company",
         "avatar",
     ]
 
@@ -24,9 +22,9 @@ class CustomUserCreationForm(UserCreationForm):
         fields = (
             "username",
             "email",
+            "is_company",
             "first_name",
             "last_name",
-            "age",
             "avatar",
         )
         field_classes = {"username": UsernameField}
@@ -43,7 +41,6 @@ class CustomUserChangeForm(forms.ModelForm):
             "email",
             "first_name",
             "last_name",
-            "age",
             "avatar",
         )
         field_classes = {"username": UsernameField}
@@ -54,12 +51,6 @@ class CustomUserChangeForm(forms.ModelForm):
             if os.path.exists(self.instance.avatar.path):
                 os.remove(self.instance.avatar.path)
         return self.cleaned_data.get(arg_as_str)
-
-    def clean_age(self):
-        data = self.cleaned_data.get("age")
-        if data < 10 or data > 100:
-            raise ValidationError(_("Please, enter a valid age!"))
-        return data
 
     def clean_login(self):
         return str.lower(self.cleaned_data.get("username"))

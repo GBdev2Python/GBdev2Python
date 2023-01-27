@@ -40,7 +40,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     )
     first_name = models.CharField(_("first name"), max_length=150, blank=True)
     last_name = models.CharField(_("last name"), max_length=150, blank=True)
-    age = models.PositiveIntegerField(blank=True, null=True)
     avatar = models.ImageField(upload_to=users_avatars_path, blank=True, null=True)
     email = models.CharField(
         _("email address"),
@@ -49,6 +48,14 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         error_messages={
             "unique": _("A user with that email address already exists."),
         },
+    )
+    is_company = models.BooleanField(
+        _("Company"),
+        default=False,
+    )
+    is_moderator = models.BooleanField(
+        _("Moderator"),
+        default=False,
     )
     is_staff = models.BooleanField(
         _("staff status"),

@@ -146,12 +146,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-# SOCIAL_AUTH_GITHUB_KEY = "c24be39sk2844a85ddab"
-# SOCIAL_AUTH_GITHUB_SECRET = "c13ebe509sh324d1e069e39db661815e18e472fb1"
-
-# SOCIAL_AUTH_VK_OAUTH2_KEY = "01917440"
-# SOCIAL_AUTH_VK_OAUTH2_SECRET = "hYDbinNw8YqwuNJavGes"
-
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
