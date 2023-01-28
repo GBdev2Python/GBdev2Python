@@ -4,3 +4,4 @@ from django.apps import AppConfig
 class HhappConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "hhapp"
+    verbose_name = 'Работодатель'

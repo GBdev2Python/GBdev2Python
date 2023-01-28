@@ -38,14 +38,14 @@ class WorkExperience(models.Model):
 # перечисление вида графика рабочего дня (первичный ключ для "VacancyHeader")
 # Права доступа на редактирование: Модератор
 class WorkingDay(models.Model):
-    working_day = models.CharField(max_length=256, unique=True, verbose_name="Длительность рабочего дня")
+    working_day = models.CharField(max_length=256, unique=True, verbose_name="График рабочего дня")
 
     def __str__(self) -> str:
         return f"{self.working_day}"
 
     class Meta:
-        verbose_name = "Длительность рабочего дня"
-        verbose_name_plural = "Длительность рабочего дня"
+        verbose_name = "График работы"
+        verbose_name_plural = "График работы"
         ordering = ("working_day",)
 
 
@@ -109,7 +109,7 @@ class VacancyHeader(models.Model):
     class Meta:
         verbose_name = "Вакансия"
         verbose_name_plural = "Вакансия"
-        ordering = ("-created",)  # свежие в начале списка
+        ordering = ("-created",)  # свежие в начале списка Длительность
 
 
 # Перечисляемые разделы вакансии (дополнительная информация)

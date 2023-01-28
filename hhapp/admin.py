@@ -1,6 +1,7 @@
 from django.contrib import admin
 from hhapp.models import *
 
+
 # Register your models here.
 
 # admin.AdminSite.site_header = 'Административный раздел сайта GBdev2Python'
@@ -8,8 +9,11 @@ from hhapp.models import *
 # Вакансия
 @admin.register(VacancyHeader)
 class VacancyHeaderAdmin(admin.ModelAdmin):
-    list_display = ["job_title", "salary", "work_experience_id"]
-    search_fields = ["job_title", "salary"]
+    list_display = ["job_title", "employer_id", "created", "is_published"]
+
+    # list_display_links = ("job_title", "employer_id",)
+    list_editable = ["is_published"]
+    search_fields = ("job_title", "salary",)
 
 
 # Работодатель
@@ -17,7 +21,7 @@ class VacancyHeaderAdmin(admin.ModelAdmin):
 class EmployerAdmin(admin.ModelAdmin):
     list_display = ["employment"]
     search_fields = ["employment"]
-    prepopulated_fields = {"slug": ("employment", "town_id", )}
+    prepopulated_fields = {"slug": ("employment", "town_id",)}
 
 
 # 111111
