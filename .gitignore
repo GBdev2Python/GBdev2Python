@@ -252,3 +252,4 @@ fabric.properties
 # manual add
 /hhapp/migrations/
 /.idea/
+/authapp/migrations/

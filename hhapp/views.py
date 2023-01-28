@@ -1,11 +1,14 @@
 from typing import Union
 
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy
 from django.views.generic import ListView, TemplateView
 from hhapp.models import *
 
 
 # Create your views here.
+class MainPageView(TemplateView):
+    template_name = "hhapp/home.html"
 
 
 # Список всех работодателей

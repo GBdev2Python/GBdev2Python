@@ -78,7 +78,7 @@ class Employer(models.Model):
     town_id = models.ForeignKey(Locality, on_delete=models.PROTECT, verbose_name="Местоположение")
 
     def get_absolute_url(self):
-        return reverse('employer_detail', kwargs={'employer_slug': self.slug})
+        return reverse('hhapp:employer_detail', kwargs={'employer_slug': self.slug})
 
     def __str__(self) -> str:
         return f"{self.employment}"
@@ -101,7 +101,7 @@ class VacancyHeader(models.Model):
     is_published = models.BooleanField(default=True, verbose_name="Опубликовать")
 
     def get_absolute_url(self):
-        return reverse('vacancy', kwargs={'vacancy_pk': self.pk})
+        return reverse('hhapp:vacancy', kwargs={'vacancy_pk': self.pk})
 
     def __str__(self) -> str:
         return f"{self.job_title}"

@@ -13,14 +13,21 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
-from config import settings
-from django.conf.urls.static import static
 
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib import admin
+from django.urls import include, path
+from django.views.generic import RedirectView
+
+# http://127.0.0.1:8000/admin/login/?next=/admin/
+# http://127.0.0.1:8000/admin/login/?next=/admin/hhapp/employer/
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('hhapp.urls')),
+    path("admin/", admin.site.urls),
+    path("", RedirectView.as_view(url="hhapp/")),
+    path("social_auth/", include("social_django.urls", namespace="social")),
+    path("hhapp/", include("hhapp.urls", namespace="hhapp")),
+    path("authapp/", include("authapp.urls", namespace="authapp")),
 ]
 
 if settings.DEBUG:
