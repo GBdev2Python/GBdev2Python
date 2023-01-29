@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "social_django",
     "authapp",
+    "applicantapp",
     "crispy_forms",
 
     # "hhapp",
