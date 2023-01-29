@@ -24,11 +24,11 @@ class EmployerAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("employment", "town_id",)}
 
 
-# 111111
-@admin.register(Locality)
-class LocalityAdmin(admin.ModelAdmin):
-    list_display = ["town"]
-    search_fields = ["town"]
+# Таблица теперь в "applicantapp.models"
+# @admin.register(Locality)
+# class LocalityAdmin(admin.ModelAdmin):
+#     list_display = ["town"]
+#     search_fields = ["town"]
 
 
 # Вид занятости

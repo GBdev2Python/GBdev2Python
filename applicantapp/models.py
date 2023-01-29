@@ -21,6 +21,8 @@ class Towns(models.Model):
 
 # Соискатель (Таблица хранения данных по соискателям)
 class Applicants(models.Model):
+    # так должно быть вернее
+    # user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, verbose_name='Пользователь')
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, null=True, blank=True, verbose_name='Пользователь')
    # first_name = models.CharField(max_length=50,verbose_name='Имя соискателя')
    # last_name = models.CharField(max_length=50,verbose_name='Фамилия соискателя')
@@ -46,6 +48,7 @@ class Applicants(models.Model):
 class Skill(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True, verbose_name="Навык")
     description = models.TextField(null=True, blank=True, verbose_name='Описание навыка')
+    # а зачем записывать дату создания навыка?
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)

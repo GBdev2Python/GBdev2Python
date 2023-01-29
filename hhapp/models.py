@@ -4,21 +4,25 @@ from ckeditor.fields import RichTextField
 from django.db import models
 from django.urls import reverse
 
+from applicantapp.models import Towns
+from authapp.models import CustomUser
+
 
 # Create your models here.
 
-# перечисление городов, округов (первичный ключ для "VacancyHeader" + сущности "Соискатель")
-# Права доступа на редактирование: Модератор
-class Locality(models.Model):
-    town = models.CharField(max_length=256, unique=True, db_index=True, verbose_name="Местоположение")
-
-    def __str__(self) -> str:
-        return f"{self.town}"
-
-    class Meta:
-        verbose_name = "Местоположение"
-        verbose_name_plural = "Местоположение"
-        ordering = ("town",)
+# Таблица теперь в "applicantapp.models"
+# # перечисление городов, округов (первичный ключ для "VacancyHeader" + сущности "Соискатель")
+# # Права доступа на редактирование: Модератор
+# class Locality(models.Model):
+#     town = models.CharField(max_length=256, unique=True, db_index=True, verbose_name="Местоположение")
+#
+#     def __str__(self) -> str:
+#         return f"{self.town}"
+#
+#     class Meta:
+#         verbose_name = "Местоположение"
+#         verbose_name_plural = "Местоположение"
+#         ordering = ("town",)
 
 
 # перечисление вида опыта работы (первичный ключ для "VacancyHeader")
@@ -75,7 +79,11 @@ class Employer(models.Model):
     body = RichTextField(blank=True, null=True, verbose_name="Дополнительная информация")
     created = models.DateTimeField(auto_now_add=True, editable=False, verbose_name="Дата регистрации на портале")
     slug = models.SlugField(max_length=128, unique=True, db_index=True, verbose_name="URL префикс")
-    town_id = models.ForeignKey(Locality, on_delete=models.PROTECT, verbose_name="Местоположение")
+    # town_id = models.ForeignKey(Locality, on_delete=models.PROTECT, verbose_name="Местоположение")
+    town_id = models.ForeignKey(Towns, on_delete=models.PROTECT, verbose_name="Местоположение")
+    # вязь с таблицей админки
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, verbose_name='Пользователь')
+
 
     def get_absolute_url(self):
         return reverse('hhapp:employer_detail', kwargs={'employer_slug': self.slug})
@@ -96,7 +104,8 @@ class VacancyHeader(models.Model):
     work_experience_id = models.ForeignKey(WorkExperience, on_delete=models.PROTECT, verbose_name="Опыт работы")
     working_day_id = models.ForeignKey(WorkingDay, on_delete=models.PROTECT, verbose_name="График рабочего дня")
     employment_id = models.ForeignKey(TypeEmployment, on_delete=models.PROTECT, verbose_name="Вид занятости")
-    town_id = models.ForeignKey(Locality, on_delete=models.PROTECT, verbose_name="Местоположение")
+    # town_id = models.ForeignKey(Locality, on_delete=models.PROTECT, verbose_name="Местоположение")
+    town_id = models.ForeignKey(Towns, on_delete=models.PROTECT, verbose_name="Местоположение")
     employer_id = models.ForeignKey(Employer, on_delete=models.CASCADE, related_name="vacancies", verbose_name="Работодатель")
     is_published = models.BooleanField(default=True, verbose_name="Опубликовать")
 
