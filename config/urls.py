@@ -28,6 +28,7 @@ urlpatterns = [
     path("social_auth/", include("social_django.urls", namespace="social")),
     path("hhapp/", include("hhapp.urls", namespace="hhapp")),
     path("authapp/", include("authapp.urls", namespace="authapp")),
+    path("applicantapp/", include("applicantapp.urls")),
 ]
 
 if settings.DEBUG:
