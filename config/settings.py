@@ -39,11 +39,9 @@ INSTALLED_APPS = [
     "authapp",
     "applicantapp",
     "crispy_forms",
-
     # "hhapp",
-    # Так будет лучше работать встроенная админка (работа файла hhapp/admin.py)
-    'hhapp.apps.HhappConfig',
-
+    'hhapp.apps.HhappConfig',  # Так будет лучше работать встроенная админка (файл hhapp/admin.py)
+    'employerapp.apps.EmployerappConfig',
     'ckeditor',
 ]
 
