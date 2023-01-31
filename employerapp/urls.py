@@ -21,4 +21,3 @@ urlpatterns = [
     path('vacancy/<int:vacancy_pk>/', VacancyJob.as_view(), name="vacancy"),
     # path('ckeditor/', include('ckeditor_uploader.urls')),
     ]
-# http://127.0.0.1:8000/hhapp/employer_list/
