@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Вакансия</title>
+</head>
+<body>
+<br>
+<a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |
+<a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |
+<br>
+<h1>Страница вакансии</h1>
+<br>
+<p>Организация: {{ vacancy_qs.employer_id.employment|safe }}</p>
+
+<!--Пытаемся из вакансии выйти на работодателя-->
+<!--!!!Не работает!!!-->
+<!--Проба:-->
+<!--{% for item in vacancy_employment_qs %}-->
+<!--<a href="{{ item.get_absolute_url }}">{{ item.employment }}</a> |-->
+<!--{% endfor  %}-->
+<!--<br>-->
+
+
+<p>Вакансия: {{ vacancy_qs.job_title }}</p>
+<p>Требуемый опыт работы: {{ vacancy_qs.work_experience_id.work_experience }}</p>
+<p>Заработная плата: {{ vacancy_qs.salary }} руб.</p>
+<p>Тип занятости: {{ vacancy_qs.employment_id.employment }}</p>
+<p>График работы: {{ vacancy_qs.working_day_id.working_day }}</p>
+<br>
+{% for item in vacancy_body_qs %}
+<div>
+    <p>{{ item.title|safe }}</p>
+    <p>{{ item.body|safe }}</p>
+</div>
+{% endfor %}
+</body>
+</html>

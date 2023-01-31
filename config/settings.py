@@ -35,15 +35,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "social_django",
+
     "authapp",
     "applicantapp",
-    "crispy_forms",
-
+    'employerapp.apps.EmployerappConfig',
+    'hhapp.apps.HhappConfig',  # Так будет лучше работать встроенная админка (файл hhapp/admin.py)
     # "hhapp",
-    # Так будет лучше работать встроенная админка (работа файла hhapp/admin.py)
-    'hhapp.apps.HhappConfig',
+    'newsapp',
 
+    "social_django",
+    "crispy_forms",
     'ckeditor',
 ]
 
@@ -62,7 +63,9 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["templates", ],
+        'DIRS': [
+            BASE_DIR / "templates",
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
