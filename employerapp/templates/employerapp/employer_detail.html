@@ -6,11 +6,13 @@
 </head>
 <body>
 <br>
-<a href="{% url 'hhapp:employer_list' %}">список работодателей</a> |
-<a href="{% url 'hhapp:vacancy_list' %}">список всех вакансий</a> |
+<a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |
+<a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |
 <br>
 <h1>Данные об организации</h1>
+{% if employer_qs.cover %}
 <img src="{{ employer_qs.cover.url }}" alt="">
+{% endif %}
 <p>Организация: {{ employer_qs.employment }}</p>
 <p>Зарегистрирована на сайте с: {{ employer_qs.created|date:"Y.m.d" }}</p>
 <p>Расположение: {{ employer_qs.city }}</p>
@@ -22,6 +24,6 @@
 <p>Дополнительная информация:</p>
 {{ employer_qs.body|safe }}
 <br>
-<a href="{% url 'hhapp:employer_vacancy_list' vacancy_employer_pk=employer_qs.pk %}">Список вакансий работодателя</a>
+<a href="{% url 'employerapp:employer_vacancy_list' vacancy_employer_pk=employer_qs.pk %}">Список вакансий работодателя</a>
 </body>
 </html>
