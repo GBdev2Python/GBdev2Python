@@ -254,3 +254,4 @@ fabric.properties
 /.idea/
 /authapp/migrations/
 /applicantapp/migrations/
+/employerapp/migrations/
