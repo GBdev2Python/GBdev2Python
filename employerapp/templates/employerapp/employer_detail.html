@@ -12,7 +12,7 @@
 <a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |
 <a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |
 <br>
-<h1>Данные об организации</h1>
+<h1>Данные об выбранной организации</h1>
 {% if employer_qs.cover %}
 <img src="{{ employer_qs.cover.url }}" alt="">
 {% endif %}
