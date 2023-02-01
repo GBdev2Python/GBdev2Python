@@ -20,8 +20,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import RedirectView
 
-# http://127.0.0.1:8000/admin/login/?next=/admin/
-# http://127.0.0.1:8000/admin/login/?next=/admin/hhapp/employer/
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", RedirectView.as_view(url="hhapp/")),

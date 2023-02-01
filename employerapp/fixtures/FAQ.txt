@@ -1,0 +1,73 @@
+
+# выгрузка данных из базы
+python manage.py dumpdata --format=json employerapp.WorkExperience > employerapp/fixtures/workExperience_01.json
+python manage.py dumpdata --format=json employerapp.TypeEmployment > employerapp/fixtures/typeEmployment_01.json
+python manage.py dumpdata --format=json applicantapp.Towns > employerapp/fixtures/towns_02.json
+python manage.py dumpdata --format=json authapp.Customuser > employerapp/fixtures/customuser_01.json
+
+# загрузить данные из файла *.json в  базу данных (!!! существующие данные при этом перезапишутся !!!)
+python manage.py loaddata customuser_01.json
+python manage.py loaddata workExperience_01.json
+python manage.py loaddata typeEmployment_01.json
+python manage.py loaddata towns_02.json
+
+
+# Пароли пользователей
+# Суперпользователь
+admin
+admin@post.com
+1111qqqqa
+
+
+# группы (роли) еше не организованы !!!
+# модератор
+moder
+moder@post.com
+1111qqqqa
+Moder-name
+Moder-surname
+
+user1
+user1@post.com
+1111qqqqa
+user1name
+user1surname
+
+user2
+user2@post.com
+1111qqqqa
+user2name
+user2surname
+
+user3
+user3@post.com
+1111qqqqa
+user3name
+user3surname
+
+boss1
+1111qqqqa
+1111qqqqa
+boss1@post.com
+Boss1name
+Boss1surname
++7 905 1234567
+www.boss1.com
+
+boss2
+boss2@post.com
+1111qqqqa
+1111qqqqa
+Boss2name
+Boss2surname
++7 905 1234567
+www.boss2.com
+
+boss3
+boss3@post.com
+1111qqqqa
+1111qqqqa
+Boss3name
+Boss3surname
++7 905 1234567
+www.boss3.com

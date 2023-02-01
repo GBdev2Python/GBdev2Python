@@ -10,23 +10,22 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
+
+from dotenv import load_dotenv
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
+load_dotenv(BASE_DIR / 'config/.env')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-ll-a*0ebj3+hkplzih(5%mn1)kfx!so+(d+wklvc@g^apzztw='
+NEWS_API_TOKEN = os.getenv('NEWS_API_TOKEN', '')
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -36,16 +35,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    "authapp",
-    "applicantapp",
+    'authapp',
+    'applicantapp',
     'employerapp.apps.EmployerappConfig',
     'hhapp.apps.HhappConfig',  # Так будет лучше работать встроенная админка (файл hhapp/admin.py)
     # "hhapp",
     'newsapp',
 
-    "social_django",
-    "crispy_forms",
+    'social_django',
+    'crispy_forms',
     'ckeditor',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -129,7 +129,8 @@ LANGUAGE_CODE = 'ru'
 # TIME_ZONE = 'UTC'
 
 # time zone 'msk'
-TIME_ZONE = "W-SU"
+# TIME_ZONE = "W-SU"
+TIME_ZONE = "Europe/Moscow"
 
 USE_I18N = True
 
@@ -139,6 +140,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Media files
+# Путь для отображения файлов на странице
+MEDIA_URL = "/media/"
+# Переменная MEDIA_URL указывает, по какому адресу находятся медиафайлы для загрузки.
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -151,17 +159,20 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'full',
     },
 }
-
-
-# Media files
-# Путь для отображения файлов на странице
-MEDIA_URL = "/media/"
-# Переменная MEDIA_URL указывает, по какому адресу находятся медиафайлы для загрузки.
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-# MEDIA_ROOT = BASE_DIR / "media"
-
-
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
-CRISPY_TEMPLATE_PACK = "bootstrap4"
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://localhost:6379",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    }
+}
+
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'

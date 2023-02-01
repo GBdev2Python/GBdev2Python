@@ -66,11 +66,12 @@ class Employer(models.Model):
     phone = models.CharField(max_length=256, verbose_name="Телефон организации")
     email = models.EmailField(max_length=254, blank=True, verbose_name="email организации")
     website = models.URLField(max_length=200, blank=True, verbose_name="сайт организации")
-    body = RichTextField(blank=True, null=True, verbose_name="Дополнительная информация")
+    body = RichTextField(blank=True, verbose_name="Дополнительная информация")
     created = models.DateTimeField(auto_now_add=True, editable=False, verbose_name="Дата регистрации на портале")
-    slug = models.SlugField(max_length=128, unique=True, db_index=True, verbose_name="URL префикс")
+    slug = models.SlugField(max_length=96, unique=True, db_index=True, verbose_name="URL префикс")
     # связь с таблицей базы applicantapp
     town_id = models.ForeignKey(Towns, on_delete=models.PROTECT, verbose_name="Местоположение")
+    # location = RichTextField(blank=True, verbose_name="Карта")
     # связь с таблицей админки
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, verbose_name='Пользователь')
 
