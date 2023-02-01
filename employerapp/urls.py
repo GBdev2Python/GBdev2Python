@@ -8,6 +8,8 @@ from employerapp.apps import EmployerappConfig
 
 app_name = EmployerappConfig.name
 
+# http://127.0.0.1:8000/admin/login/?next=/admin/
+
 urlpatterns = [
     # список всех работодателей
     path('employer_list/', EmployerList.as_view(), name="employer_list"),  # http://127.0.0.1:8000/employerapp/employer_list/

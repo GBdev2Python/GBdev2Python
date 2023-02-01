@@ -1,52 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
     <title>Document</title>
-  </head>
-  <body>
-    {% if user.is_authenticated %}
-      Вы вошли под пользователем: {{ user.username }}
-      <a href="{% url 'authapp:logout' %}">Выход</a>
-      <a href="{% url 'authapp:profile_info' %}">Профиль</a>
-            {% if user.is_company%}
-                <div class="row justify-content-center">
-                    <div class="col-sm-7 col-md-5 col-lg-4">
-                      {% if user.avatar %}
-                        <img src="{{ user.avatar.url }}" alt="" width="25%">
-                      {% else %}
-                        <img src="{{ MEDIA_URL }}avatar_default.svg" alt="" width="25%">
-                      {% endif %}
-                    </div>
-                </div>
-                <div><h3>{{ user.username }}</h3></div>
-                <div><h3>Тут через цикл можно выдать список вакансий</h3></div>
-                <div><h3>Тут через цикл можно выдать список рекомендованных резюме</h3></div>
-            {% else %}
-                <div class="row justify-content-center">
-                    <div class="col-sm-7 col-md-5 col-lg-4">
-                      {% if user.avatar %}
-                        <img src="{{ user.avatar.url }}" alt="" width="25%">
-                      {% else %}
-                        <img src="{{ MEDIA_URL }}avatar_default.svg" alt="" width="25%">
-                      {% endif %}
-                    </div>
-                </div>
-                <div><h3>Вы соискатель</h3></div>
-                <div><h3>{{ user.username }}</h3></div>
-                <div><h3>Тут через цикл можно выдать список резюме</h3></div>
-                <div><h3>Тут через цикл можно выдать список рекомендованных вакансий</h3></div>
-            {% endif %}
-      {% if user.is_superuser %}
-        <br>
-        Вы зашли под CуперАдмином: Вход в админку:
-        <a href="/admin/">Админка</a>
-      {% endif %}
-    {% else%}
-      <a href="{% url 'authapp:login' %}">Логин</a>
-      <a href="{% url 'authapp:register' %}">Регистрация</a>
-    {% endif %}
-  </body>
+</head>
+<body>
+{% if user.is_authenticated %}
+Вы вошли под пользователем: {{ user.username }}
+<a href="{% url 'authapp:logout' %}">Выход</a>
+<a href="{% url 'authapp:profile_info' %}">Профиль</a>
+{% if user.is_company%}
+<div class="row justify-content-center">
+    <div class="col-sm-7 col-md-5 col-lg-4">
+        {% if user.avatar %}
+        <img src="{{ user.avatar.url }}" alt="" width="25%">
+        {% else %}
+        <img src="{{ MEDIA_URL }}avatar_default.svg" alt="" width="25%">
+        {% endif %}
+    </div>
+</div>
+<div><h3>{{ user.username }}</h3></div>
+<div><h3>Тут через цикл можно выдать список вакансий</h3></div>
+<div><h3>Тут через цикл можно выдать список рекомендованных резюме</h3></div>
+{% else %}
+<div class="row justify-content-center">
+    <div class="col-sm-7 col-md-5 col-lg-4">
+        {% if user.avatar %}
+        <img src="{{ user.avatar.url }}" alt="" width="25%">
+        {% else %}
+        <img src="{{ MEDIA_URL }}avatar_default.svg" alt="" width="25%">
+        {% endif %}
+    </div>
+</div>
+<div><h3>Вы соискатель</h3></div>
+<div><h3>{{ user.username }}</h3></div>
+<div><h3>Тут через цикл можно выдать список резюме</h3></div>
+<div><h3>Тут через цикл можно выдать список рекомендованных вакансий</h3></div>
+{% endif %}
+{% if user.is_superuser %}
+<br>
+Вы зашли под CуперАдмином: Вход в админку:
+<a href="/admin/">Админка</a>
+{% endif %}
+{% else%}
+<br>
+<a href="{% url 'hhapp:main_page' %}">Домашняя страница</a> |
+<a href="{% url 'authapp:login' %}">Логин</a> |
+<a href="{% url 'authapp:register' %}">Регистрация</a> |
+<a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |
+<a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |
+{% endif %}
+</body>
 </html>
