@@ -1,0 +1,10 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">
+            <a href="{% url 'newsapp:news_detail' pk=news.pk %}">{{ news.title }}</a>
+        </h5>
+        <p class="card-text">
+            {{ news.content }}
+        </p>
+    </div>
+</div>

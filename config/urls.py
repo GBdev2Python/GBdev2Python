@@ -29,6 +29,7 @@ urlpatterns = [
     path("authapp/", include("authapp.urls", namespace="authapp")),
     path("applicantapp/", include("applicantapp.urls")),
     path("employerapp/", include("employerapp.urls", namespace="employerapp")),
+    path("news/", include("newsapp.urls", namespace="news")),
 ]
 
 if settings.DEBUG:

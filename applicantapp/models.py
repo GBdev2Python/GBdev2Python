@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from authapp.models import CustomUser
+from django.urls import reverse
 import uuid
 
 # Create your models here.
@@ -21,22 +22,21 @@ class Towns(models.Model):
 
 # Соискатель (Таблица хранения данных по соискателям)
 class Applicants(models.Model):
-    # так должно быть вернее
-    # user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, verbose_name='Пользователь')
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, null=True, blank=True, verbose_name='Пользователь')
-   # first_name = models.CharField(max_length=50,verbose_name='Имя соискателя')
-   # last_name = models.CharField(max_length=50,verbose_name='Фамилия соискателя')
-    image = models.ImageField(null=True, blank=True, upload_to='applicant_images', default="applicant_images/default.jpg")
+    image = models.ImageField(null=True, blank=True, upload_to='image/applicant', default="image/applicant/default.jpg")
     birthday = models.DateField(blank=True, verbose_name="Дата рождения")
     phone = models.CharField(max_length=20, verbose_name="Телефон соискателя")
-   # email = models.EmailField(max_length=20, blank=True, verbose_name="email соискателя")
-   # phone = models.CharField(max_length=256, verbose_name="Телефон")
     town = models.ForeignKey(Towns, on_delete=models.PROTECT, verbose_name="Город проживания")
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)
 
     def __str__(self) -> str:
         return f"{self.user.first_name} {self.user.last_name}"
+
+
+    def get_absolute_url(self):
+        return reverse ('applicant_by_id',kwargs = {'applicant_id':self.id})
+
 
     class Meta:
         verbose_name = "Соискатель"
@@ -78,6 +78,12 @@ class Resumes(models.Model):
 
     def __str__(self):
         return str(f'{self.applicants.user.first_name} {self.id}')
+
+
+    def get_absolute_url(self):
+        return reverse ('resume_by_id',kwargs = {'resume_id':self.id})
+
+
     class Meta:
         verbose_name = "Резюме"
         verbose_name_plural = "Резюме"
