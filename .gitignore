@@ -255,3 +255,9 @@ fabric.properties
 /authapp/migrations/
 /applicantapp/migrations/
 /employerapp/migrations/
+/newsapp/migrations/
+
+# celery conf
+celerybeat-schedule.bak
+celerybeat-schedule.dat
+celerybeat-schedule.dir
