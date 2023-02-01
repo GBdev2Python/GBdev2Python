@@ -9,8 +9,8 @@ import uuid
 # Справочник городов
 class Towns(models.Model):
     town = models.CharField(max_length=50, unique=True, db_index=True, verbose_name="Город")
-    id = models.UUIDField(default=uuid.uuid4, unique=True,
-                          primary_key=True, editable=False)
+   # id = models.UUIDField(default=uuid.uuid4, unique=True,
+    #                      primary_key=True, editable=False)
     def __str__(self) -> str:
         return f"{self.town}"
 
@@ -27,8 +27,8 @@ class Applicants(models.Model):
     birthday = models.DateField(blank=True, verbose_name="Дата рождения")
     phone = models.CharField(max_length=20, verbose_name="Телефон соискателя")
     town = models.ForeignKey(Towns, on_delete=models.PROTECT, verbose_name="Город проживания")
-    id = models.UUIDField(default=uuid.uuid4, unique=True,
-                          primary_key=True, editable=False)
+   # id = models.UUIDField(default=uuid.uuid4, unique=True,
+    #                      primary_key=True, editable=False)
 
     def __str__(self) -> str:
         return f"{self.user.first_name} {self.user.last_name}"
@@ -49,9 +49,9 @@ class Skill(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True, verbose_name="Навык")
     description = models.TextField(null=True, blank=True, verbose_name='Описание навыка')
     # а зачем записывать дату создания навыка?
-    created = models.DateTimeField(auto_now_add=True)
-    id = models.UUIDField(default=uuid.uuid4, unique=True,
-                          primary_key=True, editable=False)
+   # created = models.DateTimeField(auto_now_add=True)
+   # id = models.UUIDField(default=uuid.uuid4, unique=True,
+    #                      primary_key=True, editable=False)
 
     def __str__(self):
         return str(self.name)
@@ -73,8 +73,8 @@ class Resumes(models.Model):
     education = models.TextField(null=True, blank=True, verbose_name='Образование/курсы')
     created = models.DateTimeField(auto_now_add=True,verbose_name='Дата создания резюме')
     is_published = models.BooleanField(default=False, verbose_name="Опубликовать")
-    id = models.UUIDField(default=uuid.uuid4, unique=True,
-                          primary_key=True, editable=False)
+   # id = models.UUIDField(default=uuid.uuid4, unique=True,
+    #                      primary_key=True, editable=False)
 
     def __str__(self):
         return str(f'{self.applicants.user.first_name} {self.id}')

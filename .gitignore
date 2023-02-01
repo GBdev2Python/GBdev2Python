@@ -255,3 +255,5 @@ fabric.properties
 /authapp/migrations/
 /applicantapp/migrations/
 /employerapp/migrations/
+/media/applicant_images/
+/media/image/
