@@ -13,7 +13,7 @@ class News(models.Model):
     url = models.URLField(verbose_name=_("NewsUrl"), null=True, blank=True)
     image = models.URLField(verbose_name=_("NewsImageUrl"), null=True, blank=True)
 
-    published_at = models.DateTimeField(verbose_name=_("NewsPublishedAt"), default=datetime.now())
+    published_at = models.DateTimeField(verbose_name=_("NewsPublishedAt"), null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     deleted = models.BooleanField(default=False)
 
@@ -23,4 +23,4 @@ class News(models.Model):
         ordering = ('-created', )
 
     def __str__(self):
-        return f"{self.pk} {self.title[:10]}"
+        return f"News [{self.pk} {self.title[:10]}]"
