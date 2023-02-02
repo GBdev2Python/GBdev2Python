@@ -1,14 +1,9 @@
 from django.shortcuts import render
-
-# Create your views here.
-
-
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, TemplateView
 from employerapp.models import *
 
 
-# Create your views here.
 class MainPageView(TemplateView):
     template_name = "employerapp/home.html"
 
@@ -32,11 +27,6 @@ class VacancyJob(TemplateView):
         context = super().get_context_data(**kwargs)
         context["vacancy_qs"] = get_object_or_404(VacancyHeader, pk=vacancy_pk)
         context["vacancy_body_qs"] = VacancyBody.objects.all().filter(vacancy_header_id=vacancy_pk)
-
-        # Пытаемся из вакансии выйти на работодателя
-        # !!!Не работает!!!
-        # context["vacancy_employment_qs"] = Employer.objects.all()
-
         return context
 
 
@@ -72,5 +62,3 @@ class EmployerVacancyList(TemplateView):
         context["employer_lst_qs"] = VacancyHeader.objects.all().exclude(is_published=False).filter(
             employer_id=vacancy_employer_pk).first()
         return context
-
-

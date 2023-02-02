@@ -1,1 +1,0 @@
-[{"model": "employerapp.workexperience", "pk": 1, "fields": {"work_experience": "не требуетс¤"}}, {"model": "employerapp.workexperience", "pk": 2, "fields": {"work_experience": "не менее года"}}, {"model": "employerapp.workexperience", "pk": 3, "fields": {"work_experience": "1Ц3 года"}}, {"model": "employerapp.workexperience", "pk": 4, "fields": {"work_experience": "3Ц6 лет"}}]

@@ -250,8 +250,10 @@ fabric.properties
 
 
 # manual add
-/hhapp/migrations/
 /.idea/
+/hhapp/migrations/
 /authapp/migrations/
 /applicantapp/migrations/
 /employerapp/migrations/
+/newsapp/migrations/
+
