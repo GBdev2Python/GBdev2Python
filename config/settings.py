@@ -141,6 +141,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 # Media files
 # Путь для отображения файлов на странице
 MEDIA_URL = "/media/"

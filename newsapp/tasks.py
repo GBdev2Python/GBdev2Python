@@ -3,7 +3,12 @@ __all__ = ("NewsApiProcessor", "save_news_to_database", )
 import os
 import django
 import requests
-import zoneinfo
+import sys
+
+if 'zoneinfo' in sys.modules:
+    import zoneinfo
+elif 'backports.zoneinfo' in sys.modules:
+    from backports import zoneinfo
 
 from http import HTTPStatus
 from datetime import datetime
