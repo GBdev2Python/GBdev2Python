@@ -54,7 +54,7 @@ class TypeEmployment(models.Model):
 
 # Работодатель (Общий реестр по всем работодателям)
 # первичный ключ для "VacancyHeader"
-class Employer(models.Model):
+class  Employer(models.Model):
     employment = models.TextField(max_length=1024, verbose_name="Работодатель")
     cover = models.ImageField(upload_to="image/employment/", blank=True, verbose_name="Логотип организации")
     address = models.TextField(max_length=512, verbose_name="Адрес организации")

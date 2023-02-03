@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, TemplateView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, TemplateView, CreateView
+
+from employerapp.forms import AddEmployerForm
 from employerapp.models import *
 
 
@@ -62,3 +65,9 @@ class EmployerVacancyList(TemplateView):
         context["employer_lst_qs"] = VacancyHeader.objects.all().exclude(is_published=False).filter(
             employer_id=vacancy_employer_pk).first()
         return context
+
+
+class EmployerCreate(CreateView):
+    form_class = AddEmployerForm
+    template_name = "employerapp/employer_create.html"
+    # success_url = reverse_lazy("employerapp:employer_list")

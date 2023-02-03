@@ -22,4 +22,6 @@ urlpatterns = [
     # отдельная вакансия
     path('vacancy/<int:vacancy_pk>/', VacancyJob.as_view(), name="vacancy"),
     # path('ckeditor/', include('ckeditor_uploader.urls')),
+    # Создание карточки работодателя
+    path('employer_create/', EmployerCreate.as_view(), name="employer_create"),  # http://127.0.0.1:8000/employerapp/employer_create/
     ]
