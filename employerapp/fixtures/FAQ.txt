@@ -11,15 +11,14 @@ python manage.py loaddata customuser_01.json
 python manage.py loaddata typeEmployment_01.json
 python manage.py loaddata towns_01.json
 
+# группы (роли) еше не организованы !!!
+# Логины, пароли пользователей и профильная информация
 
-# Пароли пользователей
 # Суперпользователь
 admin
 admin@post.com
 1111qqqqa
 
-
-# группы (роли) еше не организованы !!!
 # модератор
 moder
 moder@post.com
@@ -27,6 +26,7 @@ moder@post.com
 Moder-name
 Moder-surname
 
+# Соискатель
 user1
 user1@post.com
 1111qqqqa
@@ -45,6 +45,8 @@ user3@post.com
 user3name
 user3surname
 
+
+# Работодатель
 boss1
 1111qqqqa
 1111qqqqa

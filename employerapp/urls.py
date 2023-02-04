@@ -26,4 +26,8 @@ urlpatterns = [
     path('employer_create/', EmployerCreate.as_view(), name="employer_create"),  # http://127.0.0.1:8000/employerapp/employer_create/
     # Создание карточки работодателя
     path('vacancy_create/', VacancyCreate.as_view(), name="vacancy_create"), # http://127.0.0.1:8000/employerapp/vacancy_create/
+    # Редактирование карточки работодателя
+    path('employer_update/', EmployerUpdate.as_view(), name="employer_update"),
+    # http://127.0.0.1:8000/employerapp/employer_update/
+
     ]

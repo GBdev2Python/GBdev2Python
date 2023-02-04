@@ -25,3 +25,10 @@ class AddVacancyForm(forms.ModelForm):
         model = VacancyHeader
         fields = ["job_title", "salary", "experience", "employment_id", "town_id", "skills_id",
                   "employer_id", "is_published"]
+
+
+class UpdateEmployerForm(forms.ModelForm):
+    class Meta:
+        model = Employer
+        fields = ["employment", "town_id", "address", "phone", "email", "website", "body", "location", "slug",
+                  "user"]
