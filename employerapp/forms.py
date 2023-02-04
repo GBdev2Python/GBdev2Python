@@ -18,3 +18,10 @@ class AddEmployerForm(forms.ModelForm):
         }
 
         help_texts = {'phone': 'Введите номер в формате +71234567890', }
+
+
+class AddVacancyForm(forms.ModelForm):
+    class Meta:
+        model = VacancyHeader
+        fields = ["job_title", "salary", "experience", "employment_id", "town_id", "skills_id",
+                  "employer_id", "is_published"]

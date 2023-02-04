@@ -11,6 +11,8 @@
 <a href="{% url 'authapp:register' %}">Регистрация</a> |
 <a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |
 <a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |
+<a href="{% url 'employerapp:employer_create' %}">Создание карточки работодателя</a> |
+<a href="{% url 'employerapp:vacancy_create' %}">Создание вакансии работодателя</a> |
 <br>
 <p>Данные об выбранной организации</p>
 {% if employer_qs.cover %}
