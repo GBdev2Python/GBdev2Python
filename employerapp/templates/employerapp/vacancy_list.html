@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>все вакансии</title>
-</head>
-<body>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>все вакансии</title>-->
+<!--</head>-->
+<!--<body>-->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<br>
+{% if user.is_authenticated %}
+<p>Вы вошли под пользователем: {{ user.username }}</p>
+{% endif %}
 <br>
 <a href="{% url 'hhapp:main_page' %}">Домашняя страница</a> |
 <a href="{% url 'authapp:login' %}">Логин</a> |
@@ -25,5 +33,7 @@
     </li>
     {% endfor %}
 </ul>
-</body>
-</html>
+<br><br>
+{% endblock content %}
+<!--</body>-->
+<!--</html>-->

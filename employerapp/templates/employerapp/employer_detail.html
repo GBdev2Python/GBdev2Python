@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Данные работодателя</title>
-</head>
-<body>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Данные работодателя</title>-->
+<!--</head>-->
+<!--<body>-->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<br>
+{% if user.is_authenticated %}
+<p>Вы вошли под пользователем: {{ user.username }}</p>
+{% endif %}
+<br>
 <br>
 <a href="{% url 'hhapp:main_page' %}">Домашняя страница</a> |
 <a href="{% url 'authapp:login' %}">Логин</a> |
@@ -40,5 +49,7 @@
 <br>
 <a href="{% url 'employerapp:employer_vacancy_list' vacancy_employer_pk=employer_qs.pk %}">Список вакансий
     работодателя</a>
-</body>
-</html>
+<br><br>
+{% endblock content %}
+<!--</body>-->
+<!--</html>-->
