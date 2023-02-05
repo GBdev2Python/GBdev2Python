@@ -1,16 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Список вакансий работодателя</title>
-</head>
-<body>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Список вакансий работодателя</title>-->
+<!--</head>-->
+<!--<body>-->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<br>
+{% if user.is_authenticated %}
+<p>Вы вошли под пользователем: {{ user.username }}</p>
+{% endif %}
 <br>
 <a href="{% url 'hhapp:main_page' %}">Домашняя страница</a> |
 <a href="{% url 'authapp:login' %}">Логин</a> |
 <a href="{% url 'authapp:register' %}">Регистрация</a> |
 <a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |
 <a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |
+<a href="{% url 'employerapp:employer_create' %}">Создание карточки работодателя</a> |
+<a href="{% url 'employerapp:vacancy_create' %}">Создание вакансии работодателя</a> |
 <br>
 <h1>Список всех вакансий работодателя</h1>
 <br>
@@ -22,5 +32,7 @@
     </li>
     {% endfor %}
 </ul>
-</body>
-</html>
+<br><br>
+{% endblock content %}
+<!--</body>-->
+<!--</html>-->

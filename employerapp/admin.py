@@ -1,6 +1,7 @@
 
 from django.contrib import admin
 from employerapp.models import *
+from applicantapp.models import Skill
 
 
 # Register your models here.
@@ -16,7 +17,7 @@ class VacancyHeaderAdmin(admin.ModelAdmin):
     list_editable = ["is_published", "experience"]
     search_fields = ("job_title", "salary",)
     list_filter = ('employer_id',)
-    filter_horizontal = ["employment_id"]
+    filter_horizontal = ["employment_id", "skills_id"]
 
 
 # Работодатель

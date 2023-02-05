@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, TemplateView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, TemplateView, CreateView, UpdateView, DetailView
+
+from employerapp.forms import *
 from employerapp.models import *
 
 
@@ -20,8 +23,10 @@ class EmployerList(ListView):
 
 
 # Вакансия работодателя (выбранная)
+# class VacancyJob(TemplateView):
 class VacancyJob(TemplateView):
     template_name = "employerapp/vacancy.html"
+    model = Employer
 
     def get_context_data(self, vacancy_pk, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -30,14 +35,23 @@ class VacancyJob(TemplateView):
         return context
 
 
-# Карточка работодателя
-class DetailEmployer(TemplateView):
-    template_name = "employerapp/employer_detail.html"
 
-    def get_context_data(self, employer_slug, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["employer_qs"] = get_object_or_404(Employer, slug=employer_slug)
-        return context
+# Карточка работодателя
+# class DetailEmployer(TemplateView):
+#     template_name = "employerapp/employer_detail.html"
+#     model = Employer
+#
+#     def get_context_data(self, employer_slug, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context["employer_qs"] = get_object_or_404(Employer, slug=employer_slug)
+#         return context
+
+# Карточка работодателя
+class DetailEmployer(DetailView):
+    model = Employer
+    template_name = "employerapp/employer_detail.html"
+    slug_url_kwarg = 'employer_slug'
+    context_object_name = "employer_qs"
 
 
 # Список всех вакансий сайта
@@ -62,3 +76,33 @@ class EmployerVacancyList(TemplateView):
         context["employer_lst_qs"] = VacancyHeader.objects.all().exclude(is_published=False).filter(
             employer_id=vacancy_employer_pk).first()
         return context
+
+
+# Создание карточки работодателя
+class EmployerCreate(CreateView):
+    form_class = AddEmployerForm
+    template_name = "employerapp/employer_create.html"
+    # success_url = reverse_lazy("employerapp:employer_list")
+
+
+# Изменение карточки работодателя
+class EmployerUpdate(UpdateView):
+    model = Employer
+    form_class = UpdateEmployerForm
+    slug_url_kwarg = 'employer_slug'
+    template_name = "employerapp/employer_update.html"
+    # success_url = reverse_lazy("employerapp:employer_detail")
+
+
+# Создание вакансии работодателя
+class VacancyCreate(CreateView):
+    form_class = AddVacancyForm
+    template_name = "employerapp/vacancy_create.html"
+    # success_url = reverse_lazy("employerapp:employer_list")
+
+
+
+# Домашний кабинет работодателя
+class EmployerCabinet(TemplateView):
+    template_name = "employerapp/employer_cabinet.html"
+    model = Employer

@@ -1,25 +1,37 @@
 
-# выгрузка данных из базы
+# выгрузка данных из базы (файлы с одинаковыми именами ПЕРЕЗАПИШУТЬСЯ !!!)
 python manage.py dumpdata --format=json authapp.Customuser > employerapp/fixtures/customuser_01.json
+
 python manage.py dumpdata --format=json employerapp.TypeEmployment > employerapp/fixtures/typeEmployment_01.json
+python manage.py dumpdata --format=json employerapp.Employer > employerapp/fixtures/employer_01.json
+python manage.py dumpdata --format=json employerapp.VacancyHeader > employerapp/fixtures/vacancyHeader_01.json
+python manage.py dumpdata --format=json employerapp.VacancyBody > employerapp/fixtures/vacancyBody_01.json
+
 python manage.py dumpdata --format=json applicantapp.Towns > employerapp/fixtures/towns_01.json
 python manage.py dumpdata --format=json applicantapp.Skill > employerapp/fixtures/skill_01.json
 
 
+
 # загрузить данные из файла *.json в  базу данных (!!! существующие данные в базе при этом перезапишутся !!!)
+
 python manage.py loaddata customuser_01.json
+
 python manage.py loaddata typeEmployment_01.json
+python manage.py loaddata employer_01.json
+python manage.py loaddata vacancyHeader_01.json
+python manage.py loaddata vacancyBody_01.json
+
 python manage.py loaddata towns_01.json
+python manage.py loaddata skill_01.json
 
+# группы (роли) еше не организованы !!!
+# Логины, пароли пользователей и профильная информация
 
-# Пароли пользователей
 # Суперпользователь
 admin
 admin@post.com
 1111qqqqa
 
-
-# группы (роли) еше не организованы !!!
 # модератор
 moder
 moder@post.com
@@ -27,6 +39,7 @@ moder@post.com
 Moder-name
 Moder-surname
 
+# Соискатель
 user1
 user1@post.com
 1111qqqqa
@@ -45,6 +58,8 @@ user3@post.com
 user3name
 user3surname
 
+
+# Работодатель
 boss1
 1111qqqqa
 1111qqqqa
