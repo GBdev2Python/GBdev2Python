@@ -11,7 +11,7 @@
 <br>
 <h1>Соискатель</h1>
 
-<img class="avatar avatar--xl" src="media/{{ applicant.image }}" />
+<img class="avatar avatar--xl" src="{{ applicant.image }}" />
 <ul>
     <p>Имя: {{ applicant.user.first_name }}</p>
     <p>Фамилия: {{ applicant.user.last_name }}</p>
@@ -21,6 +21,30 @@
     <p>email: {{ applicant.user.email }}</p>
 </ul>
 <br>
-    <a href="#"> Создать резюме</a>
+<ul>
+    <li>
+        <a href="{% url 'new_resume' %}"> Создать резюме</a>
+    </li>
+</ul>
+
+<h3>Резюме соискателя:</h3>
+
+{% for resume in resumes %}
+    <ul>
+        <li>{{ resume.required_job }}</li>
+        <ul>
+            <li>
+                <a href="{% url 'update_resume' resume.id %}"> Редактировать резюме</a>
+            </li>
+            <li>
+                <a href="{% url 'new_resume' %}"> Удалить резюме</a>
+            </li>
+
+        </ul>
+    </ul>
+{% endfor %}
+
+
+
 </body>
 </html>

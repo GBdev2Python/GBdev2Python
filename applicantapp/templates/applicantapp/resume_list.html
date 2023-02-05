@@ -12,10 +12,19 @@
 <h1>Список резюме</h1>
 <ul>
     {% for item in resume_list%}
-    <li>
-        <a href="{{ item.get_absolute_url }}"> {{ item.applicants.user.first_name }} {{ item.applicants.user.last_name }}</a>
-    </li>
+        <li>
+            <a href="{{ item.get_absolute_url }}"> <h3>{{ item.applicants.user.first_name }} {{ item.applicants.user.last_name }}</h1></a>
+        </li>
+        <p> <em>Навыки:</em> </p>
+        <ul>
+            {% for skill in item.skills.all|slice:"3" %}
+                <li> {{ skill.name }}</li>
+            {% endfor %}
+        </ul>
+        <p> <em>Требуемая работа:</em> {{ item.required_job }}</p>
+        <p> <em>Зарплата:</em> {{ item.salary }}</p>
     {% endfor %}
+
 </ul>
 </body>
 </html>

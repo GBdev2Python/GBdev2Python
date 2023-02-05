@@ -12,7 +12,6 @@
 <h1>Резюме</h1>
 
 <img class="avatar avatar--xl" src="media/{{ resume.applicants.image }}" />
-<ul>
     <p>Имя: {{ resume.applicants.user.first_name }}</p>
     <p>Фамилия: {{ resume.applicants.user.last_name }}</p>
     <p>Дата рождения: {{ resume.applicants.birthday }}</p>
@@ -23,8 +22,7 @@
 
     {% for skill in skills %}
         <ul>
-            <p>{{ skill.name }}</p>
-            <p>{{ skill.description }}</p>
+            <li>{{ skill.name }}</li>
         </ul>
     {% endfor %}
 
@@ -32,8 +30,5 @@
     <p>Заработная плата: {{ resume.salary }}</p>
     <p>Место последней работы: {{ resume.last_job }}</p>
     <p>Образование: {{ resume.education }}</p>
-    <p>Статус публикации резюме: {{ resume.is_published }}</p>
-
-</ul>
 </body>
 </html>

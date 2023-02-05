@@ -47,7 +47,7 @@ class Applicants(models.Model):
 
 class Skill(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True, verbose_name="Навык")
-    description = models.TextField(null=True, blank=True, verbose_name='Описание навыка')
+    # description = models.TextField(null=True, blank=True, verbose_name='Описание навыка')
     # а зачем записывать дату создания навыка?
    # created = models.DateTimeField(auto_now_add=True)
    # id = models.UUIDField(default=uuid.uuid4, unique=True,
