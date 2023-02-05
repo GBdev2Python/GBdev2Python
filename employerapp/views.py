@@ -87,9 +87,11 @@ class EmployerCreate(CreateView):
 
 # Изменение карточки работодателя
 class EmployerUpdate(UpdateView):
+    model = Employer
     form_class = UpdateEmployerForm
-    template_name = "employerapp/employer_create.html"
-    # success_url = reverse_lazy("employerapp:employer_list")
+    slug_url_kwarg = 'employer_slug'
+    template_name = "employerapp/employer_update.html"
+    # success_url = reverse_lazy("employerapp:employer_detail")
 
 
 # Создание вакансии работодателя
@@ -98,3 +100,9 @@ class VacancyCreate(CreateView):
     template_name = "employerapp/vacancy_create.html"
     # success_url = reverse_lazy("employerapp:employer_list")
 
+
+
+# Домашний кабинет работодателя
+class EmployerCabinet(TemplateView):
+    template_name = "employerapp/employer_cabinet.html"
+    model = Employer

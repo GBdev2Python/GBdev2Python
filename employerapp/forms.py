@@ -20,6 +20,24 @@ class AddEmployerForm(forms.ModelForm):
         help_texts = {'phone': 'Введите номер в формате +71234567890', }
 
 
+class UpdateEmployerForm(forms.ModelForm):
+    class Meta:
+        model = Employer
+        fields = ["employment", "town_id", "address", "phone", "email", "website", "body", "location"]
+
+        labels = {
+            'employment': 'Название организации',
+            'town_id': 'Расположение организации',
+            'location': 'Место расположения организации на карте'
+        }
+        widgets = {
+            'employment': forms.Textarea(attrs={'cols': 50, 'rows': 3}),
+            'address': forms.Textarea(attrs={'cols': 50, 'rows': 3}),
+        }
+
+        help_texts = {'phone': 'Введите номер в формате +71234567890', }
+
+
 class AddVacancyForm(forms.ModelForm):
     class Meta:
         model = VacancyHeader
@@ -27,8 +45,3 @@ class AddVacancyForm(forms.ModelForm):
                   "employer_id", "is_published"]
 
 
-class UpdateEmployerForm(forms.ModelForm):
-    class Meta:
-        model = Employer
-        fields = ["employment", "town_id", "address", "phone", "email", "website", "body", "location", "slug",
-                  "user"]
