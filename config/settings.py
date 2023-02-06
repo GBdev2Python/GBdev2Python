@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "ckeditor",
     "django_celery_beat",
+    "serviceapp",
 ]
 
 MIDDLEWARE = [
