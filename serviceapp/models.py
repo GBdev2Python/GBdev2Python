@@ -8,7 +8,7 @@ class Response(models.Model):
         ("NEW", "Новая"),
         ("READ", "Просмотрено"),
         ("ACCEPTED", "Принято"),
-        ("REJECTED", "Откланено"),
+        ("REJECTED", "Отклонено"),
     ]
     cover_letter = models.TextField(blank=True, verbose_name="Сопроводительное письмо")
     resume = models.ForeignKey("applicantapp.Resumes", on_delete=models.PROTECT, null=True, verbose_name="Резюме")
