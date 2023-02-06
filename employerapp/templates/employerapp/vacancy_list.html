@@ -9,31 +9,45 @@
 {% load static %}
 
 {% block content %}
-  <br>
-  {% if user.is_authenticated %}
-    <p>Вы вошли под пользователем: {{ user.username }}</p>
-  {% endif %}
-  <br>
-  <a href="{% url 'hhapp:main_page' %}">Домашняя страница</a> |
-  <a href="{% url 'authapp:login' %}">Логин</a> |
-  <a href="{% url 'authapp:register' %}">Регистрация</a> |
-  <a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |
-  <a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |
-  <a href="{% url 'employerapp:employer_create' %}">Создание карточки работодателя</a> |
-  <a href="{% url 'employerapp:vacancy_create' %}">Создание вакансии работодателя</a> |
-  <br>
-  <h1>Список всех вакансий сайта</h1>
-  <ul>
-    {% for item in all_vacancy_lst_qs %}
-      <li>
-        <a href="{{ item.get_absolute_url }}">{{ item.job_title }}</a>
-        <p>&nbsp;&nbsp; Размещено: {{ item.created|date:"Y.m.d" }}</p>
-        <p>&nbsp;&nbsp; Опыт работы: {{ item.work_experience_id }}</p>
-        <p>&nbsp;&nbsp; Работодатель: {{ item.employer_id }}</p>
-      </li>
-    {% endfor %}
-  </ul>
-  <br><br>
+<br>
+{% if user.is_authenticated %}
+<p>Вы вошли под пользователем: {{ user.username }}</p>
+{% endif %}
+<br>
+<a href="{% url 'hhapp:main_page' %}">Домашняя страница</a> |
+<a href="{% url 'authapp:login' %}">Логин</a> |
+<a href="{% url 'authapp:register' %}">Регистрация</a> |
+<a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |
+<a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |
+<a href="{% url 'employerapp:employer_create' %}">Создание карточки работодателя</a> |
+<a href="{% url 'employerapp:vacancy_create' %}">Создание вакансии работодателя</a> |
+<br>
+<h1>Список всех вакансий сайта</h1>
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-1 col-md-1 col-lg-1">
+        </div>
+
+        <div class="col-xl-8 col-md-8 col-lg-8">
+            <ul>
+                {% for item in all_vacancy_lst_qs %}
+                <li>
+                    <a href="{{ item.get_absolute_url }}">{{ item.job_title }}</a>
+                    <p>&nbsp;&nbsp; Размещено: {{ item.created|date:"Y.m.d" }}</p>
+                    <p>&nbsp;&nbsp; Опыт работы: {{ item.work_experience_id }}</p>
+                    <p>&nbsp;&nbsp; Работодатель: {{ item.employer_id }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-xl-3 col-md-3 col-lg-3">
+            <p>Боковая колонка для рекламы или фильтров</p>
+        </div>
+    </div>
+</div>
+<br>
 {% endblock content %}
 <!--</body>-->
 <!--</html>-->
