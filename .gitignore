@@ -247,3 +247,13 @@ fabric.properties
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+
+# manual add
+/.idea/
+/hhapp/migrations/
+/authapp/migrations/
+/applicantapp/migrations/
+/employerapp/migrations/
+/newsapp/migrations/
+

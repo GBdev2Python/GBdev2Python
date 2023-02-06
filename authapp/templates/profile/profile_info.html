@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div class="row justify-content-center my-2">
+    <div class="col-lg-6">
+      <h2>Профиль</h2>
+    {% if user.is_company %}
+        <div class="row justify-content-center">
+            <div class="col-sm-7 col-md-5 col-lg-4">
+              {% if user.avatar %}
+                <img src="{{ user.avatar.url }}" alt="" width="25%">
+              {% else %}
+                <img src="{{ MEDIA_URL }}avatar_default.svg" alt="" width="25%">
+              {% endif %}
+            </div>
+        </div>
+        <div id="div_id_username" class="form-group"> <label for="id_username" class=" requiredField">
+          Username</label>
+          <div class=""> <h3>{{ user.username }}</h3></div>
+        </div>
+        <div id="div_id_first_name" class="form-group"> <label for="id_first_name" class="">
+          First name
+        </label>
+          <div class=""> <h3>{{ user.first_name }}</h3></div>
+        </div>
+        <div id="div_id_last_name" class="form-group"> <label for="id_last_name" class="">
+          Last name
+        </label>
+          <div class=""> <h3>{{ user.last_name }}</h3></div>
+        </div>
+        <div id="div_id_email" class="form-group"> <label for="id_email" class=" requiredField">
+          Email address</label>
+          <div class=""> <h3>{{ user.email }}</h3>
+          </div>
+                  <a href="{% url 'authapp:profile_edit' request.user.pk %}">Редактировать профиль</a>
+        </div>
+    {% else %}
+        <h3>Вы соискатель</h3>
+        <div class="row justify-content-center">
+            <div class="col-sm-7 col-md-5 col-lg-4">
+              {% if user.avatar %}
+                <img src="{{ user.avatar.url }}" alt="" width="25%">
+              {% else %}
+                <img src="{{ MEDIA_URL }}avatar_default.svg" alt="" width="25%">
+              {% endif %}
+            </div>
+        </div>
+        <div id="div_id_username" class="form-group"> <label for="id_username" class=" requiredField">
+          Username</label>
+          <div class=""> <h3>{{ user.username }}</h3></div>
+        </div>
+        <div id="div_id_first_name" class="form-group"> <label for="id_first_name" class="">
+          First name
+        </label>
+          <div class=""> <h3>{{ user.first_name }}</h3></div>
+        </div>
+        <div id="div_id_last_name" class="form-group"> <label for="id_last_name" class="">
+          Last name
+        </label>
+          <div class=""> <h3>{{ user.last_name }}</h3></div>
+        </div>
+        <div id="div_id_email" class="form-group"> <label for="id_email" class=" requiredField">
+          Email address</label>
+          <div class=""> <h3>{{ user.email }}</h3>
+          </div>
+                  <a href="{% url 'authapp:profile_edit' request.user.pk %}">Редактировать профиль</a>
+        </div>
+    {% endif %}
+
+    </div>
+  </div>
+
+
+{% endblock content %}
