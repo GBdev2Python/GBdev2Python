@@ -1,7 +1,5 @@
-from django.shortcuts import render
-from django.shortcuts import render, get_object_or_404
-from django.urls import reverse_lazy
-from django.views.generic import ListView, TemplateView, CreateView, UpdateView, DetailView
+from django.shortcuts import get_object_or_404
+from django.views.generic import CreateView, DetailView, ListView, TemplateView, UpdateView
 
 from employerapp.forms import *
 from employerapp.models import *
@@ -35,7 +33,6 @@ class VacancyJob(TemplateView):
         return context
 
 
-
 # Карточка работодателя
 # class DetailEmployer(TemplateView):
 #     template_name = "employerapp/employer_detail.html"
@@ -50,7 +47,7 @@ class VacancyJob(TemplateView):
 class DetailEmployer(DetailView):
     model = Employer
     template_name = "employerapp/employer_detail.html"
-    slug_url_kwarg = 'employer_slug'
+    slug_url_kwarg = "employer_slug"
     context_object_name = "employer_qs"
 
 
@@ -71,10 +68,12 @@ class EmployerVacancyList(TemplateView):
 
     def get_context_data(self, vacancy_employer_pk, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["employer_vacancy_lst_qs"] = VacancyHeader.objects.all().exclude(is_published=False).filter(
-            employer_id=vacancy_employer_pk)
-        context["employer_lst_qs"] = VacancyHeader.objects.all().exclude(is_published=False).filter(
-            employer_id=vacancy_employer_pk).first()
+        context["employer_vacancy_lst_qs"] = (
+            VacancyHeader.objects.all().exclude(is_published=False).filter(employer_id=vacancy_employer_pk)
+        )
+        context["employer_lst_qs"] = (
+            VacancyHeader.objects.all().exclude(is_published=False).filter(employer_id=vacancy_employer_pk).first()
+        )
         return context
 
 
@@ -89,7 +88,7 @@ class EmployerCreate(CreateView):
 class EmployerUpdate(UpdateView):
     model = Employer
     form_class = UpdateEmployerForm
-    slug_url_kwarg = 'employer_slug'
+    slug_url_kwarg = "employer_slug"
     template_name = "employerapp/employer_update.html"
     # success_url = reverse_lazy("employerapp:employer_detail")
 
@@ -99,7 +98,6 @@ class VacancyCreate(CreateView):
     form_class = AddVacancyForm
     template_name = "employerapp/vacancy_create.html"
     # success_url = reverse_lazy("employerapp:employer_list")
-
 
 
 # Домашний кабинет работодателя

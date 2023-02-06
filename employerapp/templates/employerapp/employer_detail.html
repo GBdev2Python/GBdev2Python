@@ -9,47 +9,47 @@
 {% load static %}
 
 {% block content %}
-<br>
-{% if user.is_authenticated %}
-<p>Вы вошли под пользователем: {{ user.username }}</p>
-{% endif %}
-<br>
-<br>
-<a href="{% url 'hhapp:main_page' %}">Домашняя страница</a> |
-<a href="{% url 'authapp:login' %}">Логин</a> |
-<a href="{% url 'authapp:register' %}">Регистрация</a> |
-<a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |
-<a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |
-<a href="{% url 'employerapp:employer_create' %}">Создание карточки работодателя</a> |
-<a href="{% url 'employerapp:vacancy_create' %}">Создание вакансии работодателя</a> |
-<br>
-<p>Данные об выбранной организации</p>
-{% if employer_qs.cover %}
-<img src="{{ employer_qs.cover.url }}" alt="">
-{% endif %}
-<h2>Организация: {{ employer_qs.employment }}</h2>
-<p>Зарегистрирована на сайте с: {{ employer_qs.created|date:"Y.m.d" }}</p>
-<p>Расположение: {{ employer_qs.city }}</p>
-<p>Адрес организации: {{ employer_qs.address }}</p>
-<p>Телефон: {{ employer_qs.phone }}</p>
-<p>email: {{ employer_qs.email }}</p>
-{% if employer_qs.website %}
-<p>Сайт организации: <a href=""></a>{{ employer_qs.website }}</p>
-{% endif %}
-<br>
-{% if employer_qs.body %}
-<p>Дополнительная информация:</p>
-{{ employer_qs.body|safe }}
-{% endif %}
-<br>
-{% if employer_qs.location %}
-<p>Адрес на карте</p>
-{{ employer_qs.location|safe }}
-{% endif %}
-<br>
-<a href="{% url 'employerapp:employer_vacancy_list' vacancy_employer_pk=employer_qs.pk %}">Список вакансий
+  <br>
+  {% if user.is_authenticated %}
+    <p>Вы вошли под пользователем: {{ user.username }}</p>
+  {% endif %}
+  <br>
+  <br>
+  <a href="{% url 'hhapp:main_page' %}">Домашняя страница</a> |
+  <a href="{% url 'authapp:login' %}">Логин</a> |
+  <a href="{% url 'authapp:register' %}">Регистрация</a> |
+  <a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |
+  <a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |
+  <a href="{% url 'employerapp:employer_create' %}">Создание карточки работодателя</a> |
+  <a href="{% url 'employerapp:vacancy_create' %}">Создание вакансии работодателя</a> |
+  <br>
+  <p>Данные об выбранной организации</p>
+  {% if employer_qs.cover %}
+    <img src="{{ employer_qs.cover.url }}" alt="">
+  {% endif %}
+  <h2>Организация: {{ employer_qs.employment }}</h2>
+  <p>Зарегистрирована на сайте с: {{ employer_qs.created|date:"Y.m.d" }}</p>
+  <p>Расположение: {{ employer_qs.city }}</p>
+  <p>Адрес организации: {{ employer_qs.address }}</p>
+  <p>Телефон: {{ employer_qs.phone }}</p>
+  <p>email: {{ employer_qs.email }}</p>
+  {% if employer_qs.website %}
+    <p>Сайт организации: <a href=""></a>{{ employer_qs.website }}</p>
+  {% endif %}
+  <br>
+  {% if employer_qs.body %}
+    <p>Дополнительная информация:</p>
+    {{ employer_qs.body|safe }}
+  {% endif %}
+  <br>
+  {% if employer_qs.location %}
+    <p>Адрес на карте</p>
+    {{ employer_qs.location|safe }}
+  {% endif %}
+  <br>
+  <a href="{% url 'employerapp:employer_vacancy_list' vacancy_employer_pk=employer_qs.pk %}">Список вакансий
     работодателя</a>
-<br><br>
+  <br><br>
 {% endblock content %}
 <!--</body>-->
 <!--</html>-->

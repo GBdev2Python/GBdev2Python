@@ -1,13 +1,13 @@
 import os
 
 from celery import Celery
-from newsapp.tasks import save_news_to_database
 
+from newsapp.tasks import save_news_to_database
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 
-application = Celery('newsapp')
-application.config_from_object('django.conf:settings', namespace='CELERY')
+application = Celery("newsapp")
+application.config_from_object("django.conf:settings", namespace="CELERY")
 application.autodiscover_tasks()
 
 
@@ -18,4 +18,4 @@ def setup_periodic_tasks(sender, **kwargs):
 
 @application.task
 def get_news():
-    print(f'saved {save_news_to_database()} news total')
+    print(f"saved {save_news_to_database()} news total")

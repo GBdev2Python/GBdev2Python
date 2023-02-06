@@ -1,12 +1,10 @@
-
 from django.contrib import admin
-from employerapp.models import *
-from applicantapp.models import Skill
 
+from employerapp.models import *
 
 # Register your models here.
 
-admin.AdminSite.site_header = 'Административный раздел сайта'
+admin.AdminSite.site_header = "Административный раздел сайта"
 
 # Вакансия
 @admin.register(VacancyHeader)
@@ -15,8 +13,11 @@ class VacancyHeaderAdmin(admin.ModelAdmin):
 
     # list_display_links = ("job_title", "employer_id",)
     list_editable = ["is_published", "experience"]
-    search_fields = ("job_title", "salary",)
-    list_filter = ('employer_id',)
+    search_fields = (
+        "job_title",
+        "salary",
+    )
+    list_filter = ("employer_id",)
     filter_horizontal = ["employment_id", "skills_id"]
 
 
@@ -25,7 +26,12 @@ class VacancyHeaderAdmin(admin.ModelAdmin):
 class EmployerAdmin(admin.ModelAdmin):
     list_display = ["employment"]
     search_fields = ["employment"]
-    prepopulated_fields = {"slug": ("employment", "user",)}
+    prepopulated_fields = {
+        "slug": (
+            "employment",
+            "user",
+        )
+    }
 
 
 # Вид занятости
@@ -53,7 +59,10 @@ class TypeEmploymentAdmin(admin.ModelAdmin):
 @admin.register(VacancyBody)
 class VacancyBodyAdmin(admin.ModelAdmin):
     list_display = ["vacancy_header_id", "title", "ranking"]
-    list_display_links = ('vacancy_header_id', "title",)
+    list_display_links = (
+        "vacancy_header_id",
+        "title",
+    )
     search_fields = ["title"]
     list_editable = ["ranking"]
-    list_filter = ('vacancy_header_id',)
+    list_filter = ("vacancy_header_id",)

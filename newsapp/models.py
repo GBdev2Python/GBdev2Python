@@ -1,4 +1,3 @@
-from datetime import datetime
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -6,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 class News(models.Model):
     source = models.CharField(max_length=255, verbose_name=_("NewsSource"), null=True, blank=True)
     author = models.CharField(max_length=150, verbose_name=_("NewsAuthor"), null=True, blank=True)
-    title = models.CharField(max_length=255, verbose_name=_('NewsTitle'))
+    title = models.CharField(max_length=255, verbose_name=_("NewsTitle"))
     description = models.TextField(verbose_name=_("NewsDescription"), null=True, blank=True)
     content = models.CharField(max_length=255, verbose_name=_("NewsContent"), null=True, blank=True)
 
@@ -20,7 +19,7 @@ class News(models.Model):
     class Meta:
         verbose_name = _("News")
         verbose_name_plural = _("News")
-        ordering = ('-created', )
+        ordering = ("-created",)
 
     def __str__(self):
         return f"News [{self.pk} {self.title[:10]}]"

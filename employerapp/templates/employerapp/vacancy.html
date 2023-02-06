@@ -9,42 +9,42 @@
 {% load static %}
 
 {% block content %}
-<br>
-{% if user.is_authenticated %}
-<p>Вы вошли под пользователем: {{ user.username }}</p>
-{% endif %}
-<br>
-<a href="{% url 'hhapp:main_page' %}">Домашняя страница</a> |
-<a href="{% url 'authapp:login' %}">Логин</a> |
-<a href="{% url 'authapp:register' %}">Регистрация</a> |
-<a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |
-<a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |
-<a href="{% url 'employerapp:employer_create' %}">Создание карточки работодателя</a> |
-<a href="{% url 'employerapp:vacancy_create' %}">Создание вакансии работодателя</a> |
-<br>
-<h1>Страница выбранной вакансии</h1>
-<br>
-<p>Организация: {{ vacancy_qs.employer_id.employment|safe }}</p>
-<p>Вакансия: {{ vacancy_qs.job_title }}</p>
-<p>Требуемый опыт работы: {{ vacancy_qs.get_experience_display }}</p>
-<p>Заработная плата: {{ vacancy_qs.salary }} руб.</p>
-<p>Тип занятости:</p>
-<ul>
+  <br>
+  {% if user.is_authenticated %}
+    <p>Вы вошли под пользователем: {{ user.username }}</p>
+  {% endif %}
+  <br>
+  <a href="{% url 'hhapp:main_page' %}">Домашняя страница</a> |
+  <a href="{% url 'authapp:login' %}">Логин</a> |
+  <a href="{% url 'authapp:register' %}">Регистрация</a> |
+  <a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |
+  <a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |
+  <a href="{% url 'employerapp:employer_create' %}">Создание карточки работодателя</a> |
+  <a href="{% url 'employerapp:vacancy_create' %}">Создание вакансии работодателя</a> |
+  <br>
+  <h1>Страница выбранной вакансии</h1>
+  <br>
+  <p>Организация: {{ vacancy_qs.employer_id.employment|safe }}</p>
+  <p>Вакансия: {{ vacancy_qs.job_title }}</p>
+  <p>Требуемый опыт работы: {{ vacancy_qs.get_experience_display }}</p>
+  <p>Заработная плата: {{ vacancy_qs.salary }} руб.</p>
+  <p>Тип занятости:</p>
+  <ul>
     {% for el in vacancy_qs.employment_id.all %}
-    <li>
+      <li>
         {{ el.employment }}
-    </li>
+      </li>
     {% endfor %}
-</ul>
-<br>
+  </ul>
+  <br>
 
-{% for item in vacancy_body_qs %}
-<div>
-    <p>{{ item.title|safe }}</p>
-    <p>{{ item.body|safe }}</p>
-</div>
-{% endfor %}
-<br><br>
+  {% for item in vacancy_body_qs %}
+    <div>
+      <p>{{ item.title|safe }}</p>
+      <p>{{ item.body|safe }}</p>
+    </div>
+  {% endfor %}
+  <br><br>
 {% endblock content %}
 <!--</body>-->
 <!--</html>-->

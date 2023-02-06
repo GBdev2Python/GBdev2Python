@@ -2,13 +2,16 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.views import LoginView, LogoutView
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView, UpdateView
-from .models import CustomUser
+
 from authapp import forms
-from django.shortcuts import render
+
+from .models import CustomUser
+
 
 class CustomLoginView(LoginView):
     def form_valid(self, form):
@@ -46,7 +49,7 @@ class RegisterView(CreateView):
 class ProfileEditView(UserPassesTestMixin, UpdateView):
     model = get_user_model()
     form_class = forms.CustomUserChangeForm
-    template_name = 'profile/profile_edit.html'
+    template_name = "profile/profile_edit.html"
 
     def test_func(self):
         return True if self.request.user.pk == self.kwargs.get("pk") else False
@@ -57,5 +60,4 @@ class ProfileEditView(UserPassesTestMixin, UpdateView):
 
 def profile_info(request):
     form = CustomUser
-    return render(request, 'profile/profile_info.html', {"form": form})
-
+    return render(request, "profile/profile_info.html", {"form": form})

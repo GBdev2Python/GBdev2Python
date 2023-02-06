@@ -1,12 +1,10 @@
-from django.db import models
-
 from ckeditor.fields import RichTextField
+from django.core.validators import RegexValidator
 from django.db import models
 from django.urls import reverse
 
-from applicantapp.models import Towns, Skill
+from applicantapp.models import Skill, Towns
 from authapp.models import CustomUser
-from django.core.validators import RegexValidator
 
 # Create your models here.
 
@@ -54,7 +52,7 @@ class TypeEmployment(models.Model):
 
 # Работодатель (Общий реестр по всем работодателям)
 # первичный ключ для "VacancyHeader"
-class  Employer(models.Model):
+class Employer(models.Model):
     employment = models.TextField(max_length=1024, verbose_name="Работодатель")
     cover = models.ImageField(upload_to="image/employment/", blank=True, verbose_name="Логотип организации")
     address = models.TextField(max_length=512, verbose_name="Адрес организации")
@@ -70,10 +68,10 @@ class  Employer(models.Model):
     # связь с таблицей базы applicantapp
     town_id = models.ForeignKey(Towns, on_delete=models.PROTECT, verbose_name="Местоположение")
     # связь с таблицей админки
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, verbose_name='Пользователь')
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, verbose_name="Пользователь")
 
     def get_absolute_url(self):
-        return reverse('employerapp:employer_detail', kwargs={'employer_slug': self.slug})
+        return reverse("employerapp:employer_detail", kwargs={"employer_slug": self.slug})
 
     def __str__(self) -> str:
         return f"{self.employment}"
@@ -101,11 +99,12 @@ class VacancyHeader(models.Model):
     employment_id = models.ManyToManyField(TypeEmployment, verbose_name="Вид занятости")
     town_id = models.ForeignKey(Towns, on_delete=models.PROTECT, verbose_name="Местоположение")
     skills_id = models.ManyToManyField(Skill, blank=True, verbose_name="Ключевой навык")
-    employer_id = models.ForeignKey(Employer, on_delete=models.CASCADE, related_name="vacancies", verbose_name="Работодатель")
-
+    employer_id = models.ForeignKey(
+        Employer, on_delete=models.CASCADE, related_name="vacancies", verbose_name="Работодатель"
+    )
 
     def get_absolute_url(self):
-        return reverse('employerapp:vacancy', kwargs={'vacancy_pk': self.pk})
+        return reverse("employerapp:vacancy", kwargs={"vacancy_pk": self.pk})
 
     def __str__(self) -> str:
         return f"{self.job_title}"
@@ -123,7 +122,6 @@ class VacancyBody(models.Model):
     ranking = models.PositiveSmallIntegerField(default=1, verbose_name="Очередность разделов")
     vacancy_header_id = models.ForeignKey(VacancyHeader, on_delete=models.CASCADE, verbose_name="Заголовок вакансии")
 
-
     def __str__(self) -> str:
         return f"{self.title}"
 
@@ -131,5 +129,3 @@ class VacancyBody(models.Model):
         verbose_name = "Детали вакансии"
         verbose_name_plural = "Детали вакансии"
         ordering = ("ranking",)
-
-

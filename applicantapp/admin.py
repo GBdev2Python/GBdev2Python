@@ -1,5 +1,7 @@
 from django.contrib import admin
-from applicantapp.models import Skill,Towns, Applicants, Resumes
+
+from applicantapp.models import Applicants, Resumes, Skill, Towns
+
 # Register your models here.
 
 
