@@ -29,7 +29,7 @@ class VacancyJob(TemplateView):
     def get_context_data(self, vacancy_pk, **kwargs):
         context = super().get_context_data(**kwargs)
         context["vacancy_qs"] = get_object_or_404(VacancyHeader, pk=vacancy_pk)
-        context["vacancy_body_qs"] = VacancyBody.objects.all().filter(vacancy_header_id=vacancy_pk)
+        # context["vacancy_body_qs"] = VacancyBody.objects.all().filter(vacancy_header_id=vacancy_pk)
         return context
 
 

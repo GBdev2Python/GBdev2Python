@@ -52,6 +52,7 @@ class AddVacancyForm(forms.ModelForm):
             "employment_id",
             "town_id",
             "skills_id",
+            "body",
             "employer_id",
             "is_published",
         ]

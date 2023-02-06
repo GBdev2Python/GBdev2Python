@@ -2,13 +2,14 @@
 # выгрузка данных из базы (файлы с одинаковыми именами ПЕРЕЗАПИШУТЬСЯ !!!)
 python manage.py dumpdata --format=json authapp.Customuser > employerapp/fixtures/customuser_01.json
 
+python manage.py dumpdata --format=json applicantapp.Towns > employerapp/fixtures/towns_01.json
+python manage.py dumpdata --format=json applicantapp.Skill > employerapp/fixtures/skill_01.json
+
 python manage.py dumpdata --format=json employerapp.TypeEmployment > employerapp/fixtures/typeEmployment_01.json
 python manage.py dumpdata --format=json employerapp.Employer > employerapp/fixtures/employer_01.json
 python manage.py dumpdata --format=json employerapp.VacancyHeader > employerapp/fixtures/vacancyHeader_01.json
-python manage.py dumpdata --format=json employerapp.VacancyBody > employerapp/fixtures/vacancyBody_01.json
 
-python manage.py dumpdata --format=json applicantapp.Towns > employerapp/fixtures/towns_01.json
-python manage.py dumpdata --format=json applicantapp.Skill > employerapp/fixtures/skill_01.json
+
 
 
 
@@ -16,13 +17,15 @@ python manage.py dumpdata --format=json applicantapp.Skill > employerapp/fixture
 
 python manage.py loaddata customuser_01.json
 
+python manage.py loaddata towns_01.json
+python manage.py loaddata skill_01.json
+
 python manage.py loaddata typeEmployment_01.json
 python manage.py loaddata employer_01.json
 python manage.py loaddata vacancyHeader_01.json
-python manage.py loaddata vacancyBody_01.json
 
-python manage.py loaddata towns_01.json
-python manage.py loaddata skill_01.json
+
+
 
 # группы (роли) еше не организованы !!!
 # Логины, пароли пользователей и профильная информация
@@ -32,6 +35,36 @@ admin
 admin@post.com
 1111qqqqa
 
+# Работодатель
+employer1
+1111qqqqa
+1111qqqqa
+employer1@post.com
+Employer1name
+Employer1surname
++7 905 1234567
+www.employer1.com
+
+employer2
+employer2@post.com
+1111qqqqa
+1111qqqqa
+Employer2name
+Employer2surname
++7 905 1234567
+www.employer2.com
+
+employer3
+employer3@post.com
+1111qqqqa
+1111qqqqa
+Employer3name
+Employer3surname
++7 905 1234567
+www.employer3.com
+
+
+# В фикстуру не записано
 # модератор
 moder
 moder@post.com
@@ -57,32 +90,3 @@ user3@post.com
 1111qqqqa
 user3name
 user3surname
-
-
-# Работодатель
-boss1
-1111qqqqa
-1111qqqqa
-boss1@post.com
-Boss1name
-Boss1surname
-+7 905 1234567
-www.boss1.com
-
-boss2
-boss2@post.com
-1111qqqqa
-1111qqqqa
-Boss2name
-Boss2surname
-+7 905 1234567
-www.boss2.com
-
-boss3
-boss3@post.com
-1111qqqqa
-1111qqqqa
-Boss3name
-Boss3surname
-+7 905 1234567
-www.boss3.com

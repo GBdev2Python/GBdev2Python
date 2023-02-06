@@ -95,6 +95,7 @@ class VacancyHeader(models.Model):
     # work_experience_id = models.ForeignKey(WorkExperience, on_delete=models.PROTECT, verbose_name="Опыт работы")
     # working_day_id = models.ForeignKey(WorkingDay, on_delete=models.PROTECT, verbose_name="График рабочего дня")
     experience = models.PositiveSmallIntegerField(default=1, choices=EXPERIENCE, verbose_name="Опыт работы")
+    body = RichTextField(blank=True, verbose_name="Содержимое раздела вакансии")
     is_published = models.BooleanField(default=True, verbose_name="Опубликовать")
     employment_id = models.ManyToManyField(TypeEmployment, verbose_name="Вид занятости")
     town_id = models.ForeignKey(Towns, on_delete=models.PROTECT, verbose_name="Местоположение")
@@ -115,17 +116,17 @@ class VacancyHeader(models.Model):
         ordering = ("-created",)  # свежие в начале списка Длительность
 
 
-# Перечисляемые разделы вакансии (дополнительная информация)
-class VacancyBody(models.Model):
-    title = models.CharField(max_length=256, verbose_name="Заголовок раздела вакансии")
-    body = RichTextField(blank=True, null=True, verbose_name="Содержимое раздела вакансии")
-    ranking = models.PositiveSmallIntegerField(default=1, verbose_name="Очередность разделов")
-    vacancy_header_id = models.ForeignKey(VacancyHeader, on_delete=models.CASCADE, verbose_name="Заголовок вакансии")
-
-    def __str__(self) -> str:
-        return f"{self.title}"
-
-    class Meta:
-        verbose_name = "Детали вакансии"
-        verbose_name_plural = "Детали вакансии"
-        ordering = ("ranking",)
+# # Перечисляемые разделы вакансии (дополнительная информация)
+# class VacancyBody(models.Model):
+#     title = models.CharField(max_length=256, verbose_name="Заголовок раздела вакансии")
+#     body = RichTextField(blank=True, null=True, verbose_name="Содержимое раздела вакансии")
+#     ranking = models.PositiveSmallIntegerField(default=1, verbose_name="Очередность разделов")
+#     vacancy_header_id = models.ForeignKey(VacancyHeader, on_delete=models.CASCADE, verbose_name="Заголовок вакансии")
+#
+#     def __str__(self) -> str:
+#         return f"{self.title}"
+#
+#     class Meta:
+#         verbose_name = "Детали вакансии"
+#         verbose_name_plural = "Детали вакансии"
+#         ordering = ("ranking",)

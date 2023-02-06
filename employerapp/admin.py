@@ -55,14 +55,14 @@ class TypeEmploymentAdmin(admin.ModelAdmin):
 #     search_fields = ["work_experience"]
 
 
-# Перечисляемые разделы вакансии
-@admin.register(VacancyBody)
-class VacancyBodyAdmin(admin.ModelAdmin):
-    list_display = ["vacancy_header_id", "title", "ranking"]
-    list_display_links = (
-        "vacancy_header_id",
-        "title",
-    )
-    search_fields = ["title"]
-    list_editable = ["ranking"]
-    list_filter = ("vacancy_header_id",)
+# # Перечисляемые разделы вакансии
+# @admin.register(VacancyBody)
+# class VacancyBodyAdmin(admin.ModelAdmin):
+#     list_display = ["vacancy_header_id", "title", "ranking"]
+#     list_display_links = (
+#         "vacancy_header_id",
+#         "title",
+#     )
+#     search_fields = ["title"]
+#     list_editable = ["ranking"]
+#     list_filter = ("vacancy_header_id",)
