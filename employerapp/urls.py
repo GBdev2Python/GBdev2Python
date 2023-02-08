@@ -23,13 +23,13 @@ urlpatterns = [
 
     # отдельная вакансия сайта
     path("vacancy/<int:vacancy_pk>/", VacancyJob.as_view(), name="vacancy"),
+    # http://127.0.0.1:8000/employerapp/vacancy/2/
 
     # Список вакансий работодателя на сайте
     path(
         "employer_vacancy_list/<int:vacancy_employer_pk>/", EmployerVacancyList.as_view(), name="employer_vacancy_list"
     ),
     # http://127.0.0.1:8000/employerapp/employer_vacancy_list/7/
-
 
     # Создание карточки работодателя (конкретный пользователь)
     path("employer_create/", EmployerCreate.as_view(), name="employer_create"),
