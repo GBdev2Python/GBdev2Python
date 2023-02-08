@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 {% load static %}
 
@@ -30,6 +29,7 @@
             <p>Вакансия: {{ vacancy_qs.job_title }}</p>
             <p>Требуемый опыт работы: {{ vacancy_qs.get_experience_display }}</p>
             <p>Заработная плата: {{ vacancy_qs.salary }} руб.</p>
+
             <p>Тип занятости:</p>
             <ul>
                 {% for el in vacancy_qs.employment_id.all %}
@@ -38,9 +38,16 @@
                 </li>
                 {% endfor %}
             </ul>
+
+            <p>Ключевые навыки:</p>
+            {% for el in vacancy_qs.skills_id.all %}
+            <ul>
+                <li>{{ el.name }}</li>
+            </ul>
+            {% endfor %}
+
             <p>Описание вакансии: {{ vacancy_qs.body|safe }}</p>
             <br>
-
         </div>
 
         <div class="col-xl-3 col-md-3 col-lg-3">

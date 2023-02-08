@@ -9,30 +9,42 @@ app_name = EmployerappConfig.name
 # http://127.0.0.1:8000/admin/login/?next=/admin/
 
 urlpatterns = [
-    # список всех работодателей
+    # список всех работодателей сайта
     path("employer_list/", EmployerList.as_view(), name="employer_list"),
     # http://127.0.0.1:8000/employerapp/employer_list/
-    # Карточка работодателя
+
+    # Карточка работодателя на сайте
     path("employer_detail/<slug:employer_slug>/", DetailEmployer.as_view(), name="employer_detail"),
+    # http://127.0.0.1:8000/employerapp/employer_detail/medicina-ao-p1-7/
+
     # Список всех вакансий сайта
     path("vacancy_list/", AllVacancyList.as_view(), name="vacancy_list"),
     # http://127.0.0.1:8000/employerapp/vacancy_list/
-    # Список вакансий работодателя
+
+    # отдельная вакансия сайта
+    path("vacancy/<int:vacancy_pk>/", VacancyJob.as_view(), name="vacancy"),
+    # path('ckeditor/', include('ckeditor_uploader.urls')),
+
+    # Список вакансий работодателя на сайте
     path(
         "employer_vacancy_list/<int:vacancy_employer_pk>/", EmployerVacancyList.as_view(), name="employer_vacancy_list"
     ),
-    # отдельная вакансия
-    path("vacancy/<int:vacancy_pk>/", VacancyJob.as_view(), name="vacancy"),
-    # path('ckeditor/', include('ckeditor_uploader.urls')),
-    # Создание карточки работодателя
+    # http://127.0.0.1:8000/employerapp/employer_vacancy_list/7/
+
+
+    # Создание карточки работодателя (конкретный пользователь)
     path("employer_create/", EmployerCreate.as_view(), name="employer_create"),
     # http://127.0.0.1:8000/employerapp/employer_create/
-    # Создание карточки работодателя
+
+    # Редактирование карточки работодателя (конкретный пользователь)
+    path("employer_update/<slug:employer_slug>/", EmployerUpdate.as_view(), name="employer_update"),
+    # http://127.0.0.1:8000/employerapp/employer_update/medicina-ao-p1-7/
+
+    # Создание вакансии работодателя (конкретный пользователь)
     path("vacancy_create/", VacancyCreate.as_view(), name="vacancy_create"),
     # http://127.0.0.1:8000/employerapp/vacancy_create/
-    # Редактирование карточки работодателя
-    path("employer_update/<slug:employer_slug>/", EmployerUpdate.as_view(), name="employer_update"),
-    # http://127.0.0.1:8000/employerapp/employer_update/allegrova-irina-aleksandrovna/
+
+    # Список опубликованных вакансий работодателя (конкретный пользователь)
     path("employer_cabinet/<slug:employer_slug>/", EmployerCabinet.as_view(), name="employer_cabinet"),
-    # http://127.0.0.1:8000/employerapp/employer_cabinet/allegrova-irina-aleksandrovna/
+    # http://127.0.0.1:8000/employerapp/employer_cabinet/medicina-ao-p1-7/
 ]

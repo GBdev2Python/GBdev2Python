@@ -1,5 +1,4 @@
 from django import forms
-
 from employerapp.models import *
 
 
@@ -56,3 +55,7 @@ class AddVacancyForm(forms.ModelForm):
             "employer_id",
             "is_published",
         ]
+        widgets = {
+            # "skills_id": forms.CheckboxSelectMultiple(),
+            "skills_id": forms.SelectMultiple(),
+        }

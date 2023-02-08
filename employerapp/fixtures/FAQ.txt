@@ -12,7 +12,6 @@ python manage.py dumpdata --format=json employerapp.VacancyHeader > employerapp/
 
 
 
-
 # загрузить данные из файла *.json в  базу данных (!!! существующие данные в базе при этом перезапишутся !!!)
 
 python manage.py loaddata customuser_01.json
@@ -23,7 +22,6 @@ python manage.py loaddata skill_01.json
 python manage.py loaddata typeEmployment_01.json
 python manage.py loaddata employer_01.json
 python manage.py loaddata vacancyHeader_01.json
-
 
 
 
@@ -64,7 +62,7 @@ Employer3surname
 www.employer3.com
 
 
-# В фикстуру не записано
+# В нижеследующее в фикстуру не записано
 # модератор
 moder
 moder@post.com

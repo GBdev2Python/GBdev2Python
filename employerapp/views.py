@@ -101,6 +101,14 @@ class VacancyCreate(CreateView):
 
 
 # Домашний кабинет работодателя
-class EmployerCabinet(TemplateView):
+class EmployerCabinet(DetailView):
     template_name = "employerapp/employer_cabinet.html"
     model = Employer
+    slug_url_kwarg = "employer_slug"
+    # query_pk_and_slug = True
+    # context_object_name = "employer_cab_qs"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["employer_cab_qs"] = Employer.objects.filter(pk=7)  # в разработке
+        return context

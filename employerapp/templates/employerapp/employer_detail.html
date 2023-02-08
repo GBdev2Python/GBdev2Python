@@ -6,6 +6,7 @@
 <br>
 {% if user.is_authenticated %}
 <p>Вы вошли под пользователем: {{ user.username }}</p>
+<p>ID: {{ user.pk }}</p>
 {% endif %}
 <br><br>
 
@@ -52,6 +53,14 @@
             <a href="{% url 'employerapp:employer_vacancy_list' vacancy_employer_pk=employer_qs.pk %}">Список вакансий
                 работодателя</a>
         </div>
+
+<!--        -->
+<!--        -->
+
+        <a href="{{ employer_qs.get_absolute_url }}">Кабинет работодателя</a>
+
+<!--        -->
+<!--        -->
 
         <div class="col-xl-3 col-md-3 col-lg-3">
             <p>Боковая колонка для рекламы или фильтров</p>
