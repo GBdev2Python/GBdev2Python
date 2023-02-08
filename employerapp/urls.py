@@ -14,8 +14,8 @@ urlpatterns = [
     # http://127.0.0.1:8000/employerapp/employer_list/
 
     # Карточка работодателя на сайте
-    path("employer_detail/<slug:employer_slug>/", DetailEmployer.as_view(), name="employer_detail"),
-    # http://127.0.0.1:8000/employerapp/employer_detail/medicina-ao-p1-7/
+    path("employer_detail/<int:employer_id>/", DetailEmployer.as_view(), name="employer_detail"),
+    # http://127.0.0.1:8000/employerapp/employer_detail/3/
 
     # Список всех вакансий сайта
     path("vacancy_list/", AllVacancyList.as_view(), name="vacancy_list"),
@@ -23,7 +23,6 @@ urlpatterns = [
 
     # отдельная вакансия сайта
     path("vacancy/<int:vacancy_pk>/", VacancyJob.as_view(), name="vacancy"),
-    # path('ckeditor/', include('ckeditor_uploader.urls')),
 
     # Список вакансий работодателя на сайте
     path(
@@ -37,14 +36,14 @@ urlpatterns = [
     # http://127.0.0.1:8000/employerapp/employer_create/
 
     # Редактирование карточки работодателя (конкретный пользователь)
-    path("employer_update/<slug:employer_slug>/", EmployerUpdate.as_view(), name="employer_update"),
-    # http://127.0.0.1:8000/employerapp/employer_update/medicina-ao-p1-7/
+    path("employer_update/<int:employer_id>/", EmployerUpdate.as_view(), name="employer_update"),
+    # http://127.0.0.1:8000/employerapp/employer_update/2/
 
     # Создание вакансии работодателя (конкретный пользователь)
     path("vacancy_create/", VacancyCreate.as_view(), name="vacancy_create"),
     # http://127.0.0.1:8000/employerapp/vacancy_create/
 
     # Список опубликованных вакансий работодателя (конкретный пользователь)
-    path("employer_cabinet/<slug:employer_slug>/", EmployerCabinet.as_view(), name="employer_cabinet"),
-    # http://127.0.0.1:8000/employerapp/employer_cabinet/medicina-ao-p1-7/
+    path("employer_cabinet/<int:employer_id>/", EmployerCabinet.as_view(), name="employer_cabinet"),
+    # http://127.0.0.1:8000/employerapp/employer_cabinet/2/
 ]

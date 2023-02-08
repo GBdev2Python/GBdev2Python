@@ -38,16 +38,16 @@ class VacancyJob(TemplateView):
 #     template_name = "employerapp/employer_detail.html"
 #     model = Employer
 #
-#     def get_context_data(self, employer_slug, **kwargs):
+#     def get_context_data(self, employer_id, **kwargs):
 #         context = super().get_context_data(**kwargs)
-#         context["employer_qs"] = get_object_or_404(Employer, slug=employer_slug)
+#         context["employer_qs"] = get_object_or_404(Employer, pk=employer_id)
 #         return context
 
 # Карточка работодателя
 class DetailEmployer(DetailView):
     model = Employer
     template_name = "employerapp/employer_detail.html"
-    slug_url_kwarg = "employer_slug"
+    pk_url_kwarg = "employer_id"
     context_object_name = "employer_qs"
 
 
@@ -88,7 +88,8 @@ class EmployerCreate(CreateView):
 class EmployerUpdate(UpdateView):
     model = Employer
     form_class = UpdateEmployerForm
-    slug_url_kwarg = "employer_slug"
+    pk_url_kwarg = "employer_id"
+    # slug_url_kwarg = "employer_slug"
     template_name = "employerapp/employer_update.html"
     # success_url = reverse_lazy("employerapp:employer_detail")
 
@@ -104,9 +105,9 @@ class VacancyCreate(CreateView):
 class EmployerCabinet(DetailView):
     template_name = "employerapp/employer_cabinet.html"
     model = Employer
-    slug_url_kwarg = "employer_slug"
+    pk_url_kwarg = "employer_id"
+    # slug_url_kwarg = "employer_slug"
     # query_pk_and_slug = True
-    # context_object_name = "employer_cab_qs"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -62,7 +62,7 @@ Employer3surname
 www.employer3.com
 
 
-# В нижеследующее в фикстуру не записано
+# В нижеследующее в фикстуруне записано
 # модератор
 moder
 moder@post.com

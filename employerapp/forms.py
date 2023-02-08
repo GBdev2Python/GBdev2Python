@@ -5,7 +5,7 @@ from employerapp.models import *
 class AddEmployerForm(forms.ModelForm):
     class Meta:
         model = Employer
-        fields = ["employment", "town_id", "address", "phone", "email", "website", "body", "location", "slug", "user"]
+        fields = ["employment", "town_id", "address", "phone", "email", "website", "body", "location", "user"]
         labels = {
             "employment": "Название организации",
             "town_id": "Расположение организации",

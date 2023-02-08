@@ -29,7 +29,7 @@
 <!--    в разработке        -->
 
 <h3>Список опубликованных вакансий работодателя {{ user.username }}:</h3>
-             <p>{{ employer_cab_qs.slug }}</p>
+             <p>{{ employer_cab_qs.pk }}</p>
 
             <ul>
                 {% for item in employer_cab_qs %}
