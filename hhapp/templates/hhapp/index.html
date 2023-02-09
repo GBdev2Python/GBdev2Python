@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+    <!-- header-start -->
+<style>
+    .slider_bg_1 {
+      background-image: url("{% static 'img/banner.png' %}");
+    }
+</style>
+    <header>
+        <div class="header-area ">
+            <div id="sticky-header" class="main-header-area">
+                <div class="container-fluid ">
+                    <div class="header_bottom_border">
+                        <div class="row align-items-center">
+                            <div class="col-xl-3 col-lg-2">
+                                <div class="logo">
+                                    <a href="index.html">
+                                        <img src="{% static 'img/logoJob.png' %}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-7">
+                                <div class="main-menu  d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            
+                                            <li><a href="jobs.html">Соискатель</a></li>
+                                            <li><a href="candidate.html">Работодатель</a></li>
+                                            <li><a href="#">Помощь</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                                <div class="Appointment">
+                                    <div class="phone_num d-none d-xl-block">
+                                        <a href="#">Зарегистрироваться</a>
+                                    </div>
+                                    <div class="d-none d-lg-block">
+                                        <a class="boxed-btn3" href="#">Войти</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+
+    <!-- slider_area_start -->
+    <div class="slider_area">
+        <div class="single_slider  d-flex align-items-center slider_bg_1">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 col-md-6">
+                        <div class="slider_text">
+                            <h5 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s">+100500
+                            вакансий на JobBoard</h5>
+                            <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">Сервис №1 по поиску сотрудников в России</h3>
+                            <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s">Всегда самые свежие новости на рынке труда!</p> 
+                            <div class="sldier_btn wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
+                                <a href="#" class="boxed-btn3">Начать поиск</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ilstration_img wow fadeInRight d-none d-lg-block text-right" data-wow-duration="1s" data-wow-delay=".2s">
+            <img src="{% static 'img/illustration.png' %}" alt="">
+        </div>
+    </div>
+    <!-- slider_area_end -->
+
+  <div class="row">
+    <div class="col-lg-8">
+        <div class="card my-2">
+            <div class="card-body">
+                <h5 class="card-title">Новость</h5>
+                <h6 class="card-subtitle mb-2 text-muted">2021-04-29 20-50-26</h6>
+                <p class="card-text">Предварительное описание новости</p>
+                <a href="news_detal.html" class="card-link">Подробнее</a>
+            </div>
+        </div>
+        <div class="card my-2">
+            <div class="card-body">
+                <h5 class="card-title">Новость</h5>
+                <h6 class="card-subtitle mb-2 text-muted">2021-04-28 20-50-26</h6>
+                <p class="card-text">Предварительное описание новости</p>
+                <a href="news_detal.html" class="card-link">Подробнее</a>
+            </div>
+        </div>
+        <div class="card my-2">
+            <div class="card-body">
+                <h5 class="card-title">Новость</h5>
+                <h6 class="card-subtitle mb-2 text-muted">2021-04-27 20-50-26</h6>
+                <p class="card-text">Предварительное описание новости</p>
+                <a href="news_detal.html" class="card-link">Подробнее</a>
+            </div>
+        </div>
+        <div class="card my-2">
+            <div class="card-body">
+                <h5 class="card-title">Новость</h5>
+                <h6 class="card-subtitle mb-2 text-muted">2021-04-26 20-50-26</h6>
+                <p class="card-text">Предварительное описание новости</p>
+                <a href="news_detal.html" class="card-link">Подробнее</a>
+            </div>
+        </div>
+        <div class="card mt-2">
+            <div class="card-body">
+                <h5 class="card-title">Новость</h5>
+                <h6 class="card-subtitle mb-2 text-muted">2021-04-25 20-50-26</h6>
+                <p class="card-text">Предварительное описание новости</p>
+                <a href="news_detal.html" class="card-link">Подробнее</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card my-2 sticky-top">
+            <div class="card-header">
+                Фильтры
+            </div>
+            <div class="card-body">
+                <form action="">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Дата
+от...</span>
+                        </div>
+                        <input type="date" class="form-control" name="dateFrom">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Дата
+до...</span>
+                        </div>
+                        <input type="date" class="form-control" name="dateTo">
+                    </div>
+                    <button type="submit"
+                        class="btn btn-primary btn-block">Фильтровать</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="row justify-content-center  align-items-center mt-3 mb-n3">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link"
+href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
+</div>
+ <!--/ news end  -->
+
+
+{% endblock content %}
