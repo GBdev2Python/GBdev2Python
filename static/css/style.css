@@ -2519,15 +2519,15 @@ h3 {
 }
 
 /* line 1, ../../Arafath/CL/December/235. Job board/HTML/scss/_bradcam.scss */
-.bradcam_bg_1 {
+/*.bradcam_bg_1 {
   background-image: url(../img/banner/banner.png);
-}
+}*/
 
 /* line 4, ../../Arafath/CL/December/235. Job board/HTML/scss/_bradcam.scss */
 .bradcam_area {
   background-size: cover;
   background-position: center;
-  padding: 182px 0 102px 0;
+  padding: 180px 0 100px 0;
   background-repeat: no-repeat;
   position: relative;
   z-index: 0;

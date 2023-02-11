@@ -21,6 +21,61 @@
 
   </head>
   <body>
+ <!-- header-start -->
+
+<style>
+   .bradcam_bg_1 {
+      background-image: url("{% static 'img/banner.png' %}");
+
+    }
+</style>
+
+    <header>
+        <div class="header-area ">
+            <div id="sticky-header" class="main-header-area">
+                <div class="container-fluid ">
+                    <div class="header_bottom_border">
+                        <div class="row align-items-center">
+                            <div class="col-xl-3 col-lg-2">
+                                <div class="logo">
+                                    <a href="{% url 'hhapp:main_page' %}">
+                                        <img src="{% static 'img/logoJob.png' %}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-7">
+                                <div class="main-menu  d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+
+                                             <li><a href="{% url 'hhapp:jobs' %}">Соискатель</a></li>
+                                            <li><a href="{% url 'hhapp:candidate' %}">Работодатель</a></li>
+                                            <li><a href="#">Помощь</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                                <div class="Appointment">
+                                    <div class="phone_num d-none d-xl-block">
+                                        <a href="{% url 'authapp:register' %}">Зарегистрироваться</a>
+                                    </div>
+                                    <div class="d-none d-lg-block">
+                                        <a class="boxed-btn3" href="{% url 'authapp:login' %}">Войти</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
 
     {% block messages %}
       {% include 'includes/messages.html' %}
