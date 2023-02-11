@@ -10,10 +10,12 @@
     <a href="{% url 'resume_list' %}">Список резюме</a>
     <br>
     <h1>Создание резюме</h1>
+    <h1> Соискатель: {{ applicant.user.first_name}} {{applicant.user.last_name }}</h1>
     <form action="" method="post">
       {% csrf_token %}
       {{form.as_p}}
-      <button type="submit" class = 'btn-primary btn-block'> Добавить резюме</button>
+      <a class="btn btn--sub btn--lg  my-md" href="{% url 'applicant_by_id' applicant.id %}">Назад</a>
+      <button type="submit" class = 'btn-primary btn-block'> Сохранить</button>
 
     </form>
   </body>

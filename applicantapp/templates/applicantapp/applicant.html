@@ -18,12 +18,12 @@
       <p>Дата рождения: {{ applicant.birthday }}</p>
       <p>Город проживания: {{ applicant.town }}</p>
       <p>Контактный телефон: {{ applicant.phone }}</p>
-      <p>email: {{ applicant.user.email }}</p>
+      <p>email: {{ applicant.user.email }} </p>
     </ul>
     <br>
     <ul>
       <li>
-        <a href="{% url 'new_resume' %}"> Создать резюме</a>
+        <a href="{% url 'new_resume' applicant.id %}"> Создать резюме</a>
       </li>
     </ul>
 
@@ -31,13 +31,13 @@
 
     {% for resume in resumes %}
       <ul>
-        <li>{{ resume.required_job }}</li>
+        <li><a href="{% url 'applicant_resume' resume.id %}"> <h3>{{ resume.required_job }}</h3></a>  </li>
         <ul>
           <li>
             <a href="{% url 'update_resume' resume.id %}"> Редактировать резюме</a>
           </li>
           <li>
-            <a href="{% url 'new_resume' %}"> Удалить резюме</a>
+            <a href="{% url 'delete_resume' resume.id %}"> Удалить резюме</a>
           </li>
 
         </ul>

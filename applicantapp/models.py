@@ -78,7 +78,7 @@ class Resumes(models.Model):
     #                      primary_key=True, editable=False)
 
     def __str__(self):
-        return str(f"{self.applicants.user.first_name} {self.id}")
+        return str(f"{self.applicants.user.first_name} {self.required_job}")
 
     def get_absolute_url(self):
         return reverse("resume_by_id", kwargs={"resume_id": self.id})

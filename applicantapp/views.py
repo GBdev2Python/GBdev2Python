@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from django.urls import reverse
 from django.views.generic import ListView
 
 from applicantapp.forms import ResumeForm
@@ -31,7 +32,7 @@ class ResumeList(ListView):
         return context
 
 
-# Отдельное резюме
+# Отдельное резюме для работодателя
 class Resume(ListView):
     model = Resumes
     template_name = "applicantapp/resume.html"
@@ -43,6 +44,18 @@ class Resume(ListView):
         context["skills"] = profile.skills.all()[:2]
         return context
 
+
+# Отдельное резюме для соискателя
+class ApplicantResume(ListView):
+    model = Resumes
+    template_name = "applicantapp/applicant_resume.html"
+
+    def get_context_data(self, **kwargs):
+        profile = Resumes.objects.get(id=self.kwargs["resume_id"])
+        context = super().get_context_data(**kwargs)
+        context["resume"] = profile
+        context["skills"] = profile.skills.all()[:2]
+        return context
 
 # Отдельный соискатель
 class Applicant(ListView):
@@ -57,42 +70,48 @@ class Applicant(ListView):
         return context
 
 
-# Создание резюме
-def new_resume(request):
+# Создание резюм
+def new_resume(request,applicant_id):
+    user = Applicants.objects.get(id=applicant_id)
     form = ResumeForm()
+    if request.method == 'POST':
 
-    if request.method == "POST":
-        form = ResumeForm(request.POST)
+        form = ResumeForm(request.POST, request.FILES)
         if form.is_valid():
-            resume = form.save()
-            return redirect(resume)
-    else:
-        form = ResumeForm()
-    context = {"form": form}
+            resume = form.save(commit=False)
+            resume.applicants = user
+            resume.save()
+            return redirect('applicant_by_id', applicant_id = resume.applicants.id)
+
+    context = {'form': form, 'applicant': user}
     return render(request, "applicantapp/new_resume.html", context)
 
 
 # Внесение изменений в резюме
-
-
-def update_resume(request, applicant_id):
+def update_resume(request, pk):
     form = ResumeForm()
-    resume = request.user.profile
-    #  project = profile.project_set.get(id=pk)
-    # form = ProjectForm(instance=project)
+    resume = Resumes.objects.get(id=pk)
+    user = Applicants.objects.get(id=resume.applicants.id)
+    form = ResumeForm(instance=resume)
 
-    # if request.method == 'POST':
-    #    newtags = request.POST.get('newtags').replace(',',  " ").split()
+    if request.method == 'POST':
 
-    #   form = ProjectForm(request.POST, request.FILES, instance=project)
-    #  if form.is_valid():
-    #     project = form.save()
-    #    for tag in newtags:
-    #       tag, created = Tag.objects.get_or_create(name=tag)
-    #      project.tags.add(tag)
+        form = ResumeForm(request.POST, request.FILES, instance=resume)
+        if form.is_valid():
+            resume = form.save()
+            return redirect('applicant_by_id', applicant_id = user.id)
 
-    #       return redirect('account')
 
-    # context = {'form': form, 'project': project}
-    context = {"form": form}
+    context = {'form': form, 'applicant': user}
     return render(request, "applicantapp/new_resume.html", context)
+
+
+# Удаление резюме соискателя
+def delete_resume(request, pk):
+
+    resume = Resumes.objects.get(id=pk)
+    if request.method == 'POST':
+        resume.delete()
+        return redirect('applicant_by_id', applicant_id = resume.applicants.id)
+    context = {'object': resume}
+    return render(request, 'applicantapp/delete_resume.html', context)

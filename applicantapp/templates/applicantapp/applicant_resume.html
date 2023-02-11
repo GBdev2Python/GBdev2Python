@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Резюме</title>
+  </head>
+  <body>
+
+    <h1>Резюме</h1>
+
+    <img class="avatar avatar--xl" src="media/{{ resume.applicants.image }}" />
+    <p>Имя: {{ resume.applicants.user.first_name }}</p>
+    <p>Фамилия: {{ resume.applicants.user.last_name }}</p>
+    <p>Дата рождения: {{ resume.applicants.birthday }}</p>
+    <p>Город проживания: {{ resume.applicants.town }}</p>
+    <p>Контактный телефон: {{ resume.applicants.phone }}</p>
+    <p>email: {{ resume.applicants.user.email }}</p>
+    <p>Навыки:</p>
+
+    {% for skill in skills %}
+      <ul>
+        <li>{{ skill.name }}</li>
+      </ul>
+    {% endfor %}
+
+    <p>Требуемая работа: {{ resume.required_job }}</p>
+    <p>Заработная плата: {{ resume.salary }}</p>
+    <p>Место последней работы: {{ resume.last_job }}</p>
+    <p>Образование: {{ resume.education }}</p>
+
+    <a class="btn btn--sub btn--lg  my-md" href="{% url 'applicant_by_id' resume.applicants.id %}">Назад</a>
+  </body>
+</html>

@@ -7,7 +7,7 @@ from .models import Resumes
 class ResumeForm(ModelForm):
     class Meta:
         model = Resumes
-        fields = ["applicants", "required_job", "image", "skills", "salary", "last_job", "education", "is_published"]
+        fields = ["required_job", "image", "skills", "salary", "last_job", "education", "is_published"]
         widgets = {
             "skills": forms.CheckboxSelectMultiple(),
         }
