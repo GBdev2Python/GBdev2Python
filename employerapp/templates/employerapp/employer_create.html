@@ -1,28 +1,28 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>Создание карточки работодателя</title>
-    <link type="text/css" href="{% static 'employerapp/css/forms.css' %}" rel="stylesheet" />
-  </head>
-  <body>
+    <link type="text/css" href="{% static 'employerapp/css/forms.css' %}" rel="stylesheet"/>
+</head>
+<body>
+<br>
+<h3>Создание карточки организации работодателя</h3>
+<b></b>
 
-    <h1>Создание карточки организации работодателя</h1>
-    <b></b>
+<form action="{% url 'employerapp:employer_create' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
 
-    <form action="{% url 'employerapp:employer_create' %}" method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-
-      {% for el in form %}
-        <!--    "id_for_label" идентификатор текстовой метки  -->
-        <h3><label class="form-label" for="{{ el.id_for_label }}">{{el.label}}: </label></h3>
-        <p>{{ el }}</p>
-        <!--  отображение ошибки заполнения данных формы  -->
-        <div class="form-error">{{ el.errors }}</div>
-      {% endfor %}
-      <button type="submit">Добавить</button>
-    </form>
-    <br>
-  </body>
+    {% for el in form %}
+    <!--    "id_for_label" идентификатор текстовой метки  -->
+    <h3><label class="form-label" for="{{ el.id_for_label }}">{{el.label}}: </label></h3>
+    <p>{{ el }}</p>
+    <!--  отображение ошибки заполнения данных формы  -->
+    <div class="form-error">{{ el.errors }}</div>
+    {% endfor %}
+    <button type="submit">Добавить</button>
+</form>
+<br>
+</body>
 </html>

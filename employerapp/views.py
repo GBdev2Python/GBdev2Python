@@ -29,7 +29,7 @@ class VacancyJob(TemplateView):
     def get_context_data(self, vacancy_pk, **kwargs):
         context = super().get_context_data(**kwargs)
         context["vacancy_qs"] = get_object_or_404(VacancyHeader, pk=vacancy_pk)
-        context["vacancy_body_qs"] = VacancyBody.objects.all().filter(vacancy_header_id=vacancy_pk)
+        # context["vacancy_body_qs"] = VacancyBody.objects.all().filter(vacancy_header_id=vacancy_pk)
         return context
 
 
@@ -38,16 +38,16 @@ class VacancyJob(TemplateView):
 #     template_name = "employerapp/employer_detail.html"
 #     model = Employer
 #
-#     def get_context_data(self, employer_slug, **kwargs):
+#     def get_context_data(self, employer_id, **kwargs):
 #         context = super().get_context_data(**kwargs)
-#         context["employer_qs"] = get_object_or_404(Employer, slug=employer_slug)
+#         context["employer_qs"] = get_object_or_404(Employer, pk=employer_id)
 #         return context
 
 # Карточка работодателя
 class DetailEmployer(DetailView):
     model = Employer
     template_name = "employerapp/employer_detail.html"
-    slug_url_kwarg = "employer_slug"
+    pk_url_kwarg = "employer_id"
     context_object_name = "employer_qs"
 
 
@@ -88,7 +88,8 @@ class EmployerCreate(CreateView):
 class EmployerUpdate(UpdateView):
     model = Employer
     form_class = UpdateEmployerForm
-    slug_url_kwarg = "employer_slug"
+    pk_url_kwarg = "employer_id"
+    # slug_url_kwarg = "employer_slug"
     template_name = "employerapp/employer_update.html"
     # success_url = reverse_lazy("employerapp:employer_detail")
 
@@ -101,6 +102,14 @@ class VacancyCreate(CreateView):
 
 
 # Домашний кабинет работодателя
-class EmployerCabinet(TemplateView):
+class EmployerCabinet(DetailView):
     template_name = "employerapp/employer_cabinet.html"
     model = Employer
+    pk_url_kwarg = "employer_id"
+    # slug_url_kwarg = "employer_slug"
+    # query_pk_and_slug = True
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["employer_cab_qs"] = Employer.objects.filter(pk=7)  # в разработке
+        return context

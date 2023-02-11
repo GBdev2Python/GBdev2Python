@@ -1,12 +1,11 @@
 from django import forms
-
 from employerapp.models import *
 
 
 class AddEmployerForm(forms.ModelForm):
     class Meta:
         model = Employer
-        fields = ["employment", "town_id", "address", "phone", "email", "website", "body", "location", "slug", "user"]
+        fields = ["employment", "town_id", "address", "phone", "email", "website", "body", "location", "user"]
         labels = {
             "employment": "Название организации",
             "town_id": "Расположение организации",
@@ -52,6 +51,11 @@ class AddVacancyForm(forms.ModelForm):
             "employment_id",
             "town_id",
             "skills_id",
+            "body",
             "employer_id",
             "is_published",
         ]
+        widgets = {
+            # "skills_id": forms.CheckboxSelectMultiple(),
+            "skills_id": forms.SelectMultiple(),
+        }
