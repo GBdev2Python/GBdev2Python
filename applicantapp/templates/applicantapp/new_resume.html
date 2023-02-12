@@ -11,9 +11,17 @@
     <br>
     <h1>Создание резюме</h1>
     <h1> Соискатель: {{ applicant.user.first_name}} {{applicant.user.last_name }}</h1>
-    <form action="" method="post">
-      {% csrf_token %}
-      {{form.as_p}}
+    <form action="" method="post" enctype="multipart/form-data">
+    	{% csrf_token %}
+
+      {% for field in form %}
+
+        <div class="form__field">
+          <label for="formInput#text">{{ field.label }}</label>
+            {{ field }}
+        </div>
+      {% endfor %}
+
       <a class="btn btn--sub btn--lg  my-md" href="{% url 'applicant_by_id' applicant.id %}">Назад</a>
       <button type="submit" class = 'btn-primary btn-block'> Сохранить</button>
 

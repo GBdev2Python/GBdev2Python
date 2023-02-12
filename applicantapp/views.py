@@ -95,8 +95,8 @@ def update_resume(request, pk):
     form = ResumeForm(instance=resume)
 
     if request.method == 'POST':
-
         form = ResumeForm(request.POST, request.FILES, instance=resume)
+
         if form.is_valid():
             resume = form.save()
             return redirect('applicant_by_id', applicant_id = user.id)

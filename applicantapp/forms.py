@@ -8,8 +8,10 @@ class ResumeForm(ModelForm):
     class Meta:
         model = Resumes
         fields = ["required_job", "image", "skills", "salary", "last_job", "education", "is_published"]
+
         widgets = {
             "skills": forms.CheckboxSelectMultiple(),
+           # 'image': forms.FileInput(),
         }
 
     def __init__(self, *args, **kwargs):
