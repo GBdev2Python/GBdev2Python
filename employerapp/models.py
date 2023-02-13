@@ -35,7 +35,6 @@ class Employer(models.Model):
     website = models.URLField(max_length=200, blank=True, verbose_name="сайт организации")
     body = RichTextField(blank=True, verbose_name="Дополнительная информация")
     created = models.DateTimeField(auto_now_add=True, editable=False, verbose_name="Дата регистрации на портале")
-    # slug = models.SlugField(max_length=96, unique=True, db_index=True, verbose_name="URL префикс")
     location = models.TextField(max_length=1024, blank=True, verbose_name="Карта")
     # связь с таблицей базы applicantapp
     town_id = models.ForeignKey(Towns, on_delete=models.PROTECT, verbose_name="Местоположение")

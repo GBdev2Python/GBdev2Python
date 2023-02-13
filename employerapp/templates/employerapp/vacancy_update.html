@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Создание вакансии{% endblock title %}
+{% block title %}Редактирование вакансии{% endblock title %}
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'employerapp/css/forms.css' %}"/>
 {% endblock stylesheet %}
+
 {% block content %}
 <br><br>
 {% if user.is_authenticated %}
@@ -11,16 +12,15 @@
 <p>customuser ID: {{ user.pk }}</p>
 {% endif %}
 <br><br>
-<h3>Создание вакансии</h3>
-<b></b>
 
+<h3>Редактирование вакансии</h3>
+<b></b>
 <div class="container-fluid">
     <div class="row">
         <div class="col-xl-1 col-md-1 col-lg-1">
         </div>
-
         <div class="col-xl-8 col-md-8 col-lg-8">
-            <form class="form_empl" action="{% url 'employerapp:vacancy_create' %}" method="post" enctype="multipart/form-data">
+            <form class="form_empl"  action="{% url 'employerapp:vacancy_create' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for el in form %}
                 <!--    "id_for_label" идентификатор текстовой метки  -->
@@ -33,7 +33,6 @@
                 <button type="submit">Добавить</button>
             </form>
         </div>
-
         <div class="col-xl-3 col-md-3 col-lg-3">
             <p>Боковая колонка</p>
         </div>

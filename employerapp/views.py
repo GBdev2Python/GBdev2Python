@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.views.generic import CreateView, DetailView, ListView, TemplateView, UpdateView
+from authapp.models import *
 
 from employerapp.forms import *
 from employerapp.models import *
@@ -89,9 +90,9 @@ class EmployerUpdate(UpdateView):
     model = Employer
     form_class = UpdateEmployerForm
     pk_url_kwarg = "employer_id"
-    # slug_url_kwarg = "employer_slug"
     template_name = "employerapp/employer_update.html"
     # success_url = reverse_lazy("employerapp:employer_detail")
+
 
 
 # Создание вакансии работодателя
@@ -101,15 +102,36 @@ class VacancyCreate(CreateView):
     # success_url = reverse_lazy("employerapp:employer_list")
 
 
+# Изменение карточки работодателя
+class VacancyUpdate(UpdateView):
+    model = VacancyHeader
+    form_class = UpdateVacancyForm
+    pk_url_kwarg = "vacancy_id"
+    template_name = "employerapp/vacancy_update.html"
+    # success_url = reverse_lazy("employerapp:employer_detail")
+
+
+#  * * * * * * * * * * * * * * * * * * * *    В разработке   * * * * * * * * * * * * * * * * * * * *
 # Домашний кабинет работодателя
-class EmployerCabinet(DetailView):
+# http://127.0.0.1:8000/employerapp/employer_cabinet/1/
+
+class EmployerCabinet(TemplateView):
     template_name = "employerapp/employer_cabinet.html"
-    model = Employer
     pk_url_kwarg = "employer_id"
-    # slug_url_kwarg = "employer_slug"
-    # query_pk_and_slug = True
+    # query_pk_and_slug = False  get_object_or_404(Employer, pk=employer_id)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["employer_cab_qs"] = Employer.objects.filter(pk=7)  # в разработке
+        # Компания залогиненного работодателя
+        context["employer_cab_qs"] = Employer.objects.filter(pk=self.kwargs["employer_id"])
+
+        # Проверка создания карточки работодателя
+        context["employer_cab_cnt_qs"] = Employer.objects.filter(pk=self.kwargs["employer_id"]).count()
+
+        # Выборка всех вакансий работодателя (залогиненный пользователь)
+        context["vacancy_cab_qs"] = VacancyHeader.objects.filter(employer_id=self.kwargs["employer_id"])
+
+        # Открытие созданной карточки работодателя на редактирование
+
+
         return context
