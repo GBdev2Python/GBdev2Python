@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Список вакансий сайта{% endblock title %}
+{% block messages %}
+  {% include 'includes/job_menu.html' %}
+{% endblock messages %}
 {% block content %}
 <br>
 <a href="{% url 'hhapp:main_page' %}">Домашняя страница</a> |

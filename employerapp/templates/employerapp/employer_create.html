@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Создание карточки работодателя{% endblock title %}
+
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'employerapp/css/forms.css' %}"/>
 {% endblock stylesheet %}
+
+{% block messages %}
+  {% include 'includes/job_menu.html' %}
+{% endblock messages %}
+
 {% block content %}
 <br><br>
 {% if user.is_authenticated %}

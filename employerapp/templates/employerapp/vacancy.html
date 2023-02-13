@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Выбранная вакансия{% endblock title %}
+
+{% block messages %}
+  {% include 'includes/job_menu.html' %}
+{% endblock messages %}
+
 {% block content %}
 <br>
 <a href="{% url 'hhapp:main_page' %}">Домашняя страница</a> |
@@ -19,8 +24,7 @@
 <p>customuser ID: {{ user.pk }}</p>
 {% endif %}
 <br><br>
-<h3>Страниц
-    а выбранной вакансии</h3>
+<h3>Страница выбранной вакансии</h3>
 <br><br>
 <div class="container-fluid">
     <div class="row">

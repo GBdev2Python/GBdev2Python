@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Кабинет работодателя{% endblock title %}
+
+{% block messages %}
+{% include 'includes/job_menu.html' %}
+{% endblock messages %}
+
 {% block content %}
 <br>
 <a href="{% url 'hhapp:main_page' %}">Домашняя страница</a> |
@@ -56,7 +61,9 @@
         </div>
 
         <div class="col-xl-3 col-md-3 col-lg-3">
-            <p>Боковая колонка для рекламы или фильтров</p>
+            <a href="{% url 'employerapp:employer_vacancy_list' vacancy_employer_pk=employer_qs.pk %}"
+               class="btn btn-info">Список вакансий
+                работодателя</a>
         </div>
     </div>
 </div>

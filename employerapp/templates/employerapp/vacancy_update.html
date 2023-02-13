@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Редактирование вакансии{% endblock title %}
+
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'employerapp/css/forms.css' %}"/>
 {% endblock stylesheet %}
+
+{% block messages %}
+  {% include 'includes/job_menu.html' %}
+{% endblock messages %}
 
 {% block content %}
 <br><br>
