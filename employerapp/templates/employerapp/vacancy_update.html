@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Создание карточки работодателя{% endblock title %}
+{% block title %}Редактирование вакансии{% endblock title %}
 
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'employerapp/css/forms.css' %}"/>
@@ -18,14 +18,14 @@
 {% endif %}
 <br><br>
 
-<h3>Создание карточки организации работодателя</h3>
+<h3>Редактирование вакансии</h3>
 <b></b>
 <div class="container-fluid">
     <div class="row">
         <div class="col-xl-1 col-md-1 col-lg-1">
         </div>
         <div class="col-xl-8 col-md-8 col-lg-8">
-            <form class="form_empl" action="{% url 'employerapp:employer_create' %}" method="post" enctype="multipart/form-data">
+            <form class="form_empl"  action="{% url 'employerapp:vacancy_create' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for el in form %}
                 <!--    "id_for_label" идентификатор текстовой метки  -->

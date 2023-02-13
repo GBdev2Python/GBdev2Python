@@ -36,12 +36,12 @@ INSTALLED_APPS = [
     "authapp",
     "applicantapp",
     "employerapp.apps.EmployerappConfig",
-    "hhapp.apps.HhappConfig",  # Так будет лучше работать встроенная админка (файл hhapp/admin.py)
-    # "hhapp",
+    "hhapp.apps.HhappConfig",
     "newsapp",
     "social_django",
     "crispy_forms",
     "ckeditor",
+    # "django_extensions",
     "django_celery_beat",
     "serviceapp",
 ]

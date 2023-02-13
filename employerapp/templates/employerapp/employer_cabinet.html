@@ -1,49 +1,74 @@
-
 {% extends 'base.html' %}
 {% load static %}
+{% block title %} Личный кабинет работодателя {% endblock title %}
+
+{% block messages %}
+  {% include 'includes/job_menu.html' %}
+{% endblock messages %}
 
 {% block content %}
-<br>
-{% if user.is_authenticated %}
-<p>Вы вошли под пользователем: {{ user.username }}</p>
-{% endif %}
-<br>
 <br>
 <a href="{% url 'hhapp:main_page' %}">Домашняя страница</a> |
 <a href="{% url 'authapp:login' %}">Логин</a> |
 <a href="{% url 'authapp:register' %}">Регистрация</a> |
 <a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |
 <a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |
-<a href="{% url 'employerapp:employer_create' %}">Создание карточки работодателя</a> |
-<a href="{% url 'employerapp:vacancy_create' %}">Создание вакансии работодателя</a> |
 <br><br>
-<h3>Личный кабинет работодателя</h3>
-<br>
+{% if user.is_authenticated %}
+<p>customuser Логин: {{ user.username }}</p>
+<p>customuser ID: {{ user.pk }}</p>
+{% endif %}
+<br><br>
+
 <div class="container-fluid">
+    <h3>Личный кабинет работодателя</h3>
+    <br>
     <div class="row">
         <div class="col-xl-1 col-md-1 col-lg-1">
         </div>
 
         <div class="col-xl-8 col-md-8 col-lg-8">
 
-<!--    в разработке        -->
+            <!--    в разработке        -->
+            {% for item in employer_cab_qs %}
+            <h3>Компания работодателя: <a href="{{ item.get_absolute_url }}">{{ item.employment }}</a></h3>
+            {% endfor %}
 
-<h3>Список опубликованных вакансий работодателя {{ user.username }}:</h3>
-             <p>{{ employer_cab_qs.pk }}</p>
 
+            <br><br>
+
+            <h3>Список опубликованных вакансий работодателя: {{ user.username }}:</h3>
             <ul>
-                {% for item in employer_cab_qs %}
+                {% for item in employer_cab_comp_qs %}
                 <li>
-                    <a href="{{ item.get_absolute_url }}">{{ item.employment }}</a>
+                    <a href="{{ item.get_absolute_url }}">{{ item.job_title }}</a>
                 </li>
                 {% endfor %}
-            </ul>
-<!--    в разработке        -->
 
+            </ul>
         </div>
 
         <div class="col-xl-3 col-md-3 col-lg-3">
-            <p>Боковая колонка для рекламы или фильтров</p>
+            <a href="{% url 'employerapp:vacancy_create' %}" class="btn btn-info">Создать новую вакансию</a>
+            <br>
+
+            {% for item in employer_cab_qs %}
+            <a href="{{ item.get_absolute_url }}" class="btn btn-info">Открыть карточку работодателя</a>
+            {% endfor %}
+
+            <br>
+            <!--    в разработке        -->
+            <a href="#" class="btn btn-info">Изменить карточку работодателя</a>
+            <br>
+
+            <!--    в разработке        -->
+            <!--            <a href="{# {% url 'employerapp:employer_update' %} #}">список всех вакансий</a>-->
+            <br>
+
+            {% if not employer_cab_cnt_qs %}
+            <a href="{% url 'employerapp:employer_create' %}" class="btn btn-info">Создать карточку работодателя</a>
+            <br><br>
+            {% endif %}
         </div>
     </div>
 </div>

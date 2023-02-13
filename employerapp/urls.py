@@ -37,13 +37,17 @@ urlpatterns = [
 
     # Редактирование карточки работодателя (конкретный пользователь)
     path("employer_update/<int:employer_id>/", EmployerUpdate.as_view(), name="employer_update"),
-    # http://127.0.0.1:8000/employerapp/employer_update/2/
+    # http://127.0.0.1:8000/employerapp/employer_update/1/
 
     # Создание вакансии работодателя (конкретный пользователь)
     path("vacancy_create/", VacancyCreate.as_view(), name="vacancy_create"),
     # http://127.0.0.1:8000/employerapp/vacancy_create/
 
-    # Список опубликованных вакансий работодателя (конкретный пользователь)
+    # Редактирование вакансии работодателя (конкретный пользователь)
+    path("vacancy_update/<int:vacancy_id>/", VacancyUpdate.as_view(), name="vacancy_update"),
+    # http://127.0.0.1:8000/employerapp/vacancy_update/2/
+
+    # Кабинет работодателя (конкретный пользователь)
     path("employer_cabinet/<int:employer_id>/", EmployerCabinet.as_view(), name="employer_cabinet"),
-    # http://127.0.0.1:8000/employerapp/employer_cabinet/2/
+    # http://127.0.0.1:8000/employerapp/employer_cabinet/1/
 ]
