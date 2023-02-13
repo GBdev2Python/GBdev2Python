@@ -9,8 +9,8 @@
     <h1>Резюме</h1>
 
     <img class="avatar avatar--xl" src="{{ resume.image.url }}" />
-    <p>Имя: {{ resume.applicants.user.first_name }}</p>
-    <p>Фамилия: {{ resume.applicants.user.last_name }}</p>
+    <p>Имя: {{ resume.applicants.first_name }}</p>
+    <p>Фамилия: {{ resume.applicants.last_name }}</p>
     <p>Дата рождения: {{ resume.applicants.birthday }}</p>
     <p>Город проживания: {{ resume.applicants.town }}</p>
     <p>Контактный телефон: {{ resume.applicants.phone }}</p>

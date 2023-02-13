@@ -13,7 +13,7 @@
     <ul>
       {% for item in resume_list%}
         <li>
-          <a href="{{ item.get_absolute_url }}"> <h3>{{ item.applicants.user.first_name }} {{ item.applicants.user.last_name }}</h1></a>
+          <a href="{{ item.get_absolute_url }}"> <h3>{{ item.applicants.first_name }} {{ item.applicants.last_name }}</h1></a>
         </li>
         <p> <em>Навыки:</em> </p>
         <ul>

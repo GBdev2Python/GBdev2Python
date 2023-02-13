@@ -24,6 +24,8 @@ class Applicants(models.Model):
     user = models.OneToOneField(
         CustomUser, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Пользователь"
     )
+    first_name = models.CharField(max_length=150, blank=True,verbose_name="Имя")
+    last_name = models.CharField(max_length=150, blank=True, verbose_name="Фамилия")
     image = models.ImageField(null=True, blank=True, upload_to="image/applicant", default="image/applicant/default.jpg")
     birthday = models.DateField(blank=True, verbose_name="Дата рождения")
     phone = models.CharField(max_length=20, verbose_name="Телефон соискателя")
@@ -32,7 +34,7 @@ class Applicants(models.Model):
     #                      primary_key=True, editable=False)
 
     def __str__(self) -> str:
-        return f"{self.user.first_name} {self.user.last_name}"
+        return f"{self.first_name} {self.last_name}"
 
     def get_absolute_url(self):
         return reverse("applicant_by_id", kwargs={"applicant_id": self.id})
@@ -78,7 +80,7 @@ class Resumes(models.Model):
     #                      primary_key=True, editable=False)
 
     def __str__(self):
-        return str(f"{self.applicants.user.first_name} {self.required_job}")
+        return str(f"{self.applicants.first_name} {self.required_job}")
 
     def get_absolute_url(self):
         return reverse("resume_by_id", kwargs={"resume_id": self.id})

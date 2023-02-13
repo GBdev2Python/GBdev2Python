@@ -10,7 +10,7 @@
     <a href="{% url 'resume_list' %}">Список резюме</a>
     <br>
     <h1>Создание резюме</h1>
-    <h1> Соискатель: {{ applicant.user.first_name}} {{applicant.user.last_name }}</h1>
+    <h1> Соискатель: {{ applicant.first_name}} {{applicant.last_name }}</h1>
     <form action="" method="post" enctype="multipart/form-data">
     	{% csrf_token %}
 
@@ -18,7 +18,7 @@
 
         <div class="form__field">
           <label for="formInput#text">{{ field.label }}</label>
-            {{ field }}
+          {{ field }}
         </div>
       {% endfor %}
 
