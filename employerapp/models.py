@@ -10,6 +10,8 @@ from authapp.models import CustomUser
 
 # перечисление вида занятости (первичный ключ для "VacancyHeader")
 # Права доступа на редактирование: Модератор
+
+
 class TypeEmployment(models.Model):
     employment = models.CharField(max_length=256, unique=True, verbose_name="Вид занятости")
 
@@ -26,7 +28,7 @@ class TypeEmployment(models.Model):
 # первичный ключ для "VacancyHeader"
 class Employer(models.Model):
     employment = models.TextField(max_length=1024, verbose_name="Работодатель")
-    cover = models.ImageField(upload_to="image/employment/", blank=True, verbose_name="Логотип организации")
+    cover = models.ImageField(upload_to="employment/", blank=True, verbose_name="Логотип организации")
     address = models.TextField(max_length=512, verbose_name="Адрес организации")
     # phone = models.CharField(max_length=256, verbose_name="Телефон организации")
     phoneNumberRegex = RegexValidator(regex=r"^\+?1?\d{8,15}$")

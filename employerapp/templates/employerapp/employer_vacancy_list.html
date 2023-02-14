@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}Список вакансий работодателя{% endblock title %}
 {% block messages %}
-  {% include 'includes/job_menu.html' %}
+  {% include 'includes/candidate_menu.html' %}
 {% endblock messages %}
 {% block content %}
   <br>
@@ -14,12 +14,15 @@
   <!--<a href="{% url 'employerapp:employer_create' %}">Создание карточки работодателя</a> |-->
   <!--<a href="{% url 'employerapp:vacancy_create' %}">Создание вакансии работодателя</a> |-->
   {% if user.is_authenticated %}
+  {% if user.is_company %}
     <a href="{% url 'employerapp:employer_cabinet' employer_id=user.pk %}">Кабинет работодателя</a>
+  {% endif %}
   {% endif %}
   <br><br>
   {% if user.is_authenticated %}
-    <p>customuser Логин: {{ user.username }}</p>
-    <p>customuser ID: {{ user.pk }}</p>
+    <p>customuser Пользователь: <b>{{ user.username }}</b></p>
+    <p>customuser ID: <b>{{ user.pk }}</b></p>
+    <p>customuser is_company: <b>{{ user.is_company }}</b></p>
   {% endif %}
   <br><br>
 

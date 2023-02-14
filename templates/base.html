@@ -54,6 +54,15 @@
                         <li><a href="{% url 'hhapp:candidate' %}">Работодатель</a></li>
                         <li><a href="{% url 'employerapp:employer_list' %}">список работодателей</a></li>
                         <li><a href="{% url 'employerapp:vacancy_list' %}">список вакансий</a></li>
+
+                        {% if user.is_authenticated %}
+                        {% if user.is_company %}
+                        <li>
+                          <a href="{% url 'employerapp:employer_cabinet' employer_id=user.pk %}">Кабинет работодателя</a>
+                        </li>
+                        {% endif %}
+                        {% endif %}
+
                         <li><a href="#">Помощь</a></li>
                       </ul>
                     </nav>
