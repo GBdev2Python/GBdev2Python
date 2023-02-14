@@ -24,7 +24,7 @@ class Applicants(models.Model):
     user = models.OneToOneField(
         CustomUser, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Пользователь"
     )
-    first_name = models.CharField(max_length=150, blank=True,verbose_name="Имя")
+    first_name = models.CharField(max_length=150, blank=True, verbose_name="Имя")
     last_name = models.CharField(max_length=150, blank=True, verbose_name="Фамилия")
     image = models.ImageField(null=True, blank=True, upload_to="image/applicant", default="image/applicant/default.jpg")
     birthday = models.DateField(blank=True, verbose_name="Дата рождения")

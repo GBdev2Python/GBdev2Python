@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from django.views.generic import CreateView, DetailView, ListView, TemplateView, UpdateView
-from authapp.models import *
 
+from authapp.models import *
 from employerapp.forms import *
 from employerapp.models import *
 
@@ -94,7 +94,6 @@ class EmployerUpdate(UpdateView):
     # success_url = reverse_lazy("employerapp:employer_detail")
 
 
-
 # Создание вакансии работодателя
 class VacancyCreate(CreateView):
     form_class = AddVacancyForm
@@ -114,6 +113,7 @@ class VacancyUpdate(UpdateView):
 #  * * * * * * * * * * * * * * * * * * * *    В разработке   * * * * * * * * * * * * * * * * * * * *
 # Домашний кабинет работодателя
 # http://127.0.0.1:8000/employerapp/employer_cabinet/1/
+
 
 class EmployerCabinet(TemplateView):
     template_name = "employerapp/employer_cabinet.html"

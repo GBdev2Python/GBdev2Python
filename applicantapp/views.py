@@ -1,5 +1,4 @@
 from django.shortcuts import redirect, render
-from django.urls import reverse
 from django.views.generic import ListView
 
 from applicantapp.forms import ResumeForm
@@ -57,6 +56,7 @@ class ApplicantResume(ListView):
         context["skills"] = profile.skills.all()[:2]
         return context
 
+
 # Отдельный соискатель
 class Applicant(ListView):
     model = Applicants
@@ -71,19 +71,19 @@ class Applicant(ListView):
 
 
 # Создание резюм
-def new_resume(request,applicant_id):
+def new_resume(request, applicant_id):
     user = Applicants.objects.get(id=applicant_id)
     form = ResumeForm()
-    if request.method == 'POST':
+    if request.method == "POST":
 
         form = ResumeForm(request.POST, request.FILES)
         if form.is_valid():
             resume = form.save(commit=False)
             resume.applicants = user
             resume.save()
-            return redirect('applicant_by_id', applicant_id = resume.applicants.id)
+            return redirect("applicant_by_id", applicant_id=resume.applicants.id)
 
-    context = {'form': form, 'applicant': user}
+    context = {"form": form, "applicant": user}
     return render(request, "applicantapp/new_resume.html", context)
 
 
@@ -94,15 +94,14 @@ def update_resume(request, pk):
     user = Applicants.objects.get(id=resume.applicants.id)
     form = ResumeForm(instance=resume)
 
-    if request.method == 'POST':
+    if request.method == "POST":
         form = ResumeForm(request.POST, request.FILES, instance=resume)
 
         if form.is_valid():
             resume = form.save()
-            return redirect('applicant_by_id', applicant_id = user.id)
+            return redirect("applicant_by_id", applicant_id=user.id)
 
-
-    context = {'form': form, 'applicant': user}
+    context = {"form": form, "applicant": user}
     return render(request, "applicantapp/new_resume.html", context)
 
 
@@ -110,8 +109,8 @@ def update_resume(request, pk):
 def delete_resume(request, pk):
 
     resume = Resumes.objects.get(id=pk)
-    if request.method == 'POST':
+    if request.method == "POST":
         resume.delete()
-        return redirect('applicant_by_id', applicant_id = resume.applicants.id)
-    context = {'object': resume}
-    return render(request, 'applicantapp/delete_resume.html', context)
+        return redirect("applicant_by_id", applicant_id=resume.applicants.id)
+    context = {"object": resume}
+    return render(request, "applicantapp/delete_resume.html", context)

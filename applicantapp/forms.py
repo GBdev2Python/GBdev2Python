@@ -11,7 +11,7 @@ class ResumeForm(ModelForm):
 
         widgets = {
             "skills": forms.CheckboxSelectMultiple(),
-           # 'image': forms.FileInput(),
+            # 'image': forms.FileInput(),
         }
 
     def __init__(self, *args, **kwargs):

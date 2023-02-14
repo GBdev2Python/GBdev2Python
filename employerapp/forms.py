@@ -1,10 +1,13 @@
-from django import forms
-from employerapp.models import *
 from ckeditor.widgets import CKEditorWidget
+from django import forms
+
+from employerapp.models import *
+
 
 class AddEmployerForm(forms.ModelForm):
 
     body = forms.CharField(widget=CKEditorWidget, label="Детальное описание")
+
     class Meta:
         model = Employer
         fields = ["employment", "town_id", "address", "phone", "email", "website", "body", "location", "user"]
@@ -20,6 +23,7 @@ class AddEmployerForm(forms.ModelForm):
             "body": forms.CharField(widget=CKEditorWidget()),
             "location": forms.Textarea(attrs={"cols": 100, "rows": 10}),
         }
+
     #
     #     help_texts = {
     #         "phone": "Введите номер в формате +71234567890",
@@ -68,7 +72,6 @@ class AddVacancyForm(forms.ModelForm):
 
 
 class UpdateVacancyForm(forms.ModelForm):
-
     class Meta:
         model = VacancyHeader
         fields = [

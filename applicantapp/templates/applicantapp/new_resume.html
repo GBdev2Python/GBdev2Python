@@ -12,7 +12,7 @@
     <h1>Создание резюме</h1>
     <h1> Соискатель: {{ applicant.first_name}} {{applicant.last_name }}</h1>
     <form action="" method="post" enctype="multipart/form-data">
-    	{% csrf_token %}
+      {% csrf_token %}
 
       {% for field in form %}
 

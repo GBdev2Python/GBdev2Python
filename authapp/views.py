@@ -16,11 +16,7 @@ from .models import CustomUser
 class CustomLoginView(LoginView):
     def form_valid(self, form):
         ret = super().form_valid(form)
-        message = _("Login success!<br>Hi, %(username)s") % {
-            "username": self.request.user.get_full_name()
-            if self.request.user.get_full_name()
-            else self.request.user.get_username()
-        }
+        message = _("Login success!<br>Hi, %(username)s") % {"username": self.request.user.get_username()}
         messages.add_message(self.request, messages.INFO, mark_safe(message))
         return ret
 
@@ -43,6 +39,7 @@ class CustomLogoutView(LogoutView):
 class RegisterView(CreateView):
     model = get_user_model()
     form_class = forms.CustomUserCreationForm
+    template_name = "registration/register.html"
     success_url = reverse_lazy("hhapp:main_page")
 
 

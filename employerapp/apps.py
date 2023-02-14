@@ -5,4 +5,3 @@ class EmployerappConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "employerapp"
     verbose_name = "Employer (Работодатель)"
-

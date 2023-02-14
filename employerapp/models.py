@@ -83,4 +83,3 @@ class VacancyHeader(models.Model):
         verbose_name = "Вакансия"
         verbose_name_plural = "Вакансия"
         ordering = ("-created",)  # свежие в начале списка Длительность
-
