@@ -11,7 +11,12 @@
             <h3>Размещайте вакансию на JobBoard</h3>
             <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s">И находите сотрудников среди тех, кто хочет у вас работать</p>
             <div class="sldier_btn wow fadeInCandidate" data-wow-duration="1s" data-wow-delay=".5s">
-              <a href="#" class="boxed-btn3">Разместить вакансию</a>
+<!--              <a href="#" class="boxed-btn3">Разместить вакансию</a>-->
+                {% if user.is_authenticated %}
+                {% if user.is_company %}
+                  <a href="{% url 'employerapp:employer_cabinet' employer_id=user.pk %}" class="boxed-btn3">Разместить вакансию</a>
+                {% endif %}
+                {% endif %}
             </div>
           </div>
         </div>

@@ -3,7 +3,7 @@
 {% block title %}Кабинет работодателя{% endblock title %}
 
 {% block messages %}
-  {% include 'includes/job_menu.html' %}
+  {% include 'includes/candidate_menu.html' %}
 {% endblock messages %}
 
 {% block content %}
@@ -16,7 +16,9 @@
   <!--<a href="{% url 'employerapp:employer_create' %}">Создание карточки работодателя</a> |-->
   <!--<a href="{% url 'employerapp:vacancy_create' %}">Создание вакансии работодателя</a> |-->
   {% if user.is_authenticated %}
+  {% if user.is_company %}
     <a href="{% url 'employerapp:employer_cabinet' employer_id=user.pk %}">Кабинет работодателя</a>
+  {% endif %}
   {% endif %}
   <br><br>
   {% if user.is_authenticated %}
@@ -36,6 +38,7 @@
         {% if employer_qs.cover %}
           <img src="{{ employer_qs.cover.url }}" alt="">
         {% endif %}
+        <br>
         <h2>Организация: {{ employer_qs.employment }}</h2>
         <p>Зарегистрирована на сайте с: {{ employer_qs.created|date:"Y.m.d" }}</p>
         <p>Расположение: {{ employer_qs.city }}</p>

@@ -3,7 +3,7 @@
 {% block title %} Личный кабинет работодателя {% endblock title %}
 
 {% block messages %}
-  {% include 'includes/job_menu.html' %}
+  {% include 'includes/candidate_menu.html' %}
 {% endblock messages %}
 
 {% block content %}
@@ -65,10 +65,10 @@
         <!--            <a href="{# {% url 'employerapp:employer_update' %} #}">список всех вакансий</a>-->
         <br>
 
-        {% if not employer_cab_cnt_qs %}
+       {# {% if not employer_cab_cnt_qs %} #}
           <a href="{% url 'employerapp:employer_create' %}" class="btn btn-info">Создать карточку работодателя</a>
           <br><br>
-        {% endif %}
+       {# {% endif %} #}
       </div>
     </div>
   </div>

@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}Список вакансий сайта{% endblock title %}
 {% block messages %}
-  {% include 'includes/job_menu.html' %}
+  {% include 'includes/candidate_menu.html' %}
 {% endblock messages %}
 {% block content %}
   <br>
@@ -14,12 +14,15 @@
   <!--<a href="{% url 'employerapp:employer_create' %}">Создание карточки работодателя</a> |-->
   <!--<a href="{% url 'employerapp:vacancy_create' %}">Создание вакансии работодателя</a> |-->
   {% if user.is_authenticated %}
+  {% if user.is_company %}
     <a href="{% url 'employerapp:employer_cabinet' employer_id=user.pk %}">Кабинет работодателя</a>
+  {% endif %}
   {% endif %}
   <br><br>
   {% if user.is_authenticated %}
-    <p>customuser Логин: {{ user.username }}</p>
-    <p>customuser ID: {{ user.pk }}</p>
+    <p>customuser Пользователь: <b>{{ user.username }}</b></p>
+    <p>customuser ID: <b>{{ user.pk }}</b></p>
+    <p>customuser is_company: <b>{{ user.is_company }}</b></p>
   {% endif %}
   <br><br>
 
@@ -35,8 +38,9 @@
             <li>
               <a href="{{ item.get_absolute_url }}">{{ item.job_title }}</a>
               <p>&nbsp;&nbsp; Размещено: {{ item.created|date:"Y.m.d" }}</p>
-              <p>&nbsp;&nbsp; Опыт работы: {{ item.work_experience_id }}</p>
+              <p>&nbsp;&nbsp; Опыт работы: {{ item.get_experience_display }}</p>
               <p>&nbsp;&nbsp; Работодатель: {{ item.employer_id }}</p>
+              <p>&nbsp;&nbsp; Город работы: {{ item.town_id }}</p>
             </li>
           {% endfor %}
         </ul>
