@@ -1151,7 +1151,7 @@ h3 {
   /*text-transform: capitalize;*/
   font-weight: 500;
   display: inline-block;
-  padding: 35px 0px 35px 0px;
+  /*padding: 35px 0px 35px 0px;*/
   font-family: "Roboto", sans-serif;
   position: relative;
 }
@@ -1573,8 +1573,8 @@ h3 {
 .slider_area .ilstration_img {
   position: absolute;
   right: 0;
-  bottom: 0;
-  right: 7%;
+  bottom: 3%;
+  right: 3%;
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
