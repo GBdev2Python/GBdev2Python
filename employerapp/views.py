@@ -129,7 +129,7 @@ class EmployerCabinet(TemplateView):
         context["employer_cab_cnt_qs"] = Employer.objects.filter(pk=self.kwargs["employer_id"]).count()
 
         # Выборка всех вакансий работодателя (залогиненный пользователь)
-        context["vacancy_cab_qs"] = VacancyHeader.objects.filter(employer_id=self.kwargs["employer_id"])
+        context["vacancy_cab_qs"] = VacancyHeader.objects.filter(employer_id_id=self.kwargs["employer_id"])
         # context["vacancy_cab_qs"] = VacancyHeader.objects.filter(employer_id=2)
 
         # Открытие созданной карточки работодателя на редактирование

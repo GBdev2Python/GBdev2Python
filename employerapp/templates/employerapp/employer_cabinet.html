@@ -30,7 +30,7 @@
       <div class="col-xl-8 col-md-8 col-lg-8">
 
         <!--    в разработке        -->
-        {% for item in employer_cab_qs %}
+        {% for item in employer_cab_comp_qs %}
           <h3>Компания работодателя: <a href="{{ item.get_absolute_url }}">{{ item.employment }}</a></h3>
         {% endfor %}
 
@@ -39,7 +39,7 @@
 
         <h3>Список опубликованных вакансий работодателя: {{ user.username }}:</h3>
         <ul>
-          {% for item in employer_cab_comp_qs %}
+          {% for item in vacancy_cab_qs %}
             <li>
               <a href="{{ item.get_absolute_url }}">{{ item.job_title }}</a>
             </li>
