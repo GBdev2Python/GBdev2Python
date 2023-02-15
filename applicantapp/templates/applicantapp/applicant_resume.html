@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Резюме</title>
-  </head>
-  <body>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Резюме{% endblock title %}
+
+{% block messages %}
+    <div class="bradcam_area bradcam_bg_1"></div>
+{% endblock messages %}
+
+{% block content %}
 
     <h1>Резюме</h1>
 
@@ -28,6 +30,5 @@
     <p>Место последней работы: {{ resume.last_job }}</p>
     <p>Образование: {{ resume.education }}</p>
 
-    <a class="btn btn--sub btn--lg  my-md" href="{% url 'applicant_by_id' resume.applicants.id %}">Назад</a>
-  </body>
-</html>
+    <a class="boxed-btn" href="{% url 'applicant_by_id' resume.applicants.id %}">Назад</a>
+{% endblock content %}

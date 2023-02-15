@@ -1,33 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Соискатель</title>
-  </head>
-  <body>
-    <br>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Личный кабинет соискателя {% endblock title %}
+
+{% block messages %}
+  {% include 'includes/job_menu.html' %}
+{% endblock messages %}
+
+{% block content %}
+  <br>
     <a href="{% url 'applicant_list' %}">Список соискателей</a>
     <a href="{% url 'resume_list' %}">Список резюме</a>
     <br>
-    <h1>Соискатель</h1>
-
-    <img class="avatar avatar--xl" src="{{ applicant.image.url }}" />
-    <ul>
-      <p>Имя: {{ applicant.first_name }}</p>
-      <p>Фамилия: {{ applicant.last_name }}</p>
-      <p>Дата рождения: {{ applicant.birthday }}</p>
-      <p>Город проживания: {{ applicant.town }}</p>
-      <p>Контактный телефон: {{ applicant.phone }}</p>
-      <p>email: {{ applicant.user.email }} </p>
-    </ul>
     <br>
-    <ul>
-      <li>
-        <a href="{% url 'new_resume' applicant.id %}"> Создать резюме</a>
-      </li>
-    </ul>
 
-    <h3>Резюме соискателя:</h3>
+     <div class="container-fluid">
+         <h1>Соискатель</h1>
+     <br>
+
+    <div class="row">
+      <div class="col-xl-1 col-md-1 col-lg-1">
+      </div>
+
+
+      <div class="col-xl-8 col-md-8 col-lg-8">
+        <img class="avatar avatar--xl" src="{{ applicant.image.url }}" />
+        <ul>
+          <p>Имя: {{ applicant.first_name }}</p>
+          <p>Фамилия: {{ applicant.last_name }}</p>
+          <p>Дата рождения: {{ applicant.birthday }}</p>
+          <p>Город проживания: {{ applicant.town }}</p>
+          <p>Контактный телефон: {{ applicant.phone }}</p>
+          <p>email: {{ applicant.user.email }} </p>
+        </ul>
+        <br>
+              <h3>Резюме соискателя:</h3>
 
     {% for resume in resumes %}
       <ul>
@@ -43,8 +49,15 @@
         </ul>
       </ul>
     {% endfor %}
+      </div>
+      <div class="col-xl-3 col-md-3 col-lg-3">
+        <ul>
+          <li>
+            <a href="{% url 'new_resume' applicant.id %}" class="boxed-btn"> Создать резюме</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+     </div>
 
-
-
-  </body>
-</html>
+{% endblock content %}

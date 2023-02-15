@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Список резюме</title>
-  </head>
-  <body>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Список резюме{% endblock title %}
+
+{% block messages %}
+    <div class="bradcam_area bradcam_bg_1"></div>
+{% endblock messages %}
+
+{% block content %}
     <br>
     <a href="{% url 'applicant_list' %}">Список соискателей</a>
     <a href="{% url 'resume_list' %}">Список резюме</a>
@@ -26,5 +28,4 @@
       {% endfor %}
 
     </ul>
-  </body>
-</html>
+{% endblock content %}

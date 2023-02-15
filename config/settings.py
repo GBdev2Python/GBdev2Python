@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "ckeditor",
     "django_extensions",  # Для работы с консолью ORM. Дополнительно установить пакеты: ipython, django-extensions
-    "django_celery_beat",
+    # "django_celery_beat",
 ]
 
 MIDDLEWARE = [

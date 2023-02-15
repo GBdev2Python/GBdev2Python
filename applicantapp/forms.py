@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 
-from .models import Resumes
+from .models import Resumes, Applicants
 
 
 class ResumeForm(ModelForm):
@@ -19,3 +19,18 @@ class ResumeForm(ModelForm):
 
         for name, field in self.fields.items():
             field.widget.attrs.update({"class": "input"})
+
+class AddApplicateForm(forms.ModelForm):
+
+
+    class Meta:
+        model = Applicants
+        fields = ["first_name", "last_name", "birthday", "town", "phone", "user"]
+
+        labels = {
+            "first_name": "Имя",
+            "last_name": "Фамилия",
+            "birthday": "Дата рождения",
+            "town": "Город (населенный пункт)",
+        }
+

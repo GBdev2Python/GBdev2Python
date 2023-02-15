@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block messages %}
+    <div class="bradcam_area bradcam_bg_1"></div>
+{% endblock messages %}
+
 {% block content %}
 
 
@@ -11,9 +15,9 @@
           {% csrf_token %}
           <p>Вы действительно хотите удалить "{{ object }}"?</p>
 
-          <a class="btn btn--sub btn--lg  my-md" href="{% url 'applicant_by_id' object.applicants.id %}">Назад</a>
+          <a class="boxed-btn" href="{% url 'applicant_by_id' object.applicants.id %}">Назад</a>
 
-          <input class="btn btn--sub btn--lg  my-md" type="submit" value="Удалить" />
+          <input class="boxed-btn2" type="submit" value="Удалить" />
         </form>
       </div>
     </div>

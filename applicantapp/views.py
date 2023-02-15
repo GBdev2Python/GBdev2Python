@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 
-from applicantapp.forms import ResumeForm
+from applicantapp.forms import ResumeForm, AddApplicateForm
 from applicantapp.models import *
 
 # Create your views here.
@@ -55,6 +55,11 @@ class ApplicantResume(ListView):
         context["resume"] = profile
         context["skills"] = profile.skills.all()[:2]
         return context
+
+# Заполнение профиля соискателя
+class ApplicantCreate(CreateView):
+    form_class = AddApplicateForm
+    template_name = "applicantapp/applicant_create.html"
 
 
 # Отдельный соискатель

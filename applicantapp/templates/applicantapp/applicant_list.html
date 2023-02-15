@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Список соискателей</title>
-  </head>
-  <body>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Список соискателей{% endblock title %}
+
+{% block messages %}
+  {% include 'includes/job_menu.html' %}
+{% endblock messages %}
+
+{% block content %}
     <br>
     <a href="{% url 'applicant_list' %}">Список соискателей</a>
     <a href="{% url 'resume_list' %}">Список резюме</a>
@@ -17,5 +19,4 @@
         </li>
       {% endfor %}
     </ul>
-  </body>
-</html>
+{% endblock content %}
