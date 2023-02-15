@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  {% load static %}
+    {% load static %}
 
-  <head>
+    <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,15 +13,15 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <!--<link rel="stylesheet" href="{% static 'css/partners.css' %}">-->
 
-  </head>
+    </head>
   <body>
 
   <!-- header-start -->
-  <style>
-    .slider_bg_1 {
-      background-image: url("{% static 'img/banner.png' %}");
-    }
-  </style>
+    <style>
+        .slider_bg_1 {
+          background-image: url("{% static 'img/banner.png' %}");
+        }
+    </style>
 
     <header>
       <div class="header-area ">
@@ -73,8 +73,8 @@
     <!-- header-end -->
 
 
-      <!-- slider_area_start -->
-  <div class="slider_area">
+    <!-- slider_area_start -->
+    <div class="slider_area">
     <div class="single_slider  d-flex align-items-center slider_bg_1">
       <div class="container">
         <div class="row align-items-center">
@@ -96,29 +96,91 @@
       <img src="{% static 'img/pngegg.png' %}" alt="">
     </div>
   </div>
-  <!-- slider_area_end -->
+    <!-- slider_area_end -->
 
-  <!--/ news start  -->
-  <div class="row">
-    <div class="col-lg-8">
-        {% for i in range %}
-        <div class="card my-2">
-           <div class="card-body">
-                <h5 class="card-title">{{ news_title }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">2021-04-29 20-50-26</h6>
-                <p class="card-text">{{ news_preview }}</p>
-                <a href="#" class="card-link">Подробнее</a>
+    {# partners field #}
+    <div class="d-flex justify-content-center mx-5 px-5">
+        <div class="col-md-5 d-flex flex-column justify-content-center ">
+            <p class="text-center">
+                <img src="{% static 'img/index_images/index_partners.svg' %}" class="w-75" alt="...">
+            </p>
+            <h3>Тут огромный заголовок, обьясняющий почему так круто размещаться у нас, а не не у нас!</h3>
+            <p class="text-justify">
+                Очень большой текст о преимуществах и недостатках, которые на самом деле и не недостатки.
+                Ведь если посмотреть под другим углом, то может показаться, что и нет, а он раз... и да!
+                В общем, я бы хотел, чтобы вы как минимум прочитали этот текст и подумали о том, что там написано.
+                Вообще, я часто думаю о том, что же такое реклама. Иногда мне кажется, что реклама -- это некий
+                способ управления человеком, с помощью которого можно заставить его делать то, что выгодно для рекламодателя.
+            </p>
+            <a href="#" class="text-left text-info h5">Почитать о нас >>> </a>
+        </div>
+        <div class="col-md-5 justify-content-center">
+            <h2 class="px-4 h2" style="color: #FDAE5C">Наши замечательные партнёры</h2>
+            {% for employer in employer_objects %}
+                    <div class="card-body">
+                        <a href="{% url 'employerapp:employer_detail' employer_id=employer.id %}"
+                           class="p-3 text-left text-muted d-flex justify-content-between border rounded border-info font-weight-bold">
+                            <span class="text-muted align-bottom">{{ employer.employment }}</span>
+                            <span class="text-left text-muted align-middle">{{ employer.company_vacancies }}</span>
+                        </a>
+                    </div>
+            {% endfor %}
+        </div>
+    </div>
+    {# partners field end #}
+
+    <div class="my-5">
+        <hr>
+    </div>
+
+    {# News start #}
+    <div class="d-flex justify-content-center mx-5 px-5">
+        <div class="col-lg-5 m-2">
+            <h2 style="color: #FDAE5C">Актуальные новости </h2>
+            {% for news_item in news_objects %}
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">{{ news_item.title|truncatewords:10 }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ news_item.published_at }}</h6>
+                    <p class="card-text">{{ news_item.description|truncatewords:20 }}</p>
+                    <a href="{% url "news:news_detail" pk=news_item.pk %}" class="text-info stretched-link">Подробнее</a>
+                </div>
             </div>
+            {% endfor %}
+        </div>
+        <div class="col-lg-5 m-2">
+            <div class="col justify-content-center">
+            <div class="text-left">
+                <h3>А тут у огромный новостной заголовок,</h3>
+                <h3>который растянут на несколько строк, чтоб стильно было!</h3>
+            </div>
+            <p class="text-justify">
+                Громкий новостной заголовок, генерированный сеткой от яндекса. И ведь не поспоришь.
+                Да и не только я, а даже, наверное, сам автор. Вот только кто был автором?
+                Не знаю, как вы, а я никогда не видел в интернете рекламы, которая бы была написана на заказ.
+                А уж тем более, на заказ, написанной известным журналистом.
+                Даже если предположить, что этот журналист сам себе пишет тексты, то, согласитесь, это же совершенно нелогично.
+                Если он сам себе пишет, почему же он не может сам себе написать рекламу. Зачем же тогда нужен редактор?!
+                Это вопрос, который ставит в тупик.
+                И я не знаю ответа на этот вопрос.
+                Вообще, я часто думаю о том, что же такое реклама.
+                Иногда мне кажется, что реклама -- это некий способ управления человеком, с помощью которого можно заставить его делать то, что выгодно для рекламодателя.
+            </p>
+            <a href="{% url 'news:news' %}" class="h5 text-info">Перейти ко всем новостям >>> </a>
+            <div class="text-center">
+                <img src="{% static 'img/index_images/index_news.svg' %}" alt="..." style="max-width: 750px">
+            </div>
+
+
         </div>
 
-        {% endfor %}
+        </div>
     </div>
-  </div>
-  <!--/ news end  -->
+    {# News end #}
 
 
-  <!-- footer start -->
-      <footer class="footer">
+    <!-- footer start -->
+    <footer class="footer">
         <div class="footer_top">
           <div class="container">
             <div class="row">
@@ -222,8 +284,7 @@
           </div>
         </div>
       </footer>
-      <!--/ footer end  -->
+    <!--/ footer end  -->
 
-    </div>
   </body>
 </html>

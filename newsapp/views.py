@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
 
 from .models import News
@@ -16,3 +17,8 @@ class NewsListView(ListView):
 class NewsDetailView(DetailView):
     model = News
     template_name = "news/news_detail_view.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        print(context)
+        return context

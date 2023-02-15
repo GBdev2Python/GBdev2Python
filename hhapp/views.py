@@ -1,20 +1,22 @@
 from django.views.generic import TemplateView
+from django.db.models import Prefetch, Count
 
-# Create your views here.
+from newsapp.models import News
+from employerapp.models import Employer, VacancyHeader
 
 
 class MainPageView(TemplateView):
     template_name = "hhapp/index.html"
 
     def get_context_data(self, **kwargs):
-        # Get all previous data
         context = super().get_context_data(**kwargs)
-        # Create your own data
-        context["news_title"] = "Громкий новостной заголовок"
-        context[
-            "news_preview"
-        ] = "Предварительное описание, которое заинтересует каждого"
-        context["range"] = range(5)
+
+        # TODO Тут должно быть кеширование, или извлечение данных с кэша
+        context["news_objects"] = News.objects.all()[:5]
+        context["employer_objects"] = Employer.objects.all().annotate(
+            company_vacancies=Count('vacancies__id'),
+        ).only('employment')[:7]
+
         return context
 
 

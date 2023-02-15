@@ -14,6 +14,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(BASE_DIR / "config/.env")
@@ -33,17 +34,19 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
     "authapp",
     "applicantapp",
     "employerapp.apps.EmployerappConfig",
     "hhapp.apps.HhappConfig",
     "newsapp",
+    "serviceapp",
+
     "social_django",
     "crispy_forms",
     "ckeditor",
-    # "django_extensions",  # Для работы с консолью ORM. Дополнительно установить пакеты: ipython, django-extensions
+    "django_extensions",  # Для работы с консолью ORM. Дополнительно установить пакеты: ipython, django-extensions
     "django_celery_beat",
-    "serviceapp",
 ]
 
 MIDDLEWARE = [

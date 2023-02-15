@@ -258,3 +258,4 @@ fabric.properties
 /newsapp/migrations/
 
 /serviceapp/migrations/
+/dump

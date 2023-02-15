@@ -1,5 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
+
 
 {% block content %}
-  <p> Hello I am the news! </p>
+    <div>
+        <h3>{{ news.title }}</h3>
+    </div>
+    <div>created: {{ news.created }}</div>
+    <div>published: {{ news.published_at }}</div>
+    <div>content: {{ news.content }}</div>
+    <div>
+        <img class="figure-img rounded" src="{{ news.image }}" alt="news_image" style="max-width: 350px">
+    </div>
+    <a href="{{ news.url }}" target="_blank">news_source: {{ news.url }}</a>
+
 {% endblock content %}
