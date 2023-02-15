@@ -1,1 +1,79 @@
-[{"model": "applicantapp.skill", "pk": 1, "fields": {"name": "Django Framework"}}, {"model": "applicantapp.skill", "pk": 2, "fields": {"name": "Python"}}, {"model": "applicantapp.skill", "pk": 3, "fields": {"name": "AngularJS"}}, {"model": "applicantapp.skill", "pk": 4, "fields": {"name": "REST API"}}, {"model": "applicantapp.skill", "pk": 5, "fields": {"name": "MS SQL"}}, {"model": "applicantapp.skill", "pk": 6, "fields": {"name": "Postgresql"}}, {"model": "applicantapp.skill", "pk": 7, "fields": {"name": "C#"}}, {"model": "applicantapp.skill", "pk": 9, "fields": {"name": "HTML/CSS"}}, {"model": "applicantapp.skill", "pk": 10, "fields": {"name": "Django Rest Framework"}}, {"model": "applicantapp.skill", "pk": 11, "fields": {"name": "Front-end"}}, {"model": "applicantapp.skill", "pk": 12, "fields": {"name": "Back-end"}}]
+[
+  {
+    "model": "applicantapp.skill",
+    "pk": 1,
+    "fields": {
+      "name": "Django Framework"
+    }
+  },
+  {
+    "model": "applicantapp.skill",
+    "pk": 2,
+    "fields": {
+      "name": "Python"
+    }
+  },
+  {
+    "model": "applicantapp.skill",
+    "pk": 3,
+    "fields": {
+      "name": "AngularJS"
+    }
+  },
+  {
+    "model": "applicantapp.skill",
+    "pk": 4,
+    "fields": {
+      "name": "REST API"
+    }
+  },
+  {
+    "model": "applicantapp.skill",
+    "pk": 5,
+    "fields": {
+      "name": "MS SQL"
+    }
+  },
+  {
+    "model": "applicantapp.skill",
+    "pk": 6,
+    "fields": {
+      "name": "Postgresql"
+    }
+  },
+  {
+    "model": "applicantapp.skill",
+    "pk": 7,
+    "fields": {
+      "name": "C#"
+    }
+  },
+  {
+    "model": "applicantapp.skill",
+    "pk": 9,
+    "fields": {
+      "name": "HTML/CSS"
+    }
+  },
+  {
+    "model": "applicantapp.skill",
+    "pk": 10,
+    "fields": {
+      "name": "Django Rest Framework"
+    }
+  },
+  {
+    "model": "applicantapp.skill",
+    "pk": 11,
+    "fields": {
+      "name": "Front-end"
+    }
+  },
+  {
+    "model": "applicantapp.skill",
+    "pk": 12,
+    "fields": {
+      "name": "Back-end"
+    }
+  }
+]

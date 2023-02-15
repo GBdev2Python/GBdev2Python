@@ -90,7 +90,8 @@ DATABASES = {
 
 
 AUTH_USER_MODEL = "authapp.CustomUser"
-LOGIN_REDIRECT_URL = "hhapp:main_page"
+# LOGIN_REDIRECT_URL = "hhapp:main_page"
+LOGIN_REDIRECT_URL = 'hhapp:candidate'
 LOGOUT_REDIRECT_URL = "hhapp:main_page"
 
 AUTHENTICATION_BACKENDS = (

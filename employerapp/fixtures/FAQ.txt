@@ -1,13 +1,13 @@
 
 # выгрузка данных из базы (файлы с одинаковыми именами ПЕРЕЗАПИШУТЬСЯ !!!)
-python manage.py dumpdata --format=json authapp.Customuser > employerapp/fixtures/customuser_01.json
+python manage.py dumpdata --format=json --indent=4 authapp.Customuser > employerapp/fixtures/customuser_01.json
 
-python manage.py dumpdata --format=json applicantapp.Towns > employerapp/fixtures/towns_01.json
-python manage.py dumpdata --format=json applicantapp.Skill > employerapp/fixtures/skill_01.json
+python manage.py dumpdata --format=json --indent=4 applicantapp.Towns > employerapp/fixtures/towns_01.json
+python manage.py dumpdata --format=json --indent=4 applicantapp.Skill > employerapp/fixtures/skill_01.json
 
-python manage.py dumpdata --format=json employerapp.TypeEmployment > employerapp/fixtures/typeEmployment_01.json
-python manage.py dumpdata --format=json employerapp.Employer > employerapp/fixtures/employer_01.json
-python manage.py dumpdata --format=json employerapp.VacancyHeader > employerapp/fixtures/vacancyHeader_01.json
+python manage.py dumpdata --format=json --indent=4 employerapp.TypeEmployment > employerapp/fixtures/typeEmployment_01.json
+python manage.py dumpdata --format=json --indent=4 employerapp.Employer > employerapp/fixtures/employer_01.json
+python manage.py dumpdata --format=json --indent=4 employerapp.VacancyHeader > employerapp/fixtures/vacancyHeader_01.json
 
 
 
