@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h1>Сопроводительное письмо</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary btn-block">Откликнутся</button>
+    </form>
+{% else %}
+        Не авторизованный пользователь не может отправлять отклики.
+{% endif %}
+{% endblock content %}

@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     "employerapp.apps.EmployerappConfig",
     "hhapp.apps.HhappConfig",
     "newsapp",
-    "serviceapp",
-
+    "serviceapp.apps.ServiceappConfig",
     "social_django",
     "crispy_forms",
     "ckeditor",
