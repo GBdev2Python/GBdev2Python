@@ -11,6 +11,15 @@ Repository for GB Python for team training development.
 
 MIT
 
+## Как запускать фикстуры
+- python manage.py loaddata ./newsapp/fixtures/001_news.json
+- python manage.py loaddata ./employerapp/fixtures/customuser_01.json
+- python manage.py loaddata ./employerapp/fixtures/skill_01.json
+- python manage.py loaddata ./employerapp/fixtures/towns_01.json
+- python manage.py loaddata ./employerapp/fixtures/typeEmployment_01.json
+- python manage.py loaddata ./employerapp/fixtures/employer_01.json
+- python manage.py loaddata ./employerapp/fixtures/vacancyHeader_01.json
+
 ## Как запускать celery и периодические задачи
 - В файл ```config/.env``` добавить переменную ```NEWS_API_TOKEN``` со значением ключа от API: https://newsapi.org/
 - Запустить Redis, порт по умолчанию 6379 или переназначить CELERY_BROKER_URL и CELERY_RESULT_BACKEND в настройках).
