@@ -50,7 +50,7 @@
                                         </div>
                                     {% else %}
                                         <div class="phone_num d-none d-xl-block">
-                                            <a href="{% url 'applicant_by_id' applicant_id=1 %}">Кабинет cоискателя</a>
+                                            <a href="{% url 'applicant_cabinet' applicant_id=user.pk %}">Кабинет cоискателя</a>
                                             <!--надо смотреть как таблицу юзера и соискателя связать. пока всегда на первого ссылка -->
                                         </div>
                                     {% endif %}

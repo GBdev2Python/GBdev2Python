@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Личный кабинет соискателя {% endblock title %}
+
+{% block messages %}
+  {% include 'includes/job_menu.html' %}
+{% endblock messages %}
+
+{% block content %}
+  <br>
+  <a href="{% url 'hhapp:main_page' %}">Домашняя страница</a> |
+  <a href="{% url 'authapp:login' %}">Логин</a> |
+  <a href="{% url 'authapp:register' %}">Регистрация</a> |
+  <a href="{% url 'applicant_list' %}">Список соискателей</a>|
+  <a href="{% url 'resume_list' %}">Список резюме</a>  |
+  <br><br>
+  {% if user.is_authenticated %}
+    <p>customuser Логин: {{ user.username }}</p>
+    <p>customuser ID: {{ user.pk }}</p>
+  {% endif %}
+  <br><br>
+
+  <div class="container-fluid">
+    <h3>Личный кабинет соискателя</h3>
+    <br>
+ <div class="row">
+      <div class="col-xl-1 col-md-1 col-lg-1">
+      </div>
+
+
+      <div class="col-xl-8 col-md-8 col-lg-8">
+        <img class="avatar avatar--xl" src="{{ applicant.image.url }}" />
+
+      </div>
+
+      <div class="col-xl-3 col-md-3 col-lg-3">
+        <a href="{% url 'applicant_create' %}" class="boxed-btn">Заполнить профиль</a>
+        <br>
+          <br>
+      </div>
+ </div>
+
+{% endblock content %}

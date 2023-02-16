@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from django.views.generic import ListView, CreateView
+from django.views.generic import TemplateView, ListView, CreateView
 
 from applicantapp.forms import ResumeForm, AddApplicateForm
 from applicantapp.models import *
@@ -60,6 +60,11 @@ class ApplicantResume(ListView):
 class ApplicantCreate(CreateView):
     form_class = AddApplicateForm
     template_name = "applicantapp/applicant_create.html"
+
+class ApplicantCabinet(TemplateView):
+    template_name = "applicantapp/applicant_cabinet.html"
+    pk_url_kwarg = "applicant_id"
+
 
 
 # Отдельный соискатель
