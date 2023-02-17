@@ -61,6 +61,7 @@ class ApplicantCreate(CreateView):
     form_class = AddApplicateForm
     template_name = "applicantapp/applicant_create.html"
 
+
 class ApplicantCabinet(TemplateView):
     template_name = "applicantapp/applicant_cabinet.html"
     pk_url_kwarg = "applicant_id"
@@ -89,18 +90,16 @@ class Applicant(ListView):
 
 
 # Создание резюм
-def new_resume(request, applicant_id):
+def new_resume(request, applicant_id, *args, **kwargs):
     user = Applicants.objects.get(id=applicant_id)
     form = ResumeForm()
     if request.method == "POST":
-
         form = ResumeForm(request.POST, request.FILES)
         if form.is_valid():
             resume = form.save(commit=False)
             resume.applicants = user
             resume.save()
             return redirect("applicant_cabinet", applicant_id=resume.applicants.id)
-
     context = {"form": form, "applicant": user}
     return render(request, "applicantapp/new_resume.html", context)
 

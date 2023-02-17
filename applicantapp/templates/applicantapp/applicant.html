@@ -8,8 +8,8 @@
 
 {% block content %}
   <br>
-    <a href="{% url 'applicant_list' %}">Список соискателей</a>
-    <a href="{% url 'resume_list' %}">Список резюме</a>
+    <a href="{% url 'applicant:list' %}">Список соискателей</a>
+    <a href="{% url 'applicant:resume_list' %}">Список резюме</a>
     <br>
     <br>
 
@@ -23,7 +23,7 @@
 
 
         <div class="col-xl-8 col-md-8 col-lg-8">
-          <img class="avatar avatar--xl" src="{{ applicant.image.url }}" />
+          <img class="avatar avatar--xl" src="{{ MEDIA_URL }}applicant_images/andy.png" />
           <ul>
             <p>Имя: {{ applicant.first_name }}</p>
             <p>Фамилия: {{ applicant.last_name }}</p>
@@ -37,13 +37,13 @@
 
           {% for resume in resumes %}
               <ul>
-                <li><a href="{% url 'applicant_resume' resume.id %}"> <h3>{{ resume.required_job }}</h3></a>  </li>
+                <li><a href="#"> <h3>{{ resume.required_job }}</h3></a>  </li>
                 <ul>
                   <li>
-                    <a href="{% url 'update_resume' resume.id %}"> Редактировать резюме</a>
+                    <a href="#"> Редактировать резюме</a>
                   </li>
                   <li>
-                    <a href="{% url 'delete_resume' resume.id %}"> Удалить резюме</a>
+                    <a href="#"> Удалить резюме</a>
                   </li>
 
                 </ul>
@@ -53,7 +53,7 @@
         <div class="col-xl-3 col-md-3 col-lg-3">
           <ul>
             <li>
-              <a href="{% url 'new_resume' applicant.id %}" class="boxed-btn"> Создать резюме</a>
+              <a href="{% url 'applicant:new_resume' applicant.id %}" class="boxed-btn"> Создать резюме</a>
             </li>
           </ul>
         </div>

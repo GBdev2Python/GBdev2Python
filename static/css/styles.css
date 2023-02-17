@@ -1,0 +1,88 @@
+@import "bootstrap.min.css";
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+    color: #00D363;
+}
+
+.btn-outline-success {
+    color: #00D363;
+}
+
+.btn-outline-success:hover {
+    color: #fff;
+    background-color: #00D363;
+    border-color: #00D363;
+}
+
+.btn-check:focus + .btn-outline-success, .btn-outline-success:focus {
+    box-shadow: 0 0 0 0.25rem rgba(0, 211, 99, 0.5);
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.boxed-btn3 {
+    background: #00D363;
+    color: #fff !important;
+    display: inline-block;
+    padding: 13px 29px 13px 29px;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    border: 1px solid transparent;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    text-align: center;
+    text-transform: capitalize;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.boxed-btn3:hover {
+    color: #00D363 !important;
+    border: 1px solid #00D363;
+    background: transparent;
+}
+
+.boxed-btn3:focus {
+    outline: none;
+}
+
+
+.profile-icon {
+    background: url("../img/profile_icon.svg") no-repeat;
+    width: 50px;
+    height: 50px;
+}
+
+.profile-icon:hover {
+    background: url("../img/profile_icon_hover.svg");
+}
+
+.index-div {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.index-div::after {
+    content: "";
+    background-image: url('/static/img/banner.png');
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.5;
+}

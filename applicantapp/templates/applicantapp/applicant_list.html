@@ -8,12 +8,12 @@
 
 {% block content %}
     <br>
-    <a href="{% url 'applicant_list' %}">Список соискателей</a>
-    <a href="{% url 'resume_list' %}">Список резюме</a>
+    <a href="{% url 'applicant:list' %}">Список соискателей</a>
+    <a href="{% url 'applicant:resume_list' %}">Список резюме</a>
     <br>
     <h1>Список соискателей</h1>
     <ul>
-      {% for item in applicant_list%}
+      {% for item in applicant_list %}
         <li>
           <a href="{{ item.get_absolute_url }}">{{ item.first_name }} {{ item.last_name }}</a>
         </li>

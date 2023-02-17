@@ -26,7 +26,7 @@ urlpatterns = [
     path("social_auth/", include("social_django.urls", namespace="social")),
     path("hhapp/", include("hhapp.urls", namespace="hhapp")),
     path("authapp/", include("authapp.urls", namespace="authapp")),
-    path("applicantapp/", include("applicantapp.urls")),
+    path("applicantapp/", include("applicantapp.urls", namespace="applicant")),
     path("employerapp/", include("employerapp.urls", namespace="employerapp")),
     path("news/", include("newsapp.urls", namespace="news")),
     path("service/", include("serviceapp.urls", namespace="service")),

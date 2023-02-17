@@ -1,0 +1,71 @@
+{% load static %}
+
+<div class="container-md py-3">
+    <ul class="list-group list-group-horizontal">
+        <li class="list-group-item">data</li>
+        <li class="list-group-item">u: {{ user }}</li>
+        <li class="list-group-item">stf: {{ user.is_staff }}</li>
+        <li class="list-group-item">c: {{ user.is_company }}</li>
+    </ul>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-dark header-area" style="background-color: #194870">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'hhapp:main_page' %}">
+            <img src="/static/img/logoJob.png" alt="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarLinks"
+                aria-controls="navbarLinks" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarLinks">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a
+                        class="nav-link {% if request.resolver_match.view_name == 'hhapp:candidate' %}active{% endif %}"
+                        href="{% url 'hhapp:candidate' %}">Resumes list</a></li>
+                <li class="nav-item"><a
+                        class="nav-link {% if request.resolver_match.view_name == 'hhapp:jobs' %}active{% endif %}"
+                        href="{% url 'hhapp:jobs' %}">Vacancies list</a></li>
+            </ul>
+            {% if user.is_anonymous %}
+                <div class="d-flex bd-highlight mb-auto align-items-center">
+                <a class="link-light m-2 align-middle" href="{% url 'authapp:register' %}">Register</a>
+                <a class="boxed-btn3 m-2" href="{% url 'authapp:login' %}">Login</a>
+            {% else %}
+                {% if user.is_company %}
+                    <a href="{% url 'employerapp:vacancy_create' %}" class="btn btn-outline-success rounded-pill m-1">Создать вакансию</a>
+                    <div class="dropdown align-items-center">
+                        <button class="btn profile-icon m-1" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a href="{% url 'employerapp:employer_cabinet' employer_id=user.pk %}" class="dropdown-item">Кабинет работодателя</a></li>
+                            <li><a href="" class="dropdown-item disabled">Настройки</a></li>
+                            <li><a href="" class="dropdown-item disabled">Информация?</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a href="{% url 'authapp:logout' %}" class="dropdown-item text-danger">Выйти</a></li>
+                        </ul>
+                    </div>
+                {% else %}
+                    <a href="{% url 'applicant:new_resume' applicant_id=user.id %}" class="btn btn-outline-success rounded-pill">Создать резюме</a>
+                    <div class="dropdown">
+                        <button class="btn profile-icon m-1" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a href="{% url 'applicant:applicant_cabinet' applicant_id=user.pk %}" class="dropdown-item">Кабинет соискателя</a></li>
+                            <li><a href="" class="dropdown-item disabled">Настройки</a></li>
+                            <li><a href="" class="dropdown-item disabled">Информация?</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a href="{% url 'authapp:logout' %}" class="dropdown-item text-danger">Выйти</a></li>
+                        </ul>
+                    </div>
+                {% endif %}
+            {% endif %}
+            </div>
+        </div>
+    </div>
+
+    </div>
+</nav>

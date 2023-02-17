@@ -20,8 +20,8 @@ class ResumeForm(ModelForm):
         for name, field in self.fields.items():
             field.widget.attrs.update({"class": "input"})
 
-class AddApplicateForm(forms.ModelForm):
 
+class AddApplicateForm(forms.ModelForm):
 
     class Meta:
         model = Applicants
