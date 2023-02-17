@@ -65,6 +65,14 @@ class ApplicantCabinet(TemplateView):
     template_name = "applicantapp/applicant_cabinet.html"
     pk_url_kwarg = "applicant_id"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["applicant_list"] = Applicants.objects.all()
+        context["applicant"] = Applicants.objects.get(id=self.kwargs["applicant_id"])
+        context["resumes"] = Resumes.objects.filter(applicants=self.kwargs["applicant_id"])
+
+        return context
+
 
 
 # Отдельный соискатель
@@ -91,7 +99,7 @@ def new_resume(request, applicant_id):
             resume = form.save(commit=False)
             resume.applicants = user
             resume.save()
-            return redirect("applicant_by_id", applicant_id=resume.applicants.id)
+            return redirect("applicant_cabinet", applicant_id=resume.applicants.id)
 
     context = {"form": form, "applicant": user}
     return render(request, "applicantapp/new_resume.html", context)
@@ -109,7 +117,7 @@ def update_resume(request, pk):
 
         if form.is_valid():
             resume = form.save()
-            return redirect("applicant_by_id", applicant_id=user.id)
+            return redirect("applicant_cabinet", applicant_id=user.id)
 
     context = {"form": form, "applicant": user}
     return render(request, "applicantapp/new_resume.html", context)
@@ -121,6 +129,6 @@ def delete_resume(request, pk):
     resume = Resumes.objects.get(id=pk)
     if request.method == "POST":
         resume.delete()
-        return redirect("applicant_by_id", applicant_id=resume.applicants.id)
+        return redirect("applicant_cabinet", applicant_id=resume.applicants.id)
     context = {"object": resume}
     return render(request, "applicantapp/delete_resume.html", context)

@@ -30,5 +30,5 @@
     <p>Место последней работы: {{ resume.last_job }}</p>
     <p>Образование: {{ resume.education }}</p>
 
-    <a class="boxed-btn" href="{% url 'applicant_by_id' resume.applicants.id %}">Назад</a>
+    <a class="boxed-btn" href="{% url 'applicant_cabinet' resume.applicants.id %}">Назад</a>
 {% endblock content %}
