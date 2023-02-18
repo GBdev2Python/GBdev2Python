@@ -3,31 +3,7 @@
 
 {% block content %}
     {# Happy white people do stomething important! #}
-    <div class="row justify-content-center align-items-center">
-        <div class="col-md-5">
-            <h5 class="h5 mb-0 mt-3">+100500 вакансий на JobBoard</h5>
-            <h2 class="h2" style="color: #FDAE5C">Сервис №1 по поиску сотрудников в России</h2>
-            <p class="">Всегда самые свежие новости на рынке труда!</p>
-            {% if user.is_authenticated %}
-                {% if user.is_company %}
-                    <a href="{% url 'employerapp:vacancy_create' %}" class="boxed-btn3 m-2">Разместить вакансию</a>
-                {% else %}
-                    <a href="{% url 'applicant:new_resume' applicant_id=user.id %}" class="boxed-btn3 m-2">Создать резюме</a>
-                {% endif %}
-            {% else %}
-                <a href="{% url 'authapp:register'%}" class="boxed-btn3 m-2">Создать резюме</a>
-            {% endif %}
-        </div>
-        <div class="col-md-7">
-            <p class="text-center">
-                <img src="{% static 'img/illustration.png' %}" class="w-75" alt="img1">
-            </p>
-        </div>
-    </div>
 
-    <div class="my-5">
-        <hr>
-    </div>
 
     {# partners field start #}
     <div class="row justify-content-center align-items-center">
