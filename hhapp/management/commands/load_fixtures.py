@@ -42,9 +42,10 @@ class Command(BaseCommand):
                     if file.endswith('.json'):
                         file_path = str(current / file)
                         fixtures[self.get_app_name(file_path)].append(file_path)
+
         return {k: v for k, v in sorted(fixtures.items(), key=lambda x: x[0], reverse=True)}
 
     def handle(self, *args, **options):
         for fixtures_paths in self.fixtures.values():
-            for fixture in fixtures_paths:
+            for fixture in sorted(fixtures_paths):
                 subprocess.call([self.interpreter_path, self.manage_py, self.command, fixture])
