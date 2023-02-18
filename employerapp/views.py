@@ -123,14 +123,17 @@ class EmployerCabinet(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Компания залогиненного работодателя
-        context["employer_cab_comp_qs"] = Employer.objects.filter(pk=self.kwargs["employer_id"])
+        context["employer_cab_comp_qs"] = Employer.objects.filter(user_id=self.kwargs["employer_id"])
 
         # Проверка создания карточки работодателя
         context["employer_cab_cnt_qs"] = Employer.objects.filter(pk=self.kwargs["employer_id"]).count()
 
         # Выборка всех вакансий работодателя (залогиненный пользователь)
-        context["vacancy_cab_qs"] = VacancyHeader.objects.filter(employer_id_id=self.kwargs["employer_id"])
-        # context["vacancy_cab_qs"] = VacancyHeader.objects.filter(employer_id=2)
+        # context["vacancy_cab_qs"] = VacancyHeader.objects.filter(employer_id_id=self.kwargs["employer_id"]) # неверная выборка
+        emp = Employer.objects.get(user_id=self.kwargs["employer_id"])
+        context["vacancy_cab_qs"] = VacancyHeader.objects.filter(employer_id_id__employment=emp)
+
 
         # Открытие созданной карточки работодателя на редактирование
+
         return context
