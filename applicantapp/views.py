@@ -40,7 +40,7 @@ class Resume(ListView):
         profile = Resumes.objects.get(id=self.kwargs["resume_id"])
         context = super().get_context_data(**kwargs)
         context["resume"] = profile
-        context["skills"] = profile.skills.all()[:2]
+        context["skills"] = profile.skills.all()
         return context
 
 
@@ -53,7 +53,7 @@ class ApplicantResume(ListView):
         profile = Resumes.objects.get(id=self.kwargs["resume_id"])
         context = super().get_context_data(**kwargs)
         context["resume"] = profile
-        context["skills"] = profile.skills.all()[:2]
+        context["skills"] = profile.skills.all()
         return context
 
 # Заполнение профиля соискателя
@@ -95,11 +95,12 @@ def new_resume(request, applicant_id, *args, **kwargs):
     form = ResumeForm()
     if request.method == "POST":
         form = ResumeForm(request.POST, request.FILES)
+        print ((request.POST.values))
         if form.is_valid():
             resume = form.save(commit=False)
             resume.applicants = user
             resume.save()
-            return redirect("applicant_cabinet", applicant_id=resume.applicants.id)
+            return redirect("applicant:applicant_cabinet", applicant_id=resume.applicants.id)
     context = {"form": form, "applicant": user}
     return render(request, "applicantapp/new_resume.html", context)
 
@@ -116,7 +117,7 @@ def update_resume(request, pk):
 
         if form.is_valid():
             resume = form.save()
-            return redirect("applicant_cabinet", applicant_id=user.id)
+            return redirect("applicant:applicant_cabinet", applicant_id=user.id)
 
     context = {"form": form, "applicant": user}
     return render(request, "applicantapp/new_resume.html", context)
@@ -128,6 +129,6 @@ def delete_resume(request, pk):
     resume = Resumes.objects.get(id=pk)
     if request.method == "POST":
         resume.delete()
-        return redirect("applicant_cabinet", applicant_id=resume.applicants.id)
+        return redirect("applicant:applicant_cabinet", applicant_id=resume.applicants.id)
     context = {"object": resume}
     return render(request, "applicantapp/delete_resume.html", context)

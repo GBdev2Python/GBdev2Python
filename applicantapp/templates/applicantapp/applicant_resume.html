@@ -3,32 +3,35 @@
 {% block title %}Резюме{% endblock title %}
 
 {% block messages %}
-    <div class="bradcam_area bradcam_bg_1"></div>
+<div class="bradcam_area bradcam_bg_1"></div>
 {% endblock messages %}
 
 {% block content %}
 
-    <h1>Резюме</h1>
+<h1>Резюме</h1>
 
-    <img class="avatar avatar--xl" src="{{ resume.image.url }}" />
-    <p>Имя: {{ resume.applicants.first_name }}</p>
-    <p>Фамилия: {{ resume.applicants.last_name }}</p>
-    <p>Дата рождения: {{ resume.applicants.birthday }}</p>
-    <p>Город проживания: {{ resume.applicants.town }}</p>
-    <p>Контактный телефон: {{ resume.applicants.phone }}</p>
-    <p>email: {{ resume.applicants.user.email }}</p>
-    <p>Навыки:</p>
+<img class="avatar avatar--xl" src="{{ resume.image.url }}" />
+<p>Имя: {{ resume.applicants.first_name }}</p>
+<p>Фамилия: {{ resume.applicants.last_name }}</p>
+<p>Дата рождения: {{ resume.applicants.birthday }}</p>
+<p>Город проживания: {{ resume.applicants.town }}</p>
+<p>Контактный телефон: {{ resume.applicants.phone }}</p>
+<p>email: {{ resume.applicants.user.email }}</p>
+<p>Навыки:</p>
 
-    {% for skill in skills %}
-      <ul>
-        <li>{{ skill.name }}</li>
-      </ul>
-    {% endfor %}
+{% for skill in skills %}
+<ul>
+  <li>{{ skill.name }}</li>
+</ul>
+{% endfor %}
 
-    <p>Требуемая работа: {{ resume.required_job }}</p>
-    <p>Заработная плата: {{ resume.salary }}</p>
-    <p>Место последней работы: {{ resume.last_job }}</p>
-    <p>Образование: {{ resume.education }}</p>
+<p>Требуемая работа: {{ resume.required_job }}</p>
+<p>Заработная плата: {{ resume.salary }}</p>
+<p>Место последней работы: {{ resume.last_job }}</p>
+<p>Образование: {{ resume.education }}</p>
 
-    <a class="boxed-btn" href="{% url 'applicant:applicant_cabinet' resume.applicants.id %}">Назад</a>
+<a class="boxed-btn" href="{% url 'applicant:applicant_cabinet' resume.applicants.id %}">Назад</a>
+<a class="boxed-btn" href="{% url 'applicant:update_resume' resume.id %}"> Редактировать резюме</a>
+<a class="boxed-btn" href="{% url 'applicant:delete_resume' resume.id %}"> Удалить резюме</a>
+
 {% endblock content %}

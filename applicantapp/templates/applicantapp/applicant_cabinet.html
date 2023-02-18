@@ -25,7 +25,7 @@
     <h3>Личный кабинет соискателя</h3>
 
     <br>
-
+  </div>
  <div class="row">
       <div class="col-xl-1 col-md-1 col-lg-1">
       </div>
@@ -48,9 +48,9 @@
             <ul>
               <li><h3>{{ resume.required_job }}</h3></li>
               {% if resume.is_published %}
-                <li>Статус публикации: Опубликовано</li>
+                <p>Статус публикации: Опубликовано</p>
               {%else%}
-                <li>Статус публикации: Черновик</li>
+                <p>Статус публикации: Черновик</p>
               {% endif %}
                   <a class="boxed-btn" href="{% url 'applicant:applicant_resume' resume.id %}"> Просмотр</a>
                   <a class="boxed-btn" href="{% url 'applicant:update_resume' resume.id %}"> Редактировать резюме</a>
