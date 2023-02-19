@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block title %}Создание Резюме {% endblock title %}
 
 {% block messages %}
@@ -12,13 +13,7 @@
 <form action="" method="post" enctype="multipart/form-data">
   {% csrf_token %}
 
-  {% for field in form %}
-
-  <div class="form__field">
-    <label for="formInput#text">{{ field.label }}</label>
-    {{ field }}
-  </div>
-  {% endfor %}
+  {{ form|crispy }}
 
   <a class="boxed-btn" href="{% url 'applicant:applicant_cabinet' applicant.id %}">Назад</a>
   <button type="submit" class='boxed-btn3'> Сохранить</button>

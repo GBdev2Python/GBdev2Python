@@ -1,3 +1,4 @@
+from django.shortcuts import HttpResponse
 from django.shortcuts import redirect, render
 from django.views.generic import TemplateView, ListView, CreateView
 
@@ -92,15 +93,16 @@ class Applicant(ListView):
 # Создание резюм
 def new_resume(request, applicant_id, *args, **kwargs):
     user = Applicants.objects.get(id=applicant_id)
-    form = ResumeForm()
+    form = ResumeForm(initial={'applicants': user})
     if request.method == "POST":
         form = ResumeForm(request.POST, request.FILES)
-        print ((request.POST.values))
         if form.is_valid():
             resume = form.save(commit=False)
             resume.applicants = user
             resume.save()
-            return redirect("applicant:applicant_cabinet", applicant_id=resume.applicants.id)
+            form.save_m2m()
+        return redirect("applicant:applicant_cabinet", applicant_id=resume.applicants.id)
+
     context = {"form": form, "applicant": user}
     return render(request, "applicantapp/new_resume.html", context)
 

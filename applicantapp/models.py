@@ -64,8 +64,8 @@ class Skill(models.Model):
 
 
 class Resumes(models.Model):
-    applicants = models.ForeignKey(Applicants, on_delete=models.CASCADE, verbose_name="Соискатель")
-    verification = models.BooleanField(default=False, blank=False, verbose_name="Прохождение модерации")
+    applicants = models.ForeignKey(Applicants, null=True, blank=True, on_delete=models.CASCADE, verbose_name="Соискатель")
+    verification = models.BooleanField(default=False, blank=True, verbose_name="Прохождение модерации")
     required_job = models.TextField(blank=True, null=True, verbose_name="Требуемая работа/должность")
     image = models.ImageField(
         null=True, blank=True, upload_to="applicant_images", default="applicant_images/default.jpg", verbose_name="FOTO"
@@ -75,7 +75,7 @@ class Resumes(models.Model):
     last_job = models.TextField(null=True, blank=True, verbose_name="Последнее место работы")
     education = models.TextField(null=True, blank=True, verbose_name="Образование/курсы")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания резюме")
-    is_published = models.BooleanField(default=False, verbose_name="Опубликовать")
+    is_published = models.BooleanField(blank=True, default=False, verbose_name="Опубликовать")
     # id = models.UUIDField(default=uuid.uuid4, unique=True,
     #                      primary_key=True, editable=False)
 
