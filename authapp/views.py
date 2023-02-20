@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, login
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import request
@@ -11,6 +11,7 @@ from django.views.generic import CreateView, UpdateView
 
 from authapp import forms
 from applicantapp.models import Applicants
+from .forms import CustomUserCreationForm
 from .models import CustomUser
 from employerapp.models import Employer
 
@@ -38,13 +39,6 @@ class CustomLogoutView(LogoutView):
         return super().dispatch(request, *args, **kwargs)
 
 
-class RegisterView(CreateView):
-    model = get_user_model()
-    form_class = forms.CustomUserCreationForm
-    template_name = "registration/register.html"
-    success_url = reverse_lazy("hhapp:main_page")
-
-
 class ProfileEditView(UserPassesTestMixin, UpdateView):
     model = get_user_model()
     form_class = forms.CustomUserChangeForm
@@ -69,6 +63,17 @@ def profile_info(request):
             return render(request, "profile/profile_info.html", {"form": form})
         else:
             return redirect('applicantapp:create')
+
+def register(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user, backend='authapp.backends.EmailandUserBackend')
+            return redirect('authapp:profile_info')
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'registration/register.html', {"form": form})
 
 
 
