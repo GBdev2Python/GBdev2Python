@@ -5,7 +5,6 @@ from django.core.mail import send_mail
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-
 class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     username_validator = ASCIIUsernameValidator()
@@ -77,3 +76,4 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def email_user(self, subject, message, from_email=None, **kwargs):
         """Send an email to this user."""
         send_mail(subject, message, from_email, [self.email], **kwargs)
+

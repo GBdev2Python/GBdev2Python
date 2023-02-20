@@ -16,7 +16,7 @@ class Command(BaseCommand):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fixtures = self.get_fixtures_files()
-        self.interpreter_path = self.get_executable_path()
+        self.interpreter_path = 'python'
         self.manage_py = BASE_DIR / 'manage.py'
         self.command = 'loaddata'
 

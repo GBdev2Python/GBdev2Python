@@ -57,7 +57,7 @@
                                 data-bs-toggle="dropdown" aria-expanded="false">
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a href="{% url 'employerapp:employer_cabinet' employer_id=user.pk %}" class="dropdown-item">Кабинет работодателя</a></li>
+                            <li><a href="{% url 'employerapp:employer_cabinet' employer_id=user.employer.pk %}" class="dropdown-item">Кабинет работодателя</a></li>
                             <li><a href="" class="dropdown-item disabled">Настройки</a></li>
                             <li><a href="" class="dropdown-item disabled">Информация?</a></li>
                             <li><hr class="dropdown-divider"></li>
@@ -65,13 +65,13 @@
                         </ul>
                     </div>
                 {% else %}
-                    <a href="{% url 'applicant:new_resume' applicant_id=user.id %}" class="btn btn-outline-success rounded-pill">Создать резюме</a>
+                    <a href="{% url 'applicant:new_resume' applicant_id=user.applicants.pk %}" class="btn btn-outline-success rounded-pill">Создать резюме</a>
                     <div class="dropdown">
                         <button class="btn profile-icon m-1" type="button" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a href="{% url 'applicant:applicant_cabinet' applicant_id=user.pk %}" class="dropdown-item">Кабинет соискателя</a></li>
+                            <li><a href="{% url 'applicant:applicant_cabinet' applicant_id=user.applicants.pk %}" class="dropdown-item">Кабинет соискателя</a></li>
                             <li><a href="" class="dropdown-item disabled">Настройки</a></li>
                             <li><a href="" class="dropdown-item disabled">Информация?</a></li>
                             <li><hr class="dropdown-divider"></li>

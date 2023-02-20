@@ -32,4 +32,6 @@ class JobsListView(ListView):
 
 
 class CandidateListView(TemplateView):
+
+
     template_name = "hhapp/candidate.html"

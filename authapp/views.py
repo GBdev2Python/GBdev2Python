@@ -2,15 +2,17 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.views import LoginView, LogoutView
-from django.shortcuts import render
+from django.http import request
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView, UpdateView
 
 from authapp import forms
-
+from applicantapp.models import Applicants
 from .models import CustomUser
+from employerapp.models import Employer
 
 
 class CustomLoginView(LoginView):
@@ -57,4 +59,16 @@ class ProfileEditView(UserPassesTestMixin, UpdateView):
 
 def profile_info(request):
     form = CustomUser
-    return render(request, "profile/profile_info.html", {"form": form})
+    if request.user.is_company:
+        if Employer.objects.filter(user=request.user):
+            return render(request, "profile/profile_info.html", {"form": form})
+        else:
+            return redirect('employerapp:employer_create')
+    else:
+        if Applicants.objects.filter(user=request.user):
+            return render(request, "profile/profile_info.html", {"form": form})
+        else:
+            return redirect('applicantapp:create')
+
+
+
