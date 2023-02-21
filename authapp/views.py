@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.views import LoginView, LogoutView
-from django.http import request
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.safestring import mark_safe
@@ -21,7 +21,18 @@ class CustomLoginView(LoginView):
         ret = super().form_valid(form)
         message = _("Login success!<br>Hi, %(username)s") % {"username": self.request.user.get_username()}
         messages.add_message(self.request, messages.INFO, mark_safe(message))
-        return ret
+        messages.add_message(
+            self.request,
+            messages.WARNING,
+            mark_safe(f'is_comp:{self.request.user.is_company}'
+                      f'<br>name:{self.request.user.username}')
+        )
+        if self.request.user.is_company:
+            user = Employer.objects.get(user_id=self.request.user.id).id
+            return HttpResponseRedirect(reverse_lazy('employerapp:employer_cabinet', args=(user,)))
+        else:
+            user = Applicants.objects.get(user_id=self.request.user.id).id
+            return HttpResponseRedirect(reverse_lazy('applicant:applicant_cabinet', args=(user,)))
 
     def form_invalid(self, form):
         for _, message in form.error_messages.items():

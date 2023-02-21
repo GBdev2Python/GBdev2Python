@@ -5,7 +5,6 @@ from employerapp.models import *
 
 
 class AddEmployerForm(forms.ModelForm):
-
     body = forms.CharField(widget=CKEditorWidget, label="Детальное описание")
 
     class Meta:

@@ -69,7 +69,6 @@ class TestCaseIndexPage(StaticLiveServerTestCase):
         WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(
             (By.CSS_SELECTOR, self.selectors['register_body']))
         )
-
         register_button = self.driver.find_element(by=By.CSS_SELECTOR, value=self.selectors['register_body'])
         self.assertEqual(register_button.text, self.selectors['register_button_text'])
         register_button.click()

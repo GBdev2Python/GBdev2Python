@@ -45,8 +45,6 @@ class Applicants(models.Model):
 
 
 # Ключевые навыки соискателей
-
-
 class Skill(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True, verbose_name="Навык")
     # description = models.TextField(null=True, blank=True, verbose_name='Описание навыка')

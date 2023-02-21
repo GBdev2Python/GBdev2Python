@@ -1,11 +1,9 @@
-from django.shortcuts import HttpResponse
 from django.shortcuts import redirect, render
 from django.views.generic import TemplateView, ListView, CreateView
 
 from applicantapp.forms import ResumeForm, AddApplicateForm
 from applicantapp.models import *
 
-# Create your views here.
 
 # Список соискателей
 class ApplicantList(ListView):
@@ -56,6 +54,7 @@ class ApplicantResume(ListView):
         context["resume"] = profile
         context["skills"] = profile.skills.all()
         return context
+
 
 # Заполнение профиля соискателя
 class ApplicantCreate(CreateView):
