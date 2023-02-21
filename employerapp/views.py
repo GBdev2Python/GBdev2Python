@@ -124,7 +124,7 @@ class EmployerCabinet(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Компания залогиненного работодателя
-        context["employer_cab_comp_qs"] = Employer.objects.filter(user_id=self.kwargs["employer_id"])
+        context["employer_cab_comp_qs"] = Employer.objects.filter(id=self.kwargs["employer_id"])
 
         # Проверка создания карточки работодателя
         context["employer_cab_cnt_qs"] = Employer.objects.filter(pk=self.kwargs["employer_id"]).count()
