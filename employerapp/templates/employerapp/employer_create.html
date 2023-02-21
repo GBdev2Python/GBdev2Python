@@ -15,6 +15,7 @@
   {% if user.is_authenticated %}
     <p>customuser Логин: {{ user.username }}</p>
     <p>customuser ID: {{ user.pk }}</p>
+    <p>employer ID: {{ user.employer.id }}</p>
   {% endif %}
   <br><br>
 
