@@ -1,10 +1,16 @@
-<div class="card">
-  <div class="card-body">
-    <h5 class="card-title">
-      <a href="{% url 'newsapp:news_detail' pk=news.pk %}">{{ news.title }}</a>
-    </h5>
-    <p class="card-text">
-      {{ news.content }}
-    </p>
-  </div>
+<div class="card mb-3 mx-1 bg-light" style="max-width: 45%">
+    <div class="row g-0">
+        <div class="col-md-4 justify-content-center d-flex">
+            <img class="img-fluid rounded-start align-self-center" src="{{ news.image }}" alt="image card">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title text-primary">{{ news.title }}</h5>
+                <p class="card-text"><small class="text-muted">{{ news.published_at }}</small></p>
+                <p class="card-text">{{ news.content|truncatewords:5 }}</p>
+                <a class="stretched-link" href="{% url 'newsapp:news_detail' pk=news.pk %}"></a>
+                <p class="m-0"><small class="text-muted">By: {{ news.author }}</small></p>
+            </div>
+        </div>
+    </div>
 </div>

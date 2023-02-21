@@ -8,7 +8,6 @@ Repository for GB Python for team training development.
 - SQLLite 3
 
 ## Лицензия
-
 MIT
 
 ## Как запускать фикстуры
@@ -27,3 +26,9 @@ MIT
 	- celery -A config worker -l info -P eventlet;
 	- celery -A config beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler.
 - Profit
+
+
+## Как запускать тесты
+- Ставим зависимости из ./test-requirements.txt и качаем selenium webdriver (!Версии, подходящей к версии Chrome!): https://chromedriver.chromium.org/downloads (По-умолчанию копируем chromedriver.exe в C:\chromedriver для винды и **надо сгуглить** для Unix подобных систем + дать права на запуск всем юзерам через chmod)
+- Для запуска всех тестов в корне: python manage.py test
+- Для избирательного пуска тестов пишем путь через точки, например: python manage.py test hhapp.tests.test_index_page_load_correct.TestCaseIndexPage.test_register_and_login_applicant
