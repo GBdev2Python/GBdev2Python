@@ -131,7 +131,7 @@ class EmployerCabinet(TemplateView):
 
         # Выборка всех вакансий работодателя (залогиненный пользователь)
         # context["vacancy_cab_qs"] = VacancyHeader.objects.filter(employer_id_id=self.kwargs["employer_id"]) # неверная выборка
-        emp = Employer.objects.get(user_id=self.kwargs["employer_id"])
+        emp = Employer.objects.get(id=self.kwargs["employer_id"])
         context["vacancy_cab_qs"] = VacancyHeader.objects.filter(employer_id_id__employment=emp)
 
 
