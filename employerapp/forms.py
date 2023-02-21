@@ -52,6 +52,7 @@ class UpdateEmployerForm(forms.ModelForm):
 
 
 class AddVacancyForm(forms.ModelForm):
+
     class Meta:
         model = VacancyHeader
         fields = [

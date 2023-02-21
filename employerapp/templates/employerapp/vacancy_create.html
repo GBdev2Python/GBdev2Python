@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static crispy_forms_tags %}
 {% block title %}Создание вакансии{% endblock title %}
 
 {% block stylesheet %}
@@ -28,14 +28,8 @@
       <div class="col-xl-8 col-md-8 col-lg-8">
         <form class="form_empl" action="{% url 'employerapp:vacancy_create' %}" method="post" enctype="multipart/form-data">
           {% csrf_token %}
-          {% for el in form %}
-            <!--    "id_for_label" идентификатор текстовой метки  -->
-            <h6><label class="form-label" for="{{ el.id_for_label }}">{{el.label}}: </label></h6>
-            <p>{{ el }}</p>
-            <!--  отображение ошибки заполнения данных формы  -->
-            <div class="form-error">{{ el.errors }}</div>
-          {% endfor %}
-          {{ form.media }}
+
+          {{ form|crispy }}
           <button type="submit">Добавить</button>
         </form>
       </div>

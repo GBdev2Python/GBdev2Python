@@ -64,6 +64,7 @@ def profile_info(request):
         else:
             return redirect('applicantapp:create')
 
+
 def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)

@@ -22,7 +22,7 @@
             </p>
             <a href="#" class="text-left text-info h5">Почитать о нас >>> </a>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-5" id="partners-block">
             <h2 class="px-4 h2" style="color: #FDAE5C">Наши замечательные партнёры</h2>
             {% for employer in employer_objects %}
                 <div class="card-body">
@@ -43,8 +43,8 @@
 
     {# News start #}
     <div class="row justify-content-center align-items-center">
-        <div class="col-md-5">
-            <h2 style="color: #FDAE5C">Актуальные новости </h2>
+        <div class="col-md-5" id="news-block">
+            <h2 style="color: #FDAE5C">News</h2>
             {% for news_item in news_objects %}
                 <div class="card mb-2">
                     <div class="card-body">
