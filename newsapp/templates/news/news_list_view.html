@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
     {% if page_obj %}
         <div class="row mt-2 pt-2  align-items-center">
             <h3 class="h3 text-center">Page: {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</h3>

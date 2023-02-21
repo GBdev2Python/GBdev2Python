@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
@@ -13,14 +12,19 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     <!--<link rel="stylesheet" href="{% static 'css/partners.css' %}">-->
-{##}
+    {##}
 
     <title>{% block title %}Welcome to IT Job!{% endblock title %}</title>
 </head>
 
 <body>
+
 <!-- header-start -->
 {% include 'includes/header_menu.html' %}
+
+{% block messages %}
+    {% include 'includes/messages.html' %}
+{% endblock messages %}
 
 <div class="container-md">
     {% block content %}
@@ -30,14 +34,20 @@
 {% include 'includes/footer.html' %}
 <!--/ footer end  -->
 
-{% block messages %}
-    {% include 'includes/messages.html' %}
-{% endblock messages %}
-
-<!-- js -->
 {% block js %} {% endblock js %}
 
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+
+<script>
+    $(document).ready(function () {
+        {% if messages %}
+            // Toasts
+            $(".toast").toast({delay: 5000});
+            $(".toast").toast("show");
+        {% endif %}
+    });
+</script>
 
 </body>
 </html>

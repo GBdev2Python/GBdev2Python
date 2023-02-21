@@ -24,11 +24,11 @@ class CustomLoginView(LoginView):
         return ret
 
     def form_invalid(self, form):
-        for _unused, msg in form.error_messages.items():
+        for _, message in form.error_messages.items():
             messages.add_message(
                 self.request,
                 messages.WARNING,
-                mark_safe(f"Something goes worng:<br>{msg}"),
+                mark_safe(f"An error occurred:<br>{message}"),
             )
         return self.render_to_response(self.get_context_data(form=form))
 
