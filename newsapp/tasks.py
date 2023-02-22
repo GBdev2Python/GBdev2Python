@@ -10,7 +10,7 @@ import django
 import requests
 
 #if "zoneinfo" in sys.modules:
-    import zoneinfo
+import zoneinfo
 #elif "backports.zoneinfo" in sys.modules:
 #    from backports import zoneinfo
 
