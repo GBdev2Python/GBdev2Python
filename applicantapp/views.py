@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.views.generic import TemplateView, ListView, CreateView
 
-from applicantapp.forms import ResumeForm, AddApplicateForm
+from applicantapp.forms import ResumeForm
 from applicantapp.models import *
 
 
@@ -58,8 +58,22 @@ class ApplicantResume(ListView):
 
 # Заполнение профиля соискателя
 class ApplicantCreate(CreateView):
-    form_class = AddApplicateForm
+    model = Applicants
+    fields = ["image", "first_name", "last_name", "birthday", "town", "phone"]
+    labels = {
+        "image": "Аватар",
+        "first_name": "Имя",
+        "last_name": "Фамилия",
+        "birthday": "Дата рождения",
+        "town": "Город (населенный пункт)",
+    }
     template_name = "applicantapp/applicant_create.html"
+    def form_valid(self, form):
+        new_applicant = form.save()
+        new_applicant.user = self.request.user
+        new_applicant.save()
+        return redirect("applicant:applicant_cabinet", applicant_id=new_applicant.id)
+
 
 
 class ApplicantCabinet(TemplateView):

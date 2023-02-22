@@ -14,6 +14,7 @@
   {% if user.is_authenticated %}
     <p>customuser Логин: {{ user.username }}</p>
     <p>customuser ID: {{ user.pk }}</p>
+    <p>applicant ID: {{ applicant.id}}</p>
   {% endif %}
   <br><br>
 
@@ -28,7 +29,7 @@
 
 
       <div class="col-xl-8 col-md-8 col-lg-8">
-        <img class="avatar avatar--xl" src="{{ MEDIA_URL }}{{ applicant.image }}" />
+        <img class="avatar avatar--xl" src="{{ MEDIA_URL }}{{ applicant.image }}" width="30%">
         <ul>
           <p>Имя: {{ applicant.first_name }}</p>
           <p>Фамилия: {{ applicant.last_name }}</p>
@@ -56,9 +57,15 @@
       </div>
 
       <div class="col-xl-3 col-md-3 col-lg-3">
-        <a href="{% url 'applicant:create' %}" class="boxed-btn">Заполнить профиль</a>
+          <li>
+              <a href="#" class="boxed-btn4">Изменить профиль</a>
+              <a href="{% url 'applicant:new_resume' applicant.id%}" class="boxed-btn4">Создать резюме</a>
+              <a href="#" class="boxed-btn4">Просмотры резюме</a>
+              <a href="#" class="boxed-btn4">Отклики</a>
+              <a href="#" class="boxed-btn4">Избранные вакансии</a>
+          </li>
         <br>
-          <br>
+        <br>
       </div>
  </div>
 
