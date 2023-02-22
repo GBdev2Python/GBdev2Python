@@ -29,13 +29,7 @@
       <div class="col-xl-8 col-md-8 col-lg-8">
         <form class="form_empl" action="{% url 'employerapp:vacancy_create' %}" method="post" enctype="multipart/form-data">
           {% csrf_token %}
-<!--          {# {% for el in form %}-->
-<!--            &lt;!&ndash;    "id_for_label" идентификатор текстовой метки  &ndash;&gt;-->
-<!--            <h6><label class="form-label" for="{{ el.id_for_label }}">{{el.label}}: </label></h6>-->
-<!--            <p>{{ el }}</p>-->
-<!--            &lt;!&ndash;  отображение ошибки заполнения данных формы  &ndash;&gt;-->
-<!--            <div class="form-error">{{ el.errors }}</div>-->
-<!--          {% endfor %} #}-->
+
           {{ form.media }}
           {{ form|crispy }}
           <button type="submit">Добавить</button>
