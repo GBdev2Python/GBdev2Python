@@ -15,7 +15,7 @@
   {% if user.is_authenticated %}
     <p>customuser Логин: {{ user.username }}</p>
     <p>customuser ID: {{ user.pk }}</p>
-    <p>employerapp_employer ID: {{employer_qs.pk}}</p>
+    <p>employer ID: {{ user.employer.id }}</p>
   {% endif %}
   <br><br>
   <h3>Редактирование карточки организации</h3>

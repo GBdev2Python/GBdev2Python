@@ -1,6 +1,5 @@
 from ckeditor.widgets import CKEditorWidget
 from django import forms
-
 from employerapp.models import *
 
 
@@ -52,6 +51,12 @@ class UpdateEmployerForm(forms.ModelForm):
 
 class AddVacancyForm(forms.ModelForm):
 
+    # def __init__(self, *args, **kwargs):
+    #     ret = super().__init__(*args, **kwargs)
+    #     employer_id = 2
+    #     self.fields["employer_id"].initial = employer_id
+    #     return ret
+
     class Meta:
         model = VacancyHeader
         fields = [
@@ -68,6 +73,7 @@ class AddVacancyForm(forms.ModelForm):
         widgets = {
             # "skills_id": forms.CheckboxSelectMultiple(),
             "skills_id": forms.SelectMultiple(),
+            # "employer_id": forms.HiddenInput(),
         }
 
 

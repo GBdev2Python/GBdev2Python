@@ -15,6 +15,7 @@
   {% if user.is_authenticated %}
     <p>customuser Логин: {{ user.username }}</p>
     <p>customuser ID: {{ user.pk }}</p>
+    <p>employer ID: {{ user.employer.id }}</p>
   {% endif %}
   <br><br>
   <h3>Создание вакансии</h3>
@@ -29,6 +30,7 @@
         <form class="form_empl" action="{% url 'employerapp:vacancy_create' %}" method="post" enctype="multipart/form-data">
           {% csrf_token %}
 
+          {{ form.media }}
           {{ form|crispy }}
           <button type="submit">Добавить</button>
         </form>

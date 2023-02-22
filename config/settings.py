@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     "social_django",
     "crispy_forms",
     "ckeditor",
-    #"django_extensions",  # Для работы с консолью ORM. Дополнительно установить пакеты: ipython, django-extensions
+    # "django_extensions",  # Для работы с консолью ORM. Дополнительно установить пакеты: ipython, django-extensions
     # "django_celery_beat",
 ]
 
