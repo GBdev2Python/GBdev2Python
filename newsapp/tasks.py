@@ -9,10 +9,10 @@ import sys
 import django
 import requests
 
-# if "zoneinfo" in sys.modules:
-#import zoneinfo
-# elif "backports.zoneinfo" in sys.modules:
-from backports import zoneinfo
+#if "zoneinfo" in sys.modules:
+    import zoneinfo
+#elif "backports.zoneinfo" in sys.modules:
+#    from backports import zoneinfo
 
 from datetime import datetime
 from http import HTTPStatus
