@@ -7,7 +7,7 @@
     </style>
 
 <div class="container-md py-3">
-    <div id="sticky-header" class="main-header-area">
+    <div class="d-flex justify-content-between" >
         <div class="container-fluid ">
             <div class="header_bottom_border">
               <div class="row align-items-center">
@@ -40,15 +40,15 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a
                         class="nav-link {% if request.resolver_match.view_name == 'hhapp:candidate' %}active{% endif %}"
-                        href="{% url 'hhapp:candidate' %}">Resumes list</a></li>
+                        href="{% url 'hhapp:candidate' %}">Поиск по резюме</a></li>
                 <li class="nav-item"><a
                         class="nav-link {% if request.resolver_match.view_name == 'hhapp:jobs' %}active{% endif %}"
-                        href="{% url 'hhapp:jobs' %}">Vacancies list</a></li>
+                        href="{% url 'hhapp:jobs' %}">Поиск по вакансиям</a></li>
             </ul>
             {% if user.is_anonymous %}
                 <div class="d-flex bd-highlight mb-auto align-items-center">
-                <a class="link-light m-2 align-middle" href="{% url 'authapp:register' %}">Register</a>
-                <a class="boxed-btn3 m-2" href="{% url 'authapp:login' %}">Login</a>
+                <a class="link-light m-2 align-middle " href="{% url 'authapp:register' %}">Зарегистрироваться</a>
+                <a class="boxed-btn3 m-2" href="{% url 'authapp:login' %}">Вход</a>
             {% else %}
                 {% if user.is_company %}
                     {% if user.employer %}
