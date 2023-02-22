@@ -27,12 +27,13 @@ class CustomLoginView(LoginView):
             mark_safe(f'is_comp:{self.request.user.is_company}'
                       f'<br>name:{self.request.user.username}')
         )
-        if self.request.user.is_company:
-            user = Employer.objects.get(user_id=self.request.user.id).id
-            return HttpResponseRedirect(reverse_lazy('employerapp:employer_cabinet', args=(user,)))
-        else:
-            user = Applicants.objects.get(user_id=self.request.user.id).id
-            return HttpResponseRedirect(reverse_lazy('applicant:applicant_cabinet', args=(user,)))
+        return redirect('authapp:profile_info')
+        # if self.request.user.is_company:
+        #     user = Employer.objects.get(user_id=self.request.user.id).id
+        #     return HttpResponseRedirect(reverse_lazy('employerapp:employer_cabinet', args=(user,)))
+        # else:
+        #     user = Applicants.objects.get(user_id=self.request.user.id).id
+        #     return HttpResponseRedirect(reverse_lazy('applicant:applicant_cabinet', args=(user,)))
 
     def form_invalid(self, form):
         for _, message in form.error_messages.items():
@@ -66,12 +67,14 @@ def profile_info(request):
     form = CustomUser
     if request.user.is_company:
         if Employer.objects.filter(user=request.user):
-            return render(request, "profile/profile_info.html", {"form": form})
+            user = Employer.objects.get(user_id=request.user.id).id
+            return HttpResponseRedirect(reverse_lazy('employerapp:employer_cabinet', args=(user,)))
         else:
             return redirect('employerapp:employer_create')
     else:
         if Applicants.objects.filter(user=request.user):
-            return render(request, "profile/profile_info.html", {"form": form})
+            user = Applicants.objects.get(user_id=request.user.id).id
+            return HttpResponseRedirect(reverse_lazy('applicant:applicant_cabinet', args=(user,)))
         else:
             return redirect('applicantapp:create')
 
