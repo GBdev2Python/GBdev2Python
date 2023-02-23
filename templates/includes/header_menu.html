@@ -46,7 +46,7 @@
                         href="{% url 'hhapp:jobs' %}">Поиск по вакансиям</a></li>
             </ul>
             {% if user.is_anonymous %}
-                <div class="d-flex bd-highlight mb-auto align-items-center">
+                <div class="d-flex bd-highlight mb-auto align-items-center phone_num">
                 <a class="link-light m-2 align-middle " href="{% url 'authapp:register' %}">Зарегистрироваться</a>
                 <a class="boxed-btn3 m-2" href="{% url 'authapp:login' %}">Вход</a>
             {% else %}
