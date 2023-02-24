@@ -376,7 +376,7 @@ header-area .main-header-area {
   width: 100%;
   top: 0;
   z-index: 9;
-  position: absolute;
+  position: relative;
 }
 
 @media (max-width: 767px) {
