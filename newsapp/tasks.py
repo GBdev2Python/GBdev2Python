@@ -37,6 +37,7 @@ class NewsApiProcessor:
 
     def _get_news_from_api(self):
         response = requests.get(url=self.api_url, params=self.request_params)
+        print(response.url)
         if response.status_code == HTTPStatus.OK:
             self._news = response.json().get("articles") or {}
         else:
