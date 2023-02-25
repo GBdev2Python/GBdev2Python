@@ -158,6 +158,7 @@ CKEDITOR_CONFIGS = {
         "toolbar": "full",
     },
 }
+
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
@@ -175,3 +176,7 @@ CACHES = {
 CELERY_BROKER_URL = "redis://localhost:6379"
 CELERY_RESULT_BACKEND = "redis://localhost:6379"
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_FILE_PATH = '/tmp/app-messages'

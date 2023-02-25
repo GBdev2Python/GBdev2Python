@@ -1,7 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView, \
+    PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -54,7 +55,7 @@ class CustomLogoutView(LogoutView):
 class ProfileEditView(UserPassesTestMixin, UpdateView):
     model = get_user_model()
     form_class = forms.CustomUserChangeForm
-    template_name = "profile/profile_edit.html"
+    template_name = "registration/profile_edit.html"
 
     def test_func(self):
         return True if self.request.user.pk == self.kwargs.get("pk") else False
@@ -91,4 +92,44 @@ def register(request):
     return render(request, 'registration/register.html', {"form": form})
 
 
+class CustomPasswordChangeView(PasswordChangeView):
+    template_name = "registration/custom_password_change.html"
+    success_url = reverse_lazy("authapp:password_change_done")
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.add_message(self.request, messages.INFO, message=f'Password successfully changed')
+        return response
+
+
+class CustomPasswordChangeDoneView(PasswordChangeDoneView):
+    template_name = 'registration/custom_password_change_done.html'
+
+
+class CustomPasswordResetView(PasswordResetView):
+    template_name = 'registration/custom_password_reset_form.html'
+    success_url = reverse_lazy("authapp:password_reset_done")
+    form_class = forms.CustomPasswordResetForm
+    email_template_name = 'registration/custom_password_reset_email.html'
+
+    def form_valid(self, form):
+        opts = {
+            "use_https": self.request.is_secure(),
+            "token_generator": self.token_generator,
+            "from_email": self.from_email,
+            "email_template_name": self.email_template_name,
+            "subject_template_name": self.subject_template_name,
+            "request": self.request,
+            "html_email_template_name": self.html_email_template_name,
+            "extra_email_context": self.extra_email_context,
+        }
+        form.save(**opts)
+        return super().form_valid(form)
+
+
+class CustomPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'registration/custom_password_reset_done.html'
+
+
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = 'registration/custom_password_reset_confirm.html'

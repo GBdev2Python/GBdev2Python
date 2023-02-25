@@ -300,7 +300,7 @@ header-area .main-header-area {
   text-align: center;
 }
 
-.header-area .main-header-area .Appointment .phone_num a {
+.header-area .phone_num a {
     font-size: 14px;
     font-weight: 400;
     color: #FFFFFF;
@@ -376,7 +376,7 @@ header-area .main-header-area {
   width: 100%;
   top: 0;
   z-index: 9;
-  position: absolute;
+  position: relative;
 }
 
 @media (max-width: 767px) {
@@ -625,7 +625,7 @@ header-area .main-header-area {
   color: #00D363;
 }
 
-.header-area .main-header-area .Appointment .phone_num a:hover{
+.header-area .phone_num a:hover{
   color: #00D363;
 }
 
@@ -1026,7 +1026,7 @@ boxed-btn {
   border-radius: 5px;
   text-align: center;
   color: #fff !important;
-  text-transform: capitalize;
+  /*text-transform: capitalize;*/
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   -o-transition: 0.3s;

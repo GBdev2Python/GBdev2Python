@@ -8,8 +8,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
 from authapp.models import CustomUser
-from applicantapp.models import Applicants
-from employerapp.models import Employer
 
 
 class TestCaseIndexPage(StaticLiveServerTestCase):
@@ -63,16 +61,20 @@ class TestCaseIndexPage(StaticLiveServerTestCase):
     def test_register_and_login_applicant(self):
         self.driver.get(self.live_server_url)
 
+        sleep(10)
         custom_users_amount = CustomUser.objects.count()
         self.assertEqual(custom_users_amount, 5)
 
         WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(
             (By.CSS_SELECTOR, self.selectors['register_body']))
         )
+
+        sleep(5)
         register_button = self.driver.find_element(by=By.CSS_SELECTOR, value=self.selectors['register_body'])
         self.assertEqual(register_button.text, self.selectors['register_button_text'])
         register_button.click()
 
+        sleep(5)
         username_field = self.driver.find_element(by=By.CSS_SELECTOR, value="input[name='username']")
         email_field = self.driver.find_element(by=By.CSS_SELECTOR, value="input[name='email']")
         password1_field = self.driver.find_element(by=By.CSS_SELECTOR, value="input[name='password1']")
@@ -83,31 +85,39 @@ class TestCaseIndexPage(StaticLiveServerTestCase):
         password1_field.send_keys(self.applicant_data['password'])
         password2_field.send_keys(self.applicant_data['password'])
 
+        sleep(5)
         register_button = self.driver.find_element(by=By.CSS_SELECTOR, value='.container-md .row .btn')
         register_button.click()
 
+        sleep(5)
         self.assertEqual(CustomUser.objects.count(), 6)
         applicant_as_user = CustomUser.objects.last()
         self.assertEqual(applicant_as_user.username, self.applicant_data['username'])
         self.assertEqual(applicant_as_user.email, self.applicant_data['email'])
 
+        sleep(5)
         print(self.driver.current_url)
         self.driver.find_element(by=By.CSS_SELECTOR, value='.dropdown').click()
         self.driver.find_element(by=By.CSS_SELECTOR, value='.dropdown .dropdown-item.text-danger').click()
 
+        sleep(2)
         login_button = self.driver.find_element(by=By.CSS_SELECTOR, value='.navbar .boxed-btn3')
-        self.assertEqual(login_button.text, 'Login')
+        self.assertEqual(login_button.text, 'Вход')
         login_button.click()
+
+        sleep(2)
 
         print(self.driver.current_url)
         username = self.driver.find_element(by=By.CSS_SELECTOR, value='form input[name="username"]')
         password = self.driver.find_element(by=By.CSS_SELECTOR, value='form input[name="password"]')
         entry_button = self.driver.find_element(by=By.CSS_SELECTOR, value='form .btn-primary')
 
+        sleep(5)
         username.send_keys(self.applicant_data['username'])
         password.send_keys(self.applicant_data['password'])
         entry_button.click()
 
+        sleep(5)
         print(self.driver.current_url)
 
     def test_register_employer(self):

@@ -6,10 +6,6 @@
   <link rel="stylesheet" href="{% static 'employerapp/css/forms.css' %}"/>
 {% endblock stylesheet %}
 
-{% block messages %}
-  {% include 'includes/candidate_menu.html' %}
-{% endblock messages %}
-
 {% block content %}
   <br><br>
   {% if user.is_authenticated %}
@@ -18,8 +14,7 @@
     <p>employer ID: {{ user.employer.id }}</p>
   {% endif %}
   <br><br>
-  <h3>Создание вакансии</h3>
-  <b></b>
+
 
   <div class="container-fluid">
     <div class="row">
@@ -27,12 +22,14 @@
       </div>
 
       <div class="col-xl-8 col-md-8 col-lg-8">
+        <h2>Создание вакансии</h2>
+
         <form class="form_empl" action="{% url 'employerapp:vacancy_create' %}" method="post" enctype="multipart/form-data">
           {% csrf_token %}
 
           {{ form.media }}
           {{ form|crispy }}
-          <button type="submit">Добавить</button>
+          <button type="submit" class="boxed-btn3">Добавить</button>
         </form>
       </div>
 

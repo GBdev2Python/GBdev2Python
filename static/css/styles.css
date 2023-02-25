@@ -36,7 +36,7 @@ a:link {
     -moz-border-radius: 5px;
     border-radius: 5px;
     text-align: center;
-    text-transform: capitalize;
+    /*text-transform: capitalize;*/
     -webkit-transition: 0.3s;
     -moz-transition: 0.3s;
     -o-transition: 0.3s;
