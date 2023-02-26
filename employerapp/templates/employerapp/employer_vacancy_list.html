@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Список вакансий работодателя{% endblock title %}
-{% block messages %}
-  {% include 'includes/candidate_menu.html' %}
-{% endblock messages %}
+
 {% block content %}
   <br>
   <a href="{% url 'hhapp:main_page' %}">Домашняя страница</a> |
@@ -26,7 +24,7 @@
   {% endif %}
   <br><br>
 
-  <h3>Список всех вакансий работодателя</h3>
+  <h2>Список всех вакансий работодателя</h2>
   <br>
   <h3>{{ employer_lst_qs.employer_id}}</h3>
   <ul>

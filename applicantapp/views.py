@@ -76,16 +76,19 @@ class ApplicantCreate(CreateView):
 
 
 
-class ApplicantCabinet(TemplateView):
+class ApplicantCabinet(ListView):
+    model = Resumes
     template_name = "applicantapp/applicant_cabinet.html"
     pk_url_kwarg = "applicant_id"
+    paginate_by = 3
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        queryset = Resumes.objects.filter(applicants=self.kwargs["applicant_id"])
         context["applicant_list"] = Applicants.objects.all()
         context["applicant"] = Applicants.objects.get(id=self.kwargs["applicant_id"])
         context["resumes"] = Resumes.objects.filter(applicants=self.kwargs["applicant_id"])
-
+        context["queryset"] =queryset
         return context
 
 
