@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
-from django.views.generic import CreateView, DetailView, ListView, TemplateView, UpdateView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DetailView, ListView, TemplateView, UpdateView, DeleteView
 
 from authapp.models import *
 from employerapp.forms import *
@@ -102,13 +103,22 @@ class VacancyCreate(CreateView):
     # success_url = reverse_lazy("employerapp:employer_list")
 
 
-# Изменение карточки работодателя
+# Изменение вакансии работодателя
 class VacancyUpdate(UpdateView):
     model = VacancyHeader
     form_class = UpdateVacancyForm
     pk_url_kwarg = "vacancy_id"
     template_name = "employerapp/vacancy_update.html"
     # success_url = reverse_lazy("employerapp:employer_detail")
+
+
+# Удаление вакансии
+class VacancyDelete(DeleteView):
+    model = VacancyHeader
+    pk_url_kwarg = "vacancy_id"
+    template_name = "employerapp/vacancy_delete.html"
+    success_url = reverse_lazy("hhapp:main_page")
+    # success_url = reverse_lazy("employerapp:employer_detail", kwargs={'employer_id': 3})
 
 
 #  * * * * * * * * * * * * * * * * * * * *    В разработке   * * * * * * * * * * * * * * * * * * * *
@@ -129,10 +139,12 @@ class EmployerCabinet(TemplateView):
         # Проверка создания карточки работодателя
         context["employer_cab_cnt_qs"] = Employer.objects.filter(pk=self.kwargs["employer_id"]).count()
 
-        # Выборка всех вакансий работодателя (залогиненный пользователь)
-        # context["vacancy_cab_qs"] = VacancyHeader.objects.filter(employer_id_id=self.kwargs["employer_id"]) # неверная выборка
+        # Выборка всех публикованных вакансий работодателя
         emp = Employer.objects.get(id=self.kwargs["employer_id"])
-        context["vacancy_cab_qs"] = VacancyHeader.objects.filter(employer_id_id__employment=emp)
+        context["vacancy_cab_qs"] = VacancyHeader.objects.filter(employer_id_id__employment=emp, is_published=True)
+
+        # Выборка НЕопубликованных вакансий работодателя
+        context["vacancy_cab_not_qs"] = VacancyHeader.objects.filter(employer_id_id__employment=emp, is_published=False)
 
 
         # Открытие созданной карточки работодателя на редактирование

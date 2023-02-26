@@ -14,14 +14,15 @@ python manage.py dumpdata --format=json --indent=4 employerapp.VacancyHeader > e
 
 # загрузить данные из файла *.json в  базу данных (!!! существующие данные в базе при этом перезапишутся !!!)
 
-python manage.py loaddata customuser_01.json
+python manage.py loaddata 001_customuser.json
 
-python manage.py loaddata towns_01.json
-python manage.py loaddata skill_01.json
+python manage.py loaddata 002_skill.json
+python manage.py loaddata 003_towns.json
 
-python manage.py loaddata typeEmployment_01.json
-python manage.py loaddata employer_01.json
-python manage.py loaddata vacancyHeader_01.json
+
+python manage.py loaddata 004_type_employment.json
+python manage.py loaddata 005_employer.json
+python manage.py loaddata 006_vacancy_header.json
 
 
 
@@ -71,6 +72,7 @@ Moder-name
 Moder-surname
 
 # Соискатель
+# в фикстуруне НЕ записано
 user1
 user1@post.com
 1111qqqqa

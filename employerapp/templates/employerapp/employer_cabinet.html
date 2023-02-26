@@ -5,8 +5,6 @@
 {% block content %}
 <br>
 <a href="{% url 'hhapp:main_page' %}">Домашняя страница</a> |
-<a href="{% url 'authapp:login' %}">Логин</a> |
-<a href="{% url 'authapp:register' %}">Регистрация</a> |
 <a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |
 <a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |
 <br><br>
@@ -35,6 +33,15 @@
             <h3>Список опубликованных вакансий работодателя: {{ user.username }}:</h3>
             <ul>
                 {% for item in vacancy_cab_qs %}
+                <li>
+                    <a href="{{ item.get_absolute_url }}">{{ item.job_title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            <br><br>
+            <h3>Список черновиков вакансий работодателя: {{ user.username }}:</h3>
+            <ul>
+                {% for item in vacancy_cab_not_qs %}
                 <li>
                     <a href="{{ item.get_absolute_url }}">{{ item.job_title }}</a>
                 </li>
