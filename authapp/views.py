@@ -8,11 +8,11 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, ListView
 
 from authapp import forms
 from applicantapp.models import Applicants
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CustomModeratorUserEditView
 from .models import CustomUser
 from employerapp.models import Employer
 
@@ -58,7 +58,8 @@ class ProfileEditView(UserPassesTestMixin, UpdateView):
     template_name = "registration/profile_edit.html"
 
     def test_func(self):
-        return True if self.request.user.pk == self.kwargs.get("pk") else False
+        user_is_owner = self.request.user.pk == self.kwargs.get("pk")
+        return True if user_is_owner else False
 
     def get_success_url(self):
         return reverse_lazy("authapp:profile_edit", args=[self.request.user.pk])
@@ -86,6 +87,10 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user, backend='authapp.backends.EmailandUserBackend')
+            messages.add_message(
+                request=request, level=messages.INFO, message=f'New user "{user.username}" successfully created<br>'
+                                                              f'Confirmation email has sent to {user.email}'
+            )
             return redirect('authapp:profile_info')
     else:
         form = CustomUserCreationForm()
@@ -133,3 +138,34 @@ class CustomPasswordResetDoneView(PasswordResetDoneView):
 
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = 'registration/custom_password_reset_confirm.html'
+
+
+class UserModerationView(UserPassesTestMixin, ListView):
+    model = CustomUser
+    template_name = 'authapp/moderation.html'
+    context_object_name = 'users'
+
+    def get(self, request, *args, **kwargs):
+        ret = super().get(request, *args, **kwargs)
+        return ret
+
+    def test_func(self):
+        return True if self.request.user.is_staff or self.request.user.is_superuser else False
+
+    def get_queryset(self, *args, **kwargs):
+        ret = super().get_queryset()
+        print(ret)
+        # for i in CustomUser.objects.annotate(company=Case(When(is_company=1, then=Value("COMPANY")), When(is_company=0, then=Value("EMPLOYER")))):
+        return CustomUser.objects.all().order_by('is_active', '-is_company', 'email')
+
+
+class UserModeratorEditView(UserPassesTestMixin, UpdateView):
+    model = get_user_model()
+    form_class = CustomModeratorUserEditView
+    template_name = "registration/profile_edit.html"
+    success_url = reverse_lazy("authapp:moderation")
+
+    def test_func(self):
+        user_is_owner = self.request.user.pk == self.kwargs.get("pk")
+        user_is_staff_or_admin = self.request.user.is_superuser or self.request.user.is_staff
+        return True if user_is_owner or user_is_staff_or_admin else False
