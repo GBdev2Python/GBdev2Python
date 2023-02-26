@@ -88,10 +88,11 @@ class UpdateVacancyForm(forms.ModelForm):
             "town_id",
             "skills_id",
             "body",
-            "employer_id",
+            # "employer_id",
             "is_published",
         ]
         widgets = {
             # "skills_id": forms.CheckboxSelectMultiple(),
             "skills_id": forms.SelectMultiple(),
+            "employer_id": forms.HiddenInput(),
         }

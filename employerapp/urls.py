@@ -38,6 +38,12 @@ urlpatterns = [
     # Редактирование вакансии работодателя (конкретный пользователь)
     path("vacancy_update/<int:vacancy_id>/", VacancyUpdate.as_view(), name="vacancy_update"),
     # http://127.0.0.1:8000/employerapp/vacancy_update/2/
+
+    # удалить вакансию
+    path("vacancy_delete/<int:vacancy_id>/", VacancyDelete.as_view(), name="vacancy_delete"),
+    # http://127.0.0.1:8000/employerapp/vacancy_delate/7/
+
+
     # Кабинет работодателя (конкретный пользователь)
     path("employer_cabinet/<int:employer_id>/", EmployerCabinet.as_view(), name="employer_cabinet"),
     # http://127.0.0.1:8000/employerapp/employer_cabinet/1/
