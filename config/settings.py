@@ -14,7 +14,6 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv(BASE_DIR / "config/.env")
@@ -44,7 +43,7 @@ INSTALLED_APPS = [
     "social_django",
     "crispy_forms",
     "ckeditor",
-    # "django_extensions",  # Для работы с консолью ORM. Дополнительно установить пакеты: ipython, django-extensions
+    "django_extensions",  # Для работы с консолью ORM. Дополнительно установить пакеты: ipython, django-extensions
     # "django_celery_beat",
 ]
 
@@ -91,7 +90,6 @@ DATABASES = {
     }
 }
 
-
 AUTH_USER_MODEL = "authapp.CustomUser"
 # LOGIN_REDIRECT_URL = "hhapp:main_page"
 LOGIN_REDIRECT_URL = 'authapp:profile_info'
@@ -102,7 +100,6 @@ AUTHENTICATION_BACKENDS = (
     "social_core.backends.vk.VKOAuth2",
     "authapp.backends.EmailandUserBackend",
 )
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -176,7 +173,6 @@ CACHES = {
 CELERY_BROKER_URL = "redis://localhost:6379"
 CELERY_RESULT_BACKEND = "redis://localhost:6379"
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
-
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_FILE_PATH = '/tmp/app-messages'

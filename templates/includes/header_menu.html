@@ -1,12 +1,13 @@
 {% load static %}
 
- <style>
-        .slider_bg_1 {
-          background-image: url("{% static 'img/banner.png' %}");
-        }
-    </style>
+<style>
+    .slider_bg_1 {
+        background-image: url("{% static 'img/banner.png' %}");
+    }
+</style>
 
-<nav class="navbar navbar-expand-lg navbar-dark header-area" style="background-color: #037CE7"><!--style="background-image: url(/static/img/banner.png)"-->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #037CE7">
+    <!--style="background-image: url(/static/img/banner.png)"-->
     <div class="container">
         <a class="navbar-brand" href="{% url 'hhapp:main_page' %}">
             <img src="/static/img/logoJob.png" alt="logo">
@@ -27,61 +28,72 @@
             </ul>
             {% if user.is_anonymous %}
                 <div class="d-flex bd-highlight mb-auto align-items-center phone_num">
-                <a class="link-light m-2 align-middle " href="{% url 'authapp:register' %}">Зарегистрироваться</a>
-                <a class="boxed-btn3 m-2" href="{% url 'authapp:login' %}">Вход</a>
-            {% else %}
-                {% if user.is_company %}
-                    {% if user.employer %}
-                        <a href="{% url 'employerapp:vacancy_create' %}" class="btn btn-outline-success rounded-pill m-1">Создать вакансию</a>
+                    <a class="link-light m-2 align-middle " href="{% url 'authapp:register' %}">Зарегистрироваться</a>
+                    <a class="boxed-btn3 m-2" href="{% url 'authapp:login' %}">Вход</a>
+
                     {% else %}
-                         <a href="{% url 'employerapp:employer_create' %}" class="btn btn-outline-success rounded-pill m-1">Запонить профиль компании</a>
+                    {% if user.is_company %}
+                        {% if user.employer %}
+                            <a href="{% url 'employerapp:vacancy_create' %}"
+                               class="btn btn-outline-success rounded-pill m-1">Создать вакансию</a>
+                        {% else %}
+                            <a href="{% url 'employerapp:employer_create' %}"
+                               class="btn btn-outline-success rounded-pill m-1">Запонить профиль компании</a>
+                        {% endif %}
+                    {% else %}
+                        {% if user.applicants %}
+                            <a href="{% url 'applicant:new_resume' applicant_id=user.applicants.id %}"
+                               class="btn btn-outline-success rounded-pill">Создать резюме</a>
+                        {% else %}
+                            <a href="{% url 'applicant:create' %}" class="btn btn-outline-success rounded-pill">Заполнить
+                                профиль соискателя</a>
+                        {% endif %}
                     {% endif %}
+
                     <div class="dropdown align-items-center">
                         <button class="btn profile-icon m-1" type="button" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            {% if user.employer %}
-                                <li><a href="{% url 'employerapp:employer_cabinet' employer_id=user.employer.id %}" class="dropdown-item">Кабинет работодателя</a></li>
+                            {% if user.is_company %}
+                                {% if user.employer %}
+                                    <li><a href="{% url 'employerapp:employer_cabinet' employer_id=user.employer.id %}"
+                                           class="dropdown-item">Кабинет работодателя</a></li>
+                                {% else %}
+                                    <li><a href="{% url 'employerapp:employer_create' %}" class="dropdown-item">Запонить
+                                        профиль компании</a></li>
+                                {% endif %}
                             {% else %}
-                                <li><a href="{% url 'employerapp:employer_create' %}" class="dropdown-item">Запонить профиль компании</a></li>
+                                {% if user.applicants %}
+                                    <li>
+                                        <a href="{% url 'applicant:applicant_cabinet' applicant_id=user.applicants.id %}"
+                                           class="dropdown-item">Кабинет соискателя</a></li>
+                                {% else %}
+                                    <li><a href="{% url 'applicant:create' %}" class="dropdown-item">Заполнить профиль
+                                        соискателя</a></li>
+                                {% endif %}
                             {% endif %}
-                            <li><a href="{% url 'authapp:password_change' pk=request.user.id %}" class="dropdown-item">Сменить пароль</a></li>
+                            <li><a href="{% url 'authapp:password_change' pk=request.user.id %}" class="dropdown-item">Сменить
+                                пароль</a></li>
                             <li><a href="" class="dropdown-item disabled">Информация?</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            {% if user.is_staff %}
+                                <li><a class="dropdown-item" href="{% url 'authapp:moderation' %}">Модерация</a></li>
+                            {% endif %}
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a href="{% url 'authapp:logout' %}" class="dropdown-item text-danger">Выйти</a></li>
                         </ul>
                     </div>
-                {% else %}
-                    {% if user.applicants %}
-                        <a href="{% url 'applicant:new_resume' applicant_id=user.applicants.id %}" class="btn btn-outline-success rounded-pill">Создать резюме</a>
-                    {% else %}
-                        <a href="{% url 'applicant:create' %}" class="btn btn-outline-success rounded-pill">Заполнить профиль соискателя</a>
-                    {% endif %}
-                    <div class="dropdown">
-                        <button class="btn profile-icon m-1" type="button" id="dropdownMenuButton1"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            {% if user.applicants %}
-                                <li><a href="{% url 'applicant:applicant_cabinet' applicant_id=user.applicants.id %}" class="dropdown-item">Кабинет соискателя</a></li>
-                            {% else %}
-                                 <li><a href="{% url 'applicant:create' %}" class="dropdown-item">Заполнить профиль  соискателя</a></li>
-                            {% endif %}
-                            <li><a href="{% url 'authapp:password_change' pk=request.user.id %}" class="dropdown-item">Сменить пароль</a></li>
-                            <li><a href="" class="dropdown-item disabled">Информация?</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a href="{% url 'authapp:logout' %}" class="dropdown-item text-danger">Выйти</a></li>
-                        </ul>
-                    </div>
-                {% endif %}
+                </div>
             {% endif %}
-            </div>
+
         </div>
+    </div>
     </div>
 </nav>
 
-  <!-- slider_area_start -->
+<!-- slider_area_start -->
 {% if request.resolver_match.view_name == 'hhapp:main_page' %}
     <div class="slider_area ">
         <div class="single_slider  d-flex align-items-center slider_bg_1">
@@ -94,12 +106,14 @@
                             <p style="width: 635px;">Всегда самые свежие новости на рынке труда!</p>
                             {% if user.is_authenticated %}
                                 {% if user.is_company %}
-                                    <a href="{% url 'employerapp:vacancy_create' %}" class="boxed-btn3 m-2">Разместить вакансию</a>
+                                    <a href="{% url 'employerapp:vacancy_create' %}" class="boxed-btn3 m-2">Разместить
+                                        вакансию</a>
                                 {% else %}
-                                    <a href="{% url 'applicant:new_resume' applicant_id=user.id %}" class="boxed-btn3 m-2">Создать резюме</a>
+                                    <a href="{% url 'applicant:new_resume' applicant_id=user.id %}"
+                                       class="boxed-btn3 m-2">Создать резюме</a>
                                 {% endif %}
                             {% else %}
-                                <a href="{% url 'authapp:register'%}" class="boxed-btn3 m-2">Создать резюме</a>
+                                <a href="{% url 'authapp:register' %}" class="boxed-btn3 m-2">Создать резюме</a>
                             {% endif %}
                         </div>
                     </div>
@@ -113,5 +127,5 @@
         </div>
     </div>
 {% endif %}
-    <!-- slider_area_end -->
+<!-- slider_area_end -->
 

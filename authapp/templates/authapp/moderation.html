@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="row row-cols-3 row-cols-md-2">
+        {% for user in users %}
+            <div class="col my-2">
+                <div class="card {% if user.is_active %} border-success {% else %} border-danger {% endif %} ">
+                    <div class="card-body">
+                        <h5 class="card-title {% if user.is_active %} text-success {% else %} text-danger {% endif %}">{{ user }}</h5>
+                        <p class="mb-0"><small class="text-muted">active: {{ user.is_active }}</small></p>
+                        <p class="mb-0"><small class="text-muted">company: {{ user.is_company }}</small></p>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn {% if user.is_active %} btn-outline-success {% else %} btn-outline-danger {% endif %}"
+                           href="{% url 'authapp:moderator_edit' pk=user.id %}">
+                            Edit profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock content %}
