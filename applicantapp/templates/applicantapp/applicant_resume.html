@@ -20,14 +20,13 @@
   <li>{{ skill.name }}</li>
 </ul>
 {% endfor %}
-
 <p>Требуемая работа: {{ resume.required_job }}</p>
 <p>Заработная плата: {{ resume.salary }}</p>
 <p>Место последней работы: {{ resume.last_job }}</p>
 <p>Образование: {{ resume.education }}</p>
-
-<a class="boxed-btn" href="{% url 'applicant:applicant_cabinet' resume.applicants.id %}">Назад</a>
-<a class="boxed-btn" href="{% url 'applicant:update_resume' resume.id %}"> Редактировать резюме</a>
-<a class="boxed-btn" href="{% url 'applicant:delete_resume' resume.id %}"> Удалить резюме</a>
-
+<a style="text-decoration: none" class="boxed-btn" onclick="javascript:history.back(); return true;"> Назад </a>
+{% if request.user.id == resume.applicants.user.id %}
+  <a class="boxed-btn" href="{% url 'applicant:update_resume' resume.id %}" text-decoration: underline> Редактировать резюме </a>
+  <a class="boxed-btn" href="{% url 'applicant:delete_resume' resume.id %}"> Удалить резюме </a>
+{% endif %}
 {% endblock content %}

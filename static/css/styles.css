@@ -75,6 +75,14 @@ a:link {
     justify-content: center;
 }
 
+.logo-job {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 .index-div::after {
     content: "";
     background-image: url('/static/img/banner.png');
@@ -85,4 +93,21 @@ a:link {
     bottom: 0px;
     left: 0px;
     opacity: 0.5;
+}
+
+/*.thumb {
+  position: relative;
+  width: 160px;
+  height: 60px;
+  padding-right: 10px;
+}*/
+
+.location {
+ margin-top: 0;
+ margin-bottom: 1rem;
+ color: #7A838B;
+}
+
+.ml-1 {
+  padding-left: 15rem;
 }
