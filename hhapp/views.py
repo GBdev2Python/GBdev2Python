@@ -3,6 +3,7 @@ from django.db.models import Prefetch, Count
 
 from newsapp.models import News
 from employerapp.models import Employer, VacancyHeader
+from applicantapp.models import Resumes, Applicants
 
 
 class MainPageView(TemplateView):
@@ -31,7 +32,27 @@ class JobsListView(ListView):
         return context
 
 
-class CandidateListView(TemplateView):
-
+class CandidateListView(ListView):
+    model = Resumes
 
     template_name = "hhapp/candidate.html"
+    paginate_by = 9
+
+    def get_queryset(self):
+
+        if self.request.user.is_authenticated:
+            curent_applicant = Applicants.objects.filter(user=self.request.user)
+            obj = Resumes.objects.exclude(applicants__in=curent_applicant)
+        else:
+            obj = Resumes.objects.all()
+        return obj.filter(is_published=True)
+
+
+   # def get_context_data(self, **kwargs):
+    #    context = super().get_context_data(**kwargs)
+     #   curent_applicant = Applicants.objects.filter(user=self.request.user)
+      #  queryset = Resumes.objects.filter(is_published=1)
+       # print (queryset)
+        #context["resumes"] = Resumes.objects.filter(applicants=self.kwargs["applicant_id"])
+      #  context["queryset"] =queryset
+      #  return context
