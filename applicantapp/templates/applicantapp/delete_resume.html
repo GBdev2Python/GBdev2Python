@@ -1,23 +1,19 @@
 {% extends 'base.html' %}
-
-{% block messages %}
-    <div class="bradcam_area bradcam_bg_1"></div>
-{% endblock messages %}
+{% load static %}
 
 {% block content %}
-
 
   <main class="formPage my-xl">
     <div class="content-box">
       <div class="formWrapper">
         <br>
-        <form class="form" action="" method="POST">
+        <form class="form py-5 my-4" action="" method="POST">
           {% csrf_token %}
           <p>Вы действительно хотите удалить "{{ object }}"?</p>
 
-          <a class="boxed-btn" href="{% url 'applicant:applicant_by_id' object.applicants.id %}">Назад</a>
+          <a class="my-4" href="{% url 'applicant:applicant_by_id' object.applicants.id %}">Назад</a>
 
-          <input class="boxed-btn2" type="submit" value="Удалить" />
+          <input class="boxed-btn2 m-4" type="submit" value="Удалить" />
         </form>
       </div>
     </div>

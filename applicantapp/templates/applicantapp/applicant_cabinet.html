@@ -18,18 +18,18 @@
   {% endif %}
   <br><br>
 
-  <div class="container-fluid">
-    <h3>Личный кабинет соискателя</h3>
+
 
     <br>
-  </div>
- <div class="row">
+
+    <div class="row">
       <div class="col-xl-1 col-md-1 col-lg-1">
       </div>
 
+        <h2 class="my-4">Личный кабинет соискателя</h2>
 
       <div class="col-xl-8 col-md-8 col-lg-8">
-        <img class="avatar avatar--xl" src="{{ MEDIA_URL }}{{ applicant.image }}" width="30%">
+        <img class="avatar avatar--xl my-4" src="{{ MEDIA_URL }}{{ applicant.image }}" width="30%">
         <ul>
           <p>Имя: {{ applicant.first_name }}</p>
           <p>Фамилия: {{ applicant.last_name }}</p>
@@ -49,25 +49,28 @@
               {%else%}
                 <p>Статус публикации: Черновик</p>
               {% endif %}
-                  <a class="boxed-btn" href="{% url 'applicant:applicant_resume' resume.id %}"> Просмотр</a>
-                  <a class="boxed-btn" href="{% url 'applicant:update_resume' resume.id %}"> Редактировать резюме</a>
-                  <a class="boxed-btn" href="{% url 'applicant:delete_resume' resume.id %}"> Удалить резюме</a>
+                  <a class="boxed-btn4 my-2" href="{% url 'applicant:applicant_resume' resume.id %}"> Просмотр</a>
+                  <a class="boxed-btn4 m-2" href="{% url 'applicant:update_resume' resume.id %}"> Редактировать резюме</a>
+                  <a class="boxed-btn4 my-2" href="{% url 'applicant:delete_resume' resume.id %}"> Удалить резюме</a>
             </ul>
         {% endfor %}
       </div>
 
       <div class="col-xl-3 col-md-3 col-lg-3">
+        <ul>
           <li>
-              <a href="{% url 'authapp:profile_edit' pk=request.user.id %}" class="boxed-btn4">Изменить профиль</a>
-              <a href="{% url 'applicant:new_resume' applicant.id%}" class="boxed-btn4">Создать резюме</a>
-              <a href="#" class="boxed-btn4">Просмотры резюме</a>
-              <a href="#" class="boxed-btn4">Отклики</a>
-              <a href="#" class="boxed-btn4">Избранные вакансии</a>
+              <a href="{% url 'authapp:profile_edit' pk=request.user.id %}" class="boxed-btn4 m-2">Изменить профиль</a>
+              <a href="{% url 'applicant:new_resume' applicant.id%}" class="boxed-btn4 m-2">Создать резюме</a>
+              <a href="#" class="boxed-btn4 m-2">Просмотры резюме</a>
+              <a href="#" class="boxed-btn4 m-2">Отклики</a>
+              <a href="#" class="boxed-btn4 m-2">Избранные вакансии</a>
           </li>
+        </ul>
         <br>
         <br>
       </div>
- </div>
+    </div>
+
 
  {# Пагинация #}
     {% if page_obj.has_other_pages %}

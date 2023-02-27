@@ -9,14 +9,15 @@
 
 {% block content %}
 
-<h1> Соискатель: {{ applicant.first_name}} {{applicant.last_name }}</h1>
+<h2 class="py-3"> Соискатель: {{ applicant.first_name}} {{applicant.last_name }}</h2>
 <form action="" method="post" enctype="multipart/form-data">
   {% csrf_token %}
 
   {{ form|crispy }}
 
-  <a class="boxed-btn" href="{% url 'applicant:applicant_cabinet' applicant.id %}">Назад</a>
-  <button type="submit" class='boxed-btn3'> Сохранить</button>
-
+  <div class="my-4">
+    <a class="m-2" href="{% url 'applicant:applicant_cabinet' applicant.id %}">Назад</a>
+    <button type="submit" class='boxed-btn3 m-2'> Сохранить</button>
+  </div>
 </form>
 {% endblock content %}
