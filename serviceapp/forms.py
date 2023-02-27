@@ -7,4 +7,4 @@ class ResponseForm(forms.ModelForm):
 
     class Meta:
         model = Response
-        fields = ["cover_letter", "resume"]
+        fields = ["cover_letter"]

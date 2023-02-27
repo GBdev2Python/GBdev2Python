@@ -1,18 +1,37 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404, redirect
+from django.template import context
+from django.views.generic import CreateView
+
+from applicantapp.models import Resumes, Applicants
 from .models import Response
-from employerapp.models import VacancyHeader
+from employerapp.models import VacancyHeader, Employer
 from .forms import ResponseForm
 from django.contrib import messages
+
+
+# class ResponseCreate(LoginRequiredMixin, CreateView):
+#     form_class = ResponseForm
+#     template_name = "serviceapp/response.html"
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context["resume"] = Resumes.objects.filter(id=Employer.objects.get(id = self.request.user.applicants.id).id)
+#         #print(context["resume"])
+#         return context
+
 
 def response(request, vacancyheader):
     if request.user.is_authenticated:
         vacancy = VacancyHeader.objects.get(id=vacancyheader)
-        print(request)
         if request.method == 'POST':
             form = ResponseForm(request.POST)
+            resume = Resumes.objects.get(id=request.POST['resume_id'])
+            print(request.POST)
             if form.is_valid():
                 resp = form.save(commit=False)
                 resp.vacancyheader = vacancy
+                resp.resume = resume
                 resp.save()
                 return redirect('/news/')
             else:
@@ -22,4 +41,9 @@ def response(request, vacancyheader):
     else:
         messages.error(request, 'Пользователь не авторизовон')
         form = {}
-    return render(request, 'serviceapp/response.html', {"form": form})
+    applicant = Applicants.objects.get(id = request.user.applicants.id).id
+    resume = Resumes.objects.all().filter(applicants_id=applicant)
+    print(resume.count)
+    if resume.count() == 0:
+        return redirect('applicantapp:new_resume', applicant_id = applicant)
+    return render(request, 'serviceapp/response.html', {"form": form, "resume": resume})
