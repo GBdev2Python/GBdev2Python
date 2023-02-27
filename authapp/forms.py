@@ -26,11 +26,15 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class CustomUserChangeForm(forms.ModelForm):
+    # date_joined = forms.CharField(widget=forms.TextInput(attrs={"readonly": "readonly"}))
+
     class Meta:
         model = get_user_model()
         fields = (
             "username",
+            "login",
             "email",
+            "is_company",
         )
         field_classes = {"username": UsernameField}
 
@@ -51,3 +55,16 @@ class CustomPasswordResetForm(PasswordResetForm):
     ):
         super().send_mail(subject_template_name, email_template_name, context,
                           from_email, to_email, html_email_template_name=None,)
+
+
+class CustomModeratorUserEditForm(forms.ModelForm):
+
+    class Meta:
+        model = get_user_model()
+        fields = (
+            "username",
+            "login",
+            "email",
+            "is_company",
+            "is_active",
+        )

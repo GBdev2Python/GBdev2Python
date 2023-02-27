@@ -8,11 +8,11 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import UpdateView, ListView
 
 from authapp import forms
 from applicantapp.models import Applicants
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CustomModeratorUserEditForm
 from .models import CustomUser
 from employerapp.models import Employer
 
@@ -133,3 +133,44 @@ class CustomPasswordResetDoneView(PasswordResetDoneView):
 
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = 'registration/custom_password_reset_confirm.html'
+
+
+class UserModerationView(UserPassesTestMixin, ListView):
+    model = CustomUser
+    template_name = 'authapp/moderation.html'
+    context_object_name = 'users'
+    ordering = ['is_active', '-is_company', 'email']
+
+    def get(self, request, *args, **kwargs):
+        ret = super().get(request, *args, **kwargs)
+        return ret
+
+    def test_func(self):
+        return True if self.request.user.is_staff or self.request.user.is_superuser else False
+
+    def get_queryset(self, *args, **kwargs):
+        if self.request.GET:
+            queryset = CustomUser.objects.all()
+            user_status = int(self.request.GET.get("user_status"))
+
+            if user_status >= 0:
+                queryset = queryset.filter(is_company=user_status)
+
+            if self.request.GET.get("username") is not None:
+                queryset = queryset.filter(username__icontains=self.request.GET.get("username"))
+
+            return queryset.order_by(*self.ordering)
+
+        return CustomUser.objects.all().order_by(*self.ordering)
+
+
+class UserModeratorEditView(UserPassesTestMixin, UpdateView):
+    model = get_user_model()
+    form_class = CustomModeratorUserEditForm
+    template_name = "registration/profile_edit.html"
+    success_url = reverse_lazy("authapp:moderation")
+
+    def test_func(self):
+        user_is_owner = self.request.user.pk == self.kwargs.get("pk")
+        user_is_staff_or_admin = self.request.user.is_superuser or self.request.user.is_staff
+        return True if user_is_owner or user_is_staff_or_admin else False
