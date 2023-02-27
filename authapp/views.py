@@ -141,6 +141,11 @@ class UserModerationView(UserPassesTestMixin, ListView):
     context_object_name = 'users'
     ordering = ['is_active', '-is_company', 'email']
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
+        context['username_parameter'] = self.request.GET.get("username", "")
+        return context
+
     def get(self, request, *args, **kwargs):
         ret = super().get(request, *args, **kwargs)
         return ret
