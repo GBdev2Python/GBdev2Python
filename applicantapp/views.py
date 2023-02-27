@@ -91,7 +91,7 @@ class ApplicantCabinet(ListView):
         context["applicant_list"] = Applicants.objects.all()
         context["applicant"] = Applicants.objects.get(id=self.kwargs["applicant_id"])
         context["resumes"] = Resumes.objects.filter(applicants=self.kwargs["applicant_id"])
-        context["queryset"] =queryset
+        context["queryset"] = queryset
         return context
 
 

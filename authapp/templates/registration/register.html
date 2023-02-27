@@ -1,42 +1,45 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
   <div class="row justify-content-center py-5 my-4">
     <div class="col-lg-6">
       <h2>Регистрация нового пользователя</h2>
+
       <form method="post" class="mt-2" enctype="multipart/form-data">
         {% csrf_token %}
-        <div id="div_id_username" class="form-group"> <label for="id_username" class=" requiredField">
-          Имя пользователя<span class="asteriskField">*</span> </label>
-          <div class=""> <input type="text" name="username" maxlength="150" class="textinput textInput form-control"
-            required="" id="id_username">
-          </div>
-        </div>
-        <div id="div_id_email" class="form-group">
-          <label for="id_email" class=" requiredField">
-            Email<span class="asteriskField">*</span> </label>
-          <div class=""> <input type="text" name="email" maxlength="256" class="textinput textInput form-control"
-            required="" id="id_email">
-          </div>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input position-static" type="checkbox" id="is_company" name="is_company">
-          <label class="form-check-label" for="is_company">Компания</label>
-        </div>
-        <div id="div_id_password1" class="form-group"> <label for="id_password1" class=" requiredField">
-          Пароль<span class="asteriskField">*</span> </label>
-          <div class=""> <input type="password" name="password1" autocomplete="new-password"
-            class="textinput textInput form-control" required="" id="id_password1">
-          </div>
-        </div>
-        <div id="div_id_password2" class="form-group"> <label for="id_password2" class=" requiredField">
-          Пароль подтверждение<span class="asteriskField">*</span> </label>
-          <div class=""> <input type="password" name="password2" autocomplete="new-password"
-            class="textinput textInput form-control" required="" id="id_password2">
-          </div>
-        </div>
-
-
+        {{ form|crispy }}
+{#        <div id="div_id_username" class="form-group"> <label for="id_username" class=" requiredField">#}
+{#          Имя пользователя<span class="asteriskField">*</span> </label>#}
+{#          <div class=""> <input type="text" name="username" maxlength="150" class="textinput textInput form-control"#}
+{#            required="" id="id_username">#}
+{#          </div>#}
+{#        </div>#}
+{#        <div id="div_id_email" class="form-group">#}
+{#          <label for="id_email" class=" requiredField">#}
+{#            Email<span class="asteriskField">*</span> </label>#}
+{#          <div class=""> <input type="text" name="email" maxlength="256" class="textinput textInput form-control"#}
+{#            required="" id="id_email">#}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="form-check">#}
+{#          <input class="form-check-input position-static" type="checkbox" id="is_company" name="is_company">#}
+{#          <label class="form-check-label" for="is_company">Компания</label>#}
+{#        </div>#}
+{#        <div id="div_id_password1" class="form-group"> <label for="id_password1" class=" requiredField">#}
+{#          Пароль<span class="asteriskField">*</span> </label>#}
+{#          <div class=""> <input type="password" name="password1" autocomplete="new-password"#}
+{#            class="textinput textInput form-control" required="" id="id_password1">#}
+{#          </div>#}
+{#        </div>#}
+{#        <div id="div_id_password2" class="form-group"> <label for="id_password2" class=" requiredField">#}
+{#          Пароль подтверждение<span class="asteriskField">*</span> </label>#}
+{#          <div class=""> <input type="password" name="password2" autocomplete="new-password"#}
+{#            class="textinput textInput form-control" required="" id="id_password2">#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{##}
         <button type="submit" class="btn btn-primary btn-block boxed-btn3" style="margin-top: 12px;">Зарегистрироваться</button>
       </form>
     </div>

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+from typing import Dict
 
 from dotenv import load_dotenv
 
@@ -34,7 +35,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     "authapp",
     "applicantapp",
     "employerapp.apps.EmployerappConfig",
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "social_django",
     "crispy_forms",
     "ckeditor",
+    "django_filters",
     # "django_extensions",  # Для работы с консолью ORM. Дополнительно установить пакеты: ipython, django-extensions
     # "django_celery_beat",
 ]

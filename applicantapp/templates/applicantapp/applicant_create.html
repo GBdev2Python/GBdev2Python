@@ -2,10 +2,6 @@
 {% load static crispy_forms_tags %}
 {% block title %}Профиль соискателя{% endblock title %}
 
-{% block stylesheet %}
-  <link rel="stylesheet" href="{% static 'applocantapp/css/applicant_style.css' %}"/>
-{% endblock stylesheet %}
-
 {% block content %}
   <br><br>
   {% if user.is_authenticated %}
@@ -25,9 +21,7 @@
               <button type="submit" class="boxed-btn3 " style="margin-top: 12px;">Добавить</button>
             </form>
           </div>
-          <div class="col-xl-3 col-md-3 col-lg-3 text-center">
-            <p>Боковая колонка</p>
-          </div>
+
         </div>
       </div>
      </div>

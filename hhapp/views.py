@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView, ListView
 from django.db.models import Prefetch, Count
+from .filter import VacancyFilter
 
 from newsapp.models import News
 from employerapp.models import Employer, VacancyHeader
@@ -25,10 +26,12 @@ class JobsListView(ListView):
     model = VacancyHeader
     template_name = "hhapp/jobs.html"
 
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["all_vacancy_lst_qs"] = VacancyHeader.objects.all().filter(is_published=True)
         # context["employer_lst_qs"] = Employer.objects.all()
+        context['filter'] = VacancyFilter(self.request.GET, queryset=self.get_queryset())
         return context
 
 

@@ -4,13 +4,6 @@
 
 {% block content %}
 
-  <br>
-  <a href="{% url 'hhapp:main_page' %}">Домашняя страница</a> |
-  <a href="{% url 'authapp:login' %}">Логин</a> |
-  <a href="{% url 'authapp:register' %}">Регистрация</a> |
-  <a href="{% url 'applicant:list' %}">Список соискателей</a>|
-  <a href="{% url 'applicant:resume_list' %}">Список резюме</a>  |
-  <br><br>
   {% if user.is_authenticated %}
     <p>customuser Логин: {{ user.username }}</p>
     <p>customuser ID: {{ user.pk }}</p>
