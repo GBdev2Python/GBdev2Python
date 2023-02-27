@@ -18,10 +18,10 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xl-1 col-md-1 col-lg-1">
-        </div>
-        <div class="col-xl-8 col-md-8 col-lg-8">
+
+        <div class="col-xl-9 col-md-9 col-lg-9">
             <h2>Страница выбранной вакансии</h2>
+            <br>
             <p>Организация: {{ vacancy_qs.employer_id.employment|safe }}</p>
             <p>Вакансия: {{ vacancy_qs.job_title }}</p>
             <p>Требуемый опыт работы: {{ vacancy_qs.get_experience_display }}</p>
@@ -51,12 +51,12 @@
             {% endif %}
         </div>
         <div class="col-xl-3 col-md-3 col-lg-3">
-            <p>Боковая колонка для рекламы или фильтров</p>
+<!--            <p>Боковая колонка для рекламы или фильтров</p>-->
             {% if user.is_company %}
-            <a href="{% url 'employerapp:vacancy_update'  vacancy_id=vacancy_qs.pk %}" class="btn btn-info">Редактировать
+            <a href="{% url 'employerapp:vacancy_update'  vacancy_id=vacancy_qs.pk %}" class="boxed-btn3 btn-info">Редактировать
                 вакансию</a>
             <br><br>
-            <a href="{% url 'employerapp:vacancy_delete'  vacancy_id=vacancy_qs.pk %}" class="btn btn-danger">Удалить
+            <a href="{% url 'employerapp:vacancy_delete'  vacancy_id=vacancy_qs.pk %}" class="boxed-btn2 btn-danger">Удалить
                 вакансию</a>
             {% endif %}
         </div>

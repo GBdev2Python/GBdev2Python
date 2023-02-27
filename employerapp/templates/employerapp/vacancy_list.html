@@ -15,21 +15,21 @@
   {% endif %}
   <br><br>
 
-  <h2>Список всех вакансий сайта</h2>
-  <br><br>
+
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xl-1 col-md-1 col-lg-1">
-      </div>
+
       <div class="col-xl-8 col-md-8 col-lg-8">
+        <h2 class="my-4">Список всех вакансий сайта</h2>
+
         <ul>
           {% for item in all_vacancy_lst_qs %}
-            <li>
-              <a href="{{ item.get_absolute_url }}">{{ item.job_title }}</a>
-              <p>&nbsp;&nbsp; Размещено: {{ item.created|date:"Y.m.d" }}</p>
-              <p>&nbsp;&nbsp; Опыт работы: {{ item.get_experience_display }}</p>
-              <p>&nbsp;&nbsp; Работодатель: {{ item.employer_id }}</p>
-              <p>&nbsp;&nbsp; Город работы: {{ item.town_id }}</p>
+            <li class="my-4">
+             <h5><a href="{{ item.get_absolute_url }}">{{ item.job_title }}</a></h5>
+              <p>&nbsp;&nbsp; Размещено: {{ item.created|date:"Y.m.d" }}<br>
+              &nbsp;&nbsp; Опыт работы: {{ item.get_experience_display }}<br>
+              &nbsp;&nbsp; Работодатель: {{ item.employer_id }}<br>
+              &nbsp;&nbsp; Город работы: {{ item.town_id }}</p>
             </li>
           {% endfor %}
         </ul>

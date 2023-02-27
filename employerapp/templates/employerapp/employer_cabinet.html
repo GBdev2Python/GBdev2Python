@@ -16,19 +16,19 @@
 <br><br>
 
 <div class="container-fluid">
-    <h3>Личный кабинет работодателя</h3>
-    <br>
+
     <div class="row">
         <div class="col-xl-1 col-md-1 col-lg-1">
         </div>
-
-        <div class="col-xl-8 col-md-8 col-lg-8">
+        <h2>Личный кабинет работодателя</h2>
+            <br>
+        <div class="col-xl-8 col-md-8 col-lg-8 py-5">
 
             {% for item in employer_cab_comp_qs %}
             <h3>Компания работодателя: </h3><a href="{{ item.get_absolute_url }}">{{ item.employment }}</a>
             {% endfor %}
 
-            <br><br>
+
 
             <h3>Список опубликованных вакансий работодателя: {{ user.username }}:</h3>
             <ul>
@@ -38,7 +38,7 @@
                 </li>
                 {% endfor %}
             </ul>
-            <br><br>
+
             <h3>Список черновиков вакансий работодателя: {{ user.username }}:</h3>
             <ul>
                 {% for item in vacancy_cab_not_qs %}
@@ -51,7 +51,7 @@
         </div>
 
         <div class="col-xl-3 col-md-3 col-lg-3">
-            <a href="{% url 'employerapp:vacancy_create' %}" class="btn btn-info">Создать новую вакансию</a>
+            <a href="{% url 'employerapp:vacancy_create' %}" class="boxed-btn4">Создать новую вакансию</a>
             <br>
 
             {% for item in employer_cab_qs %}
@@ -60,11 +60,11 @@
 
             <br>
             <!--    в разработке        -->
-            <a href="#" class="btn btn-info">Изменить карточку работодателя</a>
+            <a href="#" class="boxed-btn4">Изменить карточку работодателя</a>
             <br><br>
 
             {# {% if not employer_cab_cnt_qs %} #}
-            <a href="{% url 'employerapp:employer_create' %}" class="btn btn-info">Создать карточку работодателя</a>
+            <a href="{% url 'employerapp:employer_create' %}" class="boxed-btn4">Создать карточку работодателя</a>
             <br><br>
             {# {% endif %} #}
         </div>

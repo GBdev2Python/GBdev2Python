@@ -15,22 +15,22 @@
     <p>customuser is_company: <b>{{ user.is_company }}</b></p>
   {% endif %}
 
-  <div class="container-fluid" style="margin-top: 100px; margin-bottom: 100px;">
+  <div class="container-fluid">
     <div class="row">
-       <div class=" col-md-8 col-lg-8 m-2">
+       <div class=" col-md-8 col-lg-8 m-2 py-5">
 
           <h2>Список всех работодателей на сайте</h2>
 
           <ul>
             {% for item in employer_lst_qs %}
               <li>
-                <a href="{{ item.get_absolute_url }}">{{ item.employment }}</a>
+                <h5><a href="{{ item.get_absolute_url }}">{{ item.employment }}</a></h5>
               </li>
             {% endfor %}
           </ul>
       </div>
 
-      <div class="col-xl-3 col-md-3 col-lg-3 m-2">
+      <div class="col-xl-3 col-md-3 col-lg-3 py-5">
         <div class="form_inner white-bg">
               <h3>Фильтр</h3>
               <form action="#">
@@ -44,8 +44,9 @@
                     <div class="single_field">
                       <select class="wide">
                         <option data-display="Location">Организация</option>
-                        <option value="1">Rangpur</option>
-                        <option value="2">Dhaka </option>
+                        <option value="1">А-Системс ООО (c-u ID-2 empID-1)</option>
+                        <option value="2">Сошал Системс ООО (c-u ID-3 empID-2)</option>
+                        <option value="3">НИИМА "Прогресс" АО (c-u ID-4 empID-3)</option>
                       </select>
                     </div>
                   </div>

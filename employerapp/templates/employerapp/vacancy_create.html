@@ -7,7 +7,7 @@
 {% endblock stylesheet %}
 
 {% block content %}
-  <br><br>
+
   {% if user.is_authenticated %}
     <p>customuser Логин: {{ user.username }}</p>
     <p>customuser ID: {{ user.pk }}</p>
@@ -18,10 +18,8 @@
 
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xl-1 col-md-1 col-lg-1">
-      </div>
 
-      <div class="col-xl-8 col-md-8 col-lg-8">
+      <div class="col-xl-9 col-md-9 col-lg-9">
         <h2>Создание вакансии</h2>
 
         <form class="form_empl" action="{% url 'employerapp:vacancy_create' %}" method="post" enctype="multipart/form-data">
@@ -29,7 +27,7 @@
 
           {{ form.media }}
           {{ form|crispy }}
-          <button type="submit" class="boxed-btn3">Добавить</button>
+          <button type="submit" class="boxed-btn3 my-3">Добавить</button>
         </form>
       </div>
 
