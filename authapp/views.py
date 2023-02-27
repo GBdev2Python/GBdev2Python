@@ -144,6 +144,7 @@ class UserModerationView(UserPassesTestMixin, ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=object_list, **kwargs)
         context['username_parameter'] = self.request.GET.get("username", "")
+        context['status_selected'] = int(self.request.GET.get("user_status", ""))
         return context
 
     def get(self, request, *args, **kwargs):

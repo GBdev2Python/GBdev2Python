@@ -43,19 +43,19 @@
                     <div class="m-3">
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="user_status" value="-1" checked>
+                                <input class="form-check-input" type="radio" name="user_status" value="-1" {% if status_selected == -1 %}checked{% endif %}>
                                 search company and applicant
                             </label>
                         </div>
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="user_status" value="1">
+                                <input class="form-check-input" type="radio" name="user_status" value="1" {% if status_selected == 1 %}checked{% endif %}>
                                 search company
                             </label>
                         </div>
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="radio" name="user_status" value="0">
+                                <input class="form-check-input" type="radio" name="user_status" value="0" {% if status_selected == 0 %}checked{% endif %}>
                                 search applicant
                             </label>
                         </div>
