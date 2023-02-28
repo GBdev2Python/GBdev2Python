@@ -5,6 +5,7 @@ from django.views.generic import CreateView, DetailView, ListView, TemplateView,
 from authapp.models import *
 from employerapp.forms import *
 from employerapp.models import *
+from serviceapp.models import Response
 
 
 class MainPageView(TemplateView):
@@ -31,6 +32,8 @@ class VacancyJob(TemplateView):
     def get_context_data(self, vacancy_pk, **kwargs):
         context = super().get_context_data(**kwargs)
         context["vacancy_qs"] = get_object_or_404(VacancyHeader, pk=vacancy_pk)
+        context["response"]= Response.objects.all().filter(vacancyheader=vacancy_pk)
+
         # context["vacancy_body_qs"] = VacancyBody.objects.all().filter(vacancy_header_id=vacancy_pk)
         return context
 

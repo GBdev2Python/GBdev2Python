@@ -59,6 +59,25 @@
             <a href="{% url 'employerapp:vacancy_delete'  vacancy_id=vacancy_qs.pk %}" class="boxed-btn2 btn-danger">Удалить
                 вакансию</a>
             {% endif %}
+            <hr>
+            Отклики
+             {% for item_response in response %}
+                <div class="col my-2">
+                    <div class="card {% if user.is_active %} border-success{% else %} border-danger{% endif %}"
+                         style="max-width: 450px; max-height: 250px">
+                        <div class="card-body">
+                            <h5 class="card-title {% if item_response.status == 'ACCEPTED' %} text-success {% endif %} {% if item_response.status == 'REJECTED' %} text-danger {% endif %}"> <a href="{% url 'applicantapp:resume_by_id' resume_id=item_response.resume.id %}">{{ item_response.resume }}</a></h5>
+                            <p class="mb-0"><small class="text-muted">Статус: {% if item_response.status == 'NEW' %} Новое {% endif %} {% if item_response.status == 'ACCEPTED' %} Пригласили {% endif %} {% if item_response.status == 'REJECTED' %} Отклонили {% endif %}</small></p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-outline-secondary"
+                               href="{% url 'serviceapp:response_view' response_id=item_response.id %}">
+                                Смотреть Отклик
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 </div>
