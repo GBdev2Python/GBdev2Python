@@ -51,14 +51,19 @@ def response(request, vacancyheader):
 
 def response_view(request, response_id):
     if request.user.is_authenticated:
-        if request.method == 'POST':
-            print(request.POST)
-            response_change = Response.objects.get(id=response_id)
-            response_change.status = request.POST['status']
-            response_change.save()
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        print(Resumes.objects.get(id=Response.objects.get(id=response_id).resume.id).applicants.user.id)
+        if request.user.id == VacancyHeader.objects.get(id=Response.objects.get(id=response_id).vacancyheader.id).employer_id.user.id or request.user.id == Resumes.objects.get(id=Response.objects.get(id=response_id).resume.id).applicants.user.id:
+            if request.method == 'POST':
+                print(request.POST)
+                response_change = Response.objects.get(id=response_id)
+                response_change.status = request.POST['status']
+                response_change.save()
+                return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+            else:
+                form = ResponseChangeStatusForm()
         else:
-            form = ResponseChangeStatusForm()
+            messages.error(request, 'Доступ запрещен')
+            return redirect('hhapp:main_page')
     else:
         messages.error(request, 'Пользователь не авторизовон')
         form = {}
