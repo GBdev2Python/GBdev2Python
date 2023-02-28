@@ -152,7 +152,8 @@ def delete_resume(request, pk):
 
     resume = Resumes.objects.get(id=pk)
     if request.method == "POST":
+        applicantID=resume.applicants.pk
         resume.delete()
-        return redirect("applicant:applicant_cabinet", applicant_id=resume.applicants.id)
+        return redirect("applicant:applicant_cabinet", applicant_id=applicantID)
     context = {"object": resume}
     return render(request, "applicantapp/delete_resume.html", context)

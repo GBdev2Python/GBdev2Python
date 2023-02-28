@@ -13,8 +13,10 @@
       </div>
 
       <h2>Резюме</h2>
+      <div class="col-xl-9 col-md-9 col-lg-9">
+        <img class="avatar avatar--xl my-4" src="{{ resume.image.url }}" width="30%"/>
+      </div>
 
-      <img class="avatar avatar--xl" src="{{ resume.image.url }}" />
       <p>Имя: {{ resume.applicants.first_name }}</p>
       <p>Фамилия: {{ resume.applicants.last_name }}</p>
       <p>Дата рождения: {{ resume.applicants.birthday }}</p>
@@ -29,6 +31,7 @@
       </ul>
       {% endfor %}
       <p>Требуемая работа: {{ resume.required_job }}</p>
+      <p>Поиск работы в городе: {{ resume.town_job }}</p>
       <p>Заработная плата: {{ resume.salary }}</p>
       <p>Место последней работы: {{ resume.last_job }}</p>
       <p>Образование: {{ resume.education }}</p>
