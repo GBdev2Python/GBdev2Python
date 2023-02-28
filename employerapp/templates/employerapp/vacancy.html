@@ -59,8 +59,10 @@
             <a href="{% url 'employerapp:vacancy_delete'  vacancy_id=vacancy_qs.pk %}" class="boxed-btn2 btn-danger">Удалить
                 вакансию</a>
             {% endif %}
-            <hr>
-            Отклики
+            {% if response.count > 0 %}
+                <hr>
+                Отклики
+            {% endif %}
              {% for item_response in response %}
                 <div class="col my-2">
                     <div class="card {% if user.is_active %} border-success{% else %} border-danger{% endif %}"
