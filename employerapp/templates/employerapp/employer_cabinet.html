@@ -3,11 +3,11 @@
 {% block title %} Личный кабинет работодателя {% endblock title %}
 
 {% block content %}
-<br>
-<a href="{% url 'hhapp:main_page' %}">Домашняя страница</a> |
-<a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |
-<a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |
-<br><br>
+<!--<br>-->
+<!--<a href="{% url 'hhapp:main_page' %}">Домашняя страница</a> |-->
+<!--<a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |-->
+<!--<a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |-->
+<!--<br><br>-->
 {% if user.is_authenticated %}
 <p>customuser Логин: {{ user.username }}</p>
 <p>customuser ID: {{ user.pk }}</p>
@@ -18,18 +18,17 @@
 <div class="container-fluid">
 
     <div class="row">
-        <div class="col-xl-1 col-md-1 col-lg-1">
-        </div>
+<!--        <div class="col-xl-1 col-md-1 col-lg-1">-->
+<!--        </div>-->
         <h2>Личный кабинет работодателя</h2>
             <br>
-        <div class="col-xl-8 col-md-8 col-lg-8 py-5">
+        <div class="col-xl-9 col-md-9 col-lg-9 py-5">
 
             {% for item in employer_cab_comp_qs %}
             <h3>Компания работодателя: </h3><a href="{{ item.get_absolute_url }}">{{ item.employment }}</a>
             {% endfor %}
 
-
-
+            <br><br>
             <h3>Список опубликованных вакансий работодателя: {{ user.username }}:</h3>
             <ul>
                 {% for item in vacancy_cab_qs %}
@@ -51,8 +50,8 @@
         </div>
 
         <div class="col-xl-3 col-md-3 col-lg-3">
-            <a href="{% url 'employerapp:vacancy_create' %}" class="boxed-btn4">Создать новую вакансию</a>
-            <br>
+<!--            <a href="{% url 'employerapp:vacancy_create' %}" class="boxed-btn4">Создать новую вакансию</a>-->
+<!--            <br>-->
 
             {% for item in employer_cab_qs %}
             <a href="{{ item.get_absolute_url }}" class="btn btn-info">Открыть карточку работодателя</a>
@@ -63,10 +62,10 @@
             <a href="#" class="boxed-btn4">Изменить карточку работодателя</a>
             <br><br>
 
-            {# {% if not employer_cab_cnt_qs %} #}
-            <a href="{% url 'employerapp:employer_create' %}" class="boxed-btn4">Создать карточку работодателя</a>
-            <br><br>
-            {# {% endif %} #}
+<!--            {# {% if not employer_cab_cnt_qs %} #}-->
+<!--            <a href="{% url 'employerapp:employer_create' %}" class="boxed-btn4">Создать карточку работодателя</a>-->
+<!--            <br><br>-->
+<!--            {# {% endif %} #}-->
         </div>
     </div>
 </div>

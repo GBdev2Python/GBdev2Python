@@ -23,6 +23,7 @@
     {% include 'includes/messages.html' %}
 {% endblock messages %}
 
+<div class="wrapper">
 <div class="container-md">
     {% block content %}
     {% endblock content %}
@@ -30,7 +31,7 @@
 <!-- footer start -->
 {% include 'includes/footer.html' %}
 <!--/ footer end  -->
-
+</div>
 {% block js %} {% endblock js %}
 
 <script src="{% static 'js/bootstrap.min.js' %}"></script>

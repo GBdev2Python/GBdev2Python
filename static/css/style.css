@@ -14,6 +14,7 @@ body {
   font-family: "Roboto", sans-serif;
   font-weight: normal;
   font-style: normal;
+  height: 100%
 }
 
 .img {
@@ -300,10 +301,11 @@ header-area .main-header-area {
   text-align: center;
 }
 
-.header-area .phone_num a {
+.navbar .phone_num a {
     font-size: 14px;
     font-weight: 400;
     color: #FFFFFF;
+    font-family: "Roboto", sans-serif;
 }
 
 .header-area .main-header-area .main-menu ul li a {
@@ -376,7 +378,7 @@ header-area .main-header-area {
   width: 100%;
   top: 0;
   z-index: 9;
-  position: relative;
+  /*position: relative;*/
 }
 
 @media (max-width: 767px) {
@@ -625,7 +627,7 @@ header-area .main-header-area {
   color: #00D363;
 }
 
-.header-area .phone_num a:hover{
+.navbar .phone_num a:hover{
   color: #00D363;
 }
 
@@ -1055,7 +1057,7 @@ boxed-btn {
   border-radius: 5px;
   text-align: center;
   color: #fff !important;
-  text-transform: capitalize;
+  /*text-transform: capitalize;*/
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   -o-transition: 0.3s;
@@ -1143,6 +1145,7 @@ boxed-btn {
 }
 
 .footer {
+  position: relative;
   background-repeat: no-repeat;
   background-position: center center;
   background-repeat: no-repeat;
@@ -1155,8 +1158,8 @@ boxed-btn {
 }
 
 .footer .footer_top {
-  padding-top: 60px;
-  padding-bottom: 40px;
+  padding-top: 40px;
+  padding-bottom: 0px;
 }
 
 @media (max-width: 767px) {
@@ -1182,7 +1185,7 @@ boxed-btn {
   font-size: 18px;
   font-weight: 500;
   color: #FFFFFF;
-  text-transform: capitalize;
+  /*text-transform: capitalize;*/
   margin-bottom: 40px;
   font-family: "Roboto", sans-serif;
 }
@@ -1331,7 +1334,7 @@ boxed-btn {
 
 
 .footer .copy-right_text {
-  padding-bottom: 30px;
+  padding-bottom: 10px;
 }
 
 .footer .copy-right_text .copy_right {

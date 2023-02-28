@@ -16,12 +16,12 @@
     <br>
 
     <div class="row">
-      <div class="col-xl-1 col-md-1 col-lg-1">
-      </div>
+<!--      <div class="col-xl-1 col-md-1 col-lg-1">-->
+<!--      </div>-->
 
         <h2 class="my-4">Личный кабинет соискателя</h2>
 
-      <div class="col-xl-8 col-md-8 col-lg-8">
+      <div class="col-xl-9 col-md-9 col-lg-9">
         <img class="avatar avatar--xl my-4" src="{{ MEDIA_URL }}{{ applicant.image }}" width="30%">
         <ul>
           <p>Имя: {{ applicant.first_name }}</p>
@@ -53,7 +53,7 @@
         <ul>
           <li>
               <a href="{% url 'authapp:profile_edit' pk=request.user.id %}" class="boxed-btn4 m-2">Изменить профиль</a>
-              <a href="{% url 'applicant:new_resume' applicant.id%}" class="boxed-btn4 m-2">Создать резюме</a>
+<!--              <a href="{% url 'applicant:new_resume' applicant.id%}" class="boxed-btn4 m-2">Создать резюме</a>-->
               <a href="#" class="boxed-btn4 m-2">Просмотры резюме</a>
               <a href="#" class="boxed-btn4 m-2">Отклики</a>
               <a href="#" class="boxed-btn4 m-2">Избранные вакансии</a>

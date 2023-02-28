@@ -111,3 +111,12 @@ a:link {
 .ml-1 {
   padding-left: 15rem;
 }
+
+.wrapper {
+    position: relative;
+	min-height: 100%;
+}
+
+.container-md {
+    padding-bottom: 90px;
+}
