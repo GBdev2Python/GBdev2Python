@@ -32,6 +32,27 @@
       <p>Заработная плата: {{ resume.salary }}</p>
       <p>Место последней работы: {{ resume.last_job }}</p>
       <p>Образование: {{ resume.education }}</p>
+      {% if response.count %}
+      <hr>
+      Отклики
+        {% for item_response in response %}
+                <div class="col my-2">
+                    <div class="card {% if user.is_active %} border-success{% else %} border-danger{% endif %}"
+                         style="max-width: 450px; max-height: 250px">
+                        <div class="card-body">
+                            <h5 class="card-title {% if item_response.status == 'ACCEPTED' %} text-success {% endif %} {% if item_response.status == 'REJECTED' %} text-danger {% endif %}"> <a href="{% url 'employerapp:vacancy' vacancy_pk=item_response.vacancyheader.id %}">{{ item_response.vacancyheader }}</a></h5>
+                            <p class="mb-0"><small class="text-muted">Статус: {% if item_response.status == 'NEW' %} Новое {% endif %} {% if item_response.status == 'ACCEPTED' %} Пригласили {% endif %} {% if item_response.status == 'REJECTED' %} Отклонили {% endif %}</small></p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-outline-secondary"
+                               href="{% url 'serviceapp:response_view_applicant' response_id=item_response.id %}">
+                                Смотреть Отклик
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+      {% endif %}
       <div style="margin-bottom: 20px;">
         <a style="text-decoration: none;" class="my-2" onclick="javascript:history.back(); return true;"> Назад </a>
         {% if request.user.id == resume.applicants.user.id %}

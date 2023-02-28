@@ -3,6 +3,7 @@ from django.views.generic import TemplateView, ListView, CreateView
 
 from applicantapp.forms import ResumeForm
 from applicantapp.models import *
+from serviceapp.models import Response
 
 
 # Список соискателей
@@ -53,6 +54,8 @@ class ApplicantResume(ListView):
         context = super().get_context_data(**kwargs)
         context["resume"] = profile
         context["skills"] = profile.skills.all()
+        if self.request.user.id == profile.applicants.user.id:
+            context["response"]= Response.objects.all().filter(resume=profile)
         return context
 
 

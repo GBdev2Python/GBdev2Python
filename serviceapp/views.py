@@ -49,10 +49,10 @@ def response(request, vacancyheader):
     return render(request, 'serviceapp/response.html', {"form": form, "resume": resume})
 
 
-def response_view(request, response_id):
+def response_employer(request, response_id):
     if request.user.is_authenticated:
         print(Resumes.objects.get(id=Response.objects.get(id=response_id).resume.id).applicants.user.id)
-        if request.user.id == VacancyHeader.objects.get(id=Response.objects.get(id=response_id).vacancyheader.id).employer_id.user.id or request.user.id == Resumes.objects.get(id=Response.objects.get(id=response_id).resume.id).applicants.user.id:
+        if request.user.id == VacancyHeader.objects.get(id=Response.objects.get(id=response_id).vacancyheader.id).employer_id.user.id:
             if request.method == 'POST':
                 print(request.POST)
                 response_change = Response.objects.get(id=response_id)
@@ -70,3 +70,13 @@ def response_view(request, response_id):
     return render(request, 'serviceapp/response_view.html', {"form": form, "response": Response.objects.get(id=response_id)})
 
 
+def response_applicant(request, response_id):
+    if request.user.is_authenticated:
+        if request.user.id == Resumes.objects.get(id=Response.objects.get(id=response_id).resume.id).applicants.user.id:
+            return render(request, 'serviceapp/response_view_applicant.html', {"response": Response.objects.get(id=response_id)})
+        else:
+            messages.error(request, 'Доступ запрещен')
+            return redirect('hhapp:main_page')
+    else:
+        messages.error(request, 'Пользователь не авторизовон')
+    return redirect('hhapp:main_page')
