@@ -3,11 +3,11 @@
 {% block title %}Кабинет работодателя{% endblock title %}
 
 {% block content %}
-  <br>
-  <a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |
-  <a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |
+<!--  <br>-->
+<!--  <a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |-->
+<!--  <a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |-->
 
-  <br><br>
+<!--  <br><br>-->
   {% if user.is_authenticated %}
     <p>customuser Логин: {{ user.username }}</p>
     <p>customuser ID: {{ user.pk }}</p>
@@ -17,16 +17,16 @@
 
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xl-1 col-md-1 col-lg-1">
-      </div>
+<!--      <div class="col-xl-1 col-md-1 col-lg-1">-->
+<!--      </div>-->
 
-      <div class="col-xl-8 col-md-8 col-lg-8">
-        <p>Данные об выбранной организации</p>
+      <div class="col-xl-9 col-md-9 col-lg-9">
+        <h5>Данные о выбранной организации</h5>
         {% if employer_qs.cover %}
           <img src="{{ employer_qs.cover.url }}" alt="" class="m-2">
         {% endif %}
         <br>
-        <h2 style="paddi">Организация: {{ employer_qs.employment }}</h2>
+        <h3 class="py-4">Организация: {{ employer_qs.employment }}</h3>
         <p>Зарегистрирована на сайте с: {{ employer_qs.created|date:"Y.m.d" }}</p>
         <p>Расположение: {{ employer_qs.city }}</p>
         <p>Адрес организации: {{ employer_qs.address }}</p>

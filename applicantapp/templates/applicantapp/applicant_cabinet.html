@@ -9,9 +9,6 @@
     <p>customuser ID: {{ user.pk }}</p>
     <p>applicant ID: {{ applicant.id}}</p>
   {% endif %}
-  <br><br>
-
-
 
     <br>
 
@@ -31,12 +28,12 @@
           <p>Контактный телефон: {{ applicant.phone }}</p>
           <p>email: {{ applicant.user.email }} </p>
         </ul>
-        <br>
-        <h3>Резюме соискателя:</h3>
+
+        <h3 class="py-4">Резюме соискателя:</h3>
 
         {% for resume in page_obj %}
             <ul>
-              <li><h3>{{ resume.required_job }}</h3></li>
+              <li><h5>{{ resume.required_job }}</h5></li>
               {% if resume.is_published %}
                 <p>Статус публикации: Опубликовано</p>
               {%else%}

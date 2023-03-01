@@ -3,21 +3,27 @@
 {% load crispy_forms_tags %}
 {% block title %}Создание Резюме {% endblock title %}
 
-{#{% block messages %}#}
-{#{% include 'includes/job_menu.html' %}#}
-{#{% endblock messages %}#}
-
 {% block content %}
 
-<h2 class="py-3"> Соискатель: {{ applicant.first_name}} {{applicant.last_name }}</h2>
-<form action="" method="post" enctype="multipart/form-data">
-  {% csrf_token %}
 
-  {{ form|crispy }}
+ `<div class="container-fluid">
+      <div class="row">
+  <!--      <div class="col-xl-1 col-md-1 col-lg-1">-->
+  <!--      </div>-->
 
-  <div class="my-4">
-    <a class="m-2" href="{% url 'applicant:applicant_cabinet' applicant.id %}">Назад</a>
-    <button type="submit" class='boxed-btn3 m-2'> Сохранить</button>
-  </div>
-</form>
+        <div class="col-xl-9 col-md-9 col-lg-9">
+          <h2 class="py-3"> Соискатель: {{ applicant.first_name}} {{applicant.last_name }}</h2>
+          <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{ form|crispy }}
+
+            <div class="my-2">
+              <a class="m-2" href="{% url 'applicant:applicant_cabinet' applicant.id %}">Назад</a>
+              <button type="submit" class='boxed-btn3 m-2'> Сохранить</button>
+            </div>
+          </form>
+        </div>
+      </div>
+ </div>
 {% endblock content %}

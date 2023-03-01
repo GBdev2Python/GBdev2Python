@@ -1186,7 +1186,7 @@ boxed-btn {
   font-weight: 500;
   color: #FFFFFF;
   /*text-transform: capitalize;*/
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   font-family: "Roboto", sans-serif;
 }
 
@@ -1201,7 +1201,7 @@ boxed-btn {
   font-weight: 400;
   color: #FFFFFF;
   text-transform: capitalize;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 @media (max-width: 767px) {
@@ -1340,7 +1340,7 @@ boxed-btn {
 .footer .copy-right_text .copy_right {
   font-size: 15px;
   color: #AAB1B7;
-  margin-bottom: 0;
+  margin-top: 20px;
   font-weight: 500;
 }
 
@@ -1355,7 +1355,7 @@ boxed-btn {
 }
 
 .footer .socail_links {
-  margin-top: 47px;
+  margin-top: 7px;
 }
 
 @media (max-width: 767px) {
