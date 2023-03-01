@@ -21,10 +21,10 @@
 
 {% endif %}
 {% if response.status == 'ACCEPTED' %}
-   <div class="btn btn-success">Пригласили</div>
+   <div class="alert alert-success" role="alert">Вы пригласили соискателя.</div>
 {% endif %}
 {% if response.status == 'REJECTED' %}
-    <div class="btn btn-danger">Отклонили</div>
+    <div class="alert alert-danger" role="alert">Вы отклонили отклик.</div>
 
 {% endif %}
 

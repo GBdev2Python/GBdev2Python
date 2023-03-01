@@ -4,6 +4,12 @@
 {% block content %}
 
 {% if user.is_authenticated %}
+{% if response.status == 'ACCEPTED' %}
+   <div class="alert alert-success" role="alert">Вас пригласили.</div>
+{% endif %}
+{% if response.status == 'REJECTED' %}
+    <div class="alert alert-danger" role="alert">Отклонили ваш отклик.</div>
+{% endif %}
 <h1>Отклик</h1>
 
 <h3>Сопроводительное письмо:</h3>
@@ -12,12 +18,7 @@
 <h4>Вакансия:</h4>
 <a href="{% url 'employerapp:vacancy' vacancy_pk=response.vacancyheader.id %}">{{ response.vacancyheader }}</a>
 <hr>
-{% if response.status == 'ACCEPTED' %}
-   <div class="btn btn-success">Пригласили</div>
-{% endif %}
-{% if response.status == 'REJECTED' %}
-    <div class="btn btn-danger">Отклонили</div>
-{% endif %}
+
 
 {% endif %}
 {% endblock content %}
