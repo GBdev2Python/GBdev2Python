@@ -70,13 +70,12 @@ class Resumes(models.Model):
     )
     skills = models.ManyToManyField(Skill, blank=True, verbose_name="Ключевые навыки")
     salary = models.CharField(max_length=30, blank=True, null=True, verbose_name="Зарплата")
-    town_job = models.ForeignKey(Towns, on_delete=models.PROTECT, null=True, verbose_name="Поиск работы в годорде:")
+    town_job = models.ForeignKey(Towns, on_delete=models.PROTECT, verbose_name="Поиск работы в городе:")
     last_job = models.TextField(null=True, blank=True, verbose_name="Последнее место работы")
     education = models.TextField(null=True, blank=True, verbose_name="Образование/курсы")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания резюме")
     is_published = models.BooleanField(blank=True, default=False, verbose_name="Опубликовать")
-    # id = models.UUIDField(default=uuid.uuid4, unique=True,
-    #                      primary_key=True, editable=False)
+
 
     def __str__(self):
         return str(f"{self.applicants.first_name} {self.required_job}")
