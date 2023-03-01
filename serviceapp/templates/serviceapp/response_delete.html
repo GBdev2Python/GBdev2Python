@@ -11,7 +11,7 @@
 {% endblock messages %}
 
 {% block content %}
-  {% if user.is_authenticated %}
+  {% if is_user_response %}
   <div class="container-fluid">
     <div class="row">
         <form class="form_empl" action="" method="post" enctype="multipart/form-data">

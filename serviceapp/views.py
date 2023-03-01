@@ -87,3 +87,19 @@ class ResponseDelete(DeleteView):
     pk_url_kwarg = "response_id"
     template_name = "serviceapp/response_delete.html"
     success_url = reverse_lazy("hhapp:main_page")
+    #
+    # def get_context_data(self, **kwargs):
+    #     profile = Resumes.objects.get(id=self.kwargs["resume_id"])
+    #     context = super().get_context_data(**kwargs)
+    #     context["resume"] = profile
+    #     context["skills"] = profile.skills.all()
+    #     if self.request.user.id == profile.applicants.user.id:
+    #         context["response"]= Response.objects.all().filter(resume=profile)
+    #     return context
+    def get_context_data(self, **kwargs):
+        user_id = Response.objects.get(id=self.kwargs["response_id"]).resume.applicants.user.id
+        context = super().get_context_data(**kwargs)
+        print(self.request.user.id, user_id)
+        if self.request.user.id == user_id:
+            context["is_user_response"] = True
+        return context
