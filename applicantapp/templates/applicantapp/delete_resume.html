@@ -11,7 +11,7 @@
           {% csrf_token %}
           <p>Вы действительно хотите удалить "{{ object }}"?</p>
 
-          <a class="my-4" href="{% url 'applicant:applicant_by_id' object.applicants.id %}">Назад</a>
+          <a class="my-4" href="{% url 'applicant:applicant_cabinet' object.applicants.id %}">Назад</a>
 
           <input class="boxed-btn2 m-4" type="submit" value="Удалить" />
         </form>

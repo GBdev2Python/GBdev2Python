@@ -1,10 +1,11 @@
 from django.shortcuts import redirect, render
 from django.views.generic import TemplateView, ListView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from applicantapp.forms import ResumeForm
 from applicantapp.models import *
 from serviceapp.models import Response
-
+from django.contrib.auth.decorators import login_required
 
 # Список соискателей
 class ApplicantList(ListView):
@@ -79,7 +80,7 @@ class ApplicantCreate(CreateView):
         return redirect("applicant:applicant_cabinet", applicant_id=new_applicant.id)
 
 
-class ApplicantCabinet(ListView):
+class ApplicantCabinet(LoginRequiredMixin,ListView):
     model = Resumes
     template_name = "applicantapp/applicant_cabinet.html"
     pk_url_kwarg = "applicant_id"
@@ -99,6 +100,15 @@ class ApplicantCabinet(ListView):
         return context
 
 
+    def dispatch(self, request, *args, **kwargs):
+        user_URL = Applicants.objects.get(id=self.kwargs["applicant_id"])
+        user_authenticated = Applicants.objects.get(user =request.user)
+
+        if request.user.is_authenticated and user_URL==user_authenticated:
+            return super().dispatch(request, *args, **kwargs)
+        return self.handle_no_permission()
+
+
 # Отдельный соискатель
 class Applicant(ListView):
     model = Applicants
@@ -113,47 +123,57 @@ class Applicant(ListView):
 
 
 # Создание резюм
+@login_required()
 def new_resume(request, applicant_id, *args, **kwargs):
     user = Applicants.objects.get(id=applicant_id)
     form = ResumeForm(initial={'applicants': user})
-    if request.method == "POST":
-        form = ResumeForm(request.POST, request.FILES)
-        if form.is_valid():
-            resume = form.save(commit=False)
-            resume.applicants = user
-            resume.save()
-            form.save_m2m()
-        return redirect("applicant:applicant_cabinet", applicant_id=resume.applicants.id)
+    if request.user.is_authenticated and user.id==Applicants.objects.get(user=request.user).id:
+        if request.method == "POST":
+            form = ResumeForm(request.POST, request.FILES)
+            if form.is_valid():
+                resume = form.save(commit=False)
+                resume.applicants = user
+                resume.save()
+                form.save_m2m()
+            return redirect("applicant:applicant_cabinet", applicant_id=resume.applicants.id)
 
-    context = {"form": form, "applicant": user}
-    return render(request, "applicantapp/new_resume.html", context)
+        context = {"form": form, "applicant": user}
+        return render(request, "applicantapp/new_resume.html", context)
+    else:
+        return redirect("authapp:logout")
 
 
 # Внесение изменений в резюме
+@login_required()
 def update_resume(request, pk):
     form = ResumeForm()
     resume = Resumes.objects.get(id=pk)
     user = Applicants.objects.get(id=resume.applicants.id)
     form = ResumeForm(instance=resume)
 
-    if request.method == "POST":
-        form = ResumeForm(request.POST, request.FILES, instance=resume)
+    if request.user.is_authenticated and Applicants.objects.get(user=request.user).id==resume.applicants.id:
+        if request.method == "POST":
+            form = ResumeForm(request.POST, request.FILES, instance=resume)
 
-        if form.is_valid():
-            resume = form.save()
-            return redirect("applicant:applicant_cabinet", applicant_id=user.id)
+            if form.is_valid():
+                resume = form.save()
+                return redirect("applicant:applicant_cabinet", applicant_id=user.id)
 
-    context = {"form": form, "applicant": user}
-    return render(request, "applicantapp/new_resume.html", context)
-
+        context = {"form": form, "applicant": user}
+        return render(request, "applicantapp/new_resume.html", context)
+    else:
+        return redirect("authapp:logout")
 
 # Удаление резюме соискателя
+@login_required()
 def delete_resume(request, pk):
-
     resume = Resumes.objects.get(id=pk)
-    if request.method == "POST":
-        applicantID=resume.applicants.pk
-        resume.delete()
-        return redirect("applicant:applicant_cabinet", applicant_id=applicantID)
-    context = {"object": resume}
-    return render(request, "applicantapp/delete_resume.html", context)
+    if request.user.is_authenticated and Applicants.objects.get(user=request.user).id==resume.applicants.id:
+        if request.method == "POST":
+            applicantID=resume.applicants.pk
+            resume.delete()
+            return redirect("applicant:applicant_cabinet", applicant_id=applicantID)
+        context = {"object": resume}
+        return render(request, "applicantapp/delete_resume.html", context)
+    else:
+        return redirect("authapp:logout")
