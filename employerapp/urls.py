@@ -14,7 +14,7 @@ urlpatterns = [
     # http://127.0.0.1:8000/employerapp/employer_list/
     # Карточка работодателя на сайте
     path("employer_detail/<int:employer_id>/", DetailEmployer.as_view(), name="employer_detail"),
-    # http://127.0.0.1:8000/employerapp/employer_detail/3/
+    # http://127.0.0.1:8000/employerapp/employer_detail/10/
     # Список всех вакансий сайта
     path("vacancy_list/", AllVacancyList.as_view(), name="vacancy_list"),
     # http://127.0.0.1:8000/employerapp/vacancy_list/
@@ -29,9 +29,10 @@ urlpatterns = [
     # Создание карточки работодателя (конкретный пользователь)
     path("employer_create/", EmployerCreate.as_view(), name="employer_create"),
     # http://127.0.0.1:8000/employerapp/employer_create/
+
     # Редактирование карточки работодателя (конкретный пользователь)
     path("employer_update/<int:employer_id>/", EmployerUpdate.as_view(), name="employer_update"),
-    # http://127.0.0.1:8000/employerapp/employer_update/1/
+    # http://127.0.0.1:8000/employerapp/employer_update/5/
     # Создание вакансии работодателя (конкретный пользователь)
     path("vacancy_create/", VacancyCreate.as_view(), name="vacancy_create"),
     # http://127.0.0.1:8000/employerapp/vacancy_create/

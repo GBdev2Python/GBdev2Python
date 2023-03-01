@@ -58,6 +58,7 @@ class DetailEmployer(DetailView):
 
 # Список всех вакансий сайта
 class AllVacancyList(ListView):
+    paginate_by = 8
     model = VacancyHeader
     template_name = "employerapp/vacancy_list.html"
     # template_name = "hhapp/jobs.html"
