@@ -19,6 +19,7 @@ from employerapp.models import Employer
 
 
 class CustomLoginView(LoginView):
+
     def form_valid(self, form):
         ret = super().form_valid(form)
         message = _("Login success!<br>Hi, %(username)s") % {"username": self.request.user.get_username()}
@@ -30,12 +31,6 @@ class CustomLoginView(LoginView):
                       f'<br>name:{self.request.user.username}')
         )
         return redirect('authapp:profile_info')
-        # if self.request.user.is_company:
-        #     user = Employer.objects.get(user_id=self.request.user.id).id
-        #     return HttpResponseRedirect(reverse_lazy('employerapp:employer_cabinet', args=(user,)))
-        # else:
-        #     user = Applicants.objects.get(user_id=self.request.user.id).id
-        #     return HttpResponseRedirect(reverse_lazy('applicant:applicant_cabinet', args=(user,)))
 
     def form_invalid(self, form):
         for _, message in form.error_messages.items():
@@ -44,6 +39,7 @@ class CustomLoginView(LoginView):
                 messages.WARNING,
                 mark_safe(f"An error occurred:<br>{message}"),
             )
+        print({'username': self.request.POST.get('username')})
         return self.render_to_response(self.get_context_data(form=form))
 
 
@@ -66,7 +62,6 @@ class ProfileEditView(UserPassesTestMixin, UpdateView):
 
 
 def profile_info(request):
-    form = CustomUser
     if request.user.is_company:
         if Employer.objects.filter(user=request.user):
             user = Employer.objects.get(user_id=request.user.id).id

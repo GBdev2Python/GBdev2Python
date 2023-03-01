@@ -1,43 +1,30 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static crispy_forms_tags %}
 
 {% block content %}
 
-  <div class="row justify-content-center py-5 my-4">
-    <div class="col-lg-6">
-      <p>
-        <a href="#"><img src="{% static 'img/logo.png' %}" alt=""></a>
-      </p>
-      <h2>Вход пользователя</h2>
-      <form method="POST">
-
-        {% csrf_token %}
-        <p>
-          <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150"
-            class="textinput textInput form-control" required="" id="id_username" placeholder="Имя пользователя или почта">
-        </p>
-        <p>
-          <input type="password" name="password" autocomplete="current-password" class="textinput textInput form-control"
-            required="" id="id_password" placeholder="Пароль">
-        </p>
-        <div class="d-flex justify-content-between" >
-          <p>
-            <button type="submit" class="btn btn-primary btn-block boxed-btn3">Войти в личный кабинет</button>
-          </p>
-          <div class="">
-              <a href="{% url 'authapp:password_reset' %}"><small>Забыли пароль?</small></a>
+    <div class="d-flex flex-column my-5 py-5">
+        <div class="row align-self-center" style="max-width: 550px">
+            <div class="d-flex flex-column align-items-center">
+                <a  href="{% url 'hhapp:main_page' %}">
+                    <img src="{% static 'img/logo_main.png' %}" alt="">
+                </a>
+                <h3>Вход пользователя</h3>
             </div>
-        </div>
-      </form>
-      <p>
-        <div class="row justify-content-between">
-          <div class="col">
-            <a href="{% url 'authapp:register'%}"><small>Регистрация</small></a>
-          </div>
 
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn my-3 boxed-btn3">Войти в личный кабинет</button>
+            </form>
         </div>
-      </p>
+        <div class="d-flex flex-row align-self-center">
+            <a class="mx-5" href="{% url 'authapp:password_reset' %}"><small>Забыли пароль?</small></a>
+            <a class="mx-5" href="{% url 'authapp:register' %}"><small>Регистрация</small></a>
+        </div>
+        </div>
     </div>
-  </div>
+
+    </div>
 
 {% endblock content %}
