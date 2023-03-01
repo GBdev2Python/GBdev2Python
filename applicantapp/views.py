@@ -86,23 +86,15 @@ class ApplicantCabinet(ListView):
     paginate_by = 3
 
     def get_queryset(self, **kwargs):
-        qs = Resumes.objects.filter(id=self.kwargs["applicant_id"])
-        return qs
+        return Resumes.objects.filter(applicants=self.kwargs["applicant_id"])
 
     def get_context_data(self, **kwargs):
-        print(self.kwargs)
-        print(self.get_queryset())
-        print(self.queryset)
-
+        queryset = Resumes.objects.filter(applicants=self.kwargs["applicant_id"])
         context = super().get_context_data(**kwargs)
         context["applicant_list"] = Applicants.objects.all()
         context["applicant"] = Applicants.objects.get(id=self.kwargs["applicant_id"])
-        context["resumes"] = Resumes.objects.filter(applicants_id=self.kwargs["applicant_id"])
-        # context["queryset"] = queryset
-
-        print(context)
-        for k, v in context.items():
-            print(k, v)
+        context["resumes"] = Resumes.objects.filter(applicants=self.kwargs["applicant_id"])
+        context["queryset"] = queryset
 
         return context
 
