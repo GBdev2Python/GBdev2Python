@@ -2,7 +2,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import context
-from django.views.generic import CreateView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DeleteView
 
 from applicantapp.models import Resumes, Applicants
 from .models import Response
@@ -80,3 +81,9 @@ def response_applicant(request, response_id):
     else:
         messages.error(request, 'Пользователь не авторизовон')
     return redirect('hhapp:main_page')
+
+class ResponseDelete(DeleteView):
+    model = Response
+    pk_url_kwarg = "response_id"
+    template_name = "serviceapp/response_delete.html"
+    success_url = reverse_lazy("hhapp:main_page")

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Удалть вакансию{% endblock title %}
+
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'employerapp/css/forms.css' %}"/>
+{% endblock stylesheet %}
+
+{% block messages %}
+  {% include 'includes/candidate_menu.html' %}
+{% endblock messages %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+  <div class="container-fluid">
+    <div class="row">
+        <form class="form_empl" action="" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <h3>Вы действительно хотите удалить отклик?</h3>
+          <button class="btn btn-danger" type="submit">Удалить отклик</button>
+        </form>
+    </div>
+  </div>
+  {% endif %}
+{% endblock content %}

@@ -15,10 +15,11 @@
 <h3>Сопроводительное письмо:</h3>
 
 {{ response.cover_letter }}
+
 <h4>Вакансия:</h4>
 <a href="{% url 'employerapp:vacancy' vacancy_pk=response.vacancyheader.id %}">{{ response.vacancyheader }}</a>
 <hr>
-
+<a class="btn btn-danger"  href="{% url 'serviceapp:response_delete' response_id=response.id %}">Удалить отклик</a>
 
 {% endif %}
 {% endblock content %}
