@@ -14,8 +14,8 @@ class TestCaseIndexPage(StaticLiveServerTestCase):
     fixtures = (
         'newsapp/fixtures/001_news.json',
         'employerapp/fixtures/001_customuser.json',
-        'employerapp/fixtures/002_skill.json',
-        'employerapp/fixtures/003_towns.json',
+        'employerapp/fixtures/003_skill.json',
+        'employerapp/fixtures/002_towns.json',
         'employerapp/fixtures/004_type_employment.json',
         'employerapp/fixtures/005_employer.json',
         'employerapp/fixtures/006_vacancy_header.json',

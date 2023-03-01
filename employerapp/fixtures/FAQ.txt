@@ -1,13 +1,13 @@
 
 # выгрузка данных из базы (файлы с одинаковыми именами ПЕРЕЗАПИШУТЬСЯ !!!)
-python manage.py dumpdata --format=json --indent=4 authapp.Customuser > employerapp/fixtures/customuser_01.json
+python manage.py dumpdata --format=json --indent=4 authapp.Customuser > employerapp/fixtures/001_customuser.json
 
-python manage.py dumpdata --format=json --indent=4 applicantapp.Towns > employerapp/fixtures/towns_01.json
-python manage.py dumpdata --format=json --indent=4 applicantapp.Skill > employerapp/fixtures/skill_01.json
+python manage.py dumpdata --format=json --indent=4 applicantapp.Towns > employerapp/fixtures/002_towns.json
+python manage.py dumpdata --format=json --indent=4 applicantapp.Skill > employerapp/fixtures/003_skill.json
 
-python manage.py dumpdata --format=json --indent=4 employerapp.TypeEmployment > employerapp/fixtures/typeEmployment_01.json
-python manage.py dumpdata --format=json --indent=4 employerapp.Employer > employerapp/fixtures/employer_01.json
-python manage.py dumpdata --format=json --indent=4 employerapp.VacancyHeader > employerapp/fixtures/vacancyHeader_01.json
+python manage.py dumpdata --format=json --indent=4 employerapp.TypeEmployment > employerapp/fixtures/004_type_employment.json
+python manage.py dumpdata --format=json --indent=4 employerapp.Employer > employerapp/fixtures/005_employer.json
+python manage.py dumpdata --format=json --indent=4 employerapp.VacancyHeader > employerapp/fixtures/006_vacancy_header.json
 
 
 
@@ -16,9 +16,8 @@ python manage.py dumpdata --format=json --indent=4 employerapp.VacancyHeader > e
 
 python manage.py loaddata 001_customuser.json
 
-python manage.py loaddata 002_skill.json
-python manage.py loaddata 003_towns.json
-
+python manage.py loaddata 002_towns.json
+python manage.py loaddata 003_skill.json
 
 python manage.py loaddata 004_type_employment.json
 python manage.py loaddata 005_employer.json
@@ -62,6 +61,14 @@ Employer3surname
 +7 905 1234567
 www.employer3.com
 
+employer4
+employer4@post.com
+1111qqqqa
+1111qqqqa
+Employer4name
+Employer4surname
++7 905 1234567
+www.employer4.com
 
 # В нижеследующее в фикстуруне записано
 # модератор
