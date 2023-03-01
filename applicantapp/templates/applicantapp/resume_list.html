@@ -2,30 +2,22 @@
 {% load static %}
 {% block title %}Список резюме{% endblock title %}
 
-{% block messages %}
-    <div class="bradcam_area bradcam_bg_1"></div>
-{% endblock messages %}
-
 {% block content %}
-    <br>
-    <a href="{% url 'applicant:list' %}">Список соискателей</a>
-    <a href="{% url 'applicant:resume_list' %}">Список резюме</a>
-    <br>
-    <h1>Список резюме</h1>
     <ul>
-      {% for item in resume_list %}
-        <li>
-          <a href="{{ item.get_absolute_url }}"> <h3>{{ item.applicants.first_name }} {{ item.applicants.last_name }}</h3></a>
-        </li>
-        <p> <em>Навыки:</em> </p>
-        <ul>
-          {% for skill in item.skills.all|slice:"3" %}
-            <li> {{ skill.name }}</li>
-          {% endfor %}
-        </ul>
-        <p> <em>Требуемая работа:</em> {{ item.required_job }}</p>
-        <p> <em>Зарплата:</em> {{ item.salary }}</p>
-      {% endfor %}
-
+        {% for item in resume_list %}
+            <li>
+                <a href="{{ item.get_absolute_url }}">
+                    <h3>{{ item.applicants.first_name }} {{ item.applicants.last_name }}</h3>
+                </a>
+            </li>
+            <p><em>Навыки:</em></p>
+            <ul>
+                {% for skill in item.skills.all|slice:"3" %}
+                    <li> {{ skill.name }}</li>
+                {% endfor %}
+            </ul>
+            <p><em>Требуемая работа:</em> {{ item.required_job }}</p>
+            <p><em>Зарплата:</em> {{ item.salary }}</p>
+        {% endfor %}
     </ul>
 {% endblock content %}

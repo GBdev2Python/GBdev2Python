@@ -3,11 +3,13 @@ from django.urls import reverse
 
 from authapp.models import CustomUser
 
+
 # Create your models here.
 
 # Справочник городов
 class Towns(models.Model):
     town = models.CharField(max_length=50, unique=True, db_index=True, verbose_name="Город")
+
     # id = models.UUIDField(default=uuid.uuid4, unique=True,
     #                      primary_key=True, editable=False)
     def __str__(self) -> str:
@@ -30,6 +32,7 @@ class Applicants(models.Model):
     birthday = models.DateField(blank=True, verbose_name="Дата рождения")
     phone = models.CharField(max_length=20, verbose_name="Телефон соискателя")
     town = models.ForeignKey(Towns, on_delete=models.PROTECT, verbose_name="Город проживания")
+
     # id = models.UUIDField(default=uuid.uuid4, unique=True,
     #                      primary_key=True, editable=False)
 
@@ -47,6 +50,7 @@ class Applicants(models.Model):
 # Ключевые навыки соискателей
 class Skill(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True, verbose_name="Навык")
+
     # description = models.TextField(null=True, blank=True, verbose_name='Описание навыка')
     # а зачем записывать дату создания навыка?
     # created = models.DateTimeField(auto_now_add=True)
@@ -62,7 +66,8 @@ class Skill(models.Model):
 
 
 class Resumes(models.Model):
-    applicants = models.ForeignKey(Applicants, null=True, blank=True, on_delete=models.CASCADE, verbose_name="Соискатель")
+    applicants = models.ForeignKey(Applicants, null=True, blank=True, on_delete=models.CASCADE,
+                                   verbose_name="Соискатель")
     verification = models.BooleanField(default=False, blank=True, verbose_name="Прохождение модерации")
     required_job = models.TextField(blank=True, null=True, verbose_name="Требуемая работа/должность")
     image = models.ImageField(
@@ -75,7 +80,6 @@ class Resumes(models.Model):
     education = models.TextField(null=True, blank=True, verbose_name="Образование/курсы")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания резюме")
     is_published = models.BooleanField(blank=True, default=False, verbose_name="Опубликовать")
-
 
     def __str__(self):
         return str(f"{self.applicants.first_name} {self.required_job}")
