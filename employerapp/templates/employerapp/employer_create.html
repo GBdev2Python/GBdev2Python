@@ -27,6 +27,7 @@
         <form class="form_empl" action="{% url 'employerapp:employer_create' %}" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {{ form|crispy }}
+          {{ form.media }}
           <button type="submit" class="boxed-btn3 my-4">Добавить</button>
         </form>
       </div>

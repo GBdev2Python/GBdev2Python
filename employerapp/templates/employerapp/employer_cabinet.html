@@ -28,7 +28,7 @@
             <h3>Компания работодателя: </h3><a href="{{ item.get_absolute_url }}">{{ item.employment }}</a>
             {% endfor %}
 
-            <br>
+            <br><br>
             <h5 class="my-3">Список опубликованных вакансий работодателя: {{ user.username }}:</h5>
             <ul>
                 {% for item in vacancy_cab_qs %}
@@ -37,7 +37,7 @@
                 </li>
                 {% endfor %}
             </ul>
-
+            <br><br>
             <h5 class="my-3">Список черновиков вакансий работодателя: {{ user.username }}:</h5>
             <ul>
                 {% for item in vacancy_cab_not_qs %}
