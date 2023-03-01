@@ -82,7 +82,7 @@ class Resumes(models.Model):
         return str(f"{self.applicants.first_name} {self.required_job}")
 
     def get_absolute_url(self):
-        return reverse("resume_by_id", kwargs={"resume_id": self.id})
+        return reverse("applicant:resume_by_id", kwargs={"resume_id": self.id})
 
     class Meta:
         verbose_name = "Резюме"

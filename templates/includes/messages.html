@@ -1,28 +1,29 @@
 {# toast overall div defines position #}
-<div aria-live="polite" aria-atomic="true" class="m-2 position-relative">
-{# toast container settings #}
-    <div class="toast-container position-absolute top-0 end-0 p-3" id="toastPlacement">
-
-        {% for message in messages %}
-            <div class="toast flex-fill w-100 {% if message.level > 20%}border-warning{% endif %}" role="alert" aria-live="assertive" aria-atomic="true" style="right: 0;">
-                <div class="toast-header {% if message.level > 20%}border-warning{% endif %}">
-                    <span class="mr-2"><i class="far fa-envelope"></i></span>
-                    <strong class="mr-auto mx-1">{{ message.tags }} message</strong>
-                    <small class="text-muted mx-1">just now</small>
-                    <button type="button" class="ml-2 mb-1 close" data-bs-dismiss="toast" aria-label="Close">
-                        <span aria-hidden="true">X</span>
-                    </button>
+<div class="position-absolute w-100" style="z-index: 1;">
+    <div aria-live="polite" aria-atomic="true" class="m-2 position-relative">
+    {# toast container settings #}
+        <div class="toast-container position-absolute top-0 end-0 p-3" id="toastPlacement">
+            {% for message in messages %}
+                <div class="toast flex-fill w-100 {% if message.level > 20%}border-warning{% endif %}" role="alert" aria-live="assertive" aria-atomic="true" style="right: 0;">
+                    <div class="toast-header {% if message.level > 20%}border-warning{% endif %}">
+                        <span class="mr-2"><i class="far fa-envelope"></i></span>
+                        <strong class="mr-auto mx-1">{{ message.tags }} message</strong>
+                        <small class="text-muted mx-1">just now</small>
+                        <button type="button" class="ml-2 mb-1 close" data-bs-dismiss="toast" aria-label="Close">
+                            <span aria-hidden="true">X</span>
+                        </button>
+                    </div>
+                    <div class="toast-body">
+                        {{ message }}
+                    </div>
                 </div>
-                <div class="toast-body">
-                    {{ message }}
-                </div>
-            </div>
 
-            {# debug script #}
-            <script>
-                console.log("{{ message }}");
-            </script>
+                {# debug script #}
+                <script>
+                    console.log("{{ message }}");
+                </script>
 
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 </div>

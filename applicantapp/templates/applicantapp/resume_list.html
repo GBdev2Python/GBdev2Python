@@ -13,9 +13,9 @@
     <br>
     <h1>Список резюме</h1>
     <ul>
-      {% for item in resume_list%}
+      {% for item in resume_list %}
         <li>
-          <a href="{{ item.get_absolute_url }}"> <h3>{{ item.applicants.first_name }} {{ item.applicants.last_name }}</h1></a>
+          <a href="{{ item.get_absolute_url }}"> <h3>{{ item.applicants.first_name }} {{ item.applicants.last_name }}</h3></a>
         </li>
         <p> <em>Навыки:</em> </p>
         <ul>

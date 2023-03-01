@@ -6,24 +6,22 @@
 {% block content %}
 
 
- `<div class="container-fluid">
-      <div class="row">
-  <!--      <div class="col-xl-1 col-md-1 col-lg-1">-->
-  <!--      </div>-->
+    <div class="container-fluid">
+        <div class="row">
 
-        <div class="col-xl-9 col-md-9 col-lg-9">
-          <h2 class="py-3"> Соискатель: {{ applicant.first_name}} {{applicant.last_name }}</h2>
-          <form action="" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
+            <div class="col-xl-9 col-md-9 col-lg-9">
+                <h2 class="py-3"> Соискатель: {{ applicant.first_name }} {{ applicant.last_name }}</h2>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
 
-            {{ form|crispy }}
+                    {{ form|crispy }}
 
-            <div class="my-2">
-              <a class="m-2" href="{% url 'applicant:applicant_cabinet' applicant.id %}">Назад</a>
-              <button type="submit" class='boxed-btn3 m-2'> Сохранить</button>
+                    <div class="my-2">
+                        <a class="m-2" href="{% url 'applicant:applicant_cabinet' applicant.id %}">Назад</a>
+                        <button type="submit" class='boxed-btn3 m-2'> Сохранить</button>
+                    </div>
+                </form>
             </div>
-          </form>
         </div>
-      </div>
- </div>
+    </div>
 {% endblock content %}

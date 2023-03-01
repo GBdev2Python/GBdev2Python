@@ -21,7 +21,7 @@ from employerapp.models import Employer
 class CustomLoginView(LoginView):
 
     def form_valid(self, form):
-        ret = super().form_valid(form)
+        super().form_valid(form)
         message = _("Login success!<br>Hi, %(username)s") % {"username": self.request.user.get_username()}
         messages.add_message(self.request, messages.INFO, mark_safe(message))
         messages.add_message(
@@ -39,7 +39,6 @@ class CustomLoginView(LoginView):
                 messages.WARNING,
                 mark_safe(f"An error occurred:<br>{message}"),
             )
-        print({'username': self.request.POST.get('username')})
         return self.render_to_response(self.get_context_data(form=form))
 
 
