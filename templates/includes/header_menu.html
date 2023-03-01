@@ -32,20 +32,20 @@
                 <a class="boxed-btn3 m-2" href="{% url 'authapp:login' %}">Вход</a>
             {% else %}
                 {% if user.is_company %}
-                    {% if user.employer %}
+                    {% if user_query.empl > 0 %}
                         <a href="{% url 'employerapp:vacancy_create' %}"
                            class="btn btn-outline-success rounded-pill m-1">Создать вакансию</a>
                     {% else %}
                         <a href="{% url 'employerapp:employer_create' %}"
                            class="btn btn-outline-success rounded-pill m-1">Запонить профиль компании</a>
                     {% endif %}
-                    <div class="dropdown align-items-center">
+                    <div class="dropdown align-items-center" style="z-index: 1">
                         <button class="btn profile-icon m-1" type="button" id="dropdownMenuButton1"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            {% if user.employer %}
-                                <li><a href="{% url 'employerapp:employer_cabinet' employer_id=user.employer.id %}"
+                            {% if user_query.empl > 0 %}
+                                <li><a href="{% url 'employerapp:employer_cabinet' employer_id=user_query.employer_id %}"
                                        class="dropdown-item">Кабинет работодателя</a></li>
                             {% else %}
                                 <li><a href="{% url 'employerapp:employer_create' %}" class="dropdown-item">Запонить
@@ -64,8 +64,8 @@
                         </ul>
                     </div>
                 {% else %}
-                    {% if user.applicants %}
-                        <a href="{% url 'applicant:new_resume' applicant_id=user.applicants.id %}"
+                    {% if user_query.appl > 0 %}
+                        <a href="{% url 'applicant:new_resume' applicant_id=user_query.applicant_id %}"
                            class="btn btn-outline-success rounded-pill">Создать резюме</a>
                     {% else %}
                         <a href="{% url 'applicant:create' %}" class="btn btn-outline-success rounded-pill">Заполнить
@@ -76,8 +76,8 @@
                                 data-bs-toggle="dropdown" aria-expanded="false">
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            {% if user.applicants %}
-                                <li><a href="{% url 'applicant:applicant_cabinet' applicant_id=user.applicants.id %}"
+                            {% if user_query.appl > 0 %}
+                                <li><a href="{% url 'applicant:applicant_cabinet' applicant_id=user_query.applicant_id %}"
                                        class="dropdown-item">Кабинет соискателя</a></li>
                             {% else %}
                                 <li><a href="{% url 'applicant:create' %}" class="dropdown-item">Заполнить профиль

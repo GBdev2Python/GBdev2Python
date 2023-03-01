@@ -1,65 +1,26 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
-  <div class="row justify-content-center py-5">
-    <div class="col-lg-6">
-      <h2>Редактирование профиля</h2>
-      <div class="row justify-content-center">
+    <div class="row justify-content-center py-5">
+        <div class="col-lg-6">
+            <h2>Редактирование профиля</h2>
+            <div class="row justify-content-center">
+                {% if user.avatar %}
+                    <img src="{{ user.avatar.url }}" alt="" width="100%">
+                {% else %}
+                    <img src="{{ MEDIA_URL }}avatar_default.svg" alt="" width="100%">
+                {% endif %}
+            </div>
 
-        {% if user.avatar %}
-          <img src="{{ user.avatar.url }}" alt="" width="100%">
-        {% else %}
-          <img src="{{ MEDIA_URL }}avatar_default.svg" alt="" width="100%">
-        {% endif %}
+            <form method="post" class="mt-2" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="boxed-btn3 my-3">Сохранить</button>
+            </form>
 
-      </div>
-
-      <form method="post" class="mt-2" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div id="div_id_username" class="form-group"> <label for="id_username" class=" requiredField">
-          Имя пользователя<span class="asteriskField">*</span> </label>
-          <div class=""> <input type="text" name="username" maxlength="150"
-            class="textinput textInput form-control" required id="id_username" value="{{ user.username }}">
-            <small id="hint_id_username" class="form-text text-muted">Required. 150 characters or fewer.
-              Letters, digits and @/./+/-/_ only.</small> </div>
         </div>
-        <div id="div_id_first_name" class="form-group"> <label for="id_first_name" class="">
-          Имя
-        </label>
-          <div class=""> <input type="text" name="first_name" maxlength="150"
-            class="textinput textInput form-control" id="id_first_name" value="{{ user.first_name }}">
-          </div>
-        </div>
-        <div id="div_id_last_name" class="form-group"> <label for="id_last_name" class="">
-          Фамилия
-        </label>
-          <div class=""> <input type="text" name="last_name" maxlength="150"
-            class="textinput textInput form-control" id="id_last_name" value="{{ user.last_name }}"> </div>
-        </div>
-        <div id="div_id_age" class="form-group"> <label for="id_age" class="">
-          Возраст
-        </label>
-          <div class=""> <input type="number" name="age" min="0" class="numberinput form-control" id="id_age"
-            value="{{ user.age }}">
-          </div>
-        </div>
-        <div id="div_id_avatar" class="form-group"> <label for="id_avatar" class="">
-          Фотография
-        </label>
-          <div class=""> <input type="file" name="avatar" accept="image/*"
-            class="clearablefileinput form-control-file" id="id_avatar"> </div>
-        </div>
-        <div id="div_id_email" class="form-group"> <label for="id_email" class=" requiredField">
-         Адрес эл.почты<span class="asteriskField">*</span> </label>
-          <div class=""> <input type="text" name="email" maxlength="256" class="textinput textInput form-control"
-            required="" id="id_email" value="{{ user.email }}">
-          </div>
-        </div>
-        <button type="submit" class="boxed-btn3 my-3">Сохранить</button>
-      </form>
-
     </div>
-  </div>
 
 {% endblock content %}

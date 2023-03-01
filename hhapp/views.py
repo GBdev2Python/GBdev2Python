@@ -25,7 +25,7 @@ class MainPageView(TemplateView):
 class JobsListView(ListView):
     model = VacancyHeader
     template_name = "hhapp/jobs.html"
-
+    queryset = VacancyHeader.objects.all()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

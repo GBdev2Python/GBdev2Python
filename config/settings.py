@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "ckeditor",
     "django_filters",
-    # "django_extensions",  # Для работы с консолью ORM. Дополнительно установить пакеты: ipython, django-extensions
+    "django_extensions",  # Для работы с консолью ORM. Дополнительно установить пакеты: ipython, django-extensions
     # "django_celery_beat",
 ]
 
@@ -75,6 +75,7 @@ TEMPLATES = [
                 "django.template.context_processors.media",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "authapp.context_processors.get_user_data"
             ],
         },
     },
@@ -181,3 +182,16 @@ CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_FILE_PATH = '/tmp/app-messages'
+
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        'console': {'class': 'logging.StreamHandler'}
+    },
+    'loggers': {
+        'django.db.backends': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        }
+    }
+}

@@ -11,28 +11,11 @@
     </div>
     <div class="row">
         <div class="row row-cols-2 col-sm-8">
-            {% for user in users %}
-                <div class="col my-2">
-                    <div class="card {% if user.is_active %} border-success{% else %} border-danger{% endif %}"
-                         style="max-width: 450px; max-height: 250px">
-                        <div class="card-body">
-                            <h5 class="card-title {% if user.is_active %} text-success {% else %} text-danger {% endif %}">{{ user }}</h5>
-                            <p class="mb-0"><small class="text-muted">active: {{ user.is_active }}</small></p>
-                            <p class="mb-0"><small class="text-muted">company: {{ user.is_company }}</small></p>
-                        </div>
-                        <div class="card-footer">
-                            <a class="btn {% if user.is_active %} btn-outline-success {% else %} btn-outline-danger {% endif %}"
-                               href="{% url 'authapp:moderator_edit' pk=user.id %}">
-                                Edit profile
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
+
         </div>
 
         <!-- Search area -->
-        <div class="col-sm-4">
+        <div class="col-sm-4" style="z-index: 0">
             <div class="card my-2 sticky-top">
                 <p class="card-header">Параметры поиска</p>
                 <form method="get">
@@ -60,7 +43,6 @@
                             </label>
                         </div>
                     </div>
-
                     <button class="btn btn-outline-primary m-3 align-self-center">Применить фильтр</button>
                 </form>
             </div>

@@ -71,12 +71,12 @@ class ApplicantCreate(CreateView):
         "town": "Город (населенный пункт)",
     }
     template_name = "applicantapp/applicant_create.html"
+
     def form_valid(self, form):
         new_applicant = form.save()
         new_applicant.user = self.request.user
         new_applicant.save()
         return redirect("applicant:applicant_cabinet", applicant_id=new_applicant.id)
-
 
 
 class ApplicantCabinet(ListView):
@@ -86,17 +86,25 @@ class ApplicantCabinet(ListView):
     paginate_by = 3
 
     def get_queryset(self, **kwargs):
-        return Resumes.objects.filter(applicants=self.kwargs["applicant_id"])
+        qs = Resumes.objects.filter(id=self.kwargs["applicant_id"])
+        return qs
 
     def get_context_data(self, **kwargs):
+        print(self.kwargs)
+        print(self.get_queryset())
+        print(self.queryset)
+
         context = super().get_context_data(**kwargs)
-        queryset = Resumes.objects.filter(applicants=self.kwargs["applicant_id"])
         context["applicant_list"] = Applicants.objects.all()
         context["applicant"] = Applicants.objects.get(id=self.kwargs["applicant_id"])
-        context["resumes"] = Resumes.objects.filter(applicants=self.kwargs["applicant_id"])
-        context["queryset"] = queryset
-        return context
+        context["resumes"] = Resumes.objects.filter(applicants_id=self.kwargs["applicant_id"])
+        # context["queryset"] = queryset
 
+        print(context)
+        for k, v in context.items():
+            print(k, v)
+
+        return context
 
 
 # Отдельный соискатель

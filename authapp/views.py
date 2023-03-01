@@ -9,6 +9,7 @@ from django.urls import reverse_lazy
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import UpdateView, ListView
+from django.db.models import Count, When, Case
 
 from authapp import forms
 from applicantapp.models import Applicants
@@ -136,6 +137,12 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
 
 
 class UserModerationView(UserPassesTestMixin, ListView):
+    queryset = CustomUser.objects.select_related('applicants', 'employer') \
+        .annotate(
+        cab_a=Count('applicants__id'),
+        cab_e=Count('employer__id'),
+        role=Case(When(is_company=1, then='employer__id'), When(is_company=0, then='applicants__id')),
+    ).only('is_active', 'username', 'is_company')
     model = CustomUser
     template_name = 'authapp/moderation.html'
     context_object_name = 'users'
@@ -144,30 +151,25 @@ class UserModerationView(UserPassesTestMixin, ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=object_list, **kwargs)
         context['username_parameter'] = self.request.GET.get("username", "")
-        context['status_selected'] = int(self.request.GET.get("user_status", 0))
+        context['status_selected'] = int(self.request.GET.get("user_status", -1))
         return context
-
-    def get(self, request, *args, **kwargs):
-        ret = super().get(request, *args, **kwargs)
-        return ret
 
     def test_func(self):
         return True if self.request.user.is_staff or self.request.user.is_superuser else False
 
     def get_queryset(self, *args, **kwargs):
         if self.request.GET:
-            queryset = CustomUser.objects.all()
+            queryset = self.queryset
             user_status = int(self.request.GET.get("user_status"))
 
             if user_status >= 0:
                 queryset = queryset.filter(is_company=user_status)
-
             if self.request.GET.get("username") is not None:
                 queryset = queryset.filter(username__icontains=self.request.GET.get("username"))
 
             return queryset.order_by(*self.ordering)
 
-        return CustomUser.objects.all().order_by(*self.ordering)
+        return self.queryset.order_by(*self.ordering)
 
 
 class UserModeratorEditView(UserPassesTestMixin, UpdateView):

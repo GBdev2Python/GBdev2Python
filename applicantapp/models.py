@@ -70,7 +70,7 @@ class Resumes(models.Model):
     )
     skills = models.ManyToManyField(Skill, blank=True, verbose_name="Ключевые навыки")
     salary = models.CharField(max_length=30, blank=True, null=True, verbose_name="Зарплата")
-    town_job = models.ForeignKey(Towns, on_delete=models.PROTECT, verbose_name="Поиск работы в годорде:")
+    town_job = models.ForeignKey(Towns, on_delete=models.PROTECT, null=True, verbose_name="Поиск работы в годорде:")
     last_job = models.TextField(null=True, blank=True, verbose_name="Последнее место работы")
     education = models.TextField(null=True, blank=True, verbose_name="Образование/курсы")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания резюме")
