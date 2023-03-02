@@ -118,7 +118,7 @@
                                     <a href="{% url 'employerapp:vacancy_create' %}" class="boxed-btn3 m-2">Разместить
                                         вакансию</a>
                                 {% else %}
-                                    <a href="{% url 'applicant:new_resume' applicant_id=user.id %}"
+                                    <a href="{% url 'applicant:new_resume' applicant_id=user_query.applicant_id %}"
                                        class="boxed-btn3 m-2">Создать резюме</a>
                                 {% endif %}
                             {% else %}
