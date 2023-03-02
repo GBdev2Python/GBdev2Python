@@ -1,0 +1,67 @@
+[
+  {
+    "model": "applicantapp.applicants",
+    "pk": 1,
+    "fields": {
+      "user": 6,
+      "first_name": "Gerasim",
+      "last_name": "Vasilevskiy",
+      "image": "applicant_images/andy.png",
+      "birthday": "2002-02-22",
+      "phone": "+792134921",
+      "town": 1
+    }
+  },
+  {
+    "model": "applicantapp.applicants",
+    "pk": 2,
+    "fields": {
+      "user": 7,
+      "first_name": "Avshalom",
+      "last_name": "Tsigelman",
+      "image": "applicant_images/egord.png",
+      "birthday": "1998-01-11",
+      "phone": "+7837211372",
+      "town": 2
+    }
+  },
+  {
+    "model": "applicantapp.applicants",
+    "pk": 3,
+    "fields": {
+      "user": 11,
+      "first_name": "Марина",
+      "last_name": "Булкина",
+      "image": "image/applicant/mary_samOVKV.png",
+      "birthday": "1988-01-09",
+      "phone": "+357397776677",
+      "town": 15
+    }
+  },
+  {
+    "model": "applicantapp.applicants",
+    "pk": 4,
+    "fields": {
+      "user": 12,
+      "first_name": "Ольга",
+      "last_name": "Дудкина",
+      "image": "image/applicant/ella_uantUHY.png",
+      "birthday": "1985-01-10",
+      "phone": "+359344862677",
+      "town": 16
+    }
+  },
+  {
+    "model": "applicantapp.applicants",
+    "pk": 5,
+    "fields": {
+      "user": 13,
+      "first_name": "Егор",
+      "last_name": "Стулов",
+      "image": "image/applicant/egord_Fn2Avdq.png",
+      "birthday": "1999-04-05",
+      "phone": "+3746787776677",
+      "town": 5
+    }
+  }
+]
