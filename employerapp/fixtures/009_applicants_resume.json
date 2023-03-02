@@ -1,0 +1,249 @@
+[
+  {
+    "model": "applicantapp.resumes",
+    "pk": 1,
+    "fields": {
+      "applicants": 3,
+      "verification": false,
+      "required_job": "Django developer",
+      "image": "applicant_images/mary_v19zt0m.png",
+      "salary": "1500",
+      "town_job": 12,
+      "last_job": "SoftLine",
+      "education": "Cisco\r\nGB",
+      "created": "2023-02-28T20:36:41.391Z",
+      "is_published": true,
+      "skills": [
+        1,
+        10,
+        12
+      ]
+    }
+  },
+  {
+    "model": "applicantapp.resumes",
+    "pk": 2,
+    "fields": {
+      "applicants": 3,
+      "verification": false,
+      "required_job": "Web дизайнер",
+      "image": "applicant_images/mary_XgIDtUR.png",
+      "salary": "3000",
+      "town_job": 37,
+      "last_job": "WEBStudia",
+      "education": "Художественная академия",
+      "created": "2023-02-28T20:42:52.716Z",
+      "is_published": true,
+      "skills": [
+        9,
+        11
+      ]
+    }
+  },
+  {
+    "model": "applicantapp.resumes",
+    "pk": 3,
+    "fields": {
+      "applicants": 3,
+      "verification": false,
+      "required_job": "С# developer",
+      "image": "applicant_images/mary_BtIZPyd.png",
+      "salary": "35000",
+      "town_job": 1,
+      "last_job": "РусСофт",
+      "education": "GB\r\nCisco",
+      "created": "2023-02-28T20:44:13.035Z",
+      "is_published": true,
+      "skills": [
+        7,
+        12
+      ]
+    }
+  },
+  {
+    "model": "applicantapp.resumes",
+    "pk": 4,
+    "fields": {
+      "applicants": 3,
+      "verification": false,
+      "required_job": "БД admin",
+      "image": "applicant_images/mary_W0upAma.png",
+      "salary": "10000",
+      "town_job": 38,
+      "last_job": "DATACentrX",
+      "education": "Cisco\r\nHUAWEI",
+      "created": "2023-02-28T20:45:15.195Z",
+      "is_published": true,
+      "skills": [
+        5,
+        6,
+        12
+      ]
+    }
+  },
+  {
+    "model": "applicantapp.resumes",
+    "pk": 5,
+    "fields": {
+      "applicants": 4,
+      "verification": false,
+      "required_job": "HTML верстка",
+      "image": "applicant_images/ella_mCT1Aya.png",
+      "salary": "1000",
+      "town_job": 41,
+      "last_job": "TRweb",
+      "education": "GB",
+      "created": "2023-02-28T20:47:29.414Z",
+      "is_published": true,
+      "skills": [
+        9
+      ]
+    }
+  },
+  {
+    "model": "applicantapp.resumes",
+    "pk": 6,
+    "fields": {
+      "applicants": 4,
+      "verification": false,
+      "required_job": "Django developer",
+      "image": "applicant_images/ella_K3IxcUy.png",
+      "salary": "10000",
+      "town_job": 41,
+      "last_job": "DCompany",
+      "education": "GB\r\nEricsson",
+      "created": "2023-02-28T20:48:23.272Z",
+      "is_published": true,
+      "skills": [
+        1,
+        10,
+        12
+      ]
+    }
+  },
+  {
+    "model": "applicantapp.resumes",
+    "pk": 7,
+    "fields": {
+      "applicants": 4,
+      "verification": false,
+      "required_job": "БД admin",
+      "image": "applicant_images/ella_JIZlBqc.png",
+      "salary": "2000",
+      "town_job": 33,
+      "last_job": "RTFcompany",
+      "education": "Cisco",
+      "created": "2023-02-28T20:49:24.884Z",
+      "is_published": true,
+      "skills": [
+        5,
+        6,
+        12
+      ]
+    }
+  },
+  {
+    "model": "applicantapp.resumes",
+    "pk": 8,
+    "fields": {
+      "applicants": 4,
+      "verification": false,
+      "required_job": "Project manager",
+      "image": "applicant_images/ella_gZ3XR9C.png",
+      "salary": "15000",
+      "town_job": 15,
+      "last_job": "FTBproject",
+      "education": "PM cources",
+      "created": "2023-02-28T20:51:42.623Z",
+      "is_published": true,
+      "skills": [
+        2,
+        7,
+        9
+      ]
+    }
+  },
+  {
+    "model": "applicantapp.resumes",
+    "pk": 9,
+    "fields": {
+      "applicants": 5,
+      "verification": false,
+      "required_job": "Project manager",
+      "image": "applicant_images/egord_6F3EQf5.png",
+      "salary": "15500",
+      "town_job": 40,
+      "last_job": "ProjectConsalt",
+      "education": "GB",
+      "created": "2023-02-28T20:54:40.831Z",
+      "is_published": true,
+      "skills": [
+        5,
+        6,
+        7,
+        9
+      ]
+    }
+  },
+  {
+    "model": "applicantapp.resumes",
+    "pk": 10,
+    "fields": {
+      "applicants": 5,
+      "verification": false,
+      "required_job": "Django developer",
+      "image": "applicant_images/egord_W04W3T6.png",
+      "salary": "7000",
+      "town_job": 38,
+      "last_job": "SoftLine",
+      "education": "GB\r\nHUAWEI",
+      "created": "2023-02-28T20:56:20.246Z",
+      "is_published": true,
+      "skills": [
+        1,
+        6,
+        10,
+        12
+      ]
+    }
+  },
+  {
+    "model": "applicantapp.resumes",
+    "pk": 11,
+    "fields": {
+      "applicants": 5,
+      "verification": false,
+      "required_job": "C# developer",
+      "image": "applicant_images/egord_8l0wX4m.png",
+      "salary": "3500",
+      "town_job": 11,
+      "last_job": "C#dev",
+      "education": "GB",
+      "created": "2023-02-28T20:57:07.562Z",
+      "is_published": true,
+      "skills": [
+        7
+      ]
+    }
+  },
+  {
+    "model": "applicantapp.resumes",
+    "pk": 12,
+    "fields": {
+      "applicants": 5,
+      "verification": false,
+      "required_job": "Web дизайн",
+      "image": "applicant_images/egord_ZT7XyqW.png",
+      "salary": "3000",
+      "town_job": 38,
+      "last_job": "Х-дизайн",
+      "education": "МГУ",
+      "created": "2023-02-28T20:58:37.698Z",
+      "is_published": true,
+      "skills": [
+        9,
+        11
+      ]
+    }
+  }
+]

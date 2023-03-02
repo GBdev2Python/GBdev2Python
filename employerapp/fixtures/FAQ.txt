@@ -1,9 +1,17 @@
+# Внимание!
+# Фикстуры по адресу applicantapp/fixtures (007_applicants.json, data.json) не сочетаются с фикстурой 001_customuser.json
+# Вышеуказанные фикстуры не использовать
 
+
+
+# Проверенные работающие фиксткстуры (на 02.03.2023)
 # выгрузка данных из базы (файлы с одинаковыми именами ПЕРЕЗАПИШУТЬСЯ !!!)
 python manage.py dumpdata --format=json --indent=4 authapp.Customuser > employerapp/fixtures/001_customuser.json
 
 python manage.py dumpdata --format=json --indent=4 applicantapp.Towns > employerapp/fixtures/002_towns.json
 python manage.py dumpdata --format=json --indent=4 applicantapp.Skill > employerapp/fixtures/003_skill.json
+python manage.py dumpdata --format=json --indent=4 applicantapp.Applicants > employerapp/fixtures/008_applicant.json
+python manage.py dumpdata --format=json --indent=4 applicantapp.Resumes > employerapp/fixtures/009_applicants_resume.json
 
 python manage.py dumpdata --format=json --indent=4 employerapp.TypeEmployment > employerapp/fixtures/004_type_employment.json
 python manage.py dumpdata --format=json --indent=4 employerapp.Employer > employerapp/fixtures/005_employer.json
@@ -11,8 +19,12 @@ python manage.py dumpdata --format=json --indent=4 employerapp.VacancyHeader > e
 
 
 
+# Проверенные работающие фиксткстуры (на 02.03.2023)
+# группы еше не организованы.
+# загрузить данные из файла *.json в  базу данных (существующие данные в базе при этом перезапишутся)
+# Загружать в последовательности предложенного списка !!!
 
-# загрузить данные из файла *.json в  базу данных (!!! существующие данные в базе при этом перезапишутся !!!)
+# Команды для загрузки через консоль:
 
 python manage.py loaddata 001_customuser.json
 
@@ -24,10 +36,13 @@ python manage.py loaddata 005_employer.json
 python manage.py loaddata 006_vacancy_header.json
 
 
+python manage.py loaddata 001_news.json
+python manage.py loaddata 008_applicant.json
+python manage.py loaddata 009_applicants_resume.json
 
-# группы (роли) еше не организованы !!!
-# Логины, пароли пользователей и профильная информация
 
+
+# Логины, пароли пользователей и профильная информация:
 # Суперпользователь
 admin
 admin@post.com
@@ -70,7 +85,6 @@ Employer4surname
 +7 905 1234567
 www.employer4.com
 
-# В нижеследующее в фикстуруне записано
 # модератор
 moder
 moder@post.com
@@ -79,7 +93,6 @@ Moder-name
 Moder-surname
 
 # Соискатель
-# в фикстуруне НЕ записано
 user1
 user1@post.com
 1111qqqqa
@@ -97,3 +110,16 @@ user3@post.com
 1111qqqqa
 user3name
 user3surname
+
+user4
+user4@post.com
+1111qqqqa
+user4name
+user4surname
+
+
+user5
+user5@post.com
+1111qqqqa
+user5name
+user5surname
