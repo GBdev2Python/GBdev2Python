@@ -51,8 +51,8 @@
                                 <li><a href="{% url 'employerapp:employer_create' %}" class="dropdown-item">Запонить
                                     профиль компании</a></li>
                             {% endif %}
-                            <li><a href="{% url 'authapp:password_change' pk=request.user.id %}" class="dropdown-item">Сменить
-                                пароль</a></li>
+                            <li><a class="dropdown-item" href="{% url 'authapp:profile_edit' pk=request.user.id %}">Изменить данные профиля</a></li>
+                            <li><a href="{% url 'authapp:password_change' pk=request.user.id %}" class="dropdown-item">Сменить пароль</a></li>
                             <li><a href="" class="dropdown-item disabled">Информация?</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -83,8 +83,8 @@
                                 <li><a href="{% url 'applicant:create' %}" class="dropdown-item">Заполнить профиль
                                     соискателя</a></li>
                             {% endif %}
-                            <li><a href="{% url 'authapp:password_change' pk=request.user.id %}" class="dropdown-item">Сменить
-                                пароль</a></li>
+                            <li><a class="dropdown-item" href="{% url 'authapp:profile_edit' pk=request.user.id %}">Изменить данные профиля</a></li>
+                            <li><a href="{% url 'authapp:password_change' pk=request.user.id %}" class="dropdown-item">Сменить пароль</a></li>
                             <li><a href="" class="dropdown-item disabled">Информация?</a></li>
                             <li>
                                 <hr class="dropdown-divider">

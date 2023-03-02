@@ -6,14 +6,12 @@
     <div class="row justify-content-center py-5">
         <div class="col-lg-6">
             <h2>Редактирование профиля</h2>
-            <div class="row justify-content-center">
-                {% if user.avatar %}
-                    <img src="{{ user.avatar.url }}" alt="" width="100%">
-                {% else %}
-                    <img src="{{ MEDIA_URL }}avatar_default.svg" alt="" width="100%">
-                {% endif %}
+            <div class="card p-1">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-muted">Дата регистрации: {{ request.user.date_joined }}</li>
+                    <li class="list-group-item text-muted">Роль на сайте: {% if request.user.is_company %}Работодатель{% else %}Соискатель{% endif %}</li>
+                </ul>
             </div>
-
             <form method="post" class="mt-2" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form|crispy }}

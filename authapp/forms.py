@@ -27,14 +27,12 @@ class CustomUserCreationForm(UserCreationForm):
 
 class CustomUserChangeForm(forms.ModelForm):
     # date_joined = forms.CharField(widget=forms.TextInput(attrs={"readonly": "readonly"}))
-
     class Meta:
         model = get_user_model()
         fields = (
             "username",
             "login",
             "email",
-            "is_company",
         )
         field_classes = {"username": UsernameField}
 
