@@ -1,9 +1,9 @@
 from django.shortcuts import redirect, render
 from django.views.generic import ListView, CreateView
-from django.views.generic import TemplateView, ListView, CreateView
+from django.views.generic import TemplateView, ListView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from applicantapp.forms import ResumeForm
+from applicantapp.forms import ResumeForm, EditApplicantForm
 from applicantapp.models import *
 from serviceapp.models import Response
 from django.contrib.auth.decorators import login_required
@@ -79,6 +79,17 @@ class ApplicantCreate(CreateView):
         new_applicant.user = self.request.user
         new_applicant.save()
         return redirect("applicant:applicant_cabinet", applicant_id=new_applicant.id)
+# Редактирование профиля соискателя
+
+class ApplicantEdit(UpdateView):
+    model = Applicants
+    form_class = EditApplicantForm
+    pk_url_kwarg = "applicant_id"
+    template_name = "applicantapp/applicant_edit.html"
+
+    def form_valid(self, form):
+        applicant = form.save()
+        return redirect("applicant:applicant_cabinet", applicant_id=applicant.id)
 
 
 class ApplicantCabinet(LoginRequiredMixin,ListView):

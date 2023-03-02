@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static crispy_forms_tags %}
+{% block title %}Редактирование профиля соискателя{% endblock title %}
+
+{% block content %}
+
+  <div class="justify-content-center py-5">
+      <h2 style="margin-left: 13px;">Профиль соискателя</h2>
+      <b></b>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xl-8 col-md-8 col-lg-8">
+            <form class="form_empl" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              {{ form|crispy }}
+              <button type="submit" class="boxed-btn3 " style="margin-top: 12px;">Подтвердить изменения</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+     </div>
+  <br>
+{% endblock content %}

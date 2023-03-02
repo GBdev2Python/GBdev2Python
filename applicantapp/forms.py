@@ -19,3 +19,16 @@ class ResumeForm(ModelForm):
 
         for name, field in self.fields.items():
             field.widget.attrs.update({"class": "input"})
+
+
+class EditApplicantForm(forms.ModelForm):
+    class Meta:
+        model = Applicants
+        fields = ["image", "first_name", "last_name", "birthday", "town", "phone"]
+        labels = {
+            "image": "Аватар",
+            "first_name": "Имя",
+            "last_name": "Фамилия",
+            "birthday": "Дата рождения",
+            "town": "Город (населенный пункт)",
+        }

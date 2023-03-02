@@ -49,7 +49,7 @@
       <div class="col-xl-3 col-md-3 col-lg-3">
         <ul>
           <li>
-              <a href="{% url 'authapp:profile_edit' pk=request.user.id %}" class="boxed-btn4 m-2">Изменить профиль</a>
+              <a href="{% url 'applicant:applicant_edit' applicant_id=applicant.id%}" class="boxed-btn4 m-2">Изменить профиль</a>
 <!--              <a href="{% url 'applicant:new_resume' applicant.id%}" class="boxed-btn4 m-2">Создать резюме</a>-->
 {#              <a href="#" class="boxed-btn4 m-2">Просмотры резюме</a>#}
 {#              <a href="#" class="boxed-btn4 m-2">Отклики</a>#}

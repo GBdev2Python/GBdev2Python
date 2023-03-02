@@ -6,10 +6,6 @@
   <link rel="stylesheet" href="{% static 'employerapp/css/forms.css' %}"/>
 {% endblock stylesheet %}
 
-{% block messages %}
-  {% include 'includes/candidate_menu.html' %}
-{% endblock messages %}
-
 {% block content %}
   <br><br>
   {% if user.is_authenticated %}
