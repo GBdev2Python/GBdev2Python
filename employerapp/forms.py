@@ -8,7 +8,7 @@ class AddEmployerForm(forms.ModelForm):
 
     class Meta:
         model = Employer
-        fields = ["employment", "cover", "town_id", "address", "phone", "email", "website", "body", "location", "user"]
+        fields = ["employment", "cover", "town_id", "address", "phone", "email", "website", "body", "location"]
         labels = {
             "employment": "Название организации",
             "town_id": "Город (населенный пункт)",
@@ -67,7 +67,7 @@ class AddVacancyForm(forms.ModelForm):
             "town_id",
             "skills_id",
             "body",
-            "employer_id",
+           # "employer_id",
             "is_published",
         ]
         widgets = {

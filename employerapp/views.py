@@ -92,6 +92,13 @@ class EmployerCreate(CreateView):
     template_name = "employerapp/employer_create.html"
     # success_url = reverse_lazy("employerapp:employer_list")
 
+    def form_valid(self, form):
+        """If the form is valid, save the associated model."""
+        self.object = form.save(commit=False)
+        self.object.user=self.request.user
+        self.object = self.object.save()
+        return super().form_valid(form)
+
 
 # Изменение карточки работодателя
 class EmployerUpdate(UpdateView):
@@ -107,6 +114,14 @@ class VacancyCreate(CreateView):
     form_class = AddVacancyForm
     template_name = "employerapp/vacancy_create.html"
     # success_url = reverse_lazy("employerapp:employer_list")
+
+    def form_valid(self, form):
+        """If the form is valid, save the associated model."""
+        self.object = form.save(commit=False)
+        self.object.employer_id=Employer.objects.get(user=self.request.user)
+        self.object = self.object.save()
+        return super().form_valid(form)
+
 
 
 # Изменение вакансии работодателя
