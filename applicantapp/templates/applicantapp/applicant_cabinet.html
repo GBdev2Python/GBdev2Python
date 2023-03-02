@@ -4,17 +4,7 @@
 
 {% block content %}
 
-  {% if user.is_authenticated %}
-    <p>customuser Логин: {{ user.username }}</p>
-    <p>customuser ID: {{ user.pk }}</p>
-    <p>applicant ID: {{ applicant.id}}</p>
-  {% endif %}
-
-    <br>
-
     <div class="row">
-<!--      <div class="col-xl-1 col-md-1 col-lg-1">-->
-<!--      </div>-->
 
         <h2 class="my-4">Личный кабинет соискателя</h2>
 
@@ -49,7 +39,7 @@
       <div class="col-xl-3 col-md-3 col-lg-3">
         <ul>
           <li>
-              <a href="{% url 'applicant:applicant_edit' applicant_id=applicant.id%}" class="boxed-btn4 m-2">Изменить профиль</a>
+              <a href="{% url 'applicant:applicant_edit' applicant.id%}" class="boxed-btn4 m-2">Изменить профиль</a>
 <!--              <a href="{% url 'applicant:new_resume' applicant.id%}" class="boxed-btn4 m-2">Создать резюме</a>-->
 {#              <a href="#" class="boxed-btn4 m-2">Просмотры резюме</a>#}
 {#              <a href="#" class="boxed-btn4 m-2">Отклики</a>#}

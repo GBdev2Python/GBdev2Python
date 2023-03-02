@@ -26,7 +26,7 @@ urlpatterns = [
     # заполнение профиля соискателя
     path("applicant_create/", views.ApplicantCreate.as_view(), name="create"),
     # редактирование профиля соискателя
-    path("applicant_edit/<int:applicant_id>/", views.ApplicantEdit.as_view(), name="applicant_edit"),
+    path("applicant_edit/<str:pk>/", views.update_applicant, name="applicant_edit"),
     # личный кабинет соискателя
     path("applicant_cabinet/<int:applicant_id>/", views.ApplicantCabinet.as_view(), name="applicant_cabinet"),
 

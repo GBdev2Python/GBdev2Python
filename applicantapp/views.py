@@ -80,16 +80,24 @@ class ApplicantCreate(CreateView):
         new_applicant.save()
         return redirect("applicant:applicant_cabinet", applicant_id=new_applicant.id)
 # Редактирование профиля соискателя
+@login_required()
+def update_applicant(request, pk):
+    applicant = Applicants.objects.get(id=pk)
+    form = EditApplicantForm(instance=applicant)
 
-class ApplicantEdit(UpdateView):
-    model = Applicants
-    form_class = EditApplicantForm
-    pk_url_kwarg = "applicant_id"
-    template_name = "applicantapp/applicant_edit.html"
+    if request.user.is_authenticated and Applicants.objects.get(user=request.user).id==applicant.id:
+        if request.method == "POST":
+            form = EditApplicantForm(request.POST, request.FILES, instance=applicant)
 
-    def form_valid(self, form):
-        applicant = form.save()
-        return redirect("applicant:applicant_cabinet", applicant_id=applicant.id)
+            if form.is_valid():
+                form.save()
+                return redirect("applicant:applicant_cabinet", applicant_id=applicant.id)
+
+        context = {"form": form}
+        return render(request, "applicantapp/applicant_edit.html", context)
+    else:
+        return redirect("applicant:applicant_cabinet", applicant_id=Applicants.objects.get(user=request.user).id)
+
 
 
 class ApplicantCabinet(LoginRequiredMixin,ListView):

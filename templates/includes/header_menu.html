@@ -113,16 +113,26 @@
                             <h5 style="width: 635px;">+100500 вакансий на JobBoard</h5>
                             <h3 style="width: 635px;">Сервис №1 по поиску сотрудников в России</h3>
                             <p style="width: 635px;">Всегда самые свежие новости на рынке труда!</p>
-                            {% if user.is_authenticated %}
-                                {% if user.is_company %}
-                                    <a href="{% url 'employerapp:vacancy_create' %}" class="boxed-btn3 m-2">Разместить
-                                        вакансию</a>
-                                {% else %}
-                                    <a href="{% url 'applicant:new_resume' applicant_id=user_query.applicant_id %}"
-                                       class="boxed-btn3 m-2">Создать резюме</a>
-                                {% endif %}
+                            {% if user.is_anonymous %}
+                                <a href="{% url 'authapp:register' %}" class="boxed-btn3 m-2">Начать поиск</a>
                             {% else %}
-                                <a href="{% url 'authapp:register' %}" class="boxed-btn3 m-2">Создать резюме</a>
+                                {% if user.is_company %}
+                                    {% if user_query.empl > 0 %}
+                                        <a href="{% url 'employerapp:vacancy_create' %}"
+                                           class="boxed-btn3 m-2">Создать вакансию</a>
+                                    {% else %}
+                                        <a href="{% url 'employerapp:employer_create' %}"
+                                           class="boxed-btn3 m-2">Запонить профиль компании</a>
+                                    {% endif %}
+                                {% else %}
+                                    {% if user_query.appl > 0 %}
+                                        <a href="{% url 'applicant:new_resume' applicant_id=user_query.applicant_id %}"
+                                           class="boxed-btn3 m-2">Создать резюме</a>
+                                    {% else %}
+                                        <a href="{% url 'applicant:create' %}" class="boxed-btn3 m-2">Заполнить
+                                            профиль</a>
+                                    {% endif %}
+                                {% endif %}
                             {% endif %}
                         </div>
                     </div>
