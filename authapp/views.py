@@ -22,6 +22,12 @@ from employerapp.models import Employer
 
 class CustomLoginView(LoginView):
 
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect(reverse_lazy('hhapp:main_page'))
+
+        return super().dispatch(request, *args, **kwargs)
+
     def form_valid(self, form):
         super().form_valid(form)
         message = _("Login success!<br>Hi, %(username)s") % {"username": self.request.user.get_username()}
@@ -78,6 +84,9 @@ def profile_info(request):
 
 
 def register(request):
+    if not request.user.is_anonymous:
+        return redirect(reverse_lazy('hhapp:main_page'))
+
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
