@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView, \
-    PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView
+    PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -87,13 +87,22 @@ def register(request):
     return render(request, 'registration/register.html', {"form": form})
 
 
-class CustomPasswordChangeView(PasswordChangeView):
+class CustomPasswordChangeView(UserPassesTestMixin, PasswordChangeView):
     template_name = "registration/custom_password_change.html"
     success_url = reverse_lazy("authapp:password_change_done")
 
+    def dispatch(self, request, *args, **kwargs):
+        user_test_resul = self.get_test_func()()
+        if not user_test_resul:
+            return redirect(reverse_lazy('authapp:password_change', args=(self.request.user.id, )))
+        return super().dispatch(request, *args, **kwargs)
+
+    def test_func(self):
+        return self.request.user.pk == self.kwargs.get('pk')
+
     def form_valid(self, form):
         response = super().form_valid(form)
-        messages.add_message(self.request, messages.INFO, message=f'Password successfully changed')
+        messages.add_message(self.request, messages.INFO, message=f'Password has been successfully changed')
         return response
 
 
@@ -127,7 +136,12 @@ class CustomPasswordResetDoneView(PasswordResetDoneView):
 
 
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    success_url = reverse_lazy('authapp:password_reset_complete')
     template_name = 'registration/custom_password_reset_confirm.html'
+
+
+class CustomPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = 'registration/custom_password_reset_complete_view.html'
 
 
 class UserModerationView(UserPassesTestMixin, ListView):

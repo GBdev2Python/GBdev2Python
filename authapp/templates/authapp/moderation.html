@@ -27,7 +27,7 @@
                             </a>
                             {% if object.role %}
                                 {% if object.is_company%}
-                                    <a class="btn btn-outline-secondary" href="{% url 'employerapp:employer_cabinet' employer_id=object.role  %}">View cabinet</a>
+                                    <a class="btn btn-outline-secondary" href="{% url 'employerapp:employer_detail' employer_id=object.role  %}">View cabinet</a>
                                 {% else %}
                                     <a class="btn btn-outline-secondary" href="{% url 'applicant:applicant_cabinet' applicant_id=object.role  %}">View cabinet</a>
                                 {% endif %}
