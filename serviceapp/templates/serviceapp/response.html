@@ -4,19 +4,25 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<h1>Сопроводительное письмо</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-9 col-md-9 col-lg-9 py-4">
+        <h2>Сопроводительное письмо</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <select class="form-select" aria-label="Default select example" name="resume_id">
+                    {% for item in resume %}
+                        <option value="{{item.id}}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="boxed-btn3 my-3">Откликнутся</button>
+            </form>
+        {% else %}
+                Не авторизованный пользователь не может отправлять отклики.
+        {% endif %}
+          </div>
+    </div>
+</div>
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <select class="form-select" aria-label="Default select example" name="resume_id">
-            {% for item in resume %}
-                <option value="{{item.id}}">{{ item }}</option>
-            {% endfor %}
-        </select>
-        <button type="submit" class="btn btn-primary btn-block">Откликнутся</button>
-    </form>
-{% else %}
-        Не авторизованный пользователь не может отправлять отклики.
-{% endif %}
 {% endblock content %}

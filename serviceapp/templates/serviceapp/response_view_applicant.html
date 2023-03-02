@@ -10,16 +10,24 @@
 {% if response.status == 'REJECTED' %}
     <div class="alert alert-danger" role="alert">Отклонили ваш отклик.</div>
 {% endif %}
-<h1>Отклик</h1>
 
-<h3>Сопроводительное письмо:</h3>
-
-{{ response.cover_letter }}
-
-<h4>Вакансия:</h4>
-<a href="{% url 'employerapp:vacancy' vacancy_pk=response.vacancyheader.id %}">{{ response.vacancyheader }}</a>
-<hr>
-<a class="btn btn-danger"  href="{% url 'serviceapp:response_delete' response_id=response.id %}">Удалить отклик</a>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-9 col-md-9 col-lg-9 py-5">
+            <h2>Отклик</h2>
+            <div class="py-3">
+                <h3>Сопроводительное письмо:</h3>
+                 {{ response.cover_letter }}
+            </div>
+            <div class="py-3">
+                <h4>Вакансия:</h4>
+                <a href="{% url 'employerapp:vacancy' vacancy_pk=response.vacancyheader.id %}">{{ response.vacancyheader }}</a>
+             </div>
+            <hr>
+            <a class="boxed-btn2 my-2"  href="{% url 'serviceapp:response_delete' response_id=response.id %}">Удалить отклик</a>
+         </div>
+    </div>
+</div>
 
 {% endif %}
 {% endblock content %}

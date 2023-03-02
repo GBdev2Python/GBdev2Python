@@ -4,29 +4,40 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<h1>Отклик</h1>
 
-<h3>Сопроводительное письмо:</h3>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-9 col-md-9 col-lg-9 py-5">
+            <h2>Отклик</h2>
+             <div class="py-3">
+                <h3>Сопроводительное письмо:</h3>
+                 {{ response.cover_letter }}
+             </div>
+             <div class="py-3">
+                 <h4>Резюме:</h4>
+                <a href="{% url 'applicantapp:resume_by_id' resume_id=response.resume.id %}">{{ response.resume }}</a>
+             </div>
+            <hr>
+            {% if response.status == 'NEW' %}
+             <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="boxed-btn3 my-2" name="status" value="ACCEPTED">Пригласить</button>
+                    <button type="submit" class="boxed-btn2 btn m-2" name="status" value="REJECTED">Отклонить</button>
+                </form>
 
-{{ response.cover_letter }}
-<h4>Резюме:</h4>
-<a href="{% url 'applicantapp:resume_by_id' resume_id=response.resume.id %}">{{ response.resume }}</a>
-<hr>
-{% if response.status == 'NEW' %}
- <form method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-success" name="status" value="ACCEPTED">Пригласить</button>
-        <button type="submit" class="btn btn-danger" name="status" value="REJECTED">Отклонить</button>
-    </form>
+            {% endif %}
+            {% if response.status == 'ACCEPTED' %}
+               <div class="alert alert-success" role="alert">Вы пригласили соискателя.</div>
+            {% endif %}
+            {% if response.status == 'REJECTED' %}
+                <div class="alert alert-danger" role="alert">Вы отклонили отклик.</div>
 
-{% endif %}
-{% if response.status == 'ACCEPTED' %}
-   <div class="alert alert-success" role="alert">Вы пригласили соискателя.</div>
-{% endif %}
-{% if response.status == 'REJECTED' %}
-    <div class="alert alert-danger" role="alert">Вы отклонили отклик.</div>
+            {% endif %}
 
-{% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>
 
-{% endif %}
+
 {% endblock content %}
