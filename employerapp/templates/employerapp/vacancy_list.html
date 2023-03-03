@@ -26,7 +26,7 @@
                     <p>&nbsp;&nbsp; Размещено: {{ item.created|date:"Y.m.d" }}<br>
                         &nbsp;&nbsp; Опыт работы: {{ item.get_experience_display }}<br>
                         &nbsp;&nbsp; Работодатель: {{ item.employer_id }}<br>
-                        &nbsp;&nbsp; Город работы: {{ item.town_id }}</p>
+                        &nbsp;&nbsp; Город работы: {{ item.town }}</p>
                 </li>
                 <!-- {# {% endfor %} #}-->
                 {% endfor %}

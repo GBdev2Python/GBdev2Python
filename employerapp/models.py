@@ -40,7 +40,7 @@ class Employer(models.Model):
     created = models.DateTimeField(auto_now_add=True, editable=False, verbose_name="Дата регистрации на портале")
     location = models.TextField(max_length=1024, blank=True, verbose_name="Карта")
     # связь с таблицей базы applicantapp
-    town_id = models.ForeignKey(Towns, on_delete=models.PROTECT, verbose_name="Местоположение")
+    town = models.ForeignKey(Towns, on_delete=models.PROTECT, verbose_name="Местоположение")
     # связь с таблицей админки
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, verbose_name="Пользователь")
 
@@ -70,7 +70,7 @@ class VacancyHeader(models.Model):
     body = RichTextField(blank=True, verbose_name="Содержимое раздела вакансии")
     is_published = models.BooleanField(default=True, verbose_name="Опубликовать")
     employment_id = models.ManyToManyField(TypeEmployment, verbose_name="Вид занятости")
-    town_id = models.ForeignKey(Towns, on_delete=models.PROTECT, verbose_name="Местоположение")
+    town = models.ForeignKey(Towns, on_delete=models.PROTECT, verbose_name="Местоположение")
     skills_id = models.ManyToManyField(Skill, blank=True, verbose_name="Ключевой навык")
     employer_id = models.ForeignKey(
         Employer, on_delete=models.CASCADE, related_name="vacancies", verbose_name="Работодатель"

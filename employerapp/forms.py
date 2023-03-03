@@ -8,10 +8,10 @@ class AddEmployerForm(forms.ModelForm):
 
     class Meta:
         model = Employer
-        fields = ["employment", "cover", "town_id", "address", "phone", "email", "website", "body", "location"]
+        fields = ["employment", "cover", "town", "address", "phone", "email", "website", "body", "location"]
         labels = {
             "employment": "Название организации",
-            "town_id": "Город (населенный пункт)",
+            "town": "Город (населенный пункт)",
             "location": "Место расположения организации на карте",
             # "body": "Детальное описание"
         }
@@ -31,11 +31,11 @@ class AddEmployerForm(forms.ModelForm):
 class UpdateEmployerForm(forms.ModelForm):
     class Meta:
         model = Employer
-        fields = ["employment", "cover", "town_id", "address", "phone", "email", "website", "body", "location"]
+        fields = ["employment", "cover", "town", "address", "phone", "email", "website", "body", "location"]
 
         labels = {
             "employment": "Название организации",
-            "town_id": "Расположение организации",
+            "town": "Расположение организации",
             "location": "Место расположения организации на карте",
         }
         widgets = {
@@ -64,7 +64,7 @@ class AddVacancyForm(forms.ModelForm):
             "salary",
             "experience",
             "employment_id",
-            "town_id",
+            "town",
             "skills_id",
             "body",
            # "employer_id",
@@ -85,7 +85,7 @@ class UpdateVacancyForm(forms.ModelForm):
             "salary",
             "experience",
             "employment_id",
-            "town_id",
+            "town",
             "skills_id",
             "body",
             # "employer_id",

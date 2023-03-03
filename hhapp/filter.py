@@ -12,7 +12,7 @@ class VacancyFilter(django_filters.FilterSet):
     employer_id = django_filters.CharFilter(field_name='employer_id__employment', lookup_expr='icontains', label='Работодатель')
     class Meta:
         model = VacancyHeader
-        fields = ('salary__gt', 'salary__lt', 'experience', 'employment_id', 'town_id', 'skills_id', 'employer_id')
+        fields = ('salary__gt', 'salary__lt', 'experience', 'employment_id', 'town', 'skills_id', 'employer_id')
 
 class ResumeFilter(django_filters.FilterSet):
     salary__gt = django_filters.NumberFilter(field_name='salary', lookup_expr='gt', label='Заработная плата от')

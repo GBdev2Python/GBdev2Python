@@ -29,7 +29,7 @@
                         <div class="links_locat d-flex align-items-center">
                           <div class="location">
                             <p><i>Работодатель: </i>{{ vacancy.employer_id }}</p>
-                            <p><i>Опыт работы: </i>{{ vacancy.get_experience_display }}, <i>Город: </i>{{ vacancy.town_id }}</p>
+                            <p><i>Опыт работы: </i>{{ vacancy.get_experience_display }}, <i>Город: </i>{{ vacancy.town }}</p>
   <!--                          <img height="30" src="{{ vacancy.employer_id.cover.url }}" alt="logo">-->
                              <div class="date">
                                <p> Дата публикации: {{ vacancy.created|date:"Y.m.d - H.i" }}</p>
