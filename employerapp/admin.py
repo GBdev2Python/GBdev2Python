@@ -16,7 +16,7 @@ class VacancyHeaderAdmin(admin.ModelAdmin):
         "salary",
     )
     list_filter = ("employer_id",)
-    filter_horizontal = ["employment_id", "skills_id"]
+    filter_horizontal = ["employment_id", "skills"]
 
 
 # Работодатель

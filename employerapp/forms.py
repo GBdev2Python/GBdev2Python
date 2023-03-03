@@ -65,14 +65,14 @@ class AddVacancyForm(forms.ModelForm):
             "experience",
             "employment_id",
             "town",
-            "skills_id",
+            "skills",
             "body",
            # "employer_id",
             "is_published",
         ]
         widgets = {
-            # "skills_id": forms.CheckboxSelectMultiple(),
-            "skills_id": forms.SelectMultiple(),
+            # "skills": forms.CheckboxSelectMultiple(),
+            "skills": forms.SelectMultiple(),
             # "employer_id": forms.HiddenInput(),
         }
 
@@ -86,13 +86,13 @@ class UpdateVacancyForm(forms.ModelForm):
             "experience",
             "employment_id",
             "town",
-            "skills_id",
+            "skills",
             "body",
             # "employer_id",
             "is_published",
         ]
         widgets = {
-            # "skills_id": forms.CheckboxSelectMultiple(),
-            "skills_id": forms.SelectMultiple(),
+            # "skills": forms.CheckboxSelectMultiple(),
+            "skills": forms.SelectMultiple(),
             "employer_id": forms.HiddenInput(),
         }

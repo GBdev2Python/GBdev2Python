@@ -71,7 +71,7 @@ class VacancyHeader(models.Model):
     is_published = models.BooleanField(default=True, verbose_name="Опубликовать")
     employment_id = models.ManyToManyField(TypeEmployment, verbose_name="Вид занятости")
     town = models.ForeignKey(Towns, on_delete=models.PROTECT, verbose_name="Местоположение")
-    skills_id = models.ManyToManyField(Skill, blank=True, verbose_name="Ключевой навык")
+    skills = models.ManyToManyField(Skill, blank=True, verbose_name="Ключевой навык")
     employer_id = models.ForeignKey(
         Employer, on_delete=models.CASCADE, related_name="vacancies", verbose_name="Работодатель"
     )

@@ -37,7 +37,7 @@
             </ul>
 
             <p>Ключевые навыки:</p>
-            {% for el in vacancy_qs.skills_id.all %}
+            {% for el in vacancy_qs.skills.all %}
             <ul>
                 <li>{{ el.name }}</li>
             </ul>
