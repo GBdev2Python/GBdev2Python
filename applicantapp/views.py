@@ -28,8 +28,6 @@ class ResumeList(ListView):
         profiles = Resumes.objects.all()
         context = super().get_context_data(**kwargs)
         context["resume_list"] = profiles
-        # context["skills"] = profiles.skills.all()[:2]
-        # print(context["resume_list"])
         return context
 
 
@@ -79,8 +77,8 @@ class ApplicantCreate(CreateView):
         new_applicant.user = self.request.user
         new_applicant.save()
         return redirect("applicant:applicant_cabinet", applicant_id=new_applicant.id)
-# Редактирование профиля соискателя
 
+# Редактирование профиля соискателя
 class ApplicantEdit(UpdateView):
     model = Applicants
     form_class = EditApplicantForm
@@ -102,13 +100,19 @@ class ApplicantCabinet(LoginRequiredMixin,ListView):
         return Resumes.objects.filter(applicants=self.kwargs["applicant_id"])
 
     def get_context_data(self, **kwargs):
+        profile =self.request.user.applicants
+        messageRequests = Response.objects.filter(resume__applicants=profile.id)
+        resumeID=set()
+        for i in messageRequests:
+            resumeID.add(i.resume.id)
         queryset = Resumes.objects.filter(applicants=self.kwargs["applicant_id"])
+        resumes=Resumes.objects.filter(applicants=self.kwargs["applicant_id"])
         context = super().get_context_data(**kwargs)
         context["applicant_list"] = Applicants.objects.all()
         context["applicant"] = Applicants.objects.get(id=self.kwargs["applicant_id"])
-        context["resumes"] = Resumes.objects.filter(applicants=self.kwargs["applicant_id"])
+        context["resumes"] = resumes
         context["queryset"] = queryset
-
+        context["resumeID"] = resumeID
         return context
 
 
@@ -152,7 +156,7 @@ def new_resume(request, applicant_id, *args, **kwargs):
         context = {"form": form, "applicant": user}
         return render(request, "applicantapp/new_resume.html", context)
     else:
-        return redirect("authapp:logout")
+        return redirect("applicant:applicant_cabinet", applicant_id=Applicants.objects.get(user=request.user).id)
 
 
 # Внесение изменений в резюме
@@ -174,7 +178,7 @@ def update_resume(request, pk):
         context = {"form": form, "applicant": user}
         return render(request, "applicantapp/new_resume.html", context)
     else:
-        return redirect("authapp:logout")
+        return redirect("applicant:applicant_cabinet", applicant_id=Applicants.objects.get(user=request.user).id)
 
 # Удаление резюме соискателя
 @login_required()
@@ -188,4 +192,4 @@ def delete_resume(request, pk):
         context = {"object": resume}
         return render(request, "applicantapp/delete_resume.html", context)
     else:
-        return redirect("authapp:logout")
+        return redirect("applicant:applicant_cabinet", applicant_id=Applicants.objects.get(user=request.user).id)
