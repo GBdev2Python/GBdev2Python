@@ -53,8 +53,8 @@ class AddVacancyForm(forms.ModelForm):
 
     # def __init__(self, *args, **kwargs):
     #     ret = super().__init__(*args, **kwargs)
-    #     employer_id = 2
-    #     self.fields["employer_id"].initial = employer_id
+    #     employer = 2
+    #     self.fields["employer"].initial = employer
     #     return ret
 
     class Meta:
@@ -67,13 +67,13 @@ class AddVacancyForm(forms.ModelForm):
             "town",
             "skills",
             "body",
-           # "employer_id",
+           # "employer",
             "is_published",
         ]
         widgets = {
             # "skills": forms.CheckboxSelectMultiple(),
             "skills": forms.SelectMultiple(),
-            # "employer_id": forms.HiddenInput(),
+            # "employer": forms.HiddenInput(),
         }
 
 
@@ -88,11 +88,11 @@ class UpdateVacancyForm(forms.ModelForm):
             "town",
             "skills",
             "body",
-            # "employer_id",
+            # "employer",
             "is_published",
         ]
         widgets = {
             # "skills": forms.CheckboxSelectMultiple(),
             "skills": forms.SelectMultiple(),
-            "employer_id": forms.HiddenInput(),
+            "employer": forms.HiddenInput(),
         }

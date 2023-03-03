@@ -45,7 +45,7 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             {% if user_query.empl > 0 %}
-                                <li><a href="{% url 'employerapp:employer_cabinet' employer_id=user_query.employer_id %}"
+                                <li><a href="{% url 'employerapp:employer_cabinet' employer=user_query.employer_id %}"
                                        class="dropdown-item">Кабинет работодателя</a></li>
                             {% else %}
                                 <li><a href="{% url 'employerapp:employer_create' %}" class="dropdown-item">Запонить

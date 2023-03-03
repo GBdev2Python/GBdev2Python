@@ -9,13 +9,13 @@ admin.AdminSite.site_header = "Административный раздел с�
 # Вакансия
 @admin.register(VacancyHeader)
 class VacancyHeaderAdmin(admin.ModelAdmin):
-    list_display = ["job_title", "employer_id", "experience", "salary", "created", "is_published"]
+    list_display = ["job_title", "employer", "experience", "salary", "created", "is_published"]
     list_editable = ["experience", "salary", "is_published"]
     search_fields = (
         "job_title",
         "salary",
     )
-    list_filter = ("employer_id",)
+    list_filter = ("employer",)
     filter_horizontal = ["employment_id", "skills"]
 
 

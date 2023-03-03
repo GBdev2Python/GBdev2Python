@@ -25,7 +25,7 @@
                     <h5><a href="{{ item.get_absolute_url }}">{{ item.job_title }}</a></h5>
                     <p>&nbsp;&nbsp; Размещено: {{ item.created|date:"Y.m.d" }}<br>
                         &nbsp;&nbsp; Опыт работы: {{ item.get_experience_display }}<br>
-                        &nbsp;&nbsp; Работодатель: {{ item.employer_id }}<br>
+                        &nbsp;&nbsp; Работодатель: {{ item.employer }}<br>
                         &nbsp;&nbsp; Город работы: {{ item.town }}</p>
                 </li>
                 <!-- {# {% endfor %} #}-->

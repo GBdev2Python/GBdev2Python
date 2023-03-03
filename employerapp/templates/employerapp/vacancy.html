@@ -21,7 +21,7 @@
         <div class="col-xl-8 col-md- col-lg-8 my-3">
             <h2>Страница выбранной вакансии</h2>
             <br>
-            <p>Организация: {{ vacancy_qs.employer_id.employment|safe }}</p>
+            <p>Организация: {{ vacancy_qs.employer.employment|safe }}</p>
             <p>Вакансия: {{ vacancy_qs.job_title }}</p>
             <p>Требуемый опыт работы: {{ vacancy_qs.get_experience_display }}</p>
             <p>Заработная плата: {{ vacancy_qs.salary }} руб.</p>

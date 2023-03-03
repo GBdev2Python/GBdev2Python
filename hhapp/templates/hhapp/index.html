@@ -25,7 +25,7 @@
             <h2 class="px-4 h2" style="color: #FDAE5C">Наши замечательные партнёры</h2>
             {% for employer in employer_objects %}
                 <div class="card-body">
-                    <a href="{% url 'employerapp:employer_detail' employer_id=employer.id %}"
+                    <a href="{% url 'employerapp:employer_detail' employer=employer.id %}"
                        class="p-3 text-left text-muted d-flex justify-content-between border rounded border-info font-weight-bold">
                         <span class="text-muted align-bottom">{{ employer.employment }}</span>
                         <span class="text-left text-muted align-middle">{{ employer.company_vacancies }}</span>

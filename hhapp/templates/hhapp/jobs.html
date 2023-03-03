@@ -21,14 +21,14 @@
                     <div class="jobs_left d-flex align-items-center">
                       <div class="col-lg-3">
                         <div class="thumb logo-job">
-                          <img height="50" src="{{ vacancy.employer_id.cover.url }}" alt="logo">
+                          <img height="50" src="{{ vacancy.employer.cover.url }}" alt="logo">
                         </div>
                       </div>
                       <div class="jobs_conetent">
                         <a href="{{ vacancy.get_absolute_url }}" target="_blank"><h4>{{ vacancy.job_title }}</h4></a>
                         <div class="links_locat d-flex align-items-center">
                           <div class="location">
-                            <p><i>Работодатель: </i>{{ vacancy.employer_id }}</p>
+                            <p><i>Работодатель: </i>{{ vacancy.employer }}</p>
                             <p><i>Опыт работы: </i>{{ vacancy.get_experience_display }}, <i>Город: </i>{{ vacancy.town }}</p>
   <!--                          <img height="30" src="{{ vacancy.employer_id.cover.url }}" alt="logo">-->
                              <div class="date">

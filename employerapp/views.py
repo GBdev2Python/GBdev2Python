@@ -32,7 +32,7 @@ class VacancyJob(TemplateView):
     def get_context_data(self, vacancy_pk, **kwargs):
         context = super().get_context_data(**kwargs)
         context["vacancy_qs"] = get_object_or_404(VacancyHeader, pk=vacancy_pk)
-        if self.request.user.id == VacancyHeader.objects.get(pk=vacancy_pk).employer_id.user.id:
+        if self.request.user.id == VacancyHeader.objects.get(pk=vacancy_pk).employer.user.id:
             print(self.request.user.id)
             context["response"]= Response.objects.all().filter(vacancyheader=vacancy_pk)
 
@@ -45,16 +45,16 @@ class VacancyJob(TemplateView):
 #     template_name = "employerapp/employer_detail.html"
 #     model = Employer
 #
-#     def get_context_data(self, employer_id, **kwargs):
+#     def get_context_data(self, employer, **kwargs):
 #         context = super().get_context_data(**kwargs)
-#         context["employer_qs"] = get_object_or_404(Employer, pk=employer_id)
+#         context["employer_qs"] = get_object_or_404(Employer, pk=employer)
 #         return context
 
 # Карточка работодателя
 class DetailEmployer(DetailView):
     model = Employer
     template_name = "employerapp/employer_detail.html"
-    pk_url_kwarg = "employer_id"
+    pk_url_kwarg = "employer"
     context_object_name = "employer_qs"
 
 
@@ -78,10 +78,10 @@ class EmployerVacancyList(TemplateView):
     def get_context_data(self, vacancy_employer_pk, **kwargs):
         context = super().get_context_data(**kwargs)
         context["employer_vacancy_lst_qs"] = (
-            VacancyHeader.objects.all().exclude(is_published=False).filter(employer_id=vacancy_employer_pk)
+            VacancyHeader.objects.all().exclude(is_published=False).filter(employer=vacancy_employer_pk)
         )
         context["employer_lst_qs"] = (
-            VacancyHeader.objects.all().exclude(is_published=False).filter(employer_id=vacancy_employer_pk).first()
+            VacancyHeader.objects.all().exclude(is_published=False).filter(employer=vacancy_employer_pk).first()
         )
         return context
 
@@ -104,7 +104,7 @@ class EmployerCreate(CreateView):
 class EmployerUpdate(UpdateView):
     model = Employer
     form_class = UpdateEmployerForm
-    pk_url_kwarg = "employer_id"
+    pk_url_kwarg = "employer"
     template_name = "employerapp/employer_update.html"
     # success_url = reverse_lazy("employerapp:employer_detail")
 
@@ -118,7 +118,7 @@ class VacancyCreate(CreateView):
     def form_valid(self, form):
         """If the form is valid, save the associated model."""
         self.object = form.save(commit=False)
-        self.object.employer_id=Employer.objects.get(user=self.request.user)
+        self.object.employer=Employer.objects.get(user=self.request.user)
         self.object = self.object.save()
         return super().form_valid(form)
 
@@ -139,7 +139,7 @@ class VacancyDelete(DeleteView):
     pk_url_kwarg = "vacancy_id"
     template_name = "employerapp/vacancy_delete.html"
     success_url = reverse_lazy("hhapp:main_page")
-    # success_url = reverse_lazy("employerapp:employer_detail", kwargs={'employer_id': 3})
+    # success_url = reverse_lazy("employerapp:employer_detail", kwargs={'employer': 3})
 
 
 #  * * * * * * * * * * * * * * * * * * * *    В разработке   * * * * * * * * * * * * * * * * * * * *
@@ -149,23 +149,23 @@ class VacancyDelete(DeleteView):
 
 class EmployerCabinet(TemplateView):
     template_name = "employerapp/employer_cabinet.html"
-    pk_url_kwarg = "employer_id"
-    # query_pk_and_slug = False  get_object_or_404(Employer, pk=employer_id)
+    pk_url_kwarg = "employer"
+    # query_pk_and_slug = False  get_object_or_404(Employer, pk=employer)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Компания залогиненного работодателя
-        context["employer_cab_comp_qs"] = Employer.objects.filter(id=self.kwargs["employer_id"])
+        context["employer_cab_comp_qs"] = Employer.objects.filter(id=self.kwargs["employer"])
 
         # Проверка создания карточки работодателя
-        context["employer_cab_cnt_qs"] = Employer.objects.filter(pk=self.kwargs["employer_id"]).count()
+        context["employer_cab_cnt_qs"] = Employer.objects.filter(pk=self.kwargs["employer"]).count()
 
         # Выборка всех публикованных вакансий работодателя
-        emp = Employer.objects.get(id=self.kwargs["employer_id"])
-        context["vacancy_cab_qs"] = VacancyHeader.objects.filter(employer_id_id__employment=emp, is_published=True)
+        emp = Employer.objects.get(id=self.kwargs["employer"])
+        context["vacancy_cab_qs"] = VacancyHeader.objects.filter(employer_id__employment=emp, is_published=True)
 
         # Выборка НЕопубликованных вакансий работодателя
-        context["vacancy_cab_not_qs"] = VacancyHeader.objects.filter(employer_id_id__employment=emp, is_published=False)
+        context["vacancy_cab_not_qs"] = VacancyHeader.objects.filter(employer_id__employment=emp, is_published=False)
 
 
         # Открытие созданной карточки работодателя на редактирование

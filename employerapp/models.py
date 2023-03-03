@@ -45,7 +45,7 @@ class Employer(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, verbose_name="Пользователь")
 
     def get_absolute_url(self):
-        return reverse("employerapp:employer_detail", kwargs={"employer_id": self.pk})
+        return reverse("employerapp:employer_detail", kwargs={"employer": self.pk})
 
     def __str__(self) -> str:
         return f"{self.employment}"
@@ -72,7 +72,7 @@ class VacancyHeader(models.Model):
     employment_id = models.ManyToManyField(TypeEmployment, verbose_name="Вид занятости")
     town = models.ForeignKey(Towns, on_delete=models.PROTECT, verbose_name="Местоположение")
     skills = models.ManyToManyField(Skill, blank=True, verbose_name="Ключевой навык")
-    employer_id = models.ForeignKey(
+    employer = models.ForeignKey(
         Employer, on_delete=models.CASCADE, related_name="vacancies", verbose_name="Работодатель"
     )
 

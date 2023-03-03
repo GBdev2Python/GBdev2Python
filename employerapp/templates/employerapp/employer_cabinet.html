@@ -56,7 +56,7 @@
             {% endfor %}
 
             <br>
-            <a href="{% url 'employerapp:employer_update' employer_id=user.employer.id  %}" class="boxed-btn4">Изменить карточку работодателя</a>
+            <a href="{% url 'employerapp:employer_update' employer=user.employer.id  %}" class="boxed-btn4">Изменить карточку работодателя</a>
             <br><br>
         </div>
     </div>
