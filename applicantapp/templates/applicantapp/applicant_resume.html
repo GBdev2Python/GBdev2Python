@@ -4,37 +4,60 @@
 
 {% block content %}
 
-<div class="container-fluid">
-
+<div class="container-fluid p-0">
     <br>
-  </div>
-    <div class="row">
-<!--      <div class="col-xl-1 col-md-1 col-lg-1 py-2">-->
-<!--      </div>-->
 
-      <h2>Резюме</h2>
-      <div class="col-xl-8 col-md-8 col-lg-8">
-          <img class="avatar avatar--xl my-4" src="{{ resume.image.url }}" width="30%"/>
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+        <h2 style="color: #FDAE5C">Резюме</h2>
+      </div>
+    </div>
+    <div class="row m-0">
+      <div class="col-xl-8 col-md-8 col-lg-8 p-0">
+        <div class="card bg-light" style="max-width: auto">
+          <div class="row m-0">
+            <div class="col-md-6 p-3">
+              <img class="img-fluid" src="{{ resume.image.url }}" style="max-width: auto"/>
+            </div>
+            <div class="col-md-6 p-3">
+              <p>Имя: {{ resume.applicants.first_name }}</p>
+              <p>Фамилия: {{ resume.applicants.last_name }}</p>
+              <p>Дата рождения: {{ resume.applicants.birthday }}</p>
+              <p>Город проживания: {{ resume.applicants.town }}</p>
+              <p>Контактный телефон: {{ resume.applicants.phone }}</p>
+              <p>email: {{ resume.applicants.user.email }}</p>
+            </div>
 
+          </div>
+          <div class="row p-0 m-0">
+            <p><u>Навыки:</u></p>
+          </div>
 
-          <p>Имя: {{ resume.applicants.first_name }}</p>
-          <p>Фамилия: {{ resume.applicants.last_name }}</p>
-          <p>Дата рождения: {{ resume.applicants.birthday }}</p>
-          <p>Город проживания: {{ resume.applicants.town }}</p>
-          <p>Контактный телефон: {{ resume.applicants.phone }}</p>
-          <p>email: {{ resume.applicants.user.email }}</p>
-          <p>Навыки:</p>
+          <div class="row m-0">
+            <div class="col-md-12 p-3">
+              {% for skill in skills %}
+                <p style="margin-left: 40px">{{ skill.name }}</p>
+              {% endfor %}
+              <p><u>Требуемая работа:</u> {{ resume.required_job }}</p>
+              <p><u>Поиск работы в городе:</u> {{ resume.town_job }}</p>
+              <p><u>Заработная плата:</u> {{ resume.salary }}</p>
+              <p><u>Место последней работы:</u> {{ resume.last_job }}</p>
+              <p><u>Образование:</u> {{ resume.education }}</p>
+            </div>
+          </div>
 
-          {% for skill in skills %}
-          <ul>
-            <li>{{ skill.name }}</li>
-          </ul>
-          {% endfor %}
-          <p>Требуемая работа: {{ resume.required_job }}</p>
-          <p>Поиск работы в городе: {{ resume.town_job }}</p>
-          <p>Заработная плата: {{ resume.salary }}</p>
-          <p>Место последней работы: {{ resume.last_job }}</p>
-          <p>Образование: {{ resume.education }}</p>
+          <div class="row">
+            <div class="col-md-auto mx-auto p-0">
+              <div style="margin-bottom: 20px;">
+                <a class="boxed-btn3 m-2" style="text-decoration: none;" onclick="javascript:history.back(); return true;"> Назад </a>
+                {% if request.user.id == resume.applicants.user.id %}
+                  <a class="boxed-btn3 m-2" href="{% url 'applicant:update_resume' resume.id %}"> Редактировать резюме </a>
+                  <a class="boxed-btn3 m-2" href="{% url 'applicant:delete_resume' resume.id %}"> Удалить резюме </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="col-xl-4 col-md-4 col-lg-4">
           {% if response.count %}
@@ -59,12 +82,6 @@
                 {% endfor %}
           {% endif %}
       </div>
-      <div style="margin-bottom: 20px;">
-        <a style="text-decoration: none;" class="my-2" onclick="javascript:history.back(); return true;"> Назад </a>
-        {% if request.user.id == resume.applicants.user.id %}
-          <a class="boxed-btn3 m-2" href="{% url 'applicant:update_resume' resume.id %}"> Редактировать резюме </a>
-          <a class="boxed-btn3 m-2" href="{% url 'applicant:delete_resume' resume.id %}"> Удалить резюме </a>
-        {% endif %}
-      </div>
     </div>
+</div>
 {% endblock content %}

@@ -3,81 +3,121 @@
 {% block title %} Личный кабинет соискателя {% endblock title %}
 
 {% block content %}
+    <br>
 
-    <div class="row">
+    <div class="container-fluid p-0">
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <h2 style="color: #FDAE5C">Личный кабинет соискателя</h2>
+            </div>
+        </div>
+        <div class="row m-0">
+            <div class="col-md-8 p-0">
+                <div class="card bg-light" style="max-width: auto">
+                    <div class="row m-0">
+                            <div class="col-md-4 p-3">
+                                <img class="img-fluid" style="max-width: auto"src="{{ MEDIA_URL }}{{ applicant.image }}" alt="image applicant">
+                            </div>
 
-        <h2 class="my-4">Личный кабинет соискателя</h2>
+                            <div class="col-md-8 p-3">
+                                    <p class="text-justify">Имя: {{ applicant.first_name }}</p>
+                                    <p lass="text-justify">Фамилия: {{ applicant.last_name }}</p>
+                                    <p class="text-justify">Дата рождения: {{ applicant.birthday }}</p>
+                                    <p class="text-justify">Город проживания: {{ applicant.town }}</p>
+                                    <p class="text-justify">Контактный телефон: {{ applicant.phone }}</p>
+                                    <p class="text-justify">email: {{ applicant.user.email }} </p>
+                            </div>
 
-      <div class="col-xl-9 col-md-9 col-lg-9">
-        <img class="avatar avatar--xl my-4" src="{{ MEDIA_URL }}{{ applicant.image }}" width="30%">
-        <ul>
-          <p>Имя: {{ applicant.first_name }}</p>
-          <p>Фамилия: {{ applicant.last_name }}</p>
-          <p>Дата рождения: {{ applicant.birthday }}</p>
-          <p>Город проживания: {{ applicant.town }}</p>
-          <p>Контактный телефон: {{ applicant.phone }}</p>
-          <p>email: {{ applicant.user.email }} </p>
-        </ul>
+                    </div>
+                </div>
 
-        <h3 class="py-4">Резюме соискателя:</h3>
+            </div>
 
+            <div class="col-md-4">
+                <a href="{% url 'applicant:applicant_edit' applicant_id=applicant.id%}" class="boxed-btn4 m-0 p-1">Изменить данные соискателя</a>
+            </div>
+
+        </div>
+
+
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-auto mt-3">
+                <h2 style="color: #FDAE5C">Резюме соискателя:</h2>
+            </div>
+        </div>
         {% for resume in page_obj %}
-            <ul>
-              <li><h5>{{ resume.required_job }}</h5></li>
-              {% if resume.is_published %}
-                <p>Статус публикации: Опубликовано</p>
-              {%else%}
-                <p>Статус публикации: Черновик</p>
-              {% endif %}
-                  <a class="boxed-btn4 my-2" href="{% url 'applicant:applicant_resume' resume.id %}"> Просмотр</a>
-                  <a class="boxed-btn4 m-2" href="{% url 'applicant:update_resume' resume.id %}"> Редактировать резюме</a>
-                  <a class="boxed-btn4 my-2" href="{% url 'applicant:delete_resume' resume.id %}"> Удалить резюме</a>
-            </ul>
-        {% endfor %}
-      </div>
+        <div class="row my-3">
+            <div class="col-md-12 p-0">
+                <div class="card bg-light" style="max-width: auto">
+                    <div class="row m-0">
+                        <div class="col-md-4 p-3">
+                            <p><u>Требуемая работа:</u> {{ resume.required_job }}</p>
+                            {% if resume.is_published %}
+                            <p><u>Статус публикации:</u> Опубликовано</p>
+                            {%else%}
+                            <p><u>Статус публикации:</u> Черновик</p>
+                            {% endif %}
 
-      <div class="col-xl-3 col-md-3 col-lg-3">
-        <ul>
-          <li>
-              <a href="{% url 'applicant:applicant_edit' applicant.id%}" class="boxed-btn4 m-2">Изменить профиль</a>
-<!--              <a href="{% url 'applicant:new_resume' applicant.id%}" class="boxed-btn4 m-2">Создать резюме</a>-->
-{#              <a href="#" class="boxed-btn4 m-2">Просмотры резюме</a>#}
-{#              <a href="#" class="boxed-btn4 m-2">Отклики</a>#}
-{#              <a href="#" class="boxed-btn4 m-2">Избранные вакансии</a>#}
-          </li>
-        </ul>
-        <br>
-        <br>
-      </div>
+                            {% if resume.id in resumeID%}
+                                <p><u>Отклики:</u> <span style="color: #fb0202">Есть</span></p>
+                            {%else%}
+                                <p><u>Отклики:</u> Нет</p>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-8 p-3">
+                            <a class="boxed-btn4 my-2" style="max-width: 100%" href="{% url 'applicant:applicant_resume' resume.id %}"> Просмотр</a>
+                            <a class="boxed-btn4 my-2" href="{% url 'applicant:update_resume' resume.id %}"> Редактировать резюме</a>
+                            <a class="boxed-btn4 my-2" href="{% url 'applicant:delete_resume' resume.id %}"> Удалить резюме</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
     </div>
 
+    <div class="row">
+        <div class="col-xl-3 col-md-3 col-lg-3">
+            <ul>
+            <li>
 
- {# Пагинация #}
-    {% if page_obj.has_other_pages %}
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center mb-2 pb-2">
-                {% if page_obj.has_previous %}
-                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
-                {% else %}
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">Previous</a>
-                    </li>
-                {% endif %}
-
-                <li class="page-item active"><a class="page-link">{{ page_obj.number }}</a></li>
-
-                {% if page_obj.has_next %}
-                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
-                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
-                {% else %}
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
-                {% endif %}
+    {#              <a href="#" class="boxed-btn4 m-2">Просмотры резюме</a>#}
+    {#              <a href="#" class="boxed-btn4 m-2">Отклики</a>#}
+    {#              <a href="#" class="boxed-btn4 m-2">Избранные вакансии</a>#}
+            </li>
             </ul>
-        </nav>
-    {% endif %}
+            <br>
+            <br>
+        </div>
+    </div>
+
+    {# Пагинация #}
+        {% if page_obj.has_other_pages %}
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center mb-2 pb-2">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        </li>
+                    {% endif %}
+
+                    <li class="page-item active"><a class="page-link">{{ page_obj.number }}</a></li>
+
+                    {% if page_obj.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
     {# конец пагинации #}
 
 {% endblock content %}
