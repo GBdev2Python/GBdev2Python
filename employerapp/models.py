@@ -69,7 +69,7 @@ class VacancyHeader(models.Model):
     experience = models.PositiveSmallIntegerField(default=1, choices=EXPERIENCE, verbose_name="Опыт работы")
     body = RichTextField(blank=True, verbose_name="Содержимое раздела вакансии")
     is_published = models.BooleanField(default=True, verbose_name="Опубликовать")
-    employment_id = models.ManyToManyField(TypeEmployment, verbose_name="Вид занятости")
+    employment = models.ManyToManyField(TypeEmployment, verbose_name="Вид занятости")
     town = models.ForeignKey(Towns, on_delete=models.PROTECT, verbose_name="Местоположение")
     skills = models.ManyToManyField(Skill, blank=True, verbose_name="Ключевой навык")
     employer = models.ForeignKey(

@@ -11,7 +11,7 @@
         "is_published": true,
         "town": 15,
         "employer": 1,
-        "employment_id": [
+        "employment": [
             1,
             5
         ],
@@ -33,7 +33,7 @@
         "is_published": true,
         "town": 12,
         "employer": 1,
-        "employment_id": [
+        "employment": [
             3,
             7
         ],
@@ -55,7 +55,7 @@
         "is_published": true,
         "town": 4,
         "employer": 2,
-        "employment_id": [
+        "employment": [
             5,
             6,
             8,
@@ -80,7 +80,7 @@
         "is_published": true,
         "town": 14,
         "employer": 2,
-        "employment_id": [
+        "employment": [
             11,
             2
         ],
@@ -103,7 +103,7 @@
         "is_published": true,
         "town": 8,
         "employer": 3,
-        "employment_id": [
+        "employment": [
             10,
             3,
             6
@@ -127,7 +127,7 @@
         "is_published": true,
         "town": 16,
         "employer": 3,
-        "employment_id": [
+        "employment": [
             11,
             4,
             7,
@@ -153,7 +153,7 @@
         "is_published": true,
         "town": 37,
         "employer": 3,
-        "employment_id": [
+        "employment": [
             3,
             2
         ],
@@ -177,7 +177,7 @@
         "is_published": true,
         "town": 41,
         "employer": 5,
-        "employment_id": [
+        "employment": [
             1
         ],
         "skills": [
@@ -199,7 +199,7 @@
         "is_published": true,
         "town": 16,
         "employer": 5,
-        "employment_id": [
+        "employment": [
             1
         ],
         "skills": [

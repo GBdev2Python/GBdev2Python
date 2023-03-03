@@ -29,7 +29,7 @@
 
             <p>Тип занятости:</p>
             <ul>
-                {% for el in vacancy_qs.employment_id.all %}
+                {% for el in vacancy_qs.employment.all %}
                 <li>
                     {{ el.employment }}
                 </li>
