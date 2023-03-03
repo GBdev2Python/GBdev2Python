@@ -28,11 +28,12 @@ class TypeEmployment(models.Model):
 # первичный ключ для "VacancyHeader"
 class Employer(models.Model):
     employment = models.TextField(max_length=1024, verbose_name="Работодатель")
-    cover = models.ImageField(upload_to="employment/", blank=True, verbose_name="Логотип организации")
+    cover = models.ImageField(upload_to="employment/", blank=True, default="employment/logo_default.jpg", verbose_name="Логотип организации")
     address = models.TextField(max_length=512, verbose_name="Адрес организации")
     # phone = models.CharField(max_length=256, verbose_name="Телефон организации")
-    phoneNumberRegex = RegexValidator(regex=r"^\+?1?\d{8,15}$")
-    phone = models.CharField(validators=[phoneNumberRegex], max_length=16, verbose_name="Телефон организации")
+    # phoneNumberRegex = RegexValidator(regex=r"^\+?1?\d{8,15}$")
+    phoneNumberRegex = RegexValidator(regex=r"^\d{8,12}$")
+    phone = models.CharField(validators=[phoneNumberRegex], max_length=12, verbose_name="Телефон организации")
     email = models.EmailField(max_length=254, blank=True, verbose_name="email организации")
     website = models.URLField(max_length=200, blank=True, verbose_name="сайт организации")
     body = RichTextField(blank=True, verbose_name="Дополнительная информация")
