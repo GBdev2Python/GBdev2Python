@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
+import re
 from pathlib import Path
 from typing import Dict
 
@@ -47,7 +48,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "ckeditor",
     "django_filters",
-   # "django_extensions",  # Для работы с консолью ORM. Дополнительно установить пакеты: ipython, django-extensions
+    "django_extensions",  # Для работы с консолью ORM. Дополнительно установить пакеты: ipython, django-extensions
     # "django_celery_beat",
 ]
 
@@ -183,4 +184,6 @@ CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_FILE_PATH = '/tmp/app-messages'
+TECH_SUPPORT_EMAIL = 'tech_support@post.ru'
+TECH_SUPPORT_EMAIL_SUBJECT = 'Technical support form %user'         # .replace('%user', <username>)
+VALID_EMAIL_RE_PATTERN = re.compile(r'[A-Za-zА-Яа-я]{3,}', flags=re.I | re.MULTILINE)
