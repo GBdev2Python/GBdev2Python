@@ -70,9 +70,7 @@ class Resumes(models.Model):
                                    verbose_name="Соискатель")
     verification = models.BooleanField(default=False, blank=True, verbose_name="Прохождение модерации")
     required_job = models.TextField(blank=True, null=True, verbose_name="Требуемая работа/должность")
-    image = models.ImageField(
-        null=True, blank=True, upload_to="applicant_images", default="applicant_images/default.jpg", verbose_name="FOTO"
-    )
+    image = models.ImageField(null=True, blank=True, upload_to="applicant_images", default="image/applicant/default.jpg", verbose_name="FOTO")
     skills = models.ManyToManyField(Skill, blank=True, verbose_name="Ключевые навыки")
     salary = models.CharField(max_length=30, blank=True, null=True, verbose_name="Зарплата")
     town_job = models.ForeignKey(Towns, on_delete=models.PROTECT, verbose_name="Поиск работы в городе:")
