@@ -1,5 +1,5 @@
 # Внимание!
-# Фикстуры по адресу applicantapp/fixtures (007_applicants.json, data.json) не сочетаются с фикстурой 001_customuser.json
+# Фикстуры по адресу applicantapp/fixtures (007_applicants.json_back, data.json_back) не сочетаются с фикстурой 001_customuser.json
 # Вышеуказанные фикстуры не использовать
 
 

@@ -51,10 +51,10 @@
             {% endif %}
 
              {% if user.is_company %}
-            <a href="{% url 'employerapp:vacancy_update'  vacancy_id=vacancy_qs.pk %}" class="boxed-btn3 btn-info">Редактировать
+            <a href="{% url 'employerapp:vacancy_update'  vacancy=vacancy_qs.pk %}" class="boxed-btn3 btn-info">Редактировать
                 вакансию</a>
             <br><br>
-            <a href="{% url 'employerapp:vacancy_delete'  vacancy_id=vacancy_qs.pk %}" class="boxed-btn2 ">Удалить
+            <a href="{% url 'employerapp:vacancy_delete'  vacancy=vacancy_qs.pk %}" class="boxed-btn2 ">Удалить
                 вакансию</a>
             {% endif %}
 

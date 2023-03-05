@@ -34,19 +34,33 @@ class VacancyJob(TemplateView):
         return context
 
 
+# class DetailEmployer(TemplateView):
+#     template_name = "employerapp/employer_detail.html"
+#     model = Employer
+#
+#     def get_context_data(self, employer, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context["employer_qs"] = get_object_or_404(Employer, pk=employer)
+#         return context
+
+
 class DetailEmployer(DetailView):
     """Detail view по работодателю"""
     model = Employer
     template_name = "employerapp/employer_detail.html"
-    pk_url_kwarg = "employer_id"
+    pk_url_kwarg = "employer"
     context_object_name = "employer_qs"
 
 
 #TODO ОПРЕДЕЛИТЬСЯ НУЖНА ЛИ ЭТА ВЬЮХА?
 class AllVacancyList(ListView):
-    paginate_by = 8
+    paginate_by = 5
     model = VacancyHeader
     template_name = "employerapp/vacancy_list.html"
+
+    # Отображаем при пагинации только опубликованные вакансии
+    def get_queryset(self):
+        return VacancyHeader.objects.filter(is_published=True)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -58,13 +72,13 @@ class EmployerVacancyList(TemplateView):
     """Список вакансий по работодателю"""
     template_name = "employerapp/employer_vacancy_list.html"
 
-    def get_context_data(self, vacancy_employer_pk, **kwargs):
+    def get_context_data(self, vacancy_employer, **kwargs):
         context = super().get_context_data(**kwargs)
         context["employer_vacancy_lst_qs"] = (
-            VacancyHeader.objects.all().exclude(is_published=False).filter(employer_id=vacancy_employer_pk)
+            VacancyHeader.objects.all().exclude(is_published=False).filter(employer_id=vacancy_employer)
         )
         context["employer_lst_qs"] = (
-            VacancyHeader.objects.all().exclude(is_published=False).filter(employer_id=vacancy_employer_pk).first()
+            VacancyHeader.objects.all().exclude(is_published=False).filter(employer_id=vacancy_employer).first()
         )
         return context
 
@@ -106,14 +120,14 @@ class VacancyCreate(CreateView):
 class VacancyUpdate(UpdateView):
     model = VacancyHeader
     form_class = UpdateVacancyForm
-    pk_url_kwarg = "vacancy_id"
+    pk_url_kwarg = "vacancy"
     template_name = "employerapp/vacancy_update.html"
 
 
 # TODO Если не владелец вакансии - не может редактировать
 class VacancyDelete(DeleteView):
     model = VacancyHeader
-    pk_url_kwarg = "vacancy_id"
+    pk_url_kwarg = "vacancy"
     template_name = "employerapp/vacancy_delete.html"
     success_url = reverse_lazy("hhapp:main_page")
 
@@ -121,7 +135,7 @@ class VacancyDelete(DeleteView):
 # TODO Если не владец - Либо редирект в кабинет, либо в шаблон не выводить кнопку редактирования
 class EmployerCabinet(TemplateView):
     template_name = "employerapp/employer_cabinet.html"
-    pk_url_kwarg = "employer_id"
+    pk_url_kwarg = "employer"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

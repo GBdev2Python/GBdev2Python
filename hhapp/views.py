@@ -29,8 +29,13 @@ class MainPageView(TemplateView):
 
 
 class JobsListView(ListView):
+    # paginate_by = 5
     model = VacancyHeader
     template_name = "hhapp/jobs.html"
+
+    # Отображаем при пагинации только опубликованные вакансии
+    def get_queryset(self):
+        return VacancyHeader.objects.filter(is_published=True)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
