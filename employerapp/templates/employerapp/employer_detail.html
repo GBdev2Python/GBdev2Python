@@ -46,12 +46,12 @@
           {{ employer_qs.location|safe }}
         {% endif %}
         <br>
-        <a href="{% url 'employerapp:employer_vacancy_list' vacancy_employer_pk=employer_qs.pk %}">Список вакансий
+        <a href="{% url 'employerapp:employer_vacancy_list' vacancy_employer=employer_qs.pk %}">Список вакансий
           работодателя</a>
       </div>
 
       <div class="col-xl-3 col-md-3 col-lg-3">
-        <a href="{% url 'employerapp:employer_vacancy_list' vacancy_employer_pk=employer_qs.pk %}"
+        <a href="{% url 'employerapp:employer_vacancy_list' vacancy_employer=employer_qs.pk %}"
           class="btn btn-info boxed-btn4">Список вакансий
           работодателя</a>
       </div>
