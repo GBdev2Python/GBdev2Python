@@ -68,13 +68,16 @@ class ContactUsView(FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.user.is_authenticated:
-            context['feedback_form'] = FeedbackMailForm(user=self.request.user)
+            feedback_form = FeedbackMailForm(
+                user=self.request.user
+            )
+            context['feedback_form'] = feedback_form
             context['admin_mail'] = settings.TECH_SUPPORT_EMAIL
         return context
 
     def form_valid(self, form):
         send_mail(
-            subject=settings.TECH_SUPPORT_EMAIL_SUBJECT.replace('%user', self.request.user.email),
+            subject=form.cleaned_data['topic'],
             message=form.cleaned_data['message'],
             from_email=self.request.user.email,
             recipient_list=[settings.TECH_SUPPORT_EMAIL, ],

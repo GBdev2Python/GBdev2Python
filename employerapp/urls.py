@@ -1,12 +1,10 @@
 from django.urls import path
 
-# from employerapp import views
 from employerapp.apps import EmployerappConfig
 from employerapp.views import *
 
 app_name = EmployerappConfig.name
 
-# http://127.0.0.1:8000/admin/login/?next=/admin/
 
 urlpatterns = [
     # список всех работодателей сайта
@@ -43,7 +41,6 @@ urlpatterns = [
     # удалить вакансию
     path("vacancy_delete/<int:vacancy_id>/", VacancyDelete.as_view(), name="vacancy_delete"),
     # http://127.0.0.1:8000/employerapp/vacancy_delate/7/
-
 
     # Кабинет работодателя (конкретный пользователь)
     path("employer_cabinet/<int:employer>/", EmployerCabinet.as_view(), name="employer_cabinet"),
