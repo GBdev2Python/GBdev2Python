@@ -44,6 +44,10 @@
                                 data-bs-toggle="dropdown" aria-expanded="false">
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item text-muted">Вы: {{ request.user.email }}</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             {% if user_query.empl > 0 %}
                                 <li><a href="{% url 'employerapp:employer_cabinet' employer=user_query.employer_id %}"
                                        class="dropdown-item">Кабинет работодателя</a></li>
@@ -53,6 +57,7 @@
                             {% endif %}
                             <li><a class="dropdown-item" href="{% url 'authapp:profile_edit' pk=request.user.id %}">Изменить данные пользователя</a></li>
                             <li><a href="{% url 'authapp:password_change' pk=request.user.id %}" class="dropdown-item">Сменить пароль</a></li>
+                            <li><a href="{% url 'support:tickets' %}" class="dropdown-item">Техподдержка</a></li>
                             <li><a href="" class="dropdown-item disabled">Информация?</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -89,6 +94,7 @@
                             {% endif %}
                             <li><a class="dropdown-item" href="{% url 'authapp:profile_edit' pk=request.user.id %}">Изменить данные пользователя</a></li>
                             <li><a href="{% url 'authapp:password_change' pk=request.user.id %}" class="dropdown-item">Сменить пароль</a></li>
+                            <li><a href="{% url 'support:tickets' %}" class="dropdown-item">Техподдержка</a></li>
                             <li><a href="" class="dropdown-item disabled">Информация?</a></li>
                             <li>
                                 <hr class="dropdown-divider">

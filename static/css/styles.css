@@ -82,6 +82,7 @@ a:link {
     display: flex;
     align-items: center;
     justify-content: center;
+}
 
 .index-div::after {
     content: "";
@@ -94,13 +95,6 @@ a:link {
     left: 0px;
     opacity: 0.5;
 }
-
-/*.thumb {
-  position: relative;
-  width: 160px;
-  height: 60px;
-  padding-right: 10px;
-}*/
 
 .location {
  margin-top: 0;
@@ -125,3 +119,19 @@ a:link {
     color: #FDAE5C;
 }
 
+.ticket-status-closed {
+    background-color: #e6f7ff;
+    border: 1px solid #91d5ff;
+    border-radius: 6px;
+    font-size: 12px;
+    padding: 16px;
+    color: #092433;
+}
+
+.ticket-text {
+    font-size: 16px;
+}
+
+.ticket-header {
+    font-size: 14px;
+}

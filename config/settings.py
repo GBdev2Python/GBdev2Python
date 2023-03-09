@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "hhapp.apps.HhappConfig",
     "newsapp",
     "serviceapp.apps.ServiceappConfig",
+    'supportapp.apps.SupportappConfig',
 
     "social_django",
     "crispy_forms",
