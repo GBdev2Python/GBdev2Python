@@ -3,41 +3,39 @@
 {% block title %}Редактирование вакансии{% endblock title %}
 
 {% block stylesheet %}
-  <link rel="stylesheet" href="{% static 'employerapp/css/forms.css' %}"/>
+<link rel="stylesheet" href="{% static 'employerapp/css/forms.css' %}"/>
 {% endblock stylesheet %}
 
 {% block content %}
 
-  {% if user.is_authenticated %}
-    <p>customuser Логин: {{ user.username }}</p>
-    <p>customuser ID: {{ user.pk }}</p>
-    <p>employer ID: {{ user.employer.id }}</p>
-  {% endif %}
+{% if user.is_authenticated %}
+<p>customuser Логин: {{ user.username }}</p>
+<p>customuser ID: {{ user.pk }}</p>
+<p>employer ID: {{ user.employer.id }}</p>
+{% endif %}
 
-  <div class="container-fluid">
+<div class="container-fluid">
     <div class="row">
-<!--      <div class="col-xl-1 col-md-1 col-lg-1">-->
-<!--      </div>-->
-      <div class="col-xl-9 col-md-9 col-lg-9">
-        <h2 class="py-4">Редактирование вакансии</h2>
-         <b></b>
-        <form class="form_empl"  action="" method="post" enctype="multipart/form-data">
-          {% csrf_token %}
-          {% for el in form %}
-            <!--    "id_for_label" идентификатор текстовой метки  -->
-            <h6><label class="form-label" for="{{ el.id_for_label }}">{{el.label}}: </label></h6>
-            <p>{{ el }}</p>
-            <!--  отображение ошибки заполнения данных формы  -->
-            <div class="form-error">{{ el.errors }}</div>
-          {% endfor %}
-          {{ form.media }}
-          <button type="submit" class="boxed-btn3">Обновить данные</button>
-        </form>
-      </div>
-      <div class="col-xl-3 col-md-3 col-lg-3">
-        <p>Боковая колонка</p>
-      </div>
+        <div class="col-xl-9 col-md-9 col-lg-9">
+            <h2 class="py-4">Редактирование вакансии</h2>
+            <b></b>
+            <form class="form_empl" action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for el in form %}
+                <!--    "id_for_label" идентификатор текстовой метки  -->
+                <h6><label class="form-label" for="{{ el.id_for_label }}">{{el.label}}: </label></h6>
+                <p>{{ el }}</p>
+                <!--  отображение ошибки заполнения данных формы  -->
+                <div class="form-error">{{ el.errors }}</div>
+                {% endfor %}
+                {{ form.media }}
+                <button type="submit" class="boxed-btn3">Обновить данные</button>
+            </form>
+        </div>
+        <div class="col-xl-3 col-md-3 col-lg-3">
+<!--            <p>Боковая колонка</p>-->
+        </div>
     </div>
-  </div>
-  <br>
+</div>
+<br>
 {% endblock content %}
