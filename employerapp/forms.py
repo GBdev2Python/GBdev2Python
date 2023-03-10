@@ -13,7 +13,6 @@ class AddEmployerForm(forms.ModelForm):
             "employment": "Название организации",
             "town": "Город (населенный пункт)",
             "location": "Место расположения организации на карте",
-            # "body": "Детальное описание"
         }
         widgets = {
             "employment": forms.Textarea(attrs={"cols": 50, "rows": 3}),
@@ -21,11 +20,6 @@ class AddEmployerForm(forms.ModelForm):
             "body": forms.CharField(widget=CKEditorWidget()),
             "location": forms.Textarea(attrs={"cols": 100, "rows": 10}),
         }
-
-    #
-    #     help_texts = {
-    #         "phone": "Введите номер в формате +71234567890",
-    #     }
 
 
 class UpdateEmployerForm(forms.ModelForm):
@@ -50,12 +44,6 @@ class UpdateEmployerForm(forms.ModelForm):
 
 
 class AddVacancyForm(forms.ModelForm):
-
-    # def __init__(self, *args, **kwargs):
-    #     ret = super().__init__(*args, **kwargs)
-    #     employer = 2
-    #     self.fields["employer"].initial = employer
-    #     return ret
 
     class Meta:
         model = VacancyHeader
