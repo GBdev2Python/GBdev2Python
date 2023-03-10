@@ -7,9 +7,10 @@ class CreateTicketForm(forms.ModelForm):
 
     class Meta:
         model = Ticket
-        fields = ['user', 'topic', 'init_message']
+        fields = ('user', 'theme', 'topic', 'init_message', 'attachment')
         widgets = {
-            'user': forms.HiddenInput()
+            'user': forms.HiddenInput(),
+            'attachment': forms.FileInput(),
         }
 
 

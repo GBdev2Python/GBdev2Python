@@ -3,11 +3,14 @@
 
 {% block content %}
     <div class="container-md" style="max-width: 870px">
-        <div class="d-flex flex-column m-3 pt-3">
+        <div class="d-flex flex-column mx-3 mt-3 pt-3">
             <div class="flex-row col-md-4 text-start pb-1">
                 <a href="{% url 'support:tickets' %}"><strong class="h5 text-info">Служба поддержки</strong></a>
             </div>
             <hr style="width: 100%">
+            <div class="d-flex p-0">
+                <h5>{{ ticket_data.theme }}</h5>
+            </div>
             <div class="d-flex flex-row justify-content-between">
                 <div class="d-flex flex-column">
                     <div class="d-flex col-md-4 p-0 flex-row"><span class="text-muted">Категория: </span><span class="px-2 text-dark">{% if ticket_data.topic == 1 %}Registration{% elif ticket_data.topic == 2 %}Profile{% elif ticket_data.topic == 3 %}Login{% else %}Account access{% endif %}</span></div>
@@ -41,6 +44,13 @@
                 <span class="text-muted"><small>{{ ticket_data.created }}</small></span>
             </div>
             <div class="pt-2"><p class="text-dark">{{ ticket_data.init_message }}</p></div>
+            {% if ticket_data.attachment %}
+                <span class="text-muted align-self-end">
+                    Вложение к письму: <a class="text-primary align-self-end" href="{{ MEDIA_URL }}{{ ticket_data.attachment }}" target="_blank">{{ ticket_data.attachment }}</a>
+                </span>
+            {% else %}
+                <span class="text-muted align-self-end"><small>К обращению нет приложеных файлов</small></span>
+            {% endif %}
             <hr class="p-0" style="width: 100%">
         </div>
         <div id="messagesList">

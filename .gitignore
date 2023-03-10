@@ -256,6 +256,7 @@ fabric.properties
 /applicantapp/migrations/
 /employerapp/migrations/
 /newsapp/migrations/
+/supportapp/migrations
 
 /serviceapp/migrations/
 /dump

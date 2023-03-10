@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="container-sm">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form|crispy }}
             <button class="btn btn-success my-2">Создать тикет</button>

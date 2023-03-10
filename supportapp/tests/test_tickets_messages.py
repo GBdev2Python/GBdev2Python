@@ -1,11 +1,13 @@
 from http import HTTPStatus
+from pathlib import Path
 
+from django.core import mail
 from django.test import TestCase, Client
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+from django.conf import settings
 
 from supportapp.models import Ticket, TicketMessage
-from authapp.models import CustomUser
 
 
 User = get_user_model()
@@ -14,7 +16,7 @@ User = get_user_model()
 class TicketMessagesTest(TestCase):
     fixtures = (
         'employerapp/fixtures/001_customuser.json',
-        'supportapp/fixtures/001_test_tickets.json',
+        'supportapp/fixtures/011_test_tickets.json',
     )
 
     def setUp(self) -> None:
@@ -45,32 +47,44 @@ class TicketMessagesTest(TestCase):
 
     def test_create_ticket_authed(self):
         total_tickets = Ticket.objects.count()
-        ticket_data = {"init_message": "Test_ticket", "user": 1}
+        ticket_data = {"init_message": "Test_ticket", "theme": "Test_theme", "user": 1, "topic": 1}
 
         self.client_with_auth.post(path=self.routes['create']['ticket'], data=ticket_data)
         self.assertEqual(Ticket.objects.count(), total_tickets + 1)
 
-        test_ticket = Ticket(user_id=1, init_message="Test_ticket", topic=1, status=1)
+        test_ticket = Ticket(user_id=1, init_message="Test_ticket", theme="Test_theme", topic=1, status=1)
         last_ticket = Ticket.objects.last()
 
         self.assertTrue(
             all((test_ticket.user == last_ticket.user,
+                 test_ticket.theme == last_ticket.theme,
                  test_ticket.init_message == last_ticket.init_message,
                  test_ticket.topic == last_ticket.topic,
                  test_ticket.status == last_ticket.status,
                  ))
         )
 
+    def test_post_image_in_form(self):
+        file_path = Path(__file__).parent
+        total_tickets = Ticket.objects.count()
+
+        with open(file_path / 'test_file.txt', 'rb') as f:
+            ticket_data = {"init_message": "Test_ticket", "theme": "Test_theme", "user": 1, "topic": 1, 'attachment': f}
+            self.client_with_auth.post(path=self.routes['create']['ticket'], data=ticket_data)
+
+        self.assertEqual(total_tickets + 1, Ticket.objects.count())
+        self.assertEqual(len(mail.outbox), 1)
+
     def test_create_ticket_no_auth(self):
         total_tickets = Ticket.objects.count()
-        ticket_data = {"init_message": "Test_ticket", "user": 1}
+        ticket_data = {"init_message": "Test_ticket", "theme": "Test_theme", "user": 1}
         self.client.post(path=self.routes['create']['ticket'], data=ticket_data)
         self.assertEqual(total_tickets, Ticket.objects.count())
 
     def test_create_ticket_message_created_authed(self):
         total_messages = TicketMessage.objects.count()
         message_data = {"user": 1, "ticket": 1, "message": "test_message_1"}
-        r = self.client_with_auth.post(self.routes['create']['message'], data=message_data)
+        self.client_with_auth.post(self.routes['create']['message'], data=message_data)
         self.assertEqual(TicketMessage.objects.count(), total_messages + 1)
 
         test_message = TicketMessage(user_id=1, ticket_id=1, message="test_message_1")

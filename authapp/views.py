@@ -38,6 +38,8 @@ class CustomLoginView(LoginView):
             mark_safe(f'is_comp:{self.request.user.is_company}'
                       f'<br>name:{self.request.user.username}')
         )
+        if self.request.GET.get("next") is not None:
+            return redirect(self.request.GET.get("next"))
         return redirect('authapp:profile_info')
 
     def form_invalid(self, form):
@@ -57,6 +59,7 @@ class CustomLogoutView(LogoutView):
 
 
 class ProfileEditView(UserPassesTestMixin, UpdateView):
+    login_url = reverse_lazy('authapp:login')
     model = get_user_model()
     form_class = forms.CustomUserChangeForm
     template_name = "registration/profile_edit.html"

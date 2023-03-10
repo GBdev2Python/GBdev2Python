@@ -183,8 +183,23 @@ CELERY_BROKER_URL = "redis://localhost:6379"
 CELERY_RESULT_BACKEND = "redis://localhost:6379"
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
-
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 TECH_SUPPORT_EMAIL = 'tech_support@post.ru'
 TECH_SUPPORT_EMAIL_SUBJECT = 'Technical support form %user'         # .replace('%user', <username>)
 VALID_EMAIL_RE_PATTERN = re.compile(r'[A-Za-zА-Яа-я]{3,}', flags=re.I | re.MULTILINE)
+
+SUPPORT_MAX_FILE_SIZE = 5 * 1024 * 1024
+SUPPORT_ALLOWED_FILE_FORMATS = ('txt', 'jpg', 'jpeg', 'png', 'log')
+
+# LOGGING = {
+#     'version': 1,
+#     'handlers': {
+#         'console': {'class': 'logging.StreamHandler'}
+#     },
+#     'loggers': {
+#         'django.db.backends': {
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#         }
+#     }
+# }

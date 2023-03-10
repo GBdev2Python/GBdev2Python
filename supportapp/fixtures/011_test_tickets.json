@@ -4,6 +4,7 @@
     "pk": 1,
     "fields": {
       "user": 1,
+      "theme": "I BROKE EVERYTHING! WHAT TO DO?!",
       "init_message": "EVERYTHING IS BROKEN! AAAAAA!!111",
       "topic": 1,
       "status": 1,
@@ -15,6 +16,7 @@
     "pk": 2,
     "fields": {
       "user": 2,
+      "theme": "Thank you friends, for your support!",
       "init_message": "I ahve a small question, friends!",
       "topic": 2,
       "status": 1,
@@ -26,10 +28,11 @@
     "pk": 3,
     "fields": {
       "user": 3,
+      "theme":  "Привет, я глупенький, поможайте!",
       "init_message": "Привет. Подскажите, как поднять сервер под апачем? Я - дурачок :(",
       "topic": 3,
       "status": 2,
-      "created": "2023-04-15T07:59:44.918Z"
+      "created": "2023-01-15T07:59:44.918Z"
     }
   }
 ]

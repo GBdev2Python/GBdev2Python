@@ -1,9 +1,12 @@
-from django.db.models import Count, Prefetch
+from django.core.mail import send_mail
+from django.db.models import Prefetch
 from django.http import JsonResponse
+from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse_lazy
 from django.template.loader import render_to_string
 from django.views.generic import ListView, FormView, TemplateView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.conf import settings
 
 from .models import Ticket, TicketMessage
 from .forms import CreateTicketForm, CreateTicketMessageForm, TicketChangeStatusForm
@@ -13,20 +16,47 @@ class TicketsListView(LoginRequiredMixin, ListView):
     login_url = reverse_lazy("authapp:login")
     template_name = "supportapp/tickets.html"
     context_object_name = 'tickets'
+    ordering = ['status', 'created']
 
     def get_queryset(self):
         queryset = Ticket.objects.all()
-        is_not_staff_or_not_superuser = not self.request.user.is_staff and not self.request.user.is_superuser
 
+        is_not_staff_or_not_superuser = not self.request.user.is_staff and not self.request.user.is_superuser
         if is_not_staff_or_not_superuser:
             queryset = queryset.filter(user_id=self.request.user.id)
 
         queryset = queryset.select_related('user') \
-            .only("id", "init_message", "created", "topic", "status", "user__username", "user__email")
-        return queryset
+            .only("id", "init_message", "created", "topic", "status", "user__username", "user__email", 'theme')
+
+        if self.request.GET:
+            if self.request.GET.get('theme') is not None:
+                queryset = queryset.filter(theme__icontains=self.request.GET.get('theme'))
+
+            topic = self.request.GET.get('topic')
+            if topic:
+                queryset = queryset.filter(topic=topic)
+
+            status = self.request.GET.get('status')
+            if status:
+                queryset = queryset.filter(status=status)
+
+            created = self.request.GET.get('created')
+            if created:
+                queryset = queryset.order_by(f"{'' if created == '+' else '-'}created")
+                return queryset
+
+        return queryset.order_by(*self.ordering)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=object_list, **kwargs)
+
+        if self.request.GET:
+            context['s_topic'] = self.request.GET.get('topic')
+            context['s_created'] = self.request.GET.get('created')
+            context['s_status'] = self.request.GET.get('status')
+            context['s_theme'] = self.request.GET.get('theme')
+            context['s_username'] = self.request.GET.get('username')
+
         return context
 
 
@@ -41,11 +71,35 @@ class TicketCreationView(LoginRequiredMixin, FormView):
         context['form'].fields['user'].initial = self.request.user
         return context
 
-    def post(self, request, *args, **kwargs):
-        return super().post(request, *args, **kwargs)
-
     def form_valid(self, form):
         form.save()
+
+        theme = form.cleaned_data['theme']
+        ticket_init_message = form.cleaned_data['init_message']
+
+        site = get_current_site(self.request)
+        context = {
+            "message": form.cleaned_data['init_message'],
+            "protocol": ('https' if self.request.is_secure() else 'http'),
+            "site_domain": site.domain,
+            'site_name': site.name,
+            'ticket_theme': theme,
+            'ticket_init_message': ticket_init_message,
+            'ticket_path': reverse_lazy('support:tickets')
+        }
+
+        message_body = render_to_string(
+            template_name='supportapp/tech_support_ticket_start_email.html', context=context
+        )
+
+        send_mail(
+            subject=f'Tech support: {theme if len(theme) < 20 else (theme[:25] + "...")}',
+            message=message_body,
+            from_email=settings.TECH_SUPPORT_EMAIL,
+            recipient_list=[self.request.user.email, ],
+            fail_silently=False,
+        )
+
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -88,7 +142,7 @@ class TicketDetailView(UserPassesTestMixin, TemplateView):
                       'user__email', 'message', 'created', 'ticket_id')
             )) \
             .only('id', 'user__username', 'user__is_staff', 'user__email',
-                  'init_message', "status", "topic", "created") \
+                  'init_message', 'status', 'topic', 'created', 'theme', 'attachment') \
             .filter(pk=pk)
 
         ticket = ticket.first()
