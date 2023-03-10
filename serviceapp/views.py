@@ -53,7 +53,7 @@ def response(request, vacancyheader):
 def response_employer(request, response_id):
     if request.user.is_authenticated:
         print(Resumes.objects.get(id=Response.objects.get(id=response_id).resume.id).applicants.user.id)
-        if request.user.id == VacancyHeader.objects.get(id=Response.objects.get(id=response_id).vacancyheader.id).employer_id.user.id:
+        if request.user.id == VacancyHeader.objects.get(id=Response.objects.get(id=response_id).vacancyheader.id).employer.user.id:
             if request.method == 'POST':
                 print(request.POST)
                 response_change = Response.objects.get(id=response_id)
