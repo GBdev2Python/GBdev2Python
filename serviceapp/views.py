@@ -34,7 +34,7 @@ def response(request, vacancyheader):
                 resp.vacancyheader = vacancy
                 resp.resume = resume
                 resp.save()
-                return redirect('/news/')
+                return redirect('hhapp:jobs')
             else:
                 messages.error(request, 'Ошибка отправки отклика')
         else:
@@ -53,7 +53,7 @@ def response(request, vacancyheader):
 def response_employer(request, response_id):
     if request.user.is_authenticated:
         print(Resumes.objects.get(id=Response.objects.get(id=response_id).resume.id).applicants.user.id)
-        if request.user.id == VacancyHeader.objects.get(id=Response.objects.get(id=response_id).vacancyheader.id).employer_id.user.id:
+        if request.user.id == VacancyHeader.objects.get(id=Response.objects.get(id=response_id).vacancyheader.id).employer.user.id:
             if request.method == 'POST':
                 print(request.POST)
                 response_change = Response.objects.get(id=response_id)
@@ -64,7 +64,7 @@ def response_employer(request, response_id):
                 form = ResponseChangeStatusForm()
         else:
             messages.error(request, 'Доступ запрещен')
-            return redirect('hhapp:main_page')
+            return redirect('hhapp:jobs')
     else:
         messages.error(request, 'Пользователь не авторизовон')
         form = {}
@@ -77,7 +77,7 @@ def response_applicant(request, response_id):
             return render(request, 'serviceapp/response_view_applicant.html', {"response": Response.objects.get(id=response_id)})
         else:
             messages.error(request, 'Доступ запрещен')
-            return redirect('hhapp:main_page')
+            return redirect('authapp:profile_info')
     else:
         messages.error(request, 'Пользователь не авторизовон')
     return redirect('hhapp:main_page')
@@ -86,7 +86,7 @@ class ResponseDelete(DeleteView):
     model = Response
     pk_url_kwarg = "response_id"
     template_name = "serviceapp/response_delete.html"
-    success_url = reverse_lazy("hhapp:main_page")
+    success_url = reverse_lazy("authapp:profile_info")
     #
     # def get_context_data(self, **kwargs):
     #     profile = Resumes.objects.get(id=self.kwargs["resume_id"])

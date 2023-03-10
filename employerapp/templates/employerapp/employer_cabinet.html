@@ -3,26 +3,51 @@
 {% block title %} Личный кабинет работодателя {% endblock title %}
 
 {% block content %}
-    {% if user.is_authenticated %}
-        <p>customuser Логин: {{ user.username }}</p>
-        <p>customuser ID: {{ user.pk }}</p>
-        <p>employer ID: {{ user.employer.id }}</p>
-    {% endif %}
+<!--    {% if user.is_authenticated %}-->
+<!--        <p>customuser Логин: {{ user.username }}</p>-->
+<!--        <p>customuser ID: {{ user.pk }}</p>-->
+<!--        <p>employer ID: {{ user.employer.id }}</p>-->
+<!--    {% endif %}-->
 
 
     <div class="container-fluid">
+        <div class="row justify-content-md-center">
+             <div class="col-md-auto py-3">
+                 <h2 style="color: #FDAE5C">Личный кабинет работодателя</h2>
+             </div>
+                   <br>
+            <div class="row m-0">
+                <div class="col-md-9 p-0">
+                    <div class="card bg-light" style="max-width: auto">
+                        <div class="row m-0">
+                            <div class="col-md-3 p-3">
+                            {% for item in employer_cab_comp_qs %}
+                                <img class="img-fluid" style="max-width: auto" src="{{ MEDIA_URL }}{{ user.employer.cover }}" alt="logo employer">
+                            </div>
+                            <div class="col-md-9 p-3 text-justify">
+                                <p>Наименование организации:  {{ user.employer.employment }}</p>
+                                <p>Место расположения(адрес):  {{ user.employer.town }}, {{ user.employer.address }}</p>
+                                <p>Контактный телефон:  {{ user.employer.phone }}</p>
+                                <p>Сайт: {{ user.employer.website }} </p>
+                            {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="row">
-
-            <div class="col-xl-9 col-md-9 col-lg-9 py-5">
-                <h2 class="py-3">Личный кабинет работодателя</h2>
-                <br>
-                {% for item in employer_cab_comp_qs %}
-                    <h3>Компания работодателя: </h3><a href="{{ item.get_absolute_url }}">{{ item.employment }}</a>
+                <div class="col-xl-3 col-md-3 col-lg-3" style="padding-left: 50px;">
+                {% for item in employer_cab_qs %}
+                    <a href="{{ item.get_absolute_url }}" class="btn btn-info">Открыть карточку работодателя</a>
                 {% endfor %}
+                <br>
+                <a href="{% url 'employerapp:employer_update' employer=user_query.employer_id %}" class="boxed-btn4">Изменить
+                    карточку работодателя</a>
+                <br>
+                 </div>
+            </div>
+            </div>
 
-                <br><br>
-                <h5 class="my-3">Список опубликованных вакансий работодателя: {{ user.username }}:</h5>
+                <h5 class="my-3">Список опубликованных вакансий {{ user.employer.employment }}:</h5>
                 <ul>
                     {% for item in vacancy_cab_qs %}
                         <li>
@@ -31,28 +56,17 @@
                     {% endfor %}
                 </ul>
                 <br><br>
-                <h5 class="my-3">Список черновиков вакансий работодателя: {{ user.username }}:</h5>
+                <h5 class="my-3">Список черновиков вакансий {{ user.employer.employment }}:</h5>
                 <ul>
-                    {% for item in vacancy_cab_not_qs %}
-                        <li>
-                            <a href="{{ item.get_absolute_url }}">{{ item.job_title }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-                <br><br>
-            </div>
-
-            <div class="col-xl-3 col-md-3 col-lg-3">
-
-                {% for item in employer_cab_qs %}
-                    <a href="{{ item.get_absolute_url }}" class="btn btn-info">Открыть карточку работодателя</a>
+                {% for item in vacancy_cab_not_qs %}
+                    <li>
+                        <a href="{{ item.get_absolute_url }}">{{ item.job_title }}</a>
+                    </li>
                 {% endfor %}
+            </ul>
+            <br><br>
 
-                <br>
-                <a href="{% url 'employerapp:employer_update' employer=user_query.employer_id %}" class="boxed-btn4">Изменить
-                    карточку работодателя</a>
-                <br>
-            </div>
-        </div>
+
+
     </div>
 {% endblock content %}
