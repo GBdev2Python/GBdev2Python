@@ -260,3 +260,5 @@ fabric.properties
 
 /serviceapp/migrations/
 /dump
+
+/media/support

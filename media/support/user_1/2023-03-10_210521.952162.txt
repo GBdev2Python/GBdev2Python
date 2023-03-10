@@ -1,2 +1,0 @@
-Hello, I am the test tile to test the testing test.
-If you see me - you are testing!
