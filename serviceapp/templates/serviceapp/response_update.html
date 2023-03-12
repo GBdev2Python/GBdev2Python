@@ -13,7 +13,7 @@
                 {{ form.as_p }}
                 <select class="form-select" aria-label="Default select example" name="resume_id">
                     {% for item in resume %}
-                        <option value="{{item.id}}">{{ item }}</option>
+                        <option value="{{item.id}}" {% if item.id == active_resume %} selected {% endif %} name="resume">{{ item }}</option>
                     {% endfor %}
                 </select>
                 <button type="submit" class="boxed-btn3 my-3">Обновить отклик</button>

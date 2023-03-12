@@ -19,7 +19,7 @@ class Response(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Обновлено")
 
     def get_absolute_url(self):
-        return reverse("serviceapp:response_view", kwargs={"response_id": self.id})
+        return reverse("serviceapp:response_view_applicant", kwargs={"response_id": self.id})
 
     class Meta:
         verbose_name = "Отклик"

@@ -51,7 +51,6 @@ def response(request, vacancyheader):
 
 def response_employer(request, response_id):
     if request.user.is_authenticated:
-        print(Resumes.objects.get(id=Response.objects.get(id=response_id).resume.id).applicants.user.id)
         if request.user.id == VacancyHeader.objects.get(id=Response.objects.get(id=response_id).vacancyheader.id).employer.user.id:
             if request.method == 'POST':
                 print(request.POST)
@@ -113,4 +112,12 @@ class ResponseUpdate(UpdateView):
         context = super().get_context_data(**kwargs)
         if self.request.user.id == applicant.user.id:
               context["resume"] = Resumes.objects.all().filter(applicants_id=applicant)
+              context["active_resume"] = Response.objects.get(id=self.kwargs["response_id"]).resume.id
         return context
+
+    def form_valid(self, form):
+        resume = Resumes.objects.get(id=self.request.POST["resume_id"])
+        resp = form.save(commit=False)
+        resp.resume = resume
+        resp.save()
+        return super().form_valid(form)
