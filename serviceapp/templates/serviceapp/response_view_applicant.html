@@ -24,7 +24,8 @@
                 <a href="{% url 'employerapp:vacancy' vacancy_pk=response.vacancyheader.id %}">{{ response.vacancyheader }}</a>
              </div>
             <hr>
-            <a class="boxed-btn2 my-2"  href="{% url 'serviceapp:response_delete' response_id=response.id %}">Удалить отклик</a>
+            <a class="btn btn-primary my-2"  href="{% url 'serviceapp:response_update' response_id=response.id %}">Изменить отклик</a>
+            <a class="btn btn-danger my-2"  href="{% url 'serviceapp:response_delete' response_id=response.id %}">Удалить отклик</a>
          </div>
     </div>
 </div>

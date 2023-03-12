@@ -3,12 +3,12 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import context
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView
+from django.views.generic import CreateView, DeleteView, UpdateView
 
 from applicantapp.models import Resumes, Applicants
 from .models import Response
 from employerapp.models import VacancyHeader, Employer
-from .forms import ResponseForm, ResponseChangeStatusForm
+from .forms import ResponseForm, ResponseChangeStatusForm, UpdateResponseForm
 from django.contrib import messages
 
 
@@ -44,7 +44,6 @@ def response(request, vacancyheader):
         form = {}
     applicant = Applicants.objects.get(id = request.user.applicants.id).id
     resume = Resumes.objects.all().filter(applicants_id=applicant)
-    print(resume.count)
     if resume.count() == 0:
         return redirect('applicantapp:new_resume', applicant_id = applicant)
     return render(request, 'serviceapp/response.html', {"form": form, "resume": resume})
@@ -99,7 +98,19 @@ class ResponseDelete(DeleteView):
     def get_context_data(self, **kwargs):
         user_id = Response.objects.get(id=self.kwargs["response_id"]).resume.applicants.user.id
         context = super().get_context_data(**kwargs)
-        print(self.request.user.id, user_id)
         if self.request.user.id == user_id:
             context["is_user_response"] = True
+        return context
+
+class ResponseUpdate(UpdateView):
+    model = Response
+    form_class = UpdateResponseForm
+    pk_url_kwarg = "response_id"
+    template_name = "serviceapp/response_update.html"
+
+    def get_context_data(self, **kwargs):
+        applicant = Response.objects.get(id=self.kwargs["response_id"]).resume.applicants
+        context = super().get_context_data(**kwargs)
+        if self.request.user.id == applicant.user.id:
+              context["resume"] = Resumes.objects.all().filter(applicants_id=applicant)
         return context

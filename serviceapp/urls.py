@@ -10,4 +10,5 @@ urlpatterns = [
     path("responseviewapplicant/<int:response_id>/", response_applicant, name="response_view_applicant"),
     # удалить вакансию
     path("response_delete/<int:response_id>/", ResponseDelete.as_view(), name="response_delete"),
+    path("response_update/<int:response_id>/", ResponseUpdate.as_view(), name="response_update"),
 ]

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Response(models.Model):
@@ -16,6 +17,9 @@ class Response(models.Model):
     status = models.CharField(max_length=8, choices=STATUS_CHOICES, default="NEW", verbose_name="Статус")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата публикации")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Обновлено")
+
+    def get_absolute_url(self):
+        return reverse("serviceapp:response_view", kwargs={"response_id": self.id})
 
     class Meta:
         verbose_name = "Отклик"
