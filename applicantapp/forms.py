@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 
-from .models import Resumes, Applicants
+from .models import Resumes, Applicants, ResumeInvitation
 
 
 class ResumeForm(ModelForm):
@@ -21,7 +21,7 @@ class ResumeForm(ModelForm):
             field.widget.attrs.update({"class": "input"})
 
 
-class EditApplicantForm(forms.ModelForm):
+class EditApplicantForm(ModelForm):
     class Meta:
         model = Applicants
         fields = ["image", "first_name", "last_name", "birthday", "town", "phone"]
@@ -31,4 +31,14 @@ class EditApplicantForm(forms.ModelForm):
             "last_name": "Фамилия",
             "birthday": "Дата рождения",
             "town": "Город (населенный пункт)",
+        }
+
+
+class InvitationCreationForm(ModelForm):
+
+    class Meta:
+        model = ResumeInvitation
+        fields = ['resume', 'vacancy', 'cover_letter']
+        widgets = {
+            'resume': forms.HiddenInput,
         }

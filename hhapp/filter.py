@@ -17,7 +17,7 @@ class VacancyFilter(django_filters.FilterSet):
 class ResumeFilter(django_filters.FilterSet):
     salary__gt = django_filters.NumberFilter(field_name='salary', lookup_expr='gt', label='Заработная плата от')
     salary__lt = django_filters.NumberFilter(field_name='salary', lookup_expr='lt', label='до')
-    skills= django_filters.ModelMultipleChoiceFilter(queryset=Skill.objects.all(),
+    skills = django_filters.ModelMultipleChoiceFilter(queryset=Skill.objects.all(),
                                                          widget=forms.CheckboxSelectMultiple)
     class Meta:
         model = Resumes

@@ -9,18 +9,18 @@
     <a href="{% url 'applicant:list' %}">Список соискателей</a>
     <a href="{% url 'applicant:resume_list' %}">Список резюме</a>
     <br>
-    <h1>Резюме</h1>
+    <h1>{{ resume.applicants.first_name }} {{ resume.applicants.last_name }} - {{ resume.required_job }}</h1>
 
     <img class="avatar avatar--xl" src="{{ resume.image.url }}" />
     <p>Имя: {{ resume.applicants.first_name }}</p>
     <p>Фамилия: {{ resume.applicants.last_name }}</p>
     <p>Дата рождения: {{ resume.applicants.birthday }}</p>
-    <p>Город проживания: {{ resume.applicants.town }}</p>
+    <p>Город проживания: {{ resume.applicants.town.town }}</p>
     <p>Контактный телефон: {{ resume.applicants.phone }}</p>
     <p>email: {{ resume.applicants.user.email }}</p>
     <p>Навыки:</p>
 
-    {% for skill in skills %}
+    {% for skill in resume.skills.all %}
       <ul>
         <li>{{ skill.name }}</li>
       </ul>
@@ -30,5 +30,24 @@
     <p>Заработная плата: {{ resume.salary }}</p>
     <p>Место последней работы: {{ resume.last_job }}</p>
     <p>Образование: {{ resume.education }}</p>
-  </body>
+
+        {% if response %}
+            <div class="d-flex flex-column invite-status-options">
+                <span class="text-dark">Вы уже приглашали кандидата!</span>
+            <hr>
+                <div class="d-flex flex-column mx-3">
+                    <div>
+                        <span>Сообщение: </span>
+                        <span>{{ response.cover_letter|truncatechars:50 }}</span>
+                    </div>
+                    <div>
+                        <span>Статус пришлашения: </span>
+                        <span class="text-primary">{% if response.status == 1 %}Ожидание{% elif response.status == 2 %}Принято{% else %}Отклонено{% endif %}</span>
+
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <a class="btn btn-success" href="{% url 'applicant:invite_applicant' resume_pk=resume.pk %}">Пригласить</a>
+        {% endif %}
 {% endblock content %}

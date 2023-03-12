@@ -29,5 +29,6 @@ urlpatterns = [
     path("applicant_edit/<str:pk>/", views.update_applicant, name="applicant_edit"),
     # личный кабинет соискателя
     path("applicant_cabinet/<int:applicant_id>/", views.ApplicantCabinet.as_view(), name="applicant_cabinet"),
-
+    # Создание отклика работодателя
+    path("invite/<int:resume_pk>", views.ResumeInvitationCreation.as_view(), name='invite_applicant'),
 ]

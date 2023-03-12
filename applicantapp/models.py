@@ -4,14 +4,9 @@ from django.urls import reverse
 from authapp.models import CustomUser
 
 
-# Create your models here.
-
-# Справочник городов
 class Towns(models.Model):
     town = models.CharField(max_length=50, unique=True, db_index=True, verbose_name="Город")
 
-    # id = models.UUIDField(default=uuid.uuid4, unique=True,
-    #                      primary_key=True, editable=False)
     def __str__(self) -> str:
         return f"{self.town}"
 
@@ -21,7 +16,6 @@ class Towns(models.Model):
         ordering = ("town",)
 
 
-# Соискатель (Таблица хранения данных по соискателям)
 class Applicants(models.Model):
     user = models.OneToOneField(
         CustomUser, on_delete=models.CASCADE, null=True, blank=True, verbose_name="Пользователь"
@@ -32,9 +26,6 @@ class Applicants(models.Model):
     birthday = models.DateField(blank=True, verbose_name="Дата рождения")
     phone = models.CharField(max_length=20, verbose_name="Телефон соискателя")
     town = models.ForeignKey(Towns, on_delete=models.PROTECT, verbose_name="Город проживания")
-
-    # id = models.UUIDField(default=uuid.uuid4, unique=True,
-    #                      primary_key=True, editable=False)
 
     def __str__(self) -> str:
         return f"{self.first_name} {self.last_name}"
@@ -47,15 +38,8 @@ class Applicants(models.Model):
         verbose_name_plural = "Соискатели"
 
 
-# Ключевые навыки соискателей
 class Skill(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True, verbose_name="Навык")
-
-    # description = models.TextField(null=True, blank=True, verbose_name='Описание навыка')
-    # а зачем записывать дату создания навыка?
-    # created = models.DateTimeField(auto_now_add=True)
-    # id = models.UUIDField(default=uuid.uuid4, unique=True,
-    #                      primary_key=True, editable=False)
 
     def __str__(self):
         return str(self.name)
@@ -88,3 +72,32 @@ class Resumes(models.Model):
     class Meta:
         verbose_name = "Резюме"
         verbose_name_plural = "Резюме"
+
+
+class ResumeInvitation(models.Model):
+    INVITATION_STATUS = (
+        (1, "Ожидание"),
+        (2, "Принято"),
+        (2, "Отклонено"),
+    )
+
+    resume = models.ForeignKey(Resumes, on_delete=models.CASCADE)
+    vacancy = models.ForeignKey('employerapp.VacancyHeader', on_delete=models.CASCADE,
+                                verbose_name="Ваши вакансии")
+
+    cover_letter = models.TextField(verbose_name="Дополнительная информация для пользователя")
+    status = models.SmallIntegerField(verbose_name='Статус приглашения', choices=INVITATION_STATUS, default=1)
+
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Приглашение'
+        verbose_name_plural = 'Приглашения'
+
+    def __str__(self):
+        return f'{self.id} {self.resume if hasattr(self, "resume") else "NoRes"}'
+
+    # @classmethod
+    # def _get_self_vacancies(cls):
+    #     return True
