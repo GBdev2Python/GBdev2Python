@@ -108,16 +108,22 @@ class ResponseUpdate(UpdateView):
     template_name = "serviceapp/response_update.html"
 
     def get_context_data(self, **kwargs):
-        applicant = Response.objects.get(id=self.kwargs["response_id"]).resume.applicants
+        response = Response.objects.get(id=self.kwargs["response_id"])
+        applicant = response.resume.applicants
         context = super().get_context_data(**kwargs)
         if self.request.user.id == applicant.user.id:
-              context["resume"] = Resumes.objects.all().filter(applicants_id=applicant)
-              context["active_resume"] = Response.objects.get(id=self.kwargs["response_id"]).resume.id
+            context["response"] = response
+            context["resume"] = Resumes.objects.all().filter(applicants_id=applicant)
+            context["active_resume"] = Response.objects.get(id=self.kwargs["response_id"]).resume.id
         return context
 
     def form_valid(self, form):
         resume = Resumes.objects.get(id=self.request.POST["resume_id"])
+        response = Response.objects.get(id=self.request.POST["response"])
         resp = form.save(commit=False)
-        resp.resume = resume
+        print(response.cover_letter, resp.cover_letter)
+        if not resp.resume == resume or not response.cover_letter == resp.cover_letter:
+            resp.status = "NEW"
         resp.save()
+        resp.resume = resume
         return super().form_valid(form)
