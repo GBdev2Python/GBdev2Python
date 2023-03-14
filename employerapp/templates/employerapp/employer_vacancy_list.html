@@ -14,13 +14,13 @@
 <!--  {% endif %}-->
 <!--  <br><br>-->
 
-  <h3>Список всех вакансий работодателя: {{ employer_lst_qs.employer}}</h3>
+  <h2 style="color: #FDAE5C">Список всех вакансий {{ employer_lst_qs.employer}}</h2>
   <br>
 
   <ul>
     {% for item in employer_vacancy_lst_qs %}
       <li>
-        <a href="{{ item.get_absolute_url }}">{{ item.job_title }}</a>
+        <h4><a href="{{ item.get_absolute_url }}">{{ item.job_title }}</a></h4>
       </li>
     {% endfor %}
   </ul>

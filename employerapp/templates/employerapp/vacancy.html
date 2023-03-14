@@ -19,9 +19,9 @@
       </div>
     </div>
     <div class="row justify-content-md-center">
-        <div class="col-xl-9 col-md- col-lg-9 py-3">
+        <div class="col-xl-9 col-md-9 col-lg-9 py-3">
             <div class="card bg-light" style="max-width: auto">
-                <div class="row m-0">
+                <div class="row m-0 d-flex align-items-center">
                     <div class="col-md-3 p-3">
 
                         <img class="img-fluid" style="max-width: auto" src="{{ MEDIA_URL }}{{ user.employer.cover }}" alt="logo employer">
@@ -78,12 +78,12 @@
         </div>
 
 
-        <div class="col-xl-3 col-md-3 col-lg-4">
+        <div class="col-xl-3 col-md-3 col-lg-3">
 <!--            <p>Боковая колонка для рекламы или фильтров</p>-->
 
             {% if response.count > 0 %}
 
-              <h4 class="text-xl-center">Отклики</h4>
+              <h4 class="m-3">Отклики</h4>
             {% endif %}
              {% for item_response in response %}
                 <div class="col my-2">
