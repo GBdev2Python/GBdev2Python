@@ -11,5 +11,6 @@ urlpatterns = [
     path("candidate/", views.CandidateListView.as_view(), name="candidate"),
     path('navigation/', views.SiteNavigationView.as_view(), name='navigation'),
     path('contact_us', views.ContactUsView.as_view(), name='contact_us'),
-    path('support_mail_success', views.SupportMailSuccessView.as_view(), name='support_success')
+    path('support_mail_success', views.SupportMailSuccessView.as_view(), name='support_success'),
+    path('rules_and_agreements', views.RulesAndAgreement.as_view(), name='rules'),
 ]

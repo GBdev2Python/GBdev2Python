@@ -24,7 +24,7 @@
                 <div class="row m-0 d-flex align-items-center">
                     <div class="col-md-3 p-3">
 
-                        <img class="img-fluid" style="max-width: auto" src="{{ MEDIA_URL }}{{ user.employer.cover }}" alt="logo employer">
+                        <img class="img-fluid" style="max-width: auto" src="{{ MEDIA_URL }}{{ vacancy_qs.employer.cover }}" alt="logo employer">
                     </div>
                     <div class="col-md-9 p-3 text-justify">
                         <p>Организация: {{ vacancy_qs.employer.employment|safe }}</p>

@@ -98,3 +98,7 @@ class ContactUsView(FormView):
 
 class SupportMailSuccessView(TemplateView):
     template_name = 'hhapp/support_mail_success.html'
+
+
+class RulesAndAgreement(TemplateView):
+    template_name = 'hhapp/rules.html'
