@@ -36,6 +36,7 @@ python manage.py loaddata 005_employer.json
 python manage.py loaddata 006_vacancy_header.json
 
 
+
 python manage.py loaddata 001_news.json
 python manage.py loaddata 008_applicant.json
 python manage.py loaddata 009_applicants_resume.json
@@ -51,39 +52,47 @@ admin@post.com
 # Работодатель
 employer1
 1111qqqqa
-1111qqqqa
 employer1@post.com
 Employer1name
 Employer1surname
-+7 905 1234567
-www.employer1.com
+79051234567
+https://employer1.com
 
 employer2
+1111qqqqa
 employer2@post.com
-1111qqqqa
-1111qqqqa
-Employer2name
-Employer2surname
-+7 905 1234567
-www.employer2.com
+79051234567
+https://employer2.com
 
 employer3
+1111qqqqa
 employer3@post.com
-1111qqqqa
-1111qqqqa
-Employer3name
-Employer3surname
-+7 905 1234567
-www.employer3.com
+79051234567
+https://employer3.com
 
 employer4
+1111qqqqa
 employer4@post.com
+79051234567
+https://employer4.com
+
+employer5
 1111qqqqa
+employer5@post.com
+79051234567
+https://employer5.com
+
+employer6
 1111qqqqa
-Employer4name
-Employer4surname
-+7 905 1234567
-www.employer4.com
+employer6@post.com
+79051234567
+https://employer6.com
+
+employer7
+1111qqqqa
+employer7@post.com
+79051234567
+https://employer6.com
 
 # модератор
 moder

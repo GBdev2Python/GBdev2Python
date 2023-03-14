@@ -4,14 +4,14 @@
 
 {% block content %}
 <br>
-<a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |
-<a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |
-<br><br>
-{% if user.is_authenticated %}
-<p>customuser Пользователь: <b>{{ user.username }}</b></p>
-<p>customuser ID: <b>{{ user.pk }}</b></p>
-<p>customuser is_company: <b>{{ user.is_company }}</b></p>
-{% endif %}
+<!--<a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |-->
+<!--<a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |-->
+<!--<br><br>-->
+<!--{% if user.is_authenticated %}-->
+<!--<p>customuser Пользователь: <b>{{ user.username }}</b></p>-->
+<!--<p>customuser ID: <b>{{ user.pk }}</b></p>-->
+<!--<p>customuser is_company: <b>{{ user.is_company }}</b></p>-->
+<!--{% endif %}-->
 <br>
 <div class="container-fluid">
     <div class="row">

@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$390000$wIJFJ37zFE3prUWTwr4baJ$xK1sWRL8Y2Z/EKYAlFPvm2yxR13xchIjp4n35xtRBD4=",
-        "last_login": "2023-02-27T18:16:42.729Z",
+        "last_login": "2023-03-03T09:41:39.804Z",
         "is_superuser": true,
         "username": "admin",
         "login": "",
@@ -23,7 +23,7 @@
     "pk": 2,
     "fields": {
         "password": "pbkdf2_sha256$390000$O5t6nFQ0PilphfB0v3KtLE$aZ1Lzc++hf4hy9mXwPAbEWcEadIhEiaRGo59mxv4+NY=",
-        "last_login": "2023-02-27T17:34:38.061Z",
+        "last_login": "2023-03-14T06:57:01.890Z",
         "is_superuser": false,
         "username": "employer1",
         "login": "employer1",
@@ -42,7 +42,7 @@
     "pk": 3,
     "fields": {
         "password": "pbkdf2_sha256$390000$PmpvRrWqZGxDGKCv1IHoZq$IipdIwOnBUAeapibO2XaxLKXJesMwUX7cVWYcEylb+0=",
-        "last_login": "2023-02-27T18:19:41.515Z",
+        "last_login": "2023-03-14T07:00:55.307Z",
         "is_superuser": false,
         "username": "employer2",
         "login": "employer2",
@@ -61,7 +61,7 @@
     "pk": 4,
     "fields": {
         "password": "pbkdf2_sha256$390000$H5EoXz5rHigx1yi7U8fHAD$xxwPe0FSlZb96BMxsKAiF8mzUyQ38xSIw/PxOEDD230=",
-        "last_login": "2023-02-26T16:11:17.111Z",
+        "last_login": "2023-03-14T07:04:59.288Z",
         "is_superuser": false,
         "username": "employer3",
         "login": "employer3",
@@ -79,8 +79,8 @@
     "model": "authapp.customuser",
     "pk": 6,
     "fields": {
-        "password": "pbkdf2_sha256$390000$K88gPGJvOqJDVCYaEgm0hz$aAaoyKO9emfmiD5MtmeKH55ltx7CMoPlisFg88vWa8E=",
-        "last_login": "2023-02-27T18:15:20.367Z",
+        "password": "pbkdf2_sha256$390000$IRqv7yUOOMdCa5jky0Ah1F$QpLqKasqF3QMd85lGdKwoxteU8fB1kTUggM4TV1fTYU=",
+        "last_login": "2023-03-03T09:59:48.983Z",
         "is_superuser": false,
         "username": "user1",
         "login": "user1",
@@ -88,8 +88,8 @@
         "is_company": false,
         "is_moderator": false,
         "is_staff": false,
-        "is_active": false,
-        "date_joined": "2023-02-18T15:39:40.755Z",
+        "is_active": true,
+        "date_joined": "2023-03-02T16:35:39.873Z",
         "groups": [],
         "user_permissions": []
     }
@@ -99,7 +99,7 @@
     "pk": 7,
     "fields": {
         "password": "pbkdf2_sha256$390000$oEIGgkoNlByVsslW9e2Q3s$y4LqDNZojChMM6L7+LTiMZUm1pbL+zrzKvrRjdABprc=",
-        "last_login": "2023-02-27T17:06:07.116Z",
+        "last_login": "2023-03-02T09:17:56.178Z",
         "is_superuser": false,
         "username": "user2",
         "login": "user2",
@@ -118,7 +118,7 @@
     "pk": 10,
     "fields": {
         "password": "pbkdf2_sha256$390000$JPH9sKVlPWSOf6LRRsfKlO$ruGVmZ2yic1yWpJUCegzBBdL/50zm/+bGhgw3QCYNJc=",
-        "last_login": "2023-03-01T09:52:00.025Z",
+        "last_login": "2023-03-14T07:05:56.824Z",
         "is_superuser": false,
         "username": "employer4",
         "login": "employer4",
@@ -137,7 +137,7 @@
     "pk": 11,
     "fields": {
         "password": "pbkdf2_sha256$390000$OAeSi7Dewaqw8FcHCRyTkK$gzNdhNAcK4Bz5nPlK8VJSKJjNOYu5o2HTWv3S2sXViI=",
-        "last_login": "2023-03-01T10:43:58.119Z",
+        "last_login": "2023-03-02T09:18:10.282Z",
         "is_superuser": false,
         "username": "user3",
         "login": "user3",
@@ -156,7 +156,7 @@
     "pk": 12,
     "fields": {
         "password": "pbkdf2_sha256$390000$jTRidaleaGWbgt5T7gIpEB$iv+T6CPMEPDaXBxxXXhst7ENs+1bmHqNR2+W5KjVBBg=",
-        "last_login": "2023-03-02T07:53:06.905Z",
+        "last_login": "2023-03-02T09:18:21.545Z",
         "is_superuser": false,
         "username": "user4",
         "login": "user4",
@@ -175,7 +175,7 @@
     "pk": 13,
     "fields": {
         "password": "pbkdf2_sha256$390000$AGA4C3YtgNOAovy26IJ2UR$XvzMOy50eezQFx0vEReTx9vhkAtmxf9v0a8aGhzMz7A=",
-        "last_login": "2023-03-02T08:23:56.067Z",
+        "last_login": "2023-03-02T09:18:32.689Z",
         "is_superuser": false,
         "username": "user5",
         "login": "user5",
@@ -194,7 +194,7 @@
     "pk": 14,
     "fields": {
         "password": "pbkdf2_sha256$390000$3Wq9NWynl9uAhGbRWxApbp$6FXbwCsanoIVLenDrZ7b5S93eahXE4XlaKjRWhnXCtg=",
-        "last_login": "2023-03-02T08:44:59.099Z",
+        "last_login": "2023-03-02T08:49:35.567Z",
         "is_superuser": false,
         "username": "moder",
         "login": "moder",
@@ -204,6 +204,63 @@
         "is_staff": true,
         "is_active": true,
         "date_joined": "2023-03-02T08:44:58.708Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "authapp.customuser",
+    "pk": 17,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$RCcAM0Uwby4w3iBnZggicZ$Tsa27AX1sm3zvqbxOS6QqRN+fSkE9SRYGKcSOVeGbt4=",
+        "last_login": "2023-03-14T07:23:10.308Z",
+        "is_superuser": false,
+        "username": "employer7",
+        "login": "employer7",
+        "email": "employer7@post.com",
+        "is_company": true,
+        "is_moderator": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-03-13T11:54:35.645Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "authapp.customuser",
+    "pk": 18,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$j2noOqvsb0Ll8gENyBXTmX$+xd0ft0h2y58dxL/D0PUiifNzh9osQZPtxflx3O4GVQ=",
+        "last_login": "2023-03-14T07:06:32.195Z",
+        "is_superuser": false,
+        "username": "employer5",
+        "login": "employer5",
+        "email": "employer5@post.com",
+        "is_company": true,
+        "is_moderator": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-03-04T06:19:49.593Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "authapp.customuser",
+    "pk": 19,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$x62HSD0XLTtaxxHYiPrVIp$DgoUsITQxHMdMNGy1CJD6eDElkWZwqXHFH6WnD6F4UM=",
+        "last_login": "2023-03-14T07:08:32.341Z",
+        "is_superuser": false,
+        "username": "employer6",
+        "login": "employer6",
+        "email": "employer6@post.com",
+        "is_company": true,
+        "is_moderator": false,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-03-14T07:08:31.989Z",
         "groups": [],
         "user_permissions": []
     }

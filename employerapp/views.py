@@ -77,7 +77,7 @@ class VacancyDelete(DeleteView):
     model = VacancyHeader
     pk_url_kwarg = "vacancy"
     template_name = "employerapp/vacancy_delete.html"
-    success_url = reverse_lazy("hhapp:main_page")
+    success_url = reverse_lazy("hhapp:jobs")  # не работает !!!
 
 
 # TODO Если не владец - Либо редирект в кабинет, либо в шаблон не выводить кнопку редактирования

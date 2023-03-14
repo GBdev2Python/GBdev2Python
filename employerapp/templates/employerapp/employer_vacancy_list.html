@@ -4,19 +4,19 @@
 
 {% block content %}
   <br>
-  <a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |
-  <a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |
+<!--  <a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |-->
+<!--  <a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |-->
   <br><br>
-  {% if user.is_authenticated %}
-    <p>customuser Пользователь: <b>{{ user.username }}</b></p>
-    <p>customuser ID: <b>{{ user.pk }}</b></p>
-    <p>customuser is_company: <b>{{ user.is_company }}</b></p>
-  {% endif %}
-  <br><br>
+<!--  {% if user.is_authenticated %}-->
+<!--    <p>customuser Пользователь: <b>{{ user.username }}</b></p>-->
+<!--    <p>customuser ID: <b>{{ user.pk }}</b></p>-->
+<!--    <p>customuser is_company: <b>{{ user.is_company }}</b></p>-->
+<!--  {% endif %}-->
+<!--  <br><br>-->
 
-  <h2>Список всех вакансий работодателя</h2>
+  <h3>Список всех вакансий работодателя: {{ employer_lst_qs.employer}}</h3>
   <br>
-  <h3>{{ employer_lst_qs.employer}}</h3>
+
   <ul>
     {% for item in employer_vacancy_lst_qs %}
       <li>

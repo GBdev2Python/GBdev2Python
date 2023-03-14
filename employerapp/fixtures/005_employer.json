@@ -3,7 +3,7 @@
     "model": "employerapp.employer",
     "pk": 1,
     "fields": {
-        "employment": "А-Системс ООО  (c-u ID-2 empID-1)",
+        "employment": "А-Системс, ЗАО",
         "cover": "employment/logo_emp_1.jpeg",
         "address": "пр-т Ленина 111",
         "phone": "89151234567",
@@ -12,7 +12,7 @@
         "body": "<p><img alt=\"\" src=\"https://synergyacademy.com/itshool2022/img/main/person-753cf8d0a7.png\" style=\"float:left; height:249px; margin:3px; width:250px\" /></p>\r\n\r\n<p>&laquo;От идеи до воплощения&raquo; - именно так мы позиционируем наши услуги. Мы предлагаем нашим заказчикам комплексную реализацию проектов: от аудита и выбора решений до внедрения и сервисного обслуживания. Наши сертифицированные менеджеры и технические специалисты обладают всеми необходимыми знаниями и компетенцией для подготовки и реализации комплексных проектов в соответствии с вашими требованиями и ожиданиями.</p>\r\n\r\n<p>Наша компания начала свою деятельность на рынке создания и эксплуатации автоматизированных и информационных систем в 2006 году. Уникальная методика&nbsp;менеджмента качества, применяемая в управлении процессами разработки, позволила предприятию быстро выйти на лидирующие позиции и заключить взаимовыгодное партнерство с такими известными производителями оборудования и программного обеспечения как NetApp, Cisco, VMware, Canon, Aspera, Veeam, Aruba, Huawei и др.</p>\r\n\r\n<p>Вся деятельность &laquo;А-Системс&raquo; лицензирована в соответствии с требованиями российского законодательства и строгих международных стандартов.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p><strong>Решения, предлагаемые нашей компанией</strong></p>\r\n\r\n<ul>\r\n\t<li>Хранение и обработка данных (NetApp, IBM, Lenovo, НРE, Huawei)</li>\r\n\t<li>Повышение производительности и защищенности данных (резервное копирование Veeam, CommVault, NetApp, BackupExec)</li>\r\n\t<li>Виртуализация на VMware и NVIDIA Grid</li>\r\n\t<li>Высокоскоростная передача данных Aspera</li>\r\n\t<li>Видеоконференцсвязь</li>\r\n\t<li>Беспроводные сети</li>\r\n\t<li>Сервера и рабочие станции российских и других производителей</li>\r\n\t<li>Отказоустойчивые системы</li>\r\n\t<li>Информационная безопасность</li>\r\n\t<li>Разработка программного обеспечения</li>\r\n</ul>",
         "created": "2023-02-14T13:26:10.219Z",
         "location": "<div style=\"position:relative;overflow:hidden;\"><a href=\"https://yandex.ru/maps/213/moscow/?utm_medium=mapframe&utm_source=maps\" style=\"color:#eee;font-size:12px;position:absolute;top:0px;\">Москва</a><a href=\"https://yandex.ru/maps/213/moscow/?indoorLevel=1&ll=37.660416%2C55.760538&mode=whatshere&utm_medium=mapframe&utm_source=maps&whatshere%5Bpoint%5D=37.658826%2C55.761711&whatshere%5Bzoom%5D=17.4&z=17.4\" style=\"color:#eee;font-size:12px;position:absolute;top:14px;\">Улица Земляной Вал, 9 — Яндекс Карты</a><iframe src=\"https://yandex.ru/map-widget/v1/?indoorLevel=1&ll=37.660416%2C55.760538&mode=whatshere&whatshere%5Bpoint%5D=37.658826%2C55.761711&whatshere%5Bzoom%5D=17.4&z=17.4\" width=\"560\" height=\"400\" frameborder=\"1\" allowfullscreen=\"true\" style=\"position:relative;\"></iframe></div>",
-        "town": 13,
+        "town": 1,
         "user": 2
     }
 },
@@ -20,10 +20,10 @@
     "model": "employerapp.employer",
     "pk": 2,
     "fields": {
-        "employment": "Сошал Системс ООО (c-u ID-3 empID-2)",
+        "employment": "Сошал Системс, ООО",
         "cover": "employment/logo_emp_2.jpg",
-        "address": "проспект Маршала Жукова, 24к4",
-        "phone": "8916123456789",
+        "address": "проспект Маршала Жукова, 24к6",
+        "phone": "891612345678",
         "email": "employer2@post.com",
         "website": "http://www.employer2.ru",
         "body": "<p><strong><img alt=\"\" src=\"https://avatars.mds.yandex.net/get-direct/4077876/cGSMtLBYfPT_rHICYQ_d4w/y300\" style=\"float:left; height:150px; margin:2px; width:200px\" />Social Systems</strong>&nbsp;&mdash;&nbsp;&nbsp;активно развивающаяся IT-компания с офисом в Москве. Мы разрабатываем собственные digital-проекты в сфере&nbsp;<strong>онлайн-образования, маркетинга&nbsp;</strong>и<strong>&nbsp;дизайна</strong>. Вас ждут масштабные проекты, работа в молодом коллективе,&nbsp;постоянное развитие, свобода творчества, современные технологии, карьерный&nbsp;рост, веселые корпоративы и друзья на всю жизнь.</p>\r\n\r\n<p><strong>Работа у нас это:</strong>&nbsp;</p>\r\n\r\n<ul>\r\n\t<li>Высокие белые заработные платы. На карточку, с налогами и пенсией</li>\r\n\t<li>Карьерный рост вплоть до директоров направлений</li>\r\n\t<li>Передовые технологии и инструменты: Trello, Slack, Figma, Sketch, Principle, Datalog, Sentry, RabbitMQ, Python 3, WebStorm, Angular Universal, Bootstrap 4+, Webpack и др.</li>\r\n\t<li>Официальное трудоустройство по ТК РФ</li>\r\n\t<li>Используем современную технику&nbsp;компании Apple</li>\r\n\t<li>Работаем не на время, а на результат. 5/2, 6-8 часов в день</li>\r\n</ul>\r\n\r\n<p><strong>А также:</strong>&nbsp;</p>\r\n\r\n<ul>\r\n\t<li>Зарплату с премиями выплачиваем с удовольствием, вовремя и полностью</li>\r\n\t<li>Современный, красивый, комфортабельный офис</li>\r\n\t<li>Бизнес центр&nbsp;на берегу Москва-реки, рядом с парком Коломенское</li>\r\n\t<li>Настольный теннис, турник, брусья, велотренажер и другое в офисе</li>\r\n</ul>\r\n\r\n<p><strong>Не будьте крошечным винтиком в огромной бюрократической машине,&nbsp;станьте важной частью сильной команды.</strong></p>",
@@ -37,7 +37,7 @@
     "model": "employerapp.employer",
     "pk": 3,
     "fields": {
-        "employment": "НИИМА \"Прогресс\" АО (c-u ID-4 empID-3)",
+        "employment": "НИИМА \"Прогресс\" АО",
         "cover": "employment/logo_emp_3.jpg",
         "address": "улица Усачёва, 26, Москва, 119048",
         "phone": "+791312345678",
@@ -57,14 +57,65 @@
         "employment": "Си-Эн-Эс",
         "cover": "employment/logo_emp_5.jpeg",
         "address": "143904, Балашиха, Московская область, Парковая улица, 2,",
-        "phone": "+79051234567",
-        "email": "cns@post.com",
+        "phone": "89051234567",
+        "email": "employer5@post.com",
         "website": "http://www.cns-corp.ru/",
         "body": "<h1>IT-интегратор и поставщик IT-оборудования</h1>\r\n\r\n<p>Поставим IT-оборудование, в том числе санкционное по параллельному импорту.</p>\r\n\r\n<ul>\r\n\t<li>Разработаем и внедрим любое IT-решение! Более 50 инженеров в штате.</li>\r\n\t<li>Расширенная гарантийная поддержка. Обслужим оборудование ушедших вендоров!</li>\r\n\t<li>Подберем отечественные решения для вашей IT-инфраструктуры.</li>\r\n</ul>\r\n\r\n<p><img alt=\"IT-интегратор и поставщик IT-оборудования\" src=\"https://cns-corp.ru/wp-content/uploads/2022/10/ill_4.svg\" title=\"IT-интегратор и поставщик IT-оборудования - компания CNS\" /></p>\r\n\r\n<h2>О компании</h2>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Компания CNS основана в 1998 году и специализируется на комплексном обслуживании корпоративных клиентов в сфере IT-систем и бизнес-инфраструктуры. За двадцать лет мы воплотили в жизнь более тысячи проектов и сумели заработать репутацию серьезного эксперта и надежного поставщика идей и техники.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Основная миссия нашей компании &mdash; это агрегация предложений от всех вендоров, дистрибьюторов и дилеров, работающих на российском рынке, и предложение нашим клиентам оптимальных решений на идеальных условиях.</p>\r\n\r\n<p>Компании CNS доверяют более 2 000 компаний среднего и крупного бизнеса.</p>\r\n\r\n<h2>Популярные услуги</h2>\r\n\r\n<p><img alt=\"IT-Аутсорсинг\" src=\"https://cns-corp.ru/wp-content/uploads/2022/10/042-manager.svg\" style=\"height:200px; width:200px\" title=\"IT-Аутсорсинг - Обеспечим работоспособность системы, защиту и сохранность данных, избавит вас от рутинных проблем.\" /></p>\r\n\r\n<h3>IT-Аутсорсинг</h3>\r\n\r\n<p>Обеспечим работоспособность системы, защиту и сохранность данных, избавит вас от рутинных проблем.</p>\r\n\r\n<p><a href=\"https://cns-corp.ru/it-uslugi/it-support/it-autsorsing/\">УЗНАТЬ БОЛЬШЕ</a></p>\r\n\r\n<p><img alt=\"IT-аудит\" src=\"https://cns-corp.ru/wp-content/uploads/2022/10/015-audit.svg\" style=\"height:200px; width:200px\" title=\"IT-аудит - Выявление и устранение «узких мест» приводит к росту производительности ИТ-ресурсов компании.\" /></p>\r\n\r\n<h3>IT-аудит</h3>\r\n\r\n<p>Выявление и устранение &laquo;узких мест&raquo; приводит к росту производительности ИТ-ресурсов компании.</p>\r\n\r\n<p><a href=\"https://cns-corp.ru/it-uslugi/infrastruktura/audit/\">УЗНАТЬ БОЛЬШЕ</a></p>",
         "created": "2023-02-28T12:55:24.994Z",
         "location": "<div style=\"position:relative;overflow:hidden;\"><a href=\"https://yandex.ru/maps/213/moscow/?utm_medium=mapframe&utm_source=maps\" style=\"color:#eee;font-size:12px;position:absolute;top:0px;\">Москва</a><a href=\"https://yandex.ru/maps/213/moscow/?ll=37.946662%2C55.795273&mode=whatshere&utm_medium=mapframe&utm_source=maps&whatshere%5Bpoint%5D=37.939743%2C55.798325&whatshere%5Bzoom%5D=15.97&z=15.97\" style=\"color:#eee;font-size:12px;position:absolute;top:14px;\">Парковая улица, 2 — Яндекс Карты</a><iframe src=\"https://yandex.ru/map-widget/v1/?ll=37.946662%2C55.795273&mode=whatshere&whatshere%5Bpoint%5D=37.939743%2C55.798325&whatshere%5Bzoom%5D=15.97&z=15.97\" width=\"560\" height=\"400\" frameborder=\"1\" allowfullscreen=\"true\" style=\"position:relative;\"></iframe></div>",
         "town": 9,
         "user": 10
+    }
+},
+{
+    "model": "employerapp.employer",
+    "pk": 7,
+    "fields": {
+        "employment": "Верный путь, ООО",
+        "cover": "employment/logo_07.jpg",
+        "address": "пр-т. Ленина д.1, оф. 001",
+        "phone": "89161234567",
+        "email": "post@gmail.com",
+        "website": "http://www.way.com",
+        "body": "<p>Агентство основано в 2002 году., и&nbsp; доказало свою компетентность и жизнеспособность успешным&nbsp; существованием в непростых современных условиях.</p>\r\n\r\n<p><strong>Специализируется</strong> на подборе офисного и производственно персонала. Большой опыт в подборе секретарей, референтов, бухгалтеров, администраторов, менеджер по продажам, инженеров и сотрудников других специальностей.</p>\r\n\r\n<p><strong>Мы помогаем&nbsp;</strong>нашим клиентам находить выгодные предложения финансовых услуг по всему миру.<strong>&nbsp;</strong></p>\r\n\r\n<p><strong><img alt=\"\" src=\"https://issek.hse.ru/data/2021/07/21/1421121583/3%D1%82%D0%B8%D1%82%D1%83%D0%BB.png\" style=\"float:left; height:133px; margin:3px 7px; width:200px\" />&nbsp;Ежедневно&nbsp; больше 20 000 заявок&nbsp;</strong>отправляется через наши проекты на предоставление банковских услуг по всему миру.<strong>&nbsp;Мы работаем не только с СНГ направлением, но и с Латинской Америкой, Европой и Азией.<br />\r\n<br />\r\nСейчас мы активно развиваемся и создаем</strong>&nbsp;Fintech платформу для глобального рынка. У нас ты сможешь поработать с профессионалами сферы маркетинга и разработки, а также круто провести время на наших регулярных ивентах.</p>\r\n\r\n<p>Индивидуальный подход к каждому работодателю, умеренные цены.</p>\r\n\r\n<p>Для соискателей трудоустройство бесплатно.</p>\r\n\r\n<p>&nbsp;</p>",
+        "created": "2023-03-13T12:10:25.057Z",
+        "location": "<div style=\"position:relative;overflow:hidden;\"><a href=\"https://yandex.ru/maps?utm_medium=mapframe&utm_source=maps\" style=\"color:#eee;font-size:12px;position:absolute;top:0px;\">Яндекс Карты</a><a href=\"https://yandex.ru/maps/geo/posyolok_grozny/53004470/?ll=31.689702%2C52.695778&utm_medium=mapframe&utm_source=maps&z=12.86\" style=\"color:#eee;font-size:12px;position:absolute;top:14px;\">Посёлок Грозный — Яндекс Карты</a><iframe src=\"https://yandex.ru/map-widget/v1/?ll=31.689702%2C52.695778&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1MzAwNDQ3MBKIAdCg0L7RgdGB0LjRjywg0JHRgNGP0L3RgdC60LDRjyDQvtCx0LvQsNGB0YLRjCwg0J3QvtCy0L7Qt9GL0LHQutC-0LLRgdC60LjQuSDQs9C-0YDQvtC00YHQutC-0Lkg0L7QutGA0YPQsywg0L_QvtGB0ZHQu9C-0Log0JPRgNC-0LfQvdGL0LkiCg0Hef1BFeLRUkI%2C&z=12.86\" width=\"560\" height=\"400\" frameborder=\"1\" allowfullscreen=\"true\" style=\"position:relative;\"></iframe></div>",
+        "town": 13,
+        "user": 17
+    }
+},
+{
+    "model": "employerapp.employer",
+    "pk": 8,
+    "fields": {
+        "employment": "НОРБИТ, ООО",
+        "cover": "employment/logo_emp_6.jpeg",
+        "address": "Москва, ул. Лобачевского, д. 17",
+        "phone": "74951234567",
+        "email": "press@hh.ru",
+        "website": "https://investor.hh.ru/",
+        "body": "<h2>О компании</h2>\r\n\r\n<p><img alt=\"\" src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7giEAgmHKbEmMqiYmX8b_sxjA59a1QOcPrg&amp;usqp=CAU\" style=\"float:left; height:166px; margin:5px; width:250px\" />HeadHunter&nbsp;&mdash; один из&nbsp;самых крупных сайтов по&nbsp;поиску работы и&nbsp;сотрудников в&nbsp;мире (по&nbsp;данным рейтинга Similarweb). Мы&nbsp;создаем передовые технологии на&nbsp;всех доступных платформах для того, чтобы работодатели могли быстро найти подходящего сотрудника, а&nbsp;соискатели&nbsp;&mdash; хорошую работу. Наши мобильные приложения стабильно занимают первые места в&nbsp;категории &laquo;Бизнес&raquo; на&nbsp;всех платформах. Наш поиск использует искусственный интеллект, а&nbsp;сайт обрабатывает до&nbsp;3000 запросов в&nbsp;секунду. Каждый месяц на&nbsp;сайте появляется более полумиллиона вакансий, а&nbsp;технологии для работы с&nbsp;персоналом насчитывают более 30&nbsp;позиций. Ежедневно мы&nbsp;помогаем сотням тысяч человек изменить свою жизнь к&nbsp;лучшему.</p>\r\n\r\n<h3><img alt=\"\" src=\"https://thumb.tildacdn.com/tild6439-3730-4030-a538-656563633634/-/format/webp/HHR_shareholders_202.jpg\" style=\"float:right; height:200px; margin:5px; width:300px\" /></h3>\r\n\r\n<h3>HeadHunter &mdash; это</h3>\r\n\r\n<ul>\r\n\t<li>\r\n\t<h3>1&nbsp;млрд</h3>\r\n\tоткликов на вакансии</li>\r\n\t<li>\r\n\t<h3>1055&nbsp;тыс.</h3>\r\n\tвакансий</li>\r\n\t<li>\r\n\t<h3>63&nbsp;млн</h3>\r\n\tрезюме в базе</li>\r\n\t<li>\r\n\t<h3>1882&nbsp;тыс.</h3>\r\n\tпроверенных компаний</li>\r\n\t<li>\r\n\t<h3>18&nbsp;млн</h3>\r\n\tпосетителей ежемесячно</li>\r\n\t<li>\r\n\t<h3>30</h3>\r\n\tсервисов для работы с персоналом</li>\r\n</ul>",
+        "created": "2023-03-14T06:28:26.411Z",
+        "location": "<div style=\"position:relative;overflow:hidden;\"><a href=\"https://yandex.ru/maps/213/moscow/?utm_medium=mapframe&utm_source=maps\" style=\"color:#eee;font-size:12px;position:absolute;top:0px;\">Москва</a><a href=\"https://yandex.ru/maps/213/moscow/house/ulitsa_lobachevskogo_15s1/Z04Ycg9lSEUAQFtvfXp2dHxjZQ==/?ll=37.485107%2C55.675001&utm_medium=mapframe&utm_source=maps&z=17.46\" style=\"color:#eee;font-size:12px;position:absolute;top:14px;\">Улица Лобачевского, 15с1 — Яндекс Карты</a><iframe src=\"https://yandex.ru/map-widget/v1/?ll=37.485107%2C55.675001&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1NjY2Njc1NBJG0KDQvtGB0YHQuNGPLCDQnNC-0YHQutCy0LAsINGD0LvQuNGG0LAg0JvQvtCx0LDRh9C10LLRgdC60L7Qs9C-LCAxNdGBMSIKDcHwFUIVNLNeQg%2C%2C&z=17.46\" width=\"560\" height=\"400\" frameborder=\"1\" allowfullscreen=\"true\" style=\"position:relative;\"></iframe></div>",
+        "town": 14,
+        "user": 18
+    }
+},
+{
+    "model": "employerapp.employer",
+    "pk": 9,
+    "fields": {
+        "employment": "Аналитические программные решения, ООО",
+        "cover": "employment/logo_emp_6.png",
+        "address": "Великий Новгород, ул. Строителей д. 2",
+        "phone": "79051234567",
+        "email": "analitic@post.com",
+        "website": "https://apsolutions.ru/",
+        "body": "<p><strong>Команда ООО &laquo;Аналитические программные решения&raquo;</strong>&nbsp;была образована в 2001 году с целью развития направления&nbsp;<img alt=\"\" src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRBp29tONe9OsF_PLLUNhlaWO7FWSn5XTlgA&amp;usqp=CAU\" style=\"float:right; height:168px; margin:2px; width:299px\" /> разработки специализированного программного обеспечения в области интеллектуального анализа данных. Специалисты компании занимаются созданием клиентских и клиент-серверных приложений в следующих областях: проектирование и разработка баз данных; обработка и анализ разноформатных данных; создание мультимедийных приложений; построение масштабируемых программно-аппаратных платформ; создание средств обработки статистической информации; создание средств администрирования; создание веб-приложений.</p>\r\n\r\n<p>Специалистами компании разработаны оригинальные алгоритмы и технологии, позволяющие решать широкий спектр задач, возникающих при работе с большими массивами неструктурированной информации. Компанией производится и&nbsp; выпускается ряд прикладных информационно-поисковых и аналитических систем, а также базовых программных компонентов обработки данных.</p>\r\n\r\n<p>Решаемые практические задачи:&nbsp;<img alt=\"\" src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRH9renpKJ7ycAUltxSz5xludytKNCrD-5zw&amp;usqp=CAU\" style=\"float:right; height:183px; margin:2px; width:275px\" /></p>\r\n\r\n<ul>\r\n\t<li>сбор разнородных материалов сети Интернет;</li>\r\n\t<li>организация полнотекстового и семантического поиска;</li>\r\n\t<li>классификация и кластеризация текстовых коллекций;</li>\r\n\t<li>автоматический текстовый анализ;</li>\r\n\t<li>отслеживание и распознавание объектов и лиц в видеопотоке;</li>\r\n\t<li>разработка инструментов обработки больших объемов неструктурированных данных.</li>\r\n</ul>\r\n\r\n<p>Специалисты компании ведут научную деятельность, участвуют в научных мероприятиях, конференциях и соревнованиях, посвященных интеллектуальному анализу данных.</p>",
+        "created": "2023-03-14T07:13:49.987Z",
+        "location": "<div style=\"position:relative;overflow:hidden;\"><a href=\"https://yandex.ru/maps/24/veliky-novgorod/?utm_medium=mapframe&utm_source=maps\" style=\"color:#eee;font-size:12px;position:absolute;top:0px;\">Великий Новгород</a><a href=\"https://yandex.ru/maps/24/veliky-novgorod/house/ulitsa_stroiteley_2/Z0gYdABnSU0EQFtifXlydXhqZA==/?ll=31.279819%2C58.533401&utm_medium=mapframe&utm_source=maps&z=16.46\" style=\"color:#eee;font-size:12px;position:absolute;top:14px;\">Улица Строителей, 2 — Яндекс Карты</a><iframe src=\"https://yandex.ru/map-widget/v1/?ll=31.279819%2C58.533401&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1Nzc3NDQwMhJ00KDQvtGB0YHQuNGPLCDQktC10LvQuNC60LjQuSDQndC-0LLQs9C-0YDQvtC0LCDQodC-0YTQuNC50YHQutCw0Y8g0YHRgtC-0YDQvtC90LAsINGD0LvQuNGG0LAg0KHRgtGA0L7QuNGC0LXQu9C10LksIDIiCg14N_pBFVIjakI%2C&z=16.46\" width=\"560\" height=\"400\" frameborder=\"1\" allowfullscreen=\"true\" style=\"position:relative;\"></iframe></div>",
+        "town": 12,
+        "user": 19
     }
 }
 ]

@@ -29,7 +29,7 @@ class MainPageView(TemplateView):
 
 
 class JobsListView(ListView):
-    # paginate_by = 5
+    # paginate_by = 5  # Прибавляются дубли из context['filter']
     model = VacancyHeader
     template_name = "hhapp/jobs.html"
 
@@ -39,7 +39,7 @@ class JobsListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["all_vacancy_lst_qs"] = VacancyHeader.objects.all().filter(is_published=True)
+        context["all_vacancy_lst_qs"] = VacancyHeader.objects.filter(is_published=True)
         # context["employer_lst_qs"] = Employer.objects.all()
         context['filter'] = VacancyFilter(self.request.GET, queryset=self.get_queryset())
         return context
