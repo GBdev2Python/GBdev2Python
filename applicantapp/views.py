@@ -1,12 +1,14 @@
-from django.db.models import Q
+from django.db.models import Q, Prefetch
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
-from applicantapp.forms import ResumeForm, EditApplicantForm, InvitationCreationForm
+from applicantapp.forms import ResumeForm, EditApplicantForm, InvitationCreationForm, ExperienceFormSet, \
+    ExperienceEditFormset
 from applicantapp.models import *
+from .utils import save_experience_data, validate_experience_subform, update_experience_data
 from serviceapp.models import Response
 from django.contrib.auth.decorators import login_required
 
@@ -40,14 +42,18 @@ class Resume(DetailView):
     context_object_name = 'resume'
 
     def get_object(self, queryset=None):
-        resume = Resumes.objects\
-            .select_related('applicants', 'applicants__user', 'applicants__town')\
-            .prefetch_related('skills')\
+        resume = Resumes.objects \
+            .select_related('applicants', 'applicants__user', 'applicants__town') \
+            .prefetch_related('skills',
+                              Prefetch(
+                                  'experience', queryset=Experience.objects.all()
+                                  .only('company', 'description', 'resume_id'))
+                              ) \
             .only('applicants__first_name', 'applicants__last_name', 'applicants__birthday',
                   'applicants__town__town', 'applicants__phone', 'applicants__user__email',
-                  'salary', 'last_job', 'required_job', 'education', 'education', 'last_job', 'image',
+                  'salary', 'required_job', 'education', 'education', 'image',
                   'skills__name',
-                  )\
+                  ) \
             .get(id=self.kwargs["resume_id"])
         return resume
 
@@ -55,9 +61,9 @@ class Resume(DetailView):
         context = super().get_context_data(**kwargs)
 
         if self.request.user.is_company:
-            response = ResumeInvitation.objects\
-                .select_related("vacancy", "vacancy__employer__user")\
-                .filter(Q(vacancy__employer__user__id=self.request.user.id) & Q(resume_id=self.kwargs["resume_id"]))\
+            response = ResumeInvitation.objects \
+                .select_related("vacancy", "vacancy__employer__user") \
+                .filter(Q(vacancy__employer__user__id=self.request.user.id) & Q(resume_id=self.kwargs["resume_id"])) \
                 .only("id", "vacancy__employer__user_id", "vacancy_id", 'cover_letter', 'status')
             context["response"] = response.first() if response.exists() else False
 
@@ -98,13 +104,14 @@ class ApplicantCreate(CreateView):
         new_applicant.save()
         return redirect("applicant:applicant_cabinet", applicant_id=new_applicant.id)
 
+
 # Редактирование профиля соискателя
 @login_required()
 def update_applicant(request, pk):
     applicant = Applicants.objects.get(id=pk)
     form = EditApplicantForm(instance=applicant)
 
-    if request.user.is_authenticated and Applicants.objects.get(user=request.user).id==applicant.id:
+    if request.user.is_authenticated and Applicants.objects.get(user=request.user).id == applicant.id:
         if request.method == "POST":
             form = EditApplicantForm(request.POST, request.FILES, instance=applicant)
 
@@ -130,7 +137,7 @@ class ApplicantCabinet(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         profile = self.request.user.applicants
         messageRequests = Response.objects.filter(resume__applicants=profile.id)
-        resumeID=set()
+        resumeID = set()
         for i in messageRequests:
             resumeID.add(i.resume.id)
         queryset = Resumes.objects.filter(applicants=self.kwargs["applicant_id"])
@@ -145,9 +152,9 @@ class ApplicantCabinet(LoginRequiredMixin, ListView):
 
     def dispatch(self, request, *args, **kwargs):
         user_URL = Applicants.objects.get(id=self.kwargs["applicant_id"])
-        user_authenticated = Applicants.objects.get(user =request.user)
+        user_authenticated = Applicants.objects.get(user=request.user)
 
-        if request.user.is_authenticated and user_URL==user_authenticated:
+        if request.user.is_authenticated and user_URL == user_authenticated:
             return super().dispatch(request, *args, **kwargs)
         return self.handle_no_permission()
 
@@ -158,7 +165,6 @@ class Applicant(ListView):
     template_name = "applicantapp/applicant.html"
 
     def get_context_data(self, **kwargs):
-
         context = super().get_context_data(**kwargs)
         context["applicant"] = Applicants.objects.get(id=self.kwargs["applicant_id"])
         context["resumes"] = Resumes.objects.filter(applicants=self.kwargs["applicant_id"])
@@ -170,7 +176,8 @@ class Applicant(ListView):
 def new_resume(request, applicant_id, *args, **kwargs):
     user = Applicants.objects.get(id=applicant_id)
     form = ResumeForm(initial={'applicants': user})
-    if request.user.is_authenticated and user.id==Applicants.objects.get(user=request.user).id:
+
+    if request.user.is_authenticated and user.id == Applicants.objects.get(user=request.user).id:
         if request.method == "POST":
             form = ResumeForm(request.POST, request.FILES)
             if form.is_valid():
@@ -178,9 +185,15 @@ def new_resume(request, applicant_id, *args, **kwargs):
                 resume.applicants = user
                 resume.save()
                 form.save_m2m()
+
+                valid_experience_fields = validate_experience_subform(request.POST)
+                if valid_experience_fields:
+                    save_experience_data(valid_experience_fields, resume)
+
             return redirect("applicant:applicant_cabinet", applicant_id=resume.applicants.id)
 
-        context = {"form": form, "applicant": user}
+        context = {"form": form, "applicant": user, "experience_formset": ExperienceFormSet()}
+
         return render(request, "applicantapp/new_resume.html", context)
     else:
         return redirect("applicant:applicant_cabinet", applicant_id=Applicants.objects.get(user=request.user).id)
@@ -189,20 +202,22 @@ def new_resume(request, applicant_id, *args, **kwargs):
 # Внесение изменений в резюме
 @login_required()
 def update_resume(request, pk):
-    form = ResumeForm()
-    resume = Resumes.objects.get(id=pk)
+    resume = Resumes.objects.get(pk=pk)
     user = Applicants.objects.get(id=resume.applicants.id)
     form = ResumeForm(instance=resume)
 
-    if request.user.is_authenticated and Applicants.objects.get(user=request.user).id==resume.applicants.id:
+    formset = ExperienceEditFormset(queryset=Experience.objects.filter(resume=resume).order_by('created'))
+
+    if request.user.is_authenticated and Applicants.objects.get(user=request.user).id == resume.applicants.id:
         if request.method == "POST":
             form = ResumeForm(request.POST, request.FILES, instance=resume)
-
             if form.is_valid():
+                valid_experience_fields = update_experience_data(request.POST, resume=resume)
+                print(valid_experience_fields)
                 resume = form.save()
                 return redirect("applicant:applicant_cabinet", applicant_id=user.id)
 
-        context = {"form": form, "applicant": user}
+        context = {"form": form, "applicant": user, 'experience_formset': formset}
         return render(request, "applicantapp/new_resume.html", context)
     else:
         return redirect("applicant:applicant_cabinet", applicant_id=Applicants.objects.get(user=request.user).id)
@@ -212,9 +227,9 @@ def update_resume(request, pk):
 @login_required()
 def delete_resume(request, pk):
     resume = Resumes.objects.get(id=pk)
-    if request.user.is_authenticated and Applicants.objects.get(user=request.user).id==resume.applicants.id:
+    if request.user.is_authenticated and Applicants.objects.get(user=request.user).id == resume.applicants.id:
         if request.method == "POST":
-            applicantID=resume.applicants.pk
+            applicantID = resume.applicants.pk
             resume.delete()
             return redirect("applicant:applicant_cabinet", applicant_id=applicantID)
         context = {"object": resume}
@@ -228,11 +243,23 @@ class ResumeInvitationCreation(UserPassesTestMixin, CreateView):
     form_class = InvitationCreationForm
     template_name = 'applicantapp/invitation_create.html'
 
+    def get_context_data(self, **kwargs):
+        print(self.kwargs.get('resume_pk'))
+        context = super().get_context_data(**kwargs)
+        resume_data = Resumes.objects \
+            .select_related('applicants__user') \
+            .only('id', 'applicants__user__email', 'applicants__phone', 'applicants__first_name',
+                  'applicants__last_name') \
+            .get(pk=self.kwargs.get('resume_pk'))
+
+        context['resume_data'] = resume_data
+        return context
+
     def test_func(self):
         user_is_company = self.request.user.is_company
-        company_didnt_invite_this_resume = ResumeInvitation.objects\
-            .select_related("vacancy", "vacancy__employer__user")\
-            .filter(Q(vacancy__employer__user__id=self.request.user.id) & Q(resume_id=self.kwargs["resume_pk"]))\
+        company_didnt_invite_this_resume = ResumeInvitation.objects \
+            .select_related("vacancy", "vacancy__employer__user") \
+            .filter(Q(vacancy__employer__user__id=self.request.user.id) & Q(resume_id=self.kwargs["resume_pk"])) \
             .only("id", "vacancy__employer__user_id", "vacancy_id", 'cover_letter', 'status')
 
         return user_is_company and not company_didnt_invite_this_resume

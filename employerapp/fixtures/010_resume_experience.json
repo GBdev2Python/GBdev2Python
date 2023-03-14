@@ -1,0 +1,122 @@
+[
+  {
+    "model": "applicantapp.experience",
+    "pk": 1,
+    "fields": {
+      "resume": 1,
+      "company": "Very good company!",
+      "description": "Did so many usefull stuff!!",
+      "created": "2023-02-28T20:36:41.401Z"
+    }
+  },
+  {
+    "model": "applicantapp.experience",
+    "pk": 2,
+    "fields": {
+      "resume": 1,
+      "company": "Not so good company!",
+      "description": "Столько полезного сделала, Вы бы видели!",
+      "created": "2023-02-28T20:36:41.401Z"
+    }
+  },
+  {
+    "model": "applicantapp.experience",
+    "pk": 3,
+    "fields": {
+      "resume": 1,
+      "company": "Так себе компанья!",
+      "description": "Так себе компания - так себе работал",
+      "created": "2023-02-28T20:36:41.401Z"
+    }
+  },
+  {
+    "model": "applicantapp.experience",
+    "pk": 4,
+    "fields": {
+      "resume": 2,
+      "company": "Супер дизайнерская компания",
+      "description": "Очень старалась, хорошо рисовала",
+      "created": "2023-02-28T20:42:53.716Z"
+    }
+  },
+  {
+    "model": "applicantapp.experience",
+    "pk": 5,
+    "fields": {
+      "resume": 2,
+      "company": "Галера 228",
+      "description": "Старалась, рисовала, выгорала. Хорошее место!",
+      "created": "2023-02-28T20:42:53.716Z"
+    }
+  },
+  {
+    "model": "applicantapp.experience",
+    "pk": 6,
+    "fields": {
+      "resume": 3,
+      "company": "Пишем на Шарпах",
+      "description": "Хорошо пишут на шарпах, я тоже хорошо писал на шарпах",
+      "created": "2023-02-28T20:44:14.045Z"
+    }
+  },
+  {
+    "model": "applicantapp.experience",
+    "pk": 7,
+    "fields": {
+      "resume": 4,
+      "company": "Делаем базы на экселе корп",
+      "description": "Переписал эксель базу на постгрес! Хвала JSONb",
+      "created": "2023-02-28T20:45:15.195Z"
+    }
+  },
+  {
+    "model": "applicantapp.experience",
+    "pk": 8,
+    "fields": {
+      "resume": 5,
+      "company": "Студия Артемия Лебедева",
+      "description": "Научился ругаться матом",
+      "created": "2023-02-28T20:47:29.414Z"
+    }
+  },
+  {
+    "model": "applicantapp.experience",
+    "pk": 9,
+    "fields": {
+      "resume": 6,
+      "company": "Успешный корп",
+      "description": "Писал микросервисы на джанго-ресте!",
+      "created": "2023-02-28T20:48:23.272Z"
+    }
+  },
+  {
+    "model": "applicantapp.experience",
+    "pk": 10,
+    "fields": {
+      "resume": 6,
+      "company": "Не такой успешный корп",
+      "description": "Не писал микросервисы на джанго-ресте!",
+      "created": "2023-02-28T20:48:23.272Z"
+    }
+  },
+  {
+    "model": "applicantapp.experience",
+    "pk": 11,
+    "fields": {
+      "resume": 7,
+      "company": "Postgres open source community",
+      "description": "Хвала JSONb",
+      "created": "2023-02-28T20:45:15.195Z"
+    }
+  },
+  {
+    "model": "applicantapp.experience",
+    "pk": 12,
+    "fields": {
+      "resume": 8,
+      "company": "Яндекс Сербия",
+      "description": "Руководил проектами из рук вон хорошо\nСчитаю себя большим молодцом! Понравилось",
+      "created": "2023-02-28T20:45:15.195Z"
+    }
+  }
+]

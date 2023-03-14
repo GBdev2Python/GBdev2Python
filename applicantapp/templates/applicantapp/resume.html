@@ -5,68 +5,86 @@
 
 
 {% block content %}
-<!--    <br>-->
-<!--    <a href="{% url 'applicant:list' %}">Список соискателей</a>-->
-<!--    <a href="{% url 'applicant:resume_list' %}">Список резюме</a>-->
-<!--    <br>-->
-    <h1 style="color: #FDAE5C" class="text-xl-center py-2">{{ resume.applicants.first_name }} {{ resume.applicants.last_name }} - {{ resume.required_job }}</h1>
+    <!--    <br>-->
+    <!--    <a href="{% url 'applicant:list' %}">Список соискателей</a>-->
+    <!--    <a href="{% url 'applicant:resume_list' %}">Список резюме</a>-->
+    <!--    <br>-->
+    <h1 style="color: #FDAE5C"
+        class="text-xl-center py-2">{{ resume.applicants.first_name }} {{ resume.applicants.last_name }}
+        - {{ resume.required_job }}</h1>
     <div class="row m-0 justify-content-md-center">
-          <div class="col-xl-10 col-md-10 col-lg-10 p-0">
+        <div class="col-xl-10 col-md-10 col-lg-10 p-0">
             <div class="card bg-light" style="max-width: auto">
-              <div class="row m-0">
-                <div class="col-md-6 p-3">
-                    <img class="avatar avatar--xl" src="{{ resume.image.url }}" />
-                </div>
-                <div class="col-md-6 p-3">
-                    <p>Имя: {{ resume.applicants.first_name }}</p>
-                    <p>Фамилия: {{ resume.applicants.last_name }}</p>
-                    <p>Дата рождения: {{ resume.applicants.birthday }}</p>
-                    <p>Город проживания: {{ resume.applicants.town.town }}</p>
-                    <p>Контактный телефон: {{ resume.applicants.phone }}</p>
-                    <p>email: {{ resume.applicants.user.email }}</p>
-                    <p>Навыки:</p>
-                </div>
+                <div class="row m-0">
+                    <div class="col-md-6 p-3">
+                        <img class="avatar avatar--xl" src="{{ resume.image.url }}"/>
+                    </div>
+                    <div class="col-md-6 p-3">
+                        <p>Имя: {{ resume.applicants.first_name }}</p>
+                        <p>Фамилия: {{ resume.applicants.last_name }}</p>
+                        <p>Дата рождения: {{ resume.applicants.birthday }}</p>
+                        <p>Город проживания: {{ resume.applicants.town.town }}</p>
+                        <p>Контактный телефон: {{ resume.applicants.phone }}</p>
+                        <p>email: {{ resume.applicants.user.email }}</p>
+                        <p>Навыки:</p>
+                    </div>
                     {% for skill in resume.skills.all %}
-                      <ul>
-                        <li>{{ skill.name }}</li>
-                      </ul>
+                        <ul>
+                            <li>{{ skill.name }}</li>
+                        </ul>
                     {% endfor %}
-
-                    <p>Требуемая работа: {{ resume.required_job }}</p>
-                    <p>Заработная плата: {{ resume.salary }}</p>
-                    <p>Место последней работы: {{ resume.last_job }}</p>
-                    <p>Образование: {{ resume.education }}</p>
-
-                        {% if response %}
-                            <div class="d-flex flex-column invite-status-options">
-                                <span class="text-dark">Вы уже приглашали кандидата!</span>
-                            <hr>
-                                <div class="d-flex flex-column mx-3">
-                                    <div>
-                                        <span>Сообщение: </span>
-                                        <span>{{ response.cover_letter|truncatechars:50 }}</span>
-                                    </div>
-                                    <div>
-                                        <span>Статус пришлашения: </span>
-                                        <span class="text-primary">{% if response.status == 1 %}Ожидание{% elif response.status == 2 %}Принято{% else %}Отклонено{% endif %}</span>
-
-                                    </div>
+                    <div class="my-3">
+                        <h3 class="fs-4 fw-bold my-0">Опыт работы:</h3>
+                        <hr class="mt-0" style="width: 100%">
+                        {% if resume.experience.all %}
+                            {% for exp in resume.experience.all %}
+                                <div class="m-3">
+                                    <p class="text-dark fw-normal my-0 lh-sm mx-lg-5">ООО "{{ exp.company }}"</p>
+                                    <p class="text-muted lh-sm mx-lg-5">{{ exp.description }}</p>
                                 </div>
-                            </div>
+                                <hr style="width: 100%">
+                            {% endfor %}
                         {% else %}
-                  <div class="row">
-                      <div class="col-md-auto mx-auto p-0">
-                          <div style="margin-bottom: 20px;">
-                            <a class="boxed-btn3 btn-success" href="{% url 'applicant:invite_applicant' resume_pk=resume.pk %}">Пригласить</a>
-                          </div>
-                      </div>
-                  </div>
-
-
+                            <p class="mx-lg-5">Кандидат предпочёл не указывать опыт</p>
                         {% endif %}
                     </div>
+                    <p>Требуемая работа: {{ resume.required_job }}</p>
+                    <p>Заработная плата: {{ resume.salary }}</p>
+                    <p>Образование: {{ resume.education }}</p>
+
+                    {% if response %}
+                        <div class="d-flex flex-column invite-status-options">
+                            <span class="text-dark">Вы уже приглашали кандидата!</span>
+                            <hr>
+                            <div class="d-flex flex-column mx-3">
+                                <div>
+                                    <span>Сообщение: </span>
+                                    <span>{{ response.cover_letter|truncatechars:50 }}</span>
+                                </div>
+                                <div>
+                                    <span>Статус пришлашения: </span>
+                                    <span class="text-primary">{% if response.status == 1 %}
+                                        Ожидание{% elif response.status == 2 %}Принято{% else %}
+                                        Отклонено{% endif %}</span>
+
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="row">
+                            <div class="col-md-auto mx-auto p-0">
+                                <div style="margin-bottom: 20px;">
+                                    <a class="boxed-btn3 btn-success"
+                                       href="{% url 'applicant:invite_applicant' resume_pk=resume.pk %}">Пригласить</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    {% endif %}
                 </div>
-              </div>
             </div>
-           </div>
+        </div>
+    </div>
+    </div>
 {% endblock content %}

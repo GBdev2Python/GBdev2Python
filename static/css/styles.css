@@ -144,6 +144,42 @@ a:link {
 .ticket-header {
     font-size: 14px;
 }
+.add-company-block {
+    cursor: pointer;
+    max-width: 175px;
+}
+.add-company-block:hover {
+    background-color: #daf5e2;
+}
+
+.add-company-block:hover .add-company {
+    background: url("/static/icons/clipboard-plus-fill.svg") no-repeat center;
+}
+
+.add-company {
+    background: url("/static/icons/clipboard-plus.svg") no-repeat center;
+    width: 25px;
+    height: 25px;
+}
+
+.remove-company-block {
+    cursor: pointer;
+    max-width: 155px;
+}
+
+.remove-company-block:hover {
+    background-color: #ffe4e7;
+}
+
+.remove-company-block:hover .remove-company {
+    background: url("/static/icons/clipboard-x-fill.svg") no-repeat center;
+}
+
+.remove-company {
+    background: url("/static/icons/clipboard-x.svg") no-repeat center;
+    width: 25px;
+    height: 25px;
+}
 
 .btn-outline-success1 {
   color: #00D363;

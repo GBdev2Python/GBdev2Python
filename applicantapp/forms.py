@@ -1,14 +1,13 @@
 from django import forms
 from django.forms import ModelForm
 
-from .models import Resumes, Applicants, ResumeInvitation
+from .models import Resumes, Applicants, ResumeInvitation, Experience
 
 
 class ResumeForm(ModelForm):
     class Meta:
         model = Resumes
-        fields = ["required_job", "image", "skills", "salary", "town_job", "last_job", "education", "is_published"]
-
+        fields = ["required_job", "image", "skills", "salary", "town_job", "education", "is_published"]
         widgets = {
             'skills': forms.CheckboxSelectMultiple(),
             'image': forms.FileInput(),
@@ -42,3 +41,35 @@ class InvitationCreationForm(ModelForm):
         widgets = {
             'resume': forms.HiddenInput,
         }
+
+
+class ExperienceForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'formCompanyFields'
+
+    class Meta:
+        model = Experience
+        fields = ['company', 'description']
+        widgets = {
+            'description': forms.Textarea(attrs={"rows": 5}),
+        }
+
+
+class ExperienceEditForm(ModelForm):
+
+    field_order = ['company', 'description']
+
+    class Meta:
+        model = Experience
+        fields = ['company', 'description']
+        widgets = {
+            'company': forms.TextInput(),
+            'description': forms.Textarea(attrs={"rows": 5})
+        }
+
+
+ExperienceFormSet = forms.formset_factory(ExperienceForm)
+ExperienceEditFormset = forms.modelformset_factory(Experience, form=ExperienceForm)
