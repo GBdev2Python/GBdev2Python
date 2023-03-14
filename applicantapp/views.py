@@ -154,7 +154,8 @@ class ApplicantCabinet(LoginRequiredMixin, ListView):
         user_URL = Applicants.objects.get(id=self.kwargs["applicant_id"])
         user_authenticated = Applicants.objects.get(user=request.user)
 
-        if request.user.is_authenticated and user_URL == user_authenticated:
+        user_is_staff_or_admin = self.request.user.is_staff or self.request.user.is_superuser
+        if request.user.is_authenticated and user_URL == user_authenticated or user_is_staff_or_admin:
             return super().dispatch(request, *args, **kwargs)
         return self.handle_no_permission()
 
