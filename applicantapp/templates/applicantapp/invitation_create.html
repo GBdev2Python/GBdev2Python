@@ -2,11 +2,21 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+    <div>
+        <h5 class="fs-3 fw-normal m-3">Приглашение пользователя</h5>
+        <div class="mx-3"><span class="text-muted">Вы приглашаете:</span>
+            {{ resume_data.applicants.first_name }} {{ resume_data.applicants.last_name }} <span class="text-muted">{{ resume_data.applicants.user.email }}</span>
+        </div>
+        <div class="mx-3"><span class="text-muted">Резюме:</span> {{ resume_data.required_job }}</div>
+        <div class="mx-3"><span class="text-muted">Зарплатные ожидания:</span> {{ resume_data.salary }}</div>
+        <div class="mx-3"><span class="text-muted">Город:</span> {{ resume_data.town_job }}</div>
+        <div class="mx-3"><span class="text-muted">Образование:</span> {{ resume_data.education }}</div>
+    </div>
     <div class="container-lg my-4">
         <form method="post">
             {% csrf_token %}
             {{ form|crispy }}
-        <button class="my-4 boxed-btn3" type="submit">Пригласить</button>
-    </form>
+            <button class="my-4 boxed-btn3" type="submit">Пригласить</button>
+        </form>
     </div>
 {% endblock content %}

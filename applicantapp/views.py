@@ -249,7 +249,7 @@ class ResumeInvitationCreation(UserPassesTestMixin, CreateView):
         resume_data = Resumes.objects \
             .select_related('applicants__user') \
             .only('id', 'applicants__user__email', 'applicants__phone', 'applicants__first_name',
-                  'applicants__last_name') \
+                  'applicants__last_name', 'required_job', 'salary', 'education') \
             .get(pk=self.kwargs.get('resume_pk'))
 
         context['resume_data'] = resume_data
