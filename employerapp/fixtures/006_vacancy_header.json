@@ -518,13 +518,5 @@
         10
       ]
     }
-  },
-  {
-    "model": "employerapp.vacancyheader",
-    "pk": 31,
-    "fields": {
-      "job_title": "Java-разработчик",
-      "salary": 85000,
-      "created": "2023-03-14T07:16:04.714Z",
-      "experience": 3,
-      "body":
+  }
+]
