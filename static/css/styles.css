@@ -144,3 +144,25 @@ a:link {
 .ticket-header {
     font-size: 14px;
 }
+
+.btn-outline-success1 {
+  color: #00D363;
+  border-color: #00D363;
+}
+
+.btn-outline-success1:hover {
+  color: #fff;
+  background-color: #00D363;
+  border-color: #00D363;
+}
+
+.btn-outline-success2 {
+  color: #F91842;
+  border-color: #F91842;
+}
+
+.btn-outline-success2:hover {
+  color: #fff;
+  background-color: #F91842;
+  border-color: #F91842;
+}

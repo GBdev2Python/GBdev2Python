@@ -9,7 +9,7 @@
         <br>
         <form class="form py-5 my-4" action="" method="POST">
           {% csrf_token %}
-          <h2><a>Вы действительно хотите удалить "{{ object }}"?</a></h2>
+          <h2 style="color: #FDAE5C"><a>Вы действительно хотите удалить "{{ object }}"?</a></h2>
 
           <a class="my-4" href="{% url 'applicant:applicant_cabinet' object.applicants.id %}">Назад</a>
 

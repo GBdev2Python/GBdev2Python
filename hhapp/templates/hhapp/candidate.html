@@ -4,43 +4,48 @@
 
 {% block content %}
 
-  <div class="row">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-auto mt-3">
+            <h2 style="color: #FDAE5C">Резюме</h2>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-lg-9">
           <div class="recent_joblist_wrap">
-             <h2 class="m-4" >Резюме</h2>
-            <div class="recent_joblist ">
-              <div class=" align-items-center">
 
-                {% for resume in filter.qs %}
-                    <div class="col-lg-12 col-md-12">
-                      <div class="card-body">
-                        <div class="jobs_left d-flex align-items-center">
-                          <div class="col-lg-3">
-                            <div class="thumb logo-job">
-                              <img height="150" class="rounded-start align-self-center" src="{{ resume.image.url }}" alt="Foto">
-                            </div>
-                          </div>
-                          <div class="jobs_conetent">
-                            <a href="{% if user.is_company %}{% url 'applicant:resume_by_id' resume_id=resume.id %}{% else %}{% url 'applicant:applicant_resume' resume.id %}{% endif %}">
-                                <h4>{{ resume.required_job }}</h4>
-                            </a>
-                            <div class="links_locat d-flex align-items-center">
-                              <div class="location">
-                                <p><i>Соискатель: </i>{{ resume.applicants.first_name }} {{ resume.applicants.last_name }}</p>
-                                <p><i>Ожидаемый доход: </i>{{ resume.salary }}, <i>Город: </i>{{ resume.town_job }}</p>
-      <!--                          <img height="30" src="{{ vacancy.employer_id.cover.url }}" alt="logo">-->
-                                 <div class="date">
-                                   <p> Дата публикации: {{ resume.created|date:"Y.m.d - H.i" }}</p>
-                                 </div>
-                              </div>
-                            </div>
+            <div class="recent_joblist ">
+
+            {% for resume in filter.qs %}
+                <div class="col-lg-12 col-md-12">
+                  <div class="card-body">
+                    <div class="jobs_left d-flex align-items-center">
+                      <div class="col-lg-3">
+                        <div class="thumb logo-job">
+                          <img height="150" class="rounded-start align-self-center" src="{{ resume.image.url }}" alt="Foto">
+                        </div>
+                      </div>
+                      <div class="jobs_conetent">
+                        <a href="{% if user.is_company %}{% url 'applicant:resume_by_id' resume_id=resume.id %}{% else %}{% url 'applicant:applicant_resume' resume.id %}{% endif %}">
+                            <h4>{{ resume.required_job }}</h4>
+                        </a>
+                        <div class="links_locat d-flex align-items-center">
+                          <div class="location">
+                            <p><i>Соискатель: </i>{{ resume.applicants.first_name }} {{ resume.applicants.last_name }}</p>
+                            <p><i>Ожидаемый доход: </i>{{ resume.salary }}, <i>Город: </i>{{ resume.town_job }}</p>
+  <!--                          <img height="30" src="{{ vacancy.employer_id.cover.url }}" alt="logo">-->
+                             <div class="date">
+                               <p> Дата публикации: {{ resume.created|date:"Y.m.d - H.i" }}</p>
+                             </div>
                           </div>
                         </div>
-                     </div>
+                      </div>
                     </div>
-                {% endfor %}
+                 </div>
+                </div>
+            {% endfor %}
 
-          </div>
+
           <div class="row">
             <div class="col-lg-12">
               <div class="pagination_wrap">
@@ -80,7 +85,7 @@
         <div class="col-lg-3">
               <div class="job_filter white-bg">
                 <div class="form_inner white-bg">
-                  <h3 class="m-4">Фильтр</h3>
+                  <h4 class="m-3">Фильтр</h4>
                   <form method="GET">
                       {{ filter.form|crispy }}
                       <br>
@@ -93,6 +98,6 @@
                 </div>
               </div>
         </div>
-   </div>
+    </div>
 
 {% endblock content %}

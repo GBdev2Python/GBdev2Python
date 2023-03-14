@@ -13,55 +13,77 @@
 
 
 <div class="container-fluid">
-    <div class="row">
+    <div class="row justify-content-md-center">
+      <div class="col-md-auto">
+        <h2 style="color: #FDAE5C">Вакансия</h2>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="col-xl-9 col-md- col-lg-9 py-3">
+            <div class="card bg-light" style="max-width: auto">
+                <div class="row m-0">
+                    <div class="col-md-3 p-3">
 
-        <div class="col-xl-8 col-md- col-lg-8 my-3">
-            <h2>Страница выбранной вакансии</h2>
-            <br>
-            <p>Организация: {{ vacancy_qs.employer.employment|safe }}</p>
-            <p>Вакансия: {{ vacancy_qs.job_title }}</p>
-            <p>Требуемый опыт работы: {{ vacancy_qs.get_experience_display }}</p>
-            <p>Заработная плата: {{ vacancy_qs.salary }} руб.</p>
-            <p>Город работы: {{ vacancy_qs.town }} </p>
+                        <img class="img-fluid" style="max-width: auto" src="{{ MEDIA_URL }}{{ user.employer.cover }}" alt="logo employer">
+                    </div>
+                    <div class="col-md-9 p-3 text-justify">
+                        <p>Организация: {{ vacancy_qs.employer.employment|safe }}</p>
+                        <p>Вакансия: {{ vacancy_qs.job_title }}</p>
+                        <p>Требуемый опыт работы: {{ vacancy_qs.get_experience_display }}</p>
+                        <p>Заработная плата: {{ vacancy_qs.salary }} руб.</p>
+                        <p>Город работы: {{ vacancy_qs.town }} </p>
+                    </div>
+                    <p>Тип занятости: </p>
+                        <ul>
+                            {% for el in vacancy_qs.employment.all %}
+                            <li>
+                                {{ el.employment }}
+                            </li>
+                            {% endfor %}
+                        </ul>
 
-            <p>Тип занятости:</p>
-            <ul>
-                {% for el in vacancy_qs.employment.all %}
-                <li>
-                    {{ el.employment }}
-                </li>
-                {% endfor %}
-            </ul>
+                    <p>Ключевые навыки:</p>
+                    {% for el in vacancy_qs.skills.all %}
+                    <ul>
+                        <li>{{ el.name }}</li>
+                    </ul>
+                    {% endfor %}
 
-            <p>Ключевые навыки:</p>
-            {% for el in vacancy_qs.skills.all %}
-            <ul>
-                <li>{{ el.name }}</li>
-            </ul>
-            {% endfor %}
+                    <p>Описание вакансии: {{ vacancy_qs.body|safe }}</p>
+                    <div class="row">
+                        <div class="col-md-auto mx-auto p-0">
+                            <div style="margin-bottom: 20px;">
+                                {% if user.applicants %}
+                                <a href="{% url 'serviceapp:response' vacancyheader=vacancy_qs.id %}" class="boxed-btn3 " role="button"
+                                   aria-disabled="true">Откликнуться</a>
+                                {% endif %}
+                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-auto p-0">
+                            <div style="margin-bottom: 20px;">
+                                 {% if user.is_company %}
+                                <a href="{% url 'employerapp:vacancy_update'  vacancy=vacancy_qs.pk %}" class="boxed-btn3 btn-info m-2">Редактировать
+                                    вакансию</a>
 
-            <p>Описание вакансии: {{ vacancy_qs.body|safe }}</p>
-
-            {% if user.applicants %}
-            <a href="{% url 'serviceapp:response' vacancyheader=vacancy_qs.id %}" class="boxed-btn3 my-2" role="button"
-               aria-disabled="true">Откликнуться</a>
-            {% endif %}
-
-             {% if user.is_company %}
-            <a href="{% url 'employerapp:vacancy_update'  vacancy=vacancy_qs.pk %}" class="boxed-btn3 btn-info">Редактировать
-                вакансию</a>
-            <br><br>
-            <a href="{% url 'employerapp:vacancy_delete'  vacancy=vacancy_qs.pk %}" class="boxed-btn2 ">Удалить
-                вакансию</a>
-            {% endif %}
-
+                                <a href="{% url 'employerapp:vacancy_delete'  vacancy=vacancy_qs.pk %}" class="boxed-btn2 m-2">Удалить
+                                    вакансию</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-xl-4 col-md-4 col-lg-4">
+
+
+        <div class="col-xl-3 col-md-3 col-lg-4">
 <!--            <p>Боковая колонка для рекламы или фильтров</p>-->
 
             {% if response.count > 0 %}
 
-                Отклики
+              <h4 class="text-xl-center">Отклики</h4>
             {% endif %}
              {% for item_response in response %}
                 <div class="col my-2">
@@ -76,10 +98,9 @@
                                href="{% url 'serviceapp:response_view' response_id=item_response.id %}">
                                 Смотреть Отклик
                             </a>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
+
+                 {% endfor %}
+
         </div>
     </div>
 </div>

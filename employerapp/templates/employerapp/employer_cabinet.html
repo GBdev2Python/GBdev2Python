@@ -46,26 +46,36 @@
                  </div>
             </div>
             </div>
+            <div class="col-md-auto py-3">
+                 <h2 style="color: #FDAE5C" class="text-xl-center">Вакансии работодателя</h2>
+            </div>
+            <div class="card bg-light" style="max-width: auto">
+                <div class="row m-0">
+                    <h4 class="my-3">Опубликованные вакансии {{ user.employer.employment }}:</h4>
+                    <ul>
+                        {% for item in vacancy_cab_qs %}
+                            <li>
+                                <p><a href="{{ item.get_absolute_url }}">{{ item.job_title }}</a> </p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
 
-                <h5 class="my-3">Список опубликованных вакансий {{ user.employer.employment }}:</h5>
-                <ul>
-                    {% for item in vacancy_cab_qs %}
+                <br><br>
+            <div class="card bg-light" style="max-width: auto">
+                <div class="row m-0">
+                    <h5 class="my-3">Список черновиков вакансий {{ user.employer.employment }}:</h5>
+                    <ul>
+                    {% for item in vacancy_cab_not_qs %}
                         <li>
-                            <a href="{{ item.get_absolute_url }}">{{ item.job_title }}</a>
+                           <p> <a href="{{ item.get_absolute_url }}">{{ item.job_title }}</a> </p>
                         </li>
                     {% endfor %}
-                </ul>
-                <br><br>
-                <h5 class="my-3">Список черновиков вакансий {{ user.employer.employment }}:</h5>
-                <ul>
-                {% for item in vacancy_cab_not_qs %}
-                    <li>
-                        <a href="{{ item.get_absolute_url }}">{{ item.job_title }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-            <br><br>
+                    </ul>
 
+                </div>
+            </div>
 
 
     </div>

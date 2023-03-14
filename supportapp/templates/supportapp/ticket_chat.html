@@ -5,7 +5,7 @@
     <div class="container-md" style="max-width: 870px">
         <div class="d-flex flex-column mx-3 mt-3 pt-3">
             <div class="flex-row col-md-4 text-start pb-1">
-                <a href="{% url 'support:tickets' %}"><strong class="h5 text-info">Служба поддержки</strong></a>
+                <a href="{% url 'support:tickets' %}"><strong class="h4 text-info">Служба поддержки</strong></a>
             </div>
             <hr style="width: 100%">
             <div class="d-flex p-0">
@@ -28,7 +28,7 @@
                             <form action="{% url 'support:status_change' pk=ticket_data.pk %}" method="post" id="closeTicketForm">
                                 {% csrf_token %}
                                 {{ status_form|crispy }}
-                                <button class="btn btn-outline-secondary rounded-pill" type="submit" id="closeTicketSubmit">{% if user.is_staff %}Закрыть тикет{% else %}Моя проблема решена {% endif %}</button>
+                                <button class="btn btn-outline-success1 rounded-pill" type="submit" id="closeTicketSubmit">{% if user.is_staff %}Закрыть тикет{% else %}Моя проблема решена {% endif %}</button>
                             </form>
                         </div>
                     {% endif %}
@@ -63,7 +63,7 @@
                 <form method="post" action="{% url 'support:create_message' %}" id="sendMessageForm">
                     {% csrf_token %}
                     {{ message_form|crispy }}
-                    <button class="btn btn-success my-2" id="messageSubmit">Отправить</button>
+                    <button class="boxed-btn3 btn-success my-3" id="messageSubmit">Отправить</button>
                 </form>
             </div>
         {% endif %}

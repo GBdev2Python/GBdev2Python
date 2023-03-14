@@ -4,7 +4,7 @@
 
     {% if page_obj %}
         <div class="row mt-2 pt-2  align-items-center">
-            <h3 class="h3 text-center">Page: {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</h3>
+            <h2 class="h3 text-center" style="color: #FDAE5C">Page: {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</h2>
         </div>
     {% endif %}
     <div class="row row-cols-2 row-cols-md-2 justify-content-evenly">

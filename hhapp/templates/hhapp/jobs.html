@@ -5,13 +5,17 @@
 {% block content %}
 
   <!-- job_listing_area_start  -->
-
-      <div class="row">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-auto mt-3">
+            <h2 style="color: #FDAE5C">Вакансии</h2>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-9">
           <div class="recent_joblist_wrap">
-             <h2 class="m-4">Вакансии</h2>
+
             <div class="recent_joblist ">
-              <div class=" align-items-center">
+
 
 
   <!--test start-->
@@ -33,7 +37,7 @@
                           <div class="location">
                             <p><i>Работодатель: </i>{{ vacancy.employer }}</p>
                             <p><i>Опыт работы: </i>{{ vacancy.get_experience_display }}, <i>Город: </i>{{ vacancy.town }}</p>
-  <!--                          <img height="30" src="{{ vacancy.employer_id.cover.url }}" alt="logo">-->
+    <!--                          <img height="30" src="{{ vacancy.employer_id.cover.url }}" alt="logo">-->
                              <div class="date">
                                <p> Дата публикации: {{ vacancy.created|date:"Y.m.d - H.i" }}</p>
                              </div>
@@ -49,14 +53,14 @@
 <!--                  {# {% endfor %} #}-->
   <!--test end-->
 
-              </div>
+
             </div>
           </div>
         </div>
         <div class="col-lg-3">
           <div class="job_filter white-bg">
             <div class="form_inner white-bg">
-              <h3 class="m-4">Фильтр</h3>
+              <h4 class="m-3">Фильтр</h4>
               <form method="GET">
                   {{ filter.form|crispy }}
                   <br>
