@@ -202,3 +202,17 @@ a:link {
   background-color: #F91842;
   border-color: #F91842;
 }
+
+.img-foto {
+    max-width: 150px;
+    max-height: 150px;
+    min-width: 100px;
+    min-height: 100px;
+}
+
+.img-logo{
+    max-width: 130px;
+    max-height: 130px;
+    min-width: 50px;
+    min-height: 50px;
+}

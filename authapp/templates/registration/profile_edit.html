@@ -5,7 +5,7 @@
 
     <div class="row justify-content-center py-5">
         <div class="col-lg-6">
-            <h2>Редактирование профиля</h2>
+            <h2 style="color: #FDAE5C" class="text-xl-center">Редактирование профиля</h2>
             <div class="card p-1">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item text-muted">Дата регистрации: {{ request.user.date_joined }}</li>
@@ -15,7 +15,11 @@
             <form method="post" class="mt-2" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <button type="submit" class="boxed-btn3 my-3">Сохранить</button>
+                <div class="row">
+                    <div class="col-md-auto mx-auto p-0">
+                        <button type="submit" class="boxed-btn3 my-3">Сохранить</button>
+                    </div>
+                </div>
             </form>
 
         </div>

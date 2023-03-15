@@ -13,14 +13,14 @@
 <!--    <p>customuser ID: {{ user.pk }}</p>-->
 <!--    <p>employer ID: {{ user.employer.id }}</p>-->
 <!--  {% endif %}-->
-  <br><br>
-  <h3>Редактирование карточки организации</h3>
+  <br>
+  <h2 style="color: #FDAE5C" class="text-xl-center">Редактирование карточки организации</h2>
   <b></b>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xl-1 col-md-1 col-lg-1">
-      </div>
-      <div class="col-xl-8 col-md-8 col-lg-8">
+<!--      <div class="col-xl-1 col-md-1 col-lg-1">-->
+<!--      </div>-->
+      <div class="col-xl-9 col-md-9 col-lg-9">
         <form class="form_empl"  action="#" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {% for el in form %}
@@ -31,7 +31,12 @@
             <div class="form-error">{{ el.errors }}</div>
           {% endfor %}
           {{ form.media }}
-          <button type="submit">Изменить</button>
+          <div class="row">
+            <div class="col-md-auto mx-auto p-0">
+              <button type="submit" class="boxed-btn3">Изменить</button>
+            </div>
+          </div>
+
         </form>
       </div>
       <div class="col-xl-3 col-md-3 col-lg-3">

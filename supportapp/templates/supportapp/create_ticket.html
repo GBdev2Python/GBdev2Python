@@ -2,11 +2,16 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <div class="container-sm">
+    <div class="container-sm py-4">
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form|crispy }}
-            <button class="boxed-btn3 btn-success my-3">Создать тикет</button>
+            <div class="row">
+                <div class="col-md-auto mx-auto p-0">
+                    <button class="boxed-btn3 btn-success my-3">Создать тикет</button>
+                </div>
+            </div>
+
         </form>
     </div>
 {% endblock content %}
