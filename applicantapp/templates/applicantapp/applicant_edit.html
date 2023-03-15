@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static crispy_forms_tags %}
+{% block title %}Редактирование профиля соискателя{% endblock title %}
+
+{% block content %}
+
+  <div class="justify-content-center">
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xl-9 col-md-9 col-lg-9 py-3">
+            <h2 class="py-2">Профиль соискателя</h2>
+            <b></b>
+            <h1>{{ context }}</h1>
+           <form class="form_empl" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+                <img class="avatar avatar--xl my-4" src="{{ MEDIA_URL }}{{ form.image.value }}" width="30%">
+              {{ form|crispy }}
+              <button type="submit" class="boxed-btn3 my-3">Подтвердить изменения</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+     </div>
+
+{% endblock content %}

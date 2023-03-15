@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Список вакансий работодателя{% endblock title %}
+
+{% block content %}
+  <br>
+<!--  <a href="{% url 'employerapp:employer_list' %}">список работодателей</a> |-->
+<!--  <a href="{% url 'employerapp:vacancy_list' %}">список всех вакансий</a> |-->
+<!--  <br><br>-->
+<!--  {% if user.is_authenticated %}-->
+<!--    <p>customuser Пользователь: <b>{{ user.username }}</b></p>-->
+<!--    <p>customuser ID: <b>{{ user.pk }}</b></p>-->
+<!--    <p>customuser is_company: <b>{{ user.is_company }}</b></p>-->
+<!--  {% endif %}-->
+<!--  <br><br>-->
+
+  <h2 style="color: #FDAE5C">Список всех вакансий {{ employer_lst_qs.employer}}</h2>
+  <br>
+
+  <ul>
+    {% for item in employer_vacancy_lst_qs %}
+      <li>
+        <h4><a href="{{ item.get_absolute_url }}">{{ item.job_title }}</a></h4>
+      </li>
+    {% endfor %}
+  </ul>
+  <br><br>
+{% endblock content %}

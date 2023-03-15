@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Список соискателей{% endblock title %}
+
+{#{% block messages %}#}
+{#  {% include 'includes/job_menu.html' %}#}
+{#{% endblock messages %}#}
+
+{% block content %}
+    <br>
+    <a href="{% url 'applicant:list' %}">Список соискателей</a>
+    <a href="{% url 'applicant:resume_list' %}">Список резюме</a>
+    <br>
+    <h1>Список соискателей</h1>
+    <ul>
+      {% for item in applicant_list %}
+        <li>
+          <a href="{{ item.get_absolute_url }}">{{ item.first_name }} {{ item.last_name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+{% endblock content %}

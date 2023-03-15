@@ -1,0 +1,28 @@
+[
+  {
+    "model": "applicantapp.applicants",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "first_name": "Gerasim",
+      "last_name": "Vasilevskiy",
+      "image": "applicant_images/andy.png",
+      "birthday": "2002-02-22",
+      "phone": "+792134921",
+      "town": 1
+    }
+  },
+  {
+    "model": "applicantapp.applicants",
+    "pk": 2,
+    "fields": {
+      "user": 5,
+      "first_name": "Avshalom",
+      "last_name": "Tsigelman",
+      "image": "applicant_images/egord.png",
+      "birthday": "1998-01-11",
+      "phone": "+7837211372",
+      "town": 2
+    }
+  }
+]

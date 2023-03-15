@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Личный кабинет соискателя {% endblock title %}
+
+{#{% block messages %}#}
+{#  {% include 'includes/job_menu.html' %}#}
+{#{% endblock messages %}#}
+
+{% block content %}
+  <br>
+    <a href="{% url 'applicant:list' %}">Список соискателей</a>
+    <a href="{% url 'applicant:resume_list' %}">Список резюме</a>
+    <br>
+    <br>
+
+     <div class="container-fluid">
+         <h1>Соискатель</h1>
+        <br>
+
+      <div class="row">
+        <div class="col-xl-1 col-md-1 col-lg-1">
+        </div>
+
+
+        <div class="col-xl-8 col-md-8 col-lg-8">
+          <img class="avatar avatar--xl" src="{{ MEDIA_URL }}applicant_images/andy.png" />
+          <ul>
+            <p>Имя: {{ applicant.first_name }}</p>
+            <p>Фамилия: {{ applicant.last_name }}</p>
+            <p>Дата рождения: {{ applicant.birthday }}</p>
+            <p>Город проживания: {{ applicant.town }}</p>
+            <p>Контактный телефон: {{ applicant.phone }}</p>
+            <p>email: {{ applicant.user.email }} </p>
+          </ul>
+          <br>
+          <h3>Резюме соискателя:</h3>
+
+          {% for resume in resumes %}
+              <ul>
+                <li><a href="#"> <h3>{{ resume.required_job }}</h3></a>  </li>
+                <ul>
+                  <li>
+                    <a href="#"> Редактировать резюме</a>
+                  </li>
+                  <li>
+                    <a href="#"> Удалить резюме</a>
+                  </li>
+
+                </ul>
+              </ul>
+          {% endfor %}
+        </div>
+        <div class="col-xl-3 col-md-3 col-lg-3">
+          <ul>
+            <li>
+              <a href="{% url 'applicant:new_resume' applicant.id %}" class="boxed-btn"> Создать резюме</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,98 @@
+[
+    {
+        "fields": {
+            "author": "ResumeBuilder",
+            "content": "By ResumeBuilder\r\nFebruary 14, 2023CommentsForty percent of respondents said their job interviewer didn't know they used ChatGPT to write application materials.\r\nCredit: Pure Future\r\nChatGPT is makin\u2026 [+864 chars]",
+            "created": "2023-02-15 08:52:09",
+            "deleted": false,
+            "description": "Forty-six percent of job seekers are using ChatGPT to write their resumes or cover letters, and 78% of those landed an interview.",
+            "image": "https://cacm.acm.org/system/assets/0004/4849/021423_PureFuture_Robot-Resume.large.jpg?1676393554&1676393554",
+            "published_at": "2023-02-14 13:39:48",
+            "source": "Acm.org",
+            "title": "Most Job Seekers Who Used ChatGPT to Write Their Resume Get an Interview",
+            "url": "https://cacm.acm.org/careers/269906-most-job-seekers-who-used-chatgpt-to-write-their-resume-get-an-interview/fulltext"
+        },
+        "model": "newsapp.news",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "author": null,
+            "content": "Investment in new products and services helps secure #10 position as a G2 best-in-class Enterprise software provider \r\nNEW YORK, Feb. 14, 2023 /PRNewswire/ --\u00a0Greenhouse\r\n, the hiring operating syste\u2026 [+5593 chars]",
+            "created": "2023-02-15 08:52:09",
+            "deleted": false,
+            "description": "Investment in new products and services helps secure #10 position as a G2 best-in-class Enterprise software provider NEW YORK, Feb. 14, 2023 /PRNewswire/ -- Greenhouse, the hiring operating system for people-first companies, today announced it has been recogn\u2026",
+            "image": "https://mma.prnewswire.com/media/1095273/GREENHOUSE_WORDMARK_GREEN_Logo.jpg?p=facebook",
+            "published_at": "2023-02-14 07:00:00",
+            "source": "PRNewswire",
+            "title": "G2 Ranks Greenhouse a Top Ten Best Software Product for Enterprise",
+            "url": "https://www.prnewswire.com/news-releases/g2-ranks-greenhouse-a-top-ten-best-software-product-for-enterprise-301745693.html"
+        },
+        "model": "newsapp.news",
+        "pk": 2
+    },
+    {
+        "fields": {
+            "author": "5th Avenue Theatre",
+            "content": "About the Opportunity\r\nThe 5th Avenue Theatre in Seattle, Washington seeks its next Managing Director to partner with Producing Artistic Director Bill Berry in leading a company recognized nationally\u2026 [+19325 chars]",
+            "created": "2023-02-15 08:52:09",
+            "deleted": false,
+            "description": "About the Opportunity The 5th Avenue Theatre in Seattle, Washington seeks its next Managing Director to partner with Producing Artistic Director Bill Berry in leading a company recognized nationally for its excellence in musical theatre, producing both fresh \u2026",
+            "image": null,
+            "published_at": "2023-02-14 02:37:08",
+            "source": "Artsjournal.com",
+            "title": "Managing Director \u2013 The 5th Avenue Theatre",
+            "url": "https://www.artsjournal.com/2023/02/managing-director-the-5th-avenue-theatre.html"
+        },
+        "model": "newsapp.news",
+        "pk": 3
+    },
+    {
+        "fields": {
+            "author": "https://www.facebook.com/bbcnews",
+            "content": "Britain needs you. \r\nThat was the message from Chancellor Jeremy Hunt last month when he urged people who have retired early to return to the workforce to help revive the economy. \r\nMr Hunt promised \u2026 [+4607 chars]",
+            "created": "2023-02-15 08:52:09",
+            "deleted": false,
+            "description": "Recruiters and charities give their advice for anyone wanting to get back into work.",
+            "image": "https://ichef.bbci.co.uk/news/1024/branded_news/13FA4/production/_128582818_over50edited.jpg",
+            "published_at": "2023-02-13 21:03:40",
+            "source": "BBC News",
+            "title": "Six tips for getting a job if you're over 50",
+            "url": "https://www.bbc.co.uk/news/business-64625372"
+        },
+        "model": "newsapp.news",
+        "pk": 4
+    },
+    {
+        "fields": {
+            "author": null,
+            "content": "Three cross-industry trends are converging to trigger far-reaching changes within the mining workforce. First, the nature of work itself is evolving, with an increasing focus on automation, algorithm\u2026 [+21893 chars]",
+            "created": "2023-02-15 08:52:09",
+            "deleted": false,
+            "description": "A well-managed, motivated, and trained workforce has been a core driver for productivity and safety in mining; an unprecedented skills shortage in the mining industry is elevating talent to the top of miners\u2019 agendas.",
+            "image": "https://www.mckinsey.com/~/media/mckinsey/industries/metals%20and%20mining/our%20insights/has%20mining%20lost%20its%20luster%20why%20talent%20is%20moving%20elsewhere%20and%20how%20to%20bring%20them%20back/has-mining-lost-its-luster-166029447-thumb-1536x1536.jpg",
+            "published_at": "2023-02-13 21:00:00",
+            "source": "Mckinsey.com",
+            "title": "Has mining lost its luster? Why talent is moving elsewhere and how to bring them back",
+            "url": "https://www.mckinsey.com/industries/metals-and-mining/our-insights/has-mining-lost-its-luster-why-talent-is-moving-elsewhere-and-how-to-bring-them-back"
+        },
+        "model": "newsapp.news",
+        "pk": 5
+    },
+    {
+        "fields": {
+            "author": "Investment Masters Class",
+            "content": "Some brands are so powerful in their categories, so innovative in their thinking and design and so well marketed they have become synonymous with our everyday lives; quite simply, they have become ic\u2026 [+39265 chars]",
+            "created": "2023-02-15 08:52:09",
+            "deleted": false,
+            "description": "Some brands are so powerful in their categories, so innovative in their thinking and design and so well marketed they have become synonymous with our everyday lives; quite simply, they have become iconic. Apple\u2019s iPad or iPhone are good examples, as is Nike a\u2026",
+            "image": "https://www.valuewalk.com/wp-content/uploads/2023/02/IKEA-Ingvar-Kamprad.jpeg",
+            "published_at": "2023-02-13 16:54:42",
+            "source": "Mastersinvest.com",
+            "title": "Learning From IKEA\u2019s Ingvar Kamprad",
+            "url": "https://mastersinvest.com/newblog/2023/2/3/learning-from-ikea"
+        },
+        "model": "newsapp.news",
+        "pk": 6
+    }
+]

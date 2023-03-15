@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+
+    <title>{% block title %}Welcome to IT Job!{% endblock title %}</title>
+</head>
+
+<body class="d-flex flex-column">
+
+<!-- header-start -->
+{% include 'includes/header_menu.html' %}
+
+{% block messages %}
+    {% include 'includes/messages.html' %}
+{% endblock messages %}
+
+<div class="container-md" style="flex: 1 0 auto">
+    {% block content %}
+    {% endblock content %}
+</div>
+<!-- footer start -->
+{% include 'includes/footer.html' %}
+<!--/ footer end  -->
+
+{% block js %} {% endblock js %}
+
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+<script>
+    $(document).ready(function () {
+        {% if messages %}
+            // Toasts
+            $(".toast").toast({delay: 5000});
+            $(".toast").toast("show");
+        {% endif %}
+    });
+</script>
+
+</body>
+</html>

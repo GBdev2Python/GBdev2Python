@@ -1,0 +1,21 @@
+[
+  {
+    "model": "authapp.customuser",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$wIJFJ37zFE3prUWTwr4baJ$xK1sWRL8Y2Z/EKYAlFPvm2yxR13xchIjp4n35xtRBD4=",
+      "last_login": "2023-02-27T18:16:42.729Z",
+      "is_superuser": true,
+      "username": "admin",
+      "login": "",
+      "email": "admin@post.com",
+      "is_company": false,
+      "is_moderator": true,
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2023-02-14T09:59:44.918Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    {# Happy white people do stomething important! #}
+
+    {# partners field start #}
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-7">
+            <p class="text-center">
+                <img src="{% static 'img/index_images/index_partners.svg' %}" class="w-75" alt="...">
+            </p>
+            <h3>Тут огромный заголовок, обьясняющий почему так круто размещаться у нас, а не не у нас!</h3>
+            <p class="text-justify">
+                Очень большой текст о преимуществах и недостатках, которые на самом деле и не недостатки.
+                Ведь если посмотреть под другим углом, то может показаться, что и нет, а он раз... и да!
+                В общем, я бы хотел, чтобы вы как минимум прочитали этот текст и подумали о том, что там написано.
+                Вообще, я часто думаю о том, что же такое реклама. Иногда мне кажется, что реклама -- это некий
+                способ управления человеком, с помощью которого можно заставить его делать то, что выгодно для
+                рекламодателя.
+            </p>
+            <a href="#" class="text-left text-info h5">Почитать о нас >>> </a>
+        </div>
+        <div class="col-md-5" id="partners-block">
+            <h2 class="px-4 h2" style="color: #FDAE5C">Наши замечательные партнёры</h2>
+            {% for employer in employer_objects %}
+                <div class="card-body">
+                    <a href="{% url 'employerapp:employer_detail' employer=employer.id %}"
+                       class="p-3 text-left text-muted d-flex justify-content-between border rounded border-info font-weight-bold">
+                        <span class="text-muted align-bottom">{{ employer.employment }}</span>
+                        <span class="text-left text-muted align-middle">{{ employer.company_vacancies }}</span>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {# partners field end #}
+
+    <div class="my-5">
+        <hr>
+    </div>
+
+    {# News start #}
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-5" id="news-block">
+            <h2 style="color: #FDAE5C">Новости</h2>
+            {% for news_item in news_objects %}
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">{{ news_item.title|truncatewords:10 }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ news_item.published_at }}</h6>
+                        <p class="card-text">{{ news_item.description|truncatewords:20 }}</p>
+                        <a href="{% url "news:news_detail" pk=news_item.pk %}" class="text-info stretched-link">Подробнее</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-7">
+            <div class="col justify-content-center">
+                <div class="text-left">
+                    <h3>А тут у огромный новостной заголовок,</h3>
+                    <h3>который растянут на несколько строк, чтоб стильно было!</h3>
+                </div>
+                <p class="text-justify">
+                    Громкий новостной заголовок, генерированный сеткой от яндекса. И ведь не поспоришь.
+                    Да и не только я, а даже, наверное, сам автор. Вот только кто был автором?
+                    Не знаю, как вы, а я никогда не видел в интернете рекламы, которая бы была написана на
+                    заказ.
+                    А уж тем более, на заказ, написанной известным журналистом.
+                    Даже если предположить, что этот журналист сам себе пишет тексты, то, согласитесь, это же
+                    совершенно нелогично.
+                    Если он сам себе пишет, почему же он не может сам себе написать рекламу. Зачем же тогда
+                    нужен редактор?!
+                    Это вопрос, который ставит в тупик.
+                    И я не знаю ответа на этот вопрос.
+                    Вообще, я часто думаю о том, что же такое реклама.
+                    Иногда мне кажется, что реклама -- это некий способ управления человеком, с помощью которого
+                    можно заставить его делать то, что выгодно для рекламодателя.
+                </p>
+                <a href="{% url 'news:news' %}" class="h5 text-info">Перейти ко всем новостям >>> </a>
+                <div class="text-center">
+                    <img src="{% static 'img/index_images/index_news.svg' %}" alt="..."
+                         style="max-width: 750px">
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+    {# News end #}
+
+
+{% endblock content %}

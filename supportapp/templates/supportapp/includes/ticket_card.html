@@ -1,0 +1,8 @@
+<div class="row px-3 pb-3 mt-3 ticket-text border-bottom">
+    <div class="col-3 px-3 text-start text-dark"><a href="{% url 'support:ticket' pk=ticket.pk %}">{{ ticket.theme|lower|capfirst|truncatechars:35 }}</a></div>
+    <div class="col-3 align-self-center text-end text-dark">{% if ticket.topic == 1 %}Registration{% elif ticket.topic == 2 %}Profile{% elif ticket.topic == 3 %}Login{% else %}Account access{% endif %}</div>
+    <div class="col-3 align-self-center text-start {% if ticket.status == 1 %}{% elif ticket.status == 2 %}text-success{% else %}text-muted{% endif %}" {% if ticket.status == 1 %}style="color: #FDAE5C"{% endif %}>
+        {% if ticket.status == 1 %}Активен{% elif ticket.status == 2 %}Решен{% else %}Закрыт{% endif %}
+    </div>
+    <div class="col-3 align-self-center text-start text-dark">{{ ticket.created }}</div>
+</div>

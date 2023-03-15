@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static crispy_forms_tags %}
+
+{% block content %}
+
+    <div class="d-flex flex-column my-5 py-5 ">
+        <div class="row align-self-center" style="max-width: 550px">
+            <div class="d-flex flex-column align-items-center">
+                <a  href="{% url 'hhapp:main_page' %}">
+                    <img src="{% static 'img/logo_main.png' %}" alt="">
+                </a>
+                <h3>Вход пользователя</h3>
+            </div>
+
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn my-3 boxed-btn3 container-fluid">Войти в личный кабинет</button>
+            </form>
+        </div>
+        <div class="d-flex flex-row align-self-center">
+            <a class="px-4" href="{% url 'authapp:password_reset' %}"><small>Забыли пароль?</small></a>
+            <a class="px-4" href="{% url 'authapp:register' %}"><small>Регистрация</small></a>
+        </div>
+        </div>
+    </div>
+
+    </div>
+
+{% endblock content %}

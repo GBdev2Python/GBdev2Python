@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static crispy_forms_tags %}
+{% block title %}Создание карточки работодателя{% endblock title %}
+
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'employerapp/css/forms.css' %}"/>
+{% endblock stylesheet %}
+
+{% block content %}
+<!--  <br><br>-->
+<!--  {% if user.is_authenticated %}-->
+<!--    <p>customuser Логин: {{ user.username }}</p>-->
+<!--    <p>customuser ID: {{ user.pk }}</p>-->
+<!--    <p>employer ID: {{ user.employer.id }}</p>-->
+<!--  {% endif %}-->
+  <br><br>
+
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-1 col-md-1 col-lg-1">
+      </div>
+      <h2 class="my-4">Создание карточки организации работодателя</h2>
+      <b></b>
+      <div class="col-xl-8 col-md-8 col-lg-8">
+        <form class="form_empl" action="{% url 'employerapp:employer_create' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form|crispy }}
+          {{ form.media }}
+          <button type="submit" class="boxed-btn3 my-4">Добавить</button>
+        </form>
+      </div>
+      <div class="col-xl-3 col-md-3 col-lg-3">
+<!--        <p>Боковая колонка</p>-->
+      </div>
+    </div>
+  </div>
+  <br>
+{% endblock content %}

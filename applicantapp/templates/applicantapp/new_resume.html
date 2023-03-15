@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static crispy_forms_tags %}
+{% block title %}Создание Резюме {% endblock title %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-xl-9 col-md-9 col-lg-9" id="resumeCreateForm">
+                <h2 class="py-3 text-xl-center" style="color: #FDAE5C"> Соискатель: {{ applicant.first_name }} {{ applicant.last_name }}</h2>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    {{ form|crispy }}
+
+                    <div class="mt-2"><h3 class="h3">Опыт работы</h3></div>
+                    <div id="subFormBlock">
+                        {% for f in experience_formset %}
+                            {{ f|crispy }}
+                        {% endfor %}
+                    </div>
+
+                    <div class="my-2 px-0 d-flex align-items-center d-flex add-company-block rounded-pill justify-content-center" id="addNewForm">
+                        <button class="btn add-company align-self-center"></button>
+                        <span class="px-2 align-self-center">Добавить опыт</span>
+                    </div>
+
+                    <div class="my-2">
+                        <a class="m-2" href="{% url 'applicant:applicant_cabinet' applicant.id %}">Назад</a>
+                        <button type="submit" class='boxed-btn3 m-2'> Сохранить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block js %}
+    <script>
+        let lastFormObjectId = $('#resumeCreateForm').find('.formCompanyFields').last().attr('id');
+        let lastFormId = parseInt(lastFormObjectId.replaceAll('id_form-', '').replaceAll('-company', ''));
+
+        $(document).ready(function () {
+            $('#addNewForm').click(function (e) {
+                e.preventDefault();
+                lastFormId++;
+
+                $('#subFormBlock').append(
+                    $("<div></div>", {
+                        "id": `div_id_form-${lastFormId}-company`,
+                        "class": "form-group controlField py-1 my-1",
+                    })
+                );
+
+                let lableItem = $("<label></label>", {
+                    "for": `id_form-${lastFormId}-company`,
+                    "class": 'requiredField',
+                    text: ' Компания',
+                })
+                let inputDiv = $("<div></div>");
+                let inputField = $('<input type="text">')
+                .attr("name", `form-${lastFormId}-company`)
+                .attr("max-length", 100)
+                .addClass('formCompanyFields textinput textInput form-control')
+                .attr("id", `id_form-${lastFormId}-company`);
+
+                inputDiv.append(inputField);
+
+                $(`#div_id_form-${lastFormId}-company`).append(lableItem);
+                $(`#div_id_form-${lastFormId}-company`).append(inputDiv);
+
+                let textDiv = $('<div></div>');
+                textDiv.append($('<textarea></textarea>', {
+                    "name": `form-${lastFormId}-description`,
+                    'cols': 40,
+                    'rows': 5,
+                    'class': 'formCompanyFields textarea form-control',
+                    'id': `id_form-${lastFormId}-description`,
+                }));
+                let textLableItem = $("<label></label>", {
+                    "for": `id_form-${lastFormId}-company`,
+                    "class": 'requiredField',
+                    text: ' Ваши достижения',
+                });
+
+                $(`#div_id_form-${lastFormId}-company`).append(textLableItem);
+                $(`#div_id_form-${lastFormId}-company`).append(textDiv);
+
+                let deleteDiv = $("<div></div>", {
+                    class: 'my-2 px-0 d-flex align-items-center justify-content-center rounded-pill remove-company-block',
+                    id: `div_id_form-${lastFormId}-company-rm`
+                });
+
+                deleteDiv.append($("<button>", {
+                    class: 'btn remove-company align-self-center'
+                }));
+                deleteDiv.append($("<span></span>", {
+                    class: 'px-2 align-self-center',
+                    text: 'Убрать поле'
+                }));
+
+
+                $(`#div_id_form-${lastFormId}-company`).append(deleteDiv);
+
+                $(`#div_id_form-${lastFormId}-company-rm`).click(function (e) {
+                    $(this).parents(".controlField").remove();
+                });
+            });
+        });
+    </script>
+{% endblock js %}

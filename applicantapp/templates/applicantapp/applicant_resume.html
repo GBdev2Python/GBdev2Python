@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Резюме{% endblock title %}
+
+{% block content %}
+
+    <div class="container-fluid p-0">
+        <br>
+
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <h2 style="color: #FDAE5C">Резюме</h2>
+            </div>
+        </div>
+        <div class="row m-0">
+            <div class="col-xl-9 col-md-9 col-lg-9 p-0">
+                <div class="card bg-light" style="max-width: auto">
+                    <div class="row m-0">
+                        <div class="col-md-6 p-3">
+                            <img class="img-fluid" src="{{ resume.image.url }}" style="max-width: auto"/>
+                        </div>
+                        <div class="col-md-6 p-3">
+                            <p>Имя: {{ resume.applicants.first_name }}</p>
+                            <p>Фамилия: {{ resume.applicants.last_name }}</p>
+                            <p>Дата рождения: {{ resume.applicants.birthday }}</p>
+                            <p>Город проживания: {{ resume.applicants.town }}</p>
+                            <p>Контактный телефон: {{ resume.applicants.phone }}</p>
+                            <p>email: {{ resume.applicants.user.email }}</p>
+                        </div>
+
+                    </div>
+
+                    <div class="m-3">
+                        <h5 class="fs-5 fw-bold my-0 mx-3">Опыт работы:</h5>
+                        <hr class="mt-0" style="width: 100%">
+                        {% if resume.experience.all %}
+                            {% for exp in resume.experience.all %}
+                                <div class="m-3">
+                                    <p class="text-dark fw-normal my-0 lh-sm mx-lg-5">ООО "{{ exp.company }}"</p>
+                                    <p class="text-muted lh-sm mx-lg-5">{{ exp.description }}</p>
+                                </div>
+                                <hr style="width: 100%">
+                            {% endfor %}
+                        {% else %}
+                            <p class="mx-lg-5">Кандидат предпочёл не указывать опыт</p>
+                        {% endif %}
+                    </div>
+                    <div class="row p-0 m-0">
+                        <p><u>Навыки:</u></p>
+                    </div>
+                    <div class="row m-0">
+                        <div class="col-md-12 p-3">
+                            {% for skill in skills %}
+                                <p style="margin-left: 40px">{{ skill.name }}</p>
+                            {% endfor %}
+                            <p><u>Требуемая работа:</u> {{ resume.required_job }}</p>
+                            <p><u>Поиск работы в городе:</u> {{ resume.town_job }}</p>
+                            <p><u>Заработная плата:</u> {{ resume.salary }}</p>
+                            <p><u>Образование:</u> {{ resume.education }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-auto mx-auto p-0">
+                            <div style="margin-bottom: 20px;">
+                                <a class="boxed-btn3 m-2" style="text-decoration: none;"
+                                   onclick="javascript:history.back(); return true;"> Назад </a>
+                                {% if request.user.id == resume.applicants.user.id %}
+                                    <a class="boxed-btn3 m-2" href="{% url 'applicant:update_resume' resume.id %}">
+                                        Редактировать резюме </a>
+                                    <a class="boxed-btn3 m-2" href="{% url 'applicant:delete_resume' resume.id %}">
+                                        Удалить резюме </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-3 col-lg-3">
+                {% if response.count %}
+
+                    <h4 class="text-xl-center">Отклики</h4>
+                    {% for item_response in response %}
+                        <div class="col my-2">
+                            <div class="card {% if user.is_active %} border-success{% else %} border-danger{% endif %}"
+                                 style="max-width: 450px; max-height: 250px">
+                                <div class="card-body">
+                                    <h5 class="card-title {% if item_response.status == 'ACCEPTED' %} text-success {% endif %} {% if item_response.status == 'REJECTED' %} text-danger {% endif %}">
+                                        <a href="{% url 'employerapp:vacancy' vacancy_pk=item_response.vacancyheader.id %}">{{ item_response.vacancyheader }}</a>
+                                    </h5>
+                                    <p class="mb-0"><small class="text-muted">Статус:
+                                        {% if item_response.status == 'NEW' %} Новое {% endif %}
+                                        {% if item_response.status == 'ACCEPTED' %} Пригласили {% endif %}
+                                        {% if item_response.status == 'REJECTED' %} Отклонили {% endif %}</small></p>
+                                </div>
+                                <div class="card-footer">
+                                    <a class="btn btn-outline-secondary"
+                                       href="{% url 'serviceapp:response_view_applicant' response_id=item_response.id %}">
+                                        Смотреть Отклик
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

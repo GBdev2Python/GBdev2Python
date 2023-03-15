@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <main class="formPage my-xl">
+    <div class="content-box">
+      <div class="formWrapper">
+        <br>
+        <form class="form py-5 my-4" action="" method="POST">
+          {% csrf_token %}
+          <h2 style="color: #FDAE5C"><a>Вы действительно хотите удалить "{{ object }}"?</a></h2>
+
+          <a class="my-4" href="{% url 'applicant:applicant_cabinet' object.applicants.id %}">Назад</a>
+
+          <input class="boxed-btn2 m-4" type="submit" value="Удалить" />
+        </form>
+      </div>
+    </div>
+  </main>
+
+{% endblock %}

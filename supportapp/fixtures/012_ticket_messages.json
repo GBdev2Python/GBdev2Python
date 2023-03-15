@@ -1,0 +1,62 @@
+[
+  {
+    "model": "supportapp.ticketmessage",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "ticket": 1,
+      "message": "Всё сломалось!!!!1 ЧТо делать? Помогайте давайте!",
+      "created": "2023-03-02T11:00:44.918Z"
+    }
+  },
+  {
+    "model": "supportapp.ticketmessage",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "ticket": 1,
+      "message": "Я всё ещё тут. И вы ничего не починили!",
+      "created": "2023-03-02T11:12:44.918Z"
+    }
+  },
+  {
+    "model": "supportapp.ticketmessage",
+    "pk": 3,
+    "fields": {
+      "user": 1,
+      "ticket": 1,
+      "message": "Я ушел! Пока!",
+      "created": "2023-03-02T11:13:44.918Z"
+    }
+  },
+  {
+    "model": "supportapp.ticketmessage",
+    "pk": 4,
+    "fields": {
+      "user": 2,
+      "ticket": 2,
+      "message": "Спасибо за всё други мои!!",
+      "created": "2023-02-27T09:59:44.918Z"
+    }
+  },
+  {
+    "model": "supportapp.ticketmessage",
+    "pk": 5,
+    "fields": {
+      "user": 2,
+      "ticket": 2,
+      "message": "Оставлю тикет октрытым, на всякий!",
+      "created": "2023-02-27T10:11:44.918Z"
+    }
+  },
+  {
+    "model": "supportapp.ticketmessage",
+    "pk": 6,
+    "fields": {
+      "user": 3,
+      "ticket": 3,
+      "message": "Привет, я всё ещё тут и всё ещё дурачок!1",
+      "created": "2023-04-15T08:11:44.918Z"
+    }
+  }
+]

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+
+{% block title %}Контакты: техподдержка{% endblock title %}
+
+
+{% block content %}
+    <div class="container py-4">
+        <div class="p-5 mb-4 bg-light rounded-3">
+            <div class="container-fluid py-5">
+                <h1 class="display-5 fw-bold" style="color: #FDAE5C">Навигация по сайту</h1>
+                <p class="col-md-8 fs-4">Если у Вас есть какие-то вопросы, пожелания или точка зрения относительно нашего
+                    сайта - пожалуйста <a class="text-primary" href="{% url 'authapp:login' %}">зайдите под своим аккаунтом</a>
+                    или <a class="text-primary" href="{% url 'authapp:register' %}">зарегистрируйтесь</a>,
+                    после чего вы сможете связаться с нами через <a class="text-primary" href="{% url 'hhapp:contact_us' %}">форму обратной связи</a>.</p>
+            </div>
+        </div>
+        <div class="p-5 mb-4 bd-light rounded-3">
+            <div class="container-fluid py-5">
+                <h5 class="fs-3 fw-bold">Правила проекта</h5>
+                <p>Вы можете прочитать правила проекта <span><a class="text-primary" href="{% url 'hhapp:rules' %}">по ссылке</a></span></p>
+                <p>Там всё просто. Мы считаем, что все тут взрослые люди. Но тем не менее, следим строго, так что не бузим!</p>
+            </div>
+        </div>
+        <div class="row align-items-md-stretch">
+            <div class="col-md-6">
+                <div class="h-100 p-5 rounded-3" style="background-color: #FDAE5C">
+                    <h2 class="text-light">Наш офис тутЪ:</h2>
+                    <p>Some huge text here</p>
+                    <button class="btn btn-outline-light" type="button">The button</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="h-100 p-5 bg-light border rounded-3">
+                    <h2>И наш офис тутЪ</h2>
+                    <p>Some monstrous text over there</p>
+                    <button class="btn btn-outline-secondary" type="button">The button too</button>
+                </div>
+            </div>
+        </div>
+
+    {% if form %}
+        <p></p>
+    {% endif %}
+    </div>
+{% endblock content %}

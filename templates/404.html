@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>404</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+</head>
+
+
+<body>
+<div class="d-flex align-items-center justify-content-center vh-100">
+    <div class="text-center">
+        <h1 class="display-1 fw-bold">404</h1>
+        <p class="fs-3"><span class="text-danger">Opps!</span> Страница не найдена.</p>
+        <p class="lead">
+            Страница, которую вы ищете, не существует.
+        </p>
+        <a href="{% url 'hhapp:main_page' %}" class="btn btn-primary">Главная</a>
+    </div>
+</div>
+</body>
+
+
+</html>

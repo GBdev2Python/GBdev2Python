@@ -1,0 +1,289 @@
+[
+  {
+    "model": "applicantapp.towns",
+    "pk": 1,
+    "fields": {
+      "town": "Москва"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 2,
+    "fields": {
+      "town": "Санкт - Петербург"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 3,
+    "fields": {
+      "town": "Ростов"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 4,
+    "fields": {
+      "town": "Воронеж"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 5,
+    "fields": {
+      "town": "Арзамас"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 6,
+    "fields": {
+      "town": "Новосибирск"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 7,
+    "fields": {
+      "town": "Ярославль"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 8,
+    "fields": {
+      "town": "Астрахань"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 9,
+    "fields": {
+      "town": "Балашиха"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 10,
+    "fields": {
+      "town": "Белгород"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 11,
+    "fields": {
+      "town": "Владивосток"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 12,
+    "fields": {
+      "town": "Великий Новгород"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 13,
+    "fields": {
+      "town": "Грозный"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 14,
+    "fields": {
+      "town": "Екатеринбург"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 15,
+    "fields": {
+      "town": "Иваново"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 16,
+    "fields": {
+      "town": "Ижевск"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 17,
+    "fields": {
+      "town": "Новокузнецк"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 18,
+    "fields": {
+      "town": "Находка"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 19,
+    "fields": {
+      "town": "Набережные Челны"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 20,
+    "fields": {
+      "town": "Омск"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 21,
+    "fields": {
+      "town": "Орёл"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 22,
+    "fields": {
+      "town": "Псков"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 23,
+    "fields": {
+      "town": "Петропавловск-Камчатский"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 24,
+    "fields": {
+      "town": "Рязань"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 25,
+    "fields": {
+      "town": "Саратов"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 26,
+    "fields": {
+      "town": "Самара"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 27,
+    "fields": {
+      "town": "Тула"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 28,
+    "fields": {
+      "town": "Тольятти"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 29,
+    "fields": {
+      "town": "Томск"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 30,
+    "fields": {
+      "town": "Тверь"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 31,
+    "fields": {
+      "town": "Ульяновск"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 32,
+    "fields": {
+      "town": "Уфа"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 33,
+    "fields": {
+      "town": "Улан-Удэ"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 34,
+    "fields": {
+      "town": "Таганрог"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 35,
+    "fields": {
+      "town": "Ростов-на-Дону"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 36,
+    "fields": {
+      "town": "Оренбург"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 37,
+    "fields": {
+      "town": "Мурманск"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 38,
+    "fields": {
+      "town": "Калининград"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 39,
+    "fields": {
+      "town": "Дмитров"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 40,
+    "fields": {
+      "town": "Железноводск"
+    }
+  },
+  {
+    "model": "applicantapp.towns",
+    "pk": 41,
+    "fields": {
+      "town": "Мытищи"
+    }
+  }
+]
