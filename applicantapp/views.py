@@ -6,7 +6,7 @@ from django.views.generic import TemplateView, ListView, CreateView, UpdateView,
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from applicantapp.forms import ResumeForm, EditApplicantForm, InvitationCreationForm, ExperienceFormSet, \
-    ExperienceEditFormset
+    ExperienceEditFormset, ApplicantCreateForm
 from applicantapp.models import *
 from .utils import save_experience_data, validate_experience_subform, update_experience_data
 from serviceapp.models import Response
@@ -87,15 +87,7 @@ class ApplicantResume(ListView):
 
 # Заполнение профиля соискателя
 class ApplicantCreate(CreateView):
-    model = Applicants
-    fields = ["image", "first_name", "last_name", "birthday", "town", "phone"]
-    labels = {
-        "image": "Аватар",
-        "first_name": "Имя",
-        "last_name": "Фамилия",
-        "birthday": "Дата рождения",
-        "town": "Город (населенный пункт)",
-    }
+    form_class = ApplicantCreateForm
     template_name = "applicantapp/applicant_create.html"
 
     def form_valid(self, form):
