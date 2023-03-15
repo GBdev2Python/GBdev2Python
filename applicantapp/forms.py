@@ -4,6 +4,13 @@ from django.forms import ModelForm
 from .models import Resumes, Applicants, ResumeInvitation, Experience
 
 
+class ApplicantCreateForm(ModelForm):
+
+    class Meta:
+        model = Applicants
+        fields = ["image", "first_name", "last_name", "birthday", "town", "phone"]
+
+
 class ResumeForm(ModelForm):
     class Meta:
         model = Resumes

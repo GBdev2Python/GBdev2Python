@@ -143,7 +143,7 @@ class TicketDetailView(UserPassesTestMixin, TemplateView):
             )) \
             .only('id', 'user__username', 'user__is_staff', 'user__email',
                   'init_message', 'status', 'topic', 'created', 'theme', 'attachment') \
-            .filter(pk=pk)
+            .filter(pk=pk).order_by('messages__created')
 
         ticket = ticket.first()
         context["ticket_data"] = ticket

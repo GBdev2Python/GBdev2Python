@@ -25,7 +25,8 @@ class Applicants(models.Model):
     image = models.ImageField(
         null=True, blank=True, upload_to="image/applicant", default="image/applicant/default.jpg"
     )
-    birthday = models.DateField(blank=True, verbose_name="Дата рождения")
+    birthday = models.DateField(verbose_name="Дата рождения", blank=True, null=True,
+                                help_text='В формате YYYY-MM-DD. Например 1991-12-21')
     phone = models.CharField(max_length=20, verbose_name="Телефон соискателя")
     town = models.ForeignKey(Towns, on_delete=models.PROTECT, verbose_name="Город проживания")
 
