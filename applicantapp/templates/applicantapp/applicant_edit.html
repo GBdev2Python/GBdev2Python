@@ -9,14 +9,18 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-xl-9 col-md-9 col-lg-9 py-3">
-            <h2 class="py-2">Профиль соискателя</h2>
+            <h2 class="py-2 text-xl-center py-2" style="color: #FDAE5C">Профиль соискателя</h2>
             <b></b>
             <h1>{{ context }}</h1>
            <form class="form_empl" method="post" enctype="multipart/form-data">
               {% csrf_token %}
                 <img class="avatar avatar--xl my-4" src="{{ MEDIA_URL }}{{ form.image.value }}" width="30%">
               {{ form|crispy }}
-              <button type="submit" class="boxed-btn3 my-3">Подтвердить изменения</button>
+               <div class="row">
+                   <div class="col-md-auto mx-auto p-0">
+                    <button type="submit" class="boxed-btn3 my-3">Подтвердить изменения</button>
+                   </div>
+               </div>
             </form>
           </div>
 
