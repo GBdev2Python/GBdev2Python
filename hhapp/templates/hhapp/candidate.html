@@ -22,21 +22,23 @@
                     <div class="jobs_left d-flex align-items-center">
                       <div class="col-lg-3">
                         <div class="thumb logo-job">
-                          <img class="rounded-start align-self-center img-foto" src="{{ resume.image.url }}" alt="Foto">
+                          <img class="rounded-start align-self-center img-fluid"  src="{{ resume.image.url }}" alt="Foto">
                         </div>
                       </div>
-                      <div class="jobs_conetent">
-                        <a href="{% if user.is_company %}{% url 'applicant:resume_by_id' resume_id=resume.id %}{% else %}{% url 'applicant:applicant_resume' resume.id %}{% endif %}">
-                            <h4>{{ resume.required_job }}</h4>
-                        </a>
-                        <div class="links_locat d-flex align-items-center">
-                          <div class="location">
-                            <p><i>Соискатель: </i>{{ resume.applicants.first_name }} {{ resume.applicants.last_name }}</p>
-                            <p><i>Ожидаемый доход: </i>{{ resume.salary }}, <i>Город: </i>{{ resume.town_job }}</p>
-  <!--                          <img height="30" src="{{ vacancy.employer_id.cover.url }}" alt="logo">-->
-                             <div class="date">
-                               <p> Дата публикации: {{ resume.created|date:"Y.m.d - H.i" }}</p>
-                             </div>
+                      <div class="col-lg-9">
+                          <div class="card-body">
+                            <a href="{% if user.is_company %}{% url 'applicant:resume_by_id' resume_id=resume.id %}{% else %}{% url 'applicant:applicant_resume' resume.id %}{% endif %}">
+                                <h4>{{ resume.required_job }}</h4>
+                            </a>
+                            <div class="links_locat d-flex align-items-center">
+                              <div class="location">
+                                <p><i>Соискатель: </i>{{ resume.applicants.first_name }} {{ resume.applicants.last_name }}</p>
+                                <p><i>Ожидаемый доход: </i>{{ resume.salary }}, <i>Город: </i>{{ resume.town_job }}</p>
+      <!--                          <img height="30" src="{{ vacancy.employer_id.cover.url }}" alt="logo">-->
+                                 <div class="date">
+                                   <p> Дата публикации: {{ resume.created|date:"Y.m.d - H.i" }}</p>
+                                 </div>
+                              </div>
                           </div>
                         </div>
                       </div>
