@@ -1,5 +1,11 @@
-# GBdev2Python
+# GBdev2Python IT-job.site
 Repository for GB Python for team training development.
+
+# Хостинг проекта 
+http://it-job.site
+
+# Макет проект Figma
+https://www.figma.com/file/kdlIvhDPFrpW12OJVvug2H/it-job.site?t=P1MpWnxEC5MBUxi2-1
 
 ## Стек
 - Python > 3.8
